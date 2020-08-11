@@ -51,11 +51,13 @@ app.get('/immemdetail', getAllemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
-
-
-
-
-
+app.post('/hello', (req, res) => {
+  if (req.method != "POST") {
+    res.status(400).send("I am not happy");
+    return;
+  }
+  res.end("Received POST request!");
+});
 app.get('/', (req, res) => {
   const date = new Date();
   const hours = (date.getHours() % 12) + 1;  // London is UTC + 1hr;
