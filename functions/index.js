@@ -43,7 +43,7 @@ const {
 
 app.get('/imjoiners', getAllImmediateJoiners);
 app.get('/imcontactus', getAllcontacts);
-app.get('/impostcontactus', postContactus);
+app.post('/impostcontactus', postContactus);
 app.get('/imjobapplications', getAlljobapplications);
 app.get('/imjobposts', getAlljobposts);
 app.get('/imuserdetails', getAllIMUserdetails);

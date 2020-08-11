@@ -28,10 +28,6 @@ exports.postContactus = (request, response) => {
 		return response.status(400).json({ body: 'Must not be empty' });
     }
     
-    if(request.body.title.trim() === '') {
-        return response.status(400).json({ title: 'Must not be empty' });
-    }
-    
     const newContactUsItem = {
         firstname: request.body.firstname,
 		lastname: request.user.lastname,
