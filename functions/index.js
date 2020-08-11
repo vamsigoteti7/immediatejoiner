@@ -6,7 +6,20 @@ const {
   getAllImmediateJoiners
 } = require('./APIs/IMRegister')
 
+const {
+  getAllcontacts,
+  postContactus
+} = require('./APIs/IMContactus')
+
+const {
+  getAlljobapplications
+} = require('./APIs/IMJobapplications')
+
+
 app.get('/imjoiners', getAllImmediateJoiners);
+app.get('/imcontactus', getAllcontacts);
+app.get('/impostcontactus', postContactus);
+app.get('/imjobapplications', getAlljobapplications);
 
 app.get('/', (req, res) => {
   const date = new Date();

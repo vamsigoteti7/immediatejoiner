@@ -45,9 +45,8 @@ export class Logintbygoogle extends Component {
         this.setState({ [name]: value });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-
+    handleSubmit() {
+        console.log('clicked');
         this.setState({ submitted: true });
         const { username, password } = this.state;
         if (username && password) {
@@ -66,13 +65,13 @@ export class Logintbygoogle extends Component {
         const { username, password, submitted, loggingIn } = this.state;
         return (
             <div className="site-wrap">
-                <div class="site-mobile-menu site-navbar-target">
-                    <div class="site-mobile-menu-header">
-                        <div class="site-mobile-menu-close mt-3">
-                            <span class="icon-close2 js-menu-toggle"></span>
+                <div className="site-mobile-menu site-navbar-target">
+                    <div className="site-mobile-menu-header">
+                        <div className="site-mobile-menu-close mt-3">
+                            <span className="icon-close2 js-menu-toggle"></span>
                         </div>
                     </div>
-                    <div class="site-mobile-menu-body"></div>
+                    <div className="site-mobile-menu-body"></div>
                 </div>
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
@@ -110,20 +109,20 @@ export class Logintbygoogle extends Component {
                                 <form action="#" className="p-4 border rounded">
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" for="fname">Email</label>
-                                            <input type="text" id="fname" className="form-control" placeholder="Email address" />
+                                            <label className="text-black" htmlFor="femailregister">Email</label>
+                                            <input type="text" id="femailregister" className="form-control" placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" for="fname">Password</label>
-                                            <input type="password" id="fname" className="form-control" placeholder="Password" />
+                                            <label className="text-black" htmlFor="fpasswordregister">Password</label>
+                                            <input type="password" id="fpasswordregister" className="form-control" placeholder="Password" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" for="fname">Re-Type Password</label>
-                                            <input type="password" id="fname" className="form-control" placeholder="Re-type Password" />
+                                            <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
+                                            <input type="password" id="fretypepassword" className="form-control" placeholder="Re-type Password" />
                                         </div>
                                     </div>
 
@@ -141,20 +140,22 @@ export class Logintbygoogle extends Component {
 
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" for="fname">Email</label>
-                                            <input type="text" id="fname" className="form-control" placeholder="Email address" />
+                                            <label className="text-black" htmlFor="femail">Email</label>
+                                            <input type="text" id="femail" className="form-control" placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" for="fname">Password</label>
-                                            <input type="password" id="fname" className="form-control" placeholder="Password" />
+                                            <label className="text-black" htmlFor="fpassword">Password</label>
+                                            <input type="password" id="fpassword" className="form-control" placeholder="Password" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <input type="submit" value="Log In" className="btn px-4 btn-primary text-white" />
+                                            <input type="submit" value="Log In"
+                                                onClick={() => this.handleSubmit()}
+                                                className="btn px-4 btn-primary text-white" />
                                         </div>
                                     </div>
 
