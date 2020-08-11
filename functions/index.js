@@ -15,11 +15,46 @@ const {
   getAlljobapplications
 } = require('./APIs/IMJobapplications')
 
+const {
+  getAlljobposts
+} = require('./APIs/IMJobpost')
+
+const {
+  getAllIMUserdetails
+} = require('./APIs/IMUserdetails')
+
+
+const {
+  getAllemployemembershipdetail
+} = require('./APIs/IMemployemembershipdetail')
+
+const {
+  getAllemployermembershipdetails
+} = require('./APIs/IMemployermembershipdetails')
+
+const {
+  getAllemployemembershipprice
+} = require('./APIs/IMEmployemembershipprice')
+
+const {
+  getAllemployermembershipprice
+} = require('./APIs/IMEmployermembershipprice')
+
 
 app.get('/imjoiners', getAllImmediateJoiners);
 app.get('/imcontactus', getAllcontacts);
 app.get('/impostcontactus', postContactus);
 app.get('/imjobapplications', getAlljobapplications);
+app.get('/imjobposts', getAlljobposts);
+app.get('/imuserdetails', getAllIMUserdetails);
+app.get('/immemdetail', getAllemployemembershipdetail);
+app.get('/imemployerdetails', getAllemployermembershipdetails);
+app.get('/imemployemembershipprice', getAllemployemembershipprice);
+app.get('/imemployermembershipprice', getAllemployermembershipprice);
+
+
+
+
 
 app.get('/', (req, res) => {
   const date = new Date();
