@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 
 const {
-  getAllImmediateJoiners
+  getAllImmediateJoiners,
+  postRegister
 } = require('./APIs/IMRegister')
 
 const {
@@ -42,6 +43,7 @@ const {
 
 
 app.get('/imjoiners', getAllImmediateJoiners);
+app.post('/impostRegisterus', postRegister);
 app.get('/imcontactus', getAllcontacts);
 app.post('/impostcontactus', postContactus);
 app.get('/imjobapplications', getAlljobapplications);
