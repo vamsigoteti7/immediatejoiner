@@ -38,7 +38,7 @@ exports.getAlljobposts = (request, response) => {
 };
 
 exports.getJobPostById = (request, response) => {
-     var docRef = db.collection("IMjobpost").doc("EZUMdC05ncja3aOSICFE");
+     var docRef = db.collection("IMjobpost").doc(request.params.docid);
 
      docRef.get().then(function (doc) {
           if (doc.exists) {
