@@ -38,7 +38,8 @@ const {
 } = require('./APIs/IMemployermembershipdetails')
 
 const {
-  getAllemployemembershipprice
+  getAllemployemembershipprice,
+  postemployemembershipprice
 } = require('./APIs/IMEmployemembershipprice')
 
 const {
@@ -60,6 +61,7 @@ app.post('/impostempdetail', postemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
 app.post('/impostemployermemdetail',postemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
+app.post('/impostemployememprice',postemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
 app.post('/hello', (req, res) => {
   if (req.method != "POST") {
