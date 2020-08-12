@@ -24,3 +24,27 @@ exports.getAllemployermembershipdetails = (request, response) => {
             return response.status(500).json({ error: err.code });
         });
 };
+exports.postemployermembershipdetails = (request, response) => {
+
+    const newemployermemItem = {
+        username: request.body.username,
+        paidammount: request.body.paidammount,
+        membershippriceid: request.body.membershippriceid,
+        validupto: request.body.validupto,
+        utilizedammount: request.body.utilizedammount,
+        createddate: new Date().toISOString()
+    }
+
+    db
+        .collection('IMemployermembershipdetails')
+        .add(newemployermemItem)
+        .then((doc) => {
+            const responseemployermemItem = newemployermemItem;
+            responseemployermemItem.id = doc.id;
+            return response.json(responseemployermemItem);
+        })
+        .catch((error) => {
+            console.error(error);
+            response.status(500).json({ error: 'Something went wrong' });
+        });
+};

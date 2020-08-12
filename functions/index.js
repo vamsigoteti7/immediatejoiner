@@ -33,7 +33,8 @@ const {
 } = require('./APIs/IMemployemembershipdetail')
 
 const {
-  getAllemployermembershipdetails
+  getAllemployermembershipdetails,
+  postemployermembershipdetails
 } = require('./APIs/IMemployermembershipdetails')
 
 const {
@@ -57,6 +58,7 @@ app.get('/imuserdetails', getAllIMUserdetails);
 app.get('/immemdetail', getAllemployemembershipdetail);
 app.post('/impostempdetail', postemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
+app.post('/impostemployermemdetail',postemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
 app.post('/hello', (req, res) => {
