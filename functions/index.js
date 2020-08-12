@@ -43,7 +43,8 @@ const {
 } = require('./APIs/IMEmployemembershipprice')
 
 const {
-  getAllemployermembershipprice
+  getAllemployermembershipprice,
+  postemployermembershipprice
 } = require('./APIs/IMEmployermembershipprice')
 
 
@@ -63,6 +64,7 @@ app.post('/impostemployermemdetail',postemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
 app.post('/impostemployememprice',postemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
+app.post('/impostemployermemprice',postemployermembershipprice);
 app.post('/hello', (req, res) => {
   if (req.method != "POST") {
     res.status(400).send("I am not happy");
