@@ -23,3 +23,27 @@ exports.getAllemployemembershipprice = (request, response) => {
             return response.status(500).json({ error: err.code });
         });
 };
+
+exports.postemployemembershipprice = (request, response) => {
+
+    const newempmempriceItem = {
+        enddate: request.body.enddate,
+        price: request.body.price,
+        membershippriceid: request.body.membershippriceid,
+        startdate: request.body.startdate,
+        createddate: new Date().toISOString()
+    }
+
+    db
+        .collection('IMemployemembershipprice')
+        .add(newempmempriceItem)
+        .then((doc) => {
+            const responseempmempriceItem = newempmempriceItem;
+            responseempmempriceItem.id = doc.id;
+            return response.json(responseempmempriceItem);
+        })
+        .catch((error) => {
+            console.error(error);
+            response.status(500).json({ error: 'Something went wrong' });
+        });
+};
