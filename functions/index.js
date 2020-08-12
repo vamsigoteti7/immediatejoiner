@@ -28,7 +28,8 @@ const {
 
 
 const {
-  getAllemployemembershipdetail
+  getAllemployemembershipdetail,
+  postemployemembershipdetail
 } = require('./APIs/IMemployemembershipdetail')
 
 const {
@@ -54,6 +55,7 @@ app.get('/imjobposts', getAlljobposts);
 app.get('/imjobpostsbyid', getJobPostById);
 app.get('/imuserdetails', getAllIMUserdetails);
 app.get('/immemdetail', getAllemployemembershipdetail);
+app.post('/impostempdetail', postemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
