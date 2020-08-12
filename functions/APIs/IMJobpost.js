@@ -42,7 +42,7 @@ exports.getJobPostById = (request, response) => {
 
      docRef.get().then(function (doc) {
           if (doc.exists) {
-               return response.json({ "status": "sucess" });
+               return response.json(doc.data());
           } else {
                // doc.data() will be undefined in this case
                return response.json({ "status": "no such document" });
