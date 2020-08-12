@@ -1,68 +1,25 @@
 import React, { Component } from 'react'
-// import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios'
-import { Link } from 'react-router-dom';
+import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 
 export class Logintbygoogle extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            username: '',
-            password: '',
-            submitted: false
-        };
-        // this.signup = this
-        //   .signup
-        //   .bind(this);
-
-        this.handleChange = this.handleChange.bind(this);
+        let i = 0;
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    signup(res) {
-        const googleresponse = {
-            Name: res.profileObj.name,
-            email: res.profileObj.email,
-            token: res.googleId,
-            Image: res.profileObj.imageUrl,
-            ProviderId: 'Google'
-        };
-        sessionStorage.setItem("userData", JSON.stringify(googleresponse));
-        this.props.history.push('/Dashboard')
-        debugger;
-        // axios.post('http://localhost:60200/Api/Login/SocialmediaData', googleresponse)
-        //     .then((result) => {
-
-
-        //     });
-    };
-
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
+    
     handleSubmit() {
-        console.log('clicked');
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login(username, password);
-        }
+        axios.get('/imjoiners')
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render() {
-        const responseGoogle = (response) => {
-            console.log(response);
-            var res = response.profileObj;
-            console.log(res);
-            debugger;
-            this.signup(response);
-        }
-        const { username, password, submitted, loggingIn } = this.state;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -153,7 +110,7 @@ export class Logintbygoogle extends Component {
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <input type="submit" value="Log In"
+                                            <input value="Log In"
                                                 onClick={() => this.handleSubmit()}
                                                 className="btn px-4 btn-primary text-white" />
                                         </div>

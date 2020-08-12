@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import hero_1 from '../images/hero_1.jpg';
 
 class Recruiterdashboard extends React.Component {
