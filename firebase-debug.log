@@ -1,0 +1,161 @@
+[debug] [2020-08-13T07:33:07.091Z] ----------------------------------------------------------------------
+[debug] [2020-08-13T07:33:07.094Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\deepthiklu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-08-13T07:33:07.094Z] CLI Version:   8.7.0
+[debug] [2020-08-13T07:33:07.094Z] Platform:      win32
+[debug] [2020-08-13T07:33:07.095Z] Node Version:  v12.18.3
+[debug] [2020-08-13T07:33:07.096Z] Time:          Thu Aug 13 2020 07:33:07 GMT+0000 (Greenwich Mean Time)
+[debug] [2020-08-13T07:33:07.096Z] ----------------------------------------------------------------------
+[debug] [2020-08-13T07:33:07.096Z] 
+[debug] [2020-08-13T07:33:07.113Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-13T07:33:07.113Z] > authorizing via signed-in user
+[debug] [2020-08-13T07:33:07.114Z] [iam] checking project immediatejoiner for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-13T07:33:07.118Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-08-13T07:33:07.118Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-08-13T07:33:07.286Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:07 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:07.294Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/immediatejoiner:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-08-13T07:33:07.363Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=50","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:07.365Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/immediatejoiner/serviceAccounts/immediatejoiner@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-08-13T07:33:07.425Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:07.427Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/immediatejoiner  
+ 
+[debug] [2020-08-13T07:33:07.496Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[warn] !  functions: package.json indicates an outdated version of firebase-functions.
+Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[info] 
+[info] === Deploying to 'immediatejoiner'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2020-08-13T07:33:13.885Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2020-08-13T07:33:16.514Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/immediatejoiner/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-08-13T07:33:16.514Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/immediatejoiner/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-08-13T07:33:16.515Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/immediatejoiner/services/cloudbuild.googleapis.com  
+ 
+[debug] [2020-08-13T07:33:16.644Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2020-08-13T07:33:16.651Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:16.697Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2020-08-13T07:33:16.699Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/immediatejoiner/adminSdkConfig  
+ 
+[debug] [2020-08-13T07:33:16.846Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:16 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:16.848Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/immediatejoiner/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-08-13T07:33:17.530Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2020-08-13T07:33:17.533Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/immediatejoiner/configs  
+ 
+[debug] [2020-08-13T07:33:17.697Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:17 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (36.03 KB) for uploading 
+[debug] [2020-08-13T07:33:21.610Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/immediatejoiner/locations/-/functions  
+ 
+[debug] [2020-08-13T07:33:22.589Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:22.591Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/immediatejoiner/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-08-13T07:33:23.116Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:23.117Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-675c5340-974f-4b7d-b8a4-92a2abf471af/a4c19c5c-9542-43c6-95dc-cbb98a802d18.zip?GoogleAccessId=service-915227977474@gcf-admin-robot.iam.gserviceaccount.com&Expires=1597305803&Signature=QsOA0u6Oy%2Fy7g52hMTnrcYHaqtAAyk%2FL7ocRF9ufyNhrpN%2FluXicxSG%2FqrcuXsz%2FO8ep5Kwtdd6YfnOhYzzZCEAVYcUAJECac1hQS3feds1gwUW%2FOsuwgsvn4GqEf2xe1wWQQ7P3Z7x3%2BiiiPtE3x2CGfahoYI9bLMqiwba8e9UWpyRGGB9GCMrWCKCGiKaKq4yMKVN%2BqIBDBs0KRz1cWJFootZScdodqpI%2F9HYPqcDCspcnY2BSoISMAId7pK%2BgZ1cvkWpsnEeb8UBANkuIUgkQfpzGdiGTJqh8R7r8iVvrx%2B6z3fXGN4UzEMbd%2FnAQhPxvoalQ4ymiqY9Vr%2F4A1g%3D%3D  
+ <request body omitted>
+[debug] [2020-08-13T07:33:23.180Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"AAANsUly-YPZ_Jzi9pYjXDH4FxDrhZ1D_65w9zAZKH1iq0F7QtKTjH5VoHsYZfT22vtjT5UNa97KuuPBtT_-9lbvBqdcKTIPog","etag":"\"b535336587f272134dbd97c508e914a4\"","x-goog-generation":"1597304003260291","x-goog-metageneration":"1","x-goog-hash":"crc32c=dDTh3A==, md5=tTUzZYfychNNvZfFCOkUpA==","x-goog-stored-content-length":"36891","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Thu, 13 Aug 2020 07:33:23 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8"}
+[info] +  functions: functions folder uploaded successfully 
+[info] i  hosting[immediatejoiner]: beginning deploy... 
+[info] i  hosting[immediatejoiner]: found 24 files in build 
+[debug] [2020-08-13T07:33:23.221Z] [hosting] hash cache [YnVpbGQ] stored for 24 files
+[debug] [2020-08-13T07:33:23.221Z] [hosting][hash queue][FINAL] {"max":3,"min":0,"avg":0,"active":0,"complete":24,"success":24,"errored":0,"retried":0,"total":24,"elapsed":7}
+[debug] [2020-08-13T07:33:23.222Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/immediatejoiner/versions/1e731f82ec2d5e6a:populateFiles  
+ <request body omitted>
+[debug] [2020-08-13T07:33:23.481Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:23.482Z] [hosting][populate queue][FINAL] {"max":263,"min":263,"avg":263,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":263}
+[debug] [2020-08-13T07:33:23.482Z] [hosting] uploads queued: 0
+[debug] [2020-08-13T07:33:23.482Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1597304003482}
+[info] +  hosting[immediatejoiner]: file upload complete 
+[debug] [2020-08-13T07:33:23.489Z] [hosting] deploy completed after 307ms
+[info] i  functions: updating Node.js 10 function app(us-central1)... 
+[debug] [2020-08-13T07:33:23.516Z] Trigger is:  {"httpsTrigger":{}}
+[debug] [2020-08-13T07:33:23.518Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/immediatejoiner/locations/us-central1/functions/app {"updateMask":"sourceUploadUrl,name,labels,runtime,environmentVariables,httpsTrigger"} 
+ {"sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-675c5340-974f-4b7d-b8a4-92a2abf471af/a4c19c5c-9542-43c6-95dc-cbb98a802d18.zip?GoogleAccessId=service-915227977474@gcf-admin-robot.iam.gserviceaccount.com&Expires=1597305803&Signature=QsOA0u6Oy%2Fy7g52hMTnrcYHaqtAAyk%2FL7ocRF9ufyNhrpN%2FluXicxSG%2FqrcuXsz%2FO8ep5Kwtdd6YfnOhYzzZCEAVYcUAJECac1hQS3feds1gwUW%2FOsuwgsvn4GqEf2xe1wWQQ7P3Z7x3%2BiiiPtE3x2CGfahoYI9bLMqiwba8e9UWpyRGGB9GCMrWCKCGiKaKq4yMKVN%2BqIBDBs0KRz1cWJFootZScdodqpI%2F9HYPqcDCspcnY2BSoISMAId7pK%2BgZ1cvkWpsnEeb8UBANkuIUgkQfpzGdiGTJqh8R7r8iVvrx%2B6z3fXGN4UzEMbd%2FnAQhPxvoalQ4ymiqY9Vr%2F4A1g%3D%3D","name":"projects/immediatejoiner/locations/us-central1/functions/app","labels":{"deployment-tool":"cli-firebase"},"httpsTrigger":{},"runtime":"nodejs10","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"immediatejoiner\",\"databaseURL\":\"https://immediatejoiner.firebaseio.com\",\"storageBucket\":\"immediatejoiner.appspot.com\",\"locationId\":\"us-central\"}"}}
+[debug] [2020-08-13T07:33:24.019Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:24.021Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/immediatejoiner/locations/-/functions  
+ 
+[debug] [2020-08-13T07:33:25.089Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:25.091Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:25.225Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:27.225Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:27.338Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:29.341Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:29.430Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:29 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:31.444Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:31.527Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:31 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:33.529Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:33.605Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:33 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:35.606Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:35.690Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:35 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:37.692Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:37.772Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:39.774Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:39.849Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:41.851Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:41.917Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:42 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:43.919Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:43.982Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:44 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:45.982Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:46.044Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:46 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:48.049Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:48.137Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:48 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:50.140Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:50.234Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:50 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:52.240Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:52.309Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:52 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:54.311Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:54.371Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:54 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:56.372Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:56.453Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:56 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:33:58.454Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:33:58.513Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:33:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-13T07:34:00.514Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/aW1tZWRpYXRlam9pbmVyL3VzLWNlbnRyYWwxL2FwcC92X1lYdUxwNlBNYw  
+ 
+[debug] [2020-08-13T07:34:00.565Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 13 Aug 2020 07:34:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","accept-ranges":"none","transfer-encoding":"chunked"}
