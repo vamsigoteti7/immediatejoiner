@@ -77,7 +77,7 @@ app.post('/impostuserdetails',postuserdetails);
 app.post('/impostuserdetailsbyid',getuserdetailsById);
 app.get('/immempmemdetail', getAllemployemembershipdetail);
 app.post('/impostempmemdetail', postemployemembershipdetail);
-app.post('/impostempmemdetail', getemployememdetailsById);
+app.post('/impostempmemdetailbyid', getemployememdetailsById);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
 app.post('/impostemployermemdetail',postemployermembershipdetails);
 app.post('/impostemployermemdetailbyid',getemployermemdetailsById);
