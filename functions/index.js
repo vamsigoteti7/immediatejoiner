@@ -5,7 +5,8 @@ const app = express();
 const {
   getAllImmediateJoiners,
   postRegister,
-  getregisterdetailsById
+  getregisterdetailsById,
+  uploadProfilePhoto
 } = require('./APIs/IMRegister')
 
 const {
@@ -86,6 +87,7 @@ app.post('/impostemployemempricebyid',getemployemempriceById);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
 app.post('/impostemployermemprice',postemployermembershipprice);
 app.post('/impostemployermempricebyid',getemployermempriceById);
+app.post('/uploadprofilephoto',uploadProfilePhoto);
 
 app.post('/hello', (req, res) => {
   if (req.method != "POST") {
