@@ -36,6 +36,42 @@ exports.getAlljobposts = (request, response) => {
                return response.status(500).json({ error: err.code });
           });
 };
+exports.postJob = (request, response) => {
+
+     const newJobpostItem = {
+          username: request.body.username,
+          companyname: request.body.companyname,
+          companylogo: request.body.companylogo,
+          experience: request.body.experience,
+          gender: request.body.gender,
+          jobtype: request.body.jobtype,
+          jobid: request.body.jobid,
+          jobposteddate: request.body.jobposteddate,
+          jobpostexpires: request.body.jobpostexpires,
+          jobdescription: request.body.jobdescription,
+          place: request.body.place,
+          vacancies: request.body.vacancies,
+          recruiteremail: request.body.recruiteremail,
+          recruiterlinkdinlink: request.body.recruiterlinkdinlink,
+          recruiterphonenumber: request.body.recruiterphonenumber,
+          recruiterwebsite: request.body.recruiterwebsite,
+          salary: request.body.salary,
+          tagline: request.body.tagline          
+    }
+
+     db
+          .collection('IMjobpost')
+          .add(newJobpostItem)
+          .then((doc) => {
+               const responseJobpostItem = newJobpostItem;
+               responseJobpostItem.id = doc.id;
+               return response.json(responseJobpostItem);
+          })
+          .catch((error) => {
+               console.error(error);
+               response.status(500).json({ error: 'Something went wrong' });
+          });
+};
 
 exports.getJobPostById = (request, response) => {
      return response.json({"status":request.body.docid});

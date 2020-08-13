@@ -19,7 +19,8 @@ const {
 
 const {
   getAlljobposts,
-  getJobPostById
+  getJobPostById,
+  postJob
 } = require('./APIs/IMJobpost')
 
 const {
@@ -43,7 +44,8 @@ const {
 } = require('./APIs/IMEmployemembershipprice')
 
 const {
-  getAllemployermembershipprice
+  getAllemployermembershipprice,
+  postemployermembershipprice
 } = require('./APIs/IMEmployermembershipprice')
 
 
@@ -55,6 +57,8 @@ app.get('/imjobapplications', getAlljobapplications);
 app.post('/imuserjobapplications',postJobapplications);
 app.get('/imjobposts', getAlljobposts);
 app.post('/imjobpostsbyid', getJobPostById);
+app.post('/impostjob',postJob);
+app.get('/imjobpostsbyid', getJobPostById);
 app.get('/imuserdetails', getAllIMUserdetails);
 app.get('/immemdetail', getAllemployemembershipdetail);
 app.post('/impostempdetail', postemployemembershipdetail);
@@ -63,6 +67,7 @@ app.post('/impostemployermemdetail',postemployermembershipdetails);
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
 app.post('/impostemployememprice',postemployemembershipprice);
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
+app.post('/impostemployermemprice',postemployermembershipprice);
 app.post('/hello', (req, res) => {
   if (req.method != "POST") {
     res.status(400).send("I am not happy");
