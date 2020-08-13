@@ -9,7 +9,8 @@ const {
 
 const {
   getAllcontacts,
-  postContactus
+  postContactus,
+  getcontactusById
 } = require('./APIs/IMContactus')
 
 const {
@@ -25,7 +26,8 @@ const {
 
 const {
   getAllIMUserdetails,
-  postuserdetails
+  postuserdetails,
+  getuserdetailsById
 } = require('./APIs/IMUserdetails')
 
 
@@ -54,6 +56,7 @@ app.get('/imjoiners', getAllImmediateJoiners);
 app.post('/impostRegisterus', postRegister);
 app.get('/imcontactus', getAllcontacts);
 app.post('/impostcontactus', postContactus);
+app.post('/impostcontactusbyid', ge);
 app.get('/imjobapplications', getAlljobapplications);
 app.post('/imuserjobapplications',postJobapplications);
 app.get('/imjobposts', getAlljobposts);
@@ -62,6 +65,7 @@ app.post('/impostjob',postJob);
 app.get('/imjobpostsbyid', getJobPostById);
 app.get('/imuserdetails', getAllIMUserdetails);
 app.post('/impostuserdetails',postuserdetails);
+app.post('/impostuserdetailsbyid',getuserdetailsById);
 app.get('/immemdetail', getAllemployemembershipdetail);
 app.post('/impostempdetail', postemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);

@@ -47,3 +47,18 @@ exports.postContactus = (request, response) => {
 			response.status(500).json({ error: 'Something went wrong' });
 		});
 };
+exports.getcontactusById = (request, response) => {
+
+	var docRef = db.collection("IMcontactus").doc(request.body.docid);
+
+	docRef.get().then(function (doc) {
+		 if (doc.exists) {
+			  return response.json({ "data": doc.data() });
+		 } else {
+			  // doc.data() will be undefined in this case
+			  return response.json({ "status": "no such document" });
+		 }
+	}).catch(function (error) {
+		 console.log("Error getting document:", error);
+	});
+};
