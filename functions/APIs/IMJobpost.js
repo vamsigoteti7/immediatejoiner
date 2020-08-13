@@ -74,12 +74,12 @@ exports.postJob = (request, response) => {
 };
 
 exports.getJobPostById = (request, response) => {
-     
+
      var docRef = db.collection("IMjobpost").doc(request.body.docid);
 
      docRef.get().then(function (doc) {
           if (doc.exists) {
-               return response.json({"status":doc.data()});
+               return response.json({ "data": doc.data() });
           } else {
                // doc.data() will be undefined in this case
                return response.json({ "status": "no such document" });
