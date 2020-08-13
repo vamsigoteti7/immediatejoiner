@@ -56,8 +56,8 @@ exports.postJob = (request, response) => {
           recruiterphonenumber: request.body.recruiterphonenumber,
           recruiterwebsite: request.body.recruiterwebsite,
           salary: request.body.salary,
-          tagline: request.body.tagline          
-    }
+          tagline: request.body.tagline
+     }
 
      db
           .collection('IMjobpost')
@@ -76,6 +76,8 @@ exports.postJob = (request, response) => {
 exports.getJobPostById = (request, response) => {
      return response.json({"status":request.body.docid});
      // var docRef = db.collection("IMjobpost").doc(request.body.docid);
+     // var docRef = db.collection("IMjobpost").doc(request.body.docid);
+
 
      // docRef.get().then(function (doc) {
      //      if (doc.exists) {

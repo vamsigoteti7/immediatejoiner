@@ -24,7 +24,8 @@ const {
 } = require('./APIs/IMJobpost')
 
 const {
-  getAllIMUserdetails
+  getAllIMUserdetails,
+  postuserdetails
 } = require('./APIs/IMUserdetails')
 
 
@@ -60,6 +61,7 @@ app.post('/imjobpostsbyid', getJobPostById);
 app.post('/impostjob',postJob);
 app.get('/imjobpostsbyid', getJobPostById);
 app.get('/imuserdetails', getAllIMUserdetails);
+app.post('/impostuserdetails',postuserdetails);
 app.get('/immemdetail', getAllemployemembershipdetail);
 app.post('/impostempdetail', postemployemembershipdetail);
 app.get('/imemployerdetails', getAllemployermembershipdetails);
