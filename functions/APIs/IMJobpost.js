@@ -74,19 +74,17 @@ exports.postJob = (request, response) => {
 };
 
 exports.getJobPostById = (request, response) => {
-     return response.json({"status":request.body.docid});
-     // var docRef = db.collection("IMjobpost").doc(request.body.docid);
-     // var docRef = db.collection("IMjobpost").doc(request.body.docid);
+     
+     var docRef = db.collection("IMjobpost").doc(request.body.docid);
 
-
-     // docRef.get().then(function (doc) {
-     //      if (doc.exists) {
-     //           return response.json({"status":"sucess"});
-     //      } else {
-     //           // doc.data() will be undefined in this case
-     //           return response.json({ "status": "no such document" });
-     //      }
-     // }).catch(function (error) {
-     //      console.log("Error getting document:", error);
-     // });
+     docRef.get().then(function (doc) {
+          if (doc.exists) {
+               return response.json({"status":doc.data()});
+          } else {
+               // doc.data() will be undefined in this case
+               return response.json({ "status": "no such document" });
+          }
+     }).catch(function (error) {
+          console.log("Error getting document:", error);
+     });
 };
