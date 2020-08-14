@@ -99,7 +99,7 @@ app.get('/imemployermembershipprice', getAllemployermembershipprice);
 app.post('/impostemployermemprice', postemployermembershipprice);
 app.post('/impostemployermempricebyid', getemployermempriceById);
 
-app.post('/imindustirs', postindustries);
+app.post('/imindustiries', postindustries);
 
 app.post('/uploadprofilephoto', uploadProfilePhoto);
 
