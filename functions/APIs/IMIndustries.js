@@ -9,7 +9,7 @@ exports.postindustries = (request, response) => {
         .collection('IMIndustries')
         .add(newindustryItem)
         .then((doc) => {
-            const responseindunstryItem = newindunstryItem;
+            const responseindustryItem = newindustryItem;
             responseindustryItem.id = doc.id;
             return response.json(responseindustryItem);
         })
