@@ -59,7 +59,7 @@ const {
 } = require('./APIs/IMEmployermembershipprice')
 
 
-app.get('/imjoiners', getAllImmediateJoiners);
+app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/impostRegisterus', postRegister);
 app.post('/impostRegisterdetailsbyidus', getregisterdetailsById);
 app.get('/imcontactus', getAllcontacts);
