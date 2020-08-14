@@ -23,19 +23,10 @@ exports.postQualification = (request, response) => {
 
 exports.getAllQualifications = (request, response) => {
     db
-        .collection('IMQualification')
-        .orderBy('qualificationid', 'desc')
+        .collection('IMQualificaton')
         .get()
         .then((data) => {
-            let qualf = [];
-            data.forEach((doc) => {
-                qualf.push({
-                    qualificationdocid: doc.id,
-                    qualificationid: doc.data().qualificationid,
-                    qualificationname: doc.data().qualificationname
-                });
-            });
-            return response.json(qualf);
+            return response.json({ "data": data });
         })
         .catch((err) => {
             console.error(err);
