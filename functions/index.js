@@ -59,6 +59,7 @@ const {
 } = require('./APIs/IMEmployermembershipprice')
 
 const {
+  getAllIndustries,
   postindustries
 } = require('./APIs/IMIndustries')
 
@@ -103,7 +104,8 @@ app.get('/imemployermembershipprice', getAllemployermembershipprice);
 app.post('/impostemployermemprice', postemployermembershipprice);
 app.post('/impostemployermempricebyid', getemployermempriceById);
 
-app.post('/imindustiries', postindustries);
+app.get('/imgetindustries', getAllIndustries);
+app.post('/impostindustiries', postindustries);
 app.post('/imqualification', postQualification);
 
 
