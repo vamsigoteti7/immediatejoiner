@@ -63,7 +63,7 @@ const {
 } = require('./APIs/IMIndustries')
 
 
-app.get('/imjoiners', getAllImmediateJoiners);
+app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/impostRegisterus', postRegister);
 app.post('/impostRegisterdetailsbyidus', getregisterdetailsById);
 
