@@ -35,9 +35,13 @@ exports.uploadProfilePhoto = (request, response) => {
 	
 	const busboy = new BusBoy({ headers: request.headers });
 	
-	let imageFileName;
-	let imageToBeUploaded = {};
 	return response.json({ message: 'Image uploaded successfully' });
+	
+	 
+	
+	// let imageFileName;
+	// let imageToBeUploaded = {};
+	
 	
 	// busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
 	// 	if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
