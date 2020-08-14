@@ -58,36 +58,50 @@ const {
   getemployermempriceById
 } = require('./APIs/IMEmployermembershipprice')
 
+const {
+  postindustries
+} = require('./APIs/IMIndustries')
+
 
 app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/impostRegisterus', postRegister);
 app.post('/impostRegisterdetailsbyidus', getregisterdetailsById);
+
 app.get('/imcontactus', getAllcontacts);
 app.post('/impostcontactus', postContactus);
-app.post('/impostcontactusbyid',getcontactusById );
+app.post('/impostcontactusbyid', getcontactusById);
+
 app.get('/imjobapplications', getAlljobapplications);
-app.post('/imuserjobapplications',postJobapplications);
-app.post('/imuserjobapplicationsbyid',getjobapplicationsById);
+app.post('/imuserjobapplications', postJobapplications);
+app.post('/imuserjobapplicationsbyid', getjobapplicationsById);
+
 app.get('/imjobposts', getAlljobposts);
 app.post('/imjobpostsbyid', getJobPostById);
-app.post('/impostjob',postJob);
-app.get('/imjobpostsbyid', getJobPostById);
+app.post('/impostjob', postJob);
+
 app.get('/imuserdetails', getAllIMUserdetails);
-app.post('/impostuserdetails',postuserdetails);
-app.post('/impostuserdetailsbyid',getuserdetailsById);
+app.post('/impostuserdetails', postuserdetails);
+app.post('/impostuserdetailsbyid', getuserdetailsById);
+
 app.get('/immempmemdetail', getAllemployemembershipdetail);
 app.post('/impostempmemdetail', postemployemembershipdetail);
 app.post('/impostempmemdetailbyid', getemployememdetailsById);
+
 app.get('/imemployerdetails', getAllemployermembershipdetails);
-app.post('/impostemployermemdetail',postemployermembershipdetails);
-app.post('/impostemployermemdetailbyid',getemployermemdetailsById);
+app.post('/impostemployermemdetail', postemployermembershipdetails);
+app.post('/impostemployermemdetailbyid', getemployermemdetailsById);
+
 app.get('/imemployemembershipprice', getAllemployemembershipprice);
-app.post('/impostemployememprice',postemployemembershipprice);
-app.post('/impostemployemempricebyid',getemployemempriceById);
+app.post('/impostemployememprice', postemployemembershipprice);
+app.post('/impostemployemempricebyid', getemployemempriceById);
+
 app.get('/imemployermembershipprice', getAllemployermembershipprice);
-app.post('/impostemployermemprice',postemployermembershipprice);
-app.post('/impostemployermempricebyid',getemployermempriceById);
-app.post('/uploadprofilephoto',uploadProfilePhoto);
+app.post('/impostemployermemprice', postemployermembershipprice);
+app.post('/impostemployermempricebyid', getemployermempriceById);
+
+app.post('/imindustirs', postindustries);
+
+app.post('/uploadprofilephoto', uploadProfilePhoto);
 
 app.post('/hello', (req, res) => {
   if (req.method != "POST") {
