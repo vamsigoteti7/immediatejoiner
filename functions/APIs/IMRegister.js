@@ -29,17 +29,15 @@ exports.getAllImmediateJoiners = (request, response) => {
 exports.uploadProfilePhoto = (request, response) => {
 	
     const BusBoy = require('busboy');
+	const path = require('path');
+	const os = require('os');
+	const fs = require('fs');
+	
+	const busboy = new BusBoy({ headers: request.headers });
+	
+	let imageFileName;
+	let imageToBeUploaded = {};
 	return response.json({ message: 'Image uploaded successfully' });
-
-	// const path = require('path');
-	// const os = require('os');
-	// const fs = require('fs');
-	
-	// const busboy = new BusBoy({ headers: request.headers });
-	
-	// let imageFileName;
-	// let imageToBeUploaded = {};
-	
 	
 	// busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
 	// 	if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
