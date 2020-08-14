@@ -64,7 +64,8 @@ const {
 } = require('./APIs/IMIndustries')
 
 const {
-  postQualification
+  postQualification,
+  getAllQualifications
 } = require('./APIs/IMQualification')
 
 
@@ -106,8 +107,9 @@ app.post('/impostemployermempricebyid', getemployermempriceById);
 
 app.get('/imgetindustries', getAllIndustries);
 app.post('/impostindustiries', postindustries);
-app.post('/imqualification', postQualification);
 
+app.post('/imqualification', postQualification);
+app.post('/imgetqualification', getAllQualifications);
 
 app.post('/uploadprofilephoto', uploadProfilePhoto);
 
