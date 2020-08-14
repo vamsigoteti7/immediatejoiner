@@ -1,3 +1,5 @@
+const { db } = require('../util/admin');
+
 exports.postindustries = (request, response) => {
 
     const newindustryItem = {
