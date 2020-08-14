@@ -8,7 +8,7 @@ exports.postQualification = (request, response) => {
     }
 
     db
-        .collection('IMQualificaton')
+        .collection('IMQualification')
         .add(newquaItem)
         .then((doc) => {
             const responsequaItem = newquaItem;
