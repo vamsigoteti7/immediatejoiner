@@ -109,7 +109,7 @@ app.get('/imgetindustries', getAllIndustries);
 app.post('/impostindustiries', postindustries);
 
 app.post('/imqualification', postQualification);
-app.post('/imgetqualification', getAllQualifications);
+app.get('/imgetqualification', getAllQualifications);
 
 app.post('/uploadprofilephoto', uploadProfilePhoto);
 

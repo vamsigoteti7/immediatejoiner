@@ -35,24 +35,20 @@ exports.uploadProfilePhoto = (request, response) => {
 	
 	const busboy = new BusBoy({ headers: request.headers });
 	
-	return response.json({ message: 'Image uploaded successfully' });
+	let imageFileName;
+	let imageToBeUploaded = {};
 	
-	 
-	
-	// let imageFileName;
-	// let imageToBeUploaded = {};
-	
-	
-	// busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-	// 	if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
-	// 		return response.status(400).json({ error: 'Wrong file type submited' });
-	// 	}
-	// 	const imageExtension = filename.split('.')[filename.split('.').length - 1];
-    //     imageFileName = `${request.user.username}.${imageExtension}`;
-	// 	const filePath = path.join(os.tmpdir(), imageFileName);
-	// 	imageToBeUploaded = { filePath, mimetype };
-	// 	file.pipe(fs.createWriteStream(filePath));
-    // });
+	busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+		// if (mimetype !== 'image/png' && mimetype !== 'image/jpeg') {
+		// 	return response.status(400).json({ error: 'Wrong file type submited' });
+		// }
+		// const imageExtension = filename.split('.')[filename.split('.').length - 1];
+        // imageFileName = `${request.user.username}.${imageExtension}`;
+		// const filePath = path.join(os.tmpdir(), imageFileName);
+		// imageToBeUploaded = { filePath, mimetype };
+		// file.pipe(fs.createWriteStream(filePath));
+		return response.json({ "mimetype": mimetype });
+    });
     // // deleteImage(imageFileName);
 	// busboy.on('finish', () => {
 	// 	admin
