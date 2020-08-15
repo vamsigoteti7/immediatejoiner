@@ -22,7 +22,7 @@ class Immediatejoinerhome extends React.Component {
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                                     <li><a href="index.html" className="nav-link active">Home</a></li>
                                     <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="/Contactus">Contact</a></li>
                                     <li className="d-lg-none"><a href="login.html">Log In</a></li>
                                 </ul>
                             </nav>
