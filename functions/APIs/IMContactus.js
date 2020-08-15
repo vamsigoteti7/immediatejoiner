@@ -9,7 +9,8 @@ exports.getAllcontacts = (request, response) => {
 			data.forEach((doc) => {
 				contactus.push({
 					contactus: doc.id,
-					lastname: doc.data().firstname,
+					firstname: doc.data().firstname,
+					lastname: doc.data().lastname,
 					message: doc.data().message,
 					description: doc.data().description,
 					createddate: doc.data().createddate
