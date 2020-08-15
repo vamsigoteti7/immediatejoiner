@@ -22,24 +22,11 @@ class Contactus extends React.Component {
     }
 
     handleChange(event) {
-        const { name, value } = event.target;
-        const { user } = this.state;
-        this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
-        });
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        if (user.firstName && user.lastName && user.username && user.password) {
-            this.props.register(user);
-        }
+        console.log(this.state);
     }
 
     render() {
@@ -93,11 +80,11 @@ class Contactus extends React.Component {
                                     <div class="row form-group">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <label class="text-black" for="fname">First Name</label>
-                                            <input type="text" id="fname" class="form-control" />
+                                            <input type="text" name="firstname" value={this.state.firstName} onChange={this.handleChange} class="form-control" />
                                         </div>
                                         <div class="col-md-6">
                                             <label class="text-black" for="lname">Last Name</label>
-                                            <input type="text" id="lname" class="form-control" />
+                                            <input type="text" id="lname" class="form-control" onChange={this.handleChange} />
                                         </div>
                                     </div>
 
@@ -126,7 +113,7 @@ class Contactus extends React.Component {
 
                                     <div class="row form-group">
                                         <div class="col-md-12">
-                                            <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white" />
+                                            <input onClick={this.handleSubmit} value="Send Message" class="btn btn-primary btn-md text-white" />
                                         </div>
                                     </div>
 
