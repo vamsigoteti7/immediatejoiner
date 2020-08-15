@@ -1,19 +1,42 @@
 const { db } = require('../util/admin');
 
+exports.getAllQualification = (request, response) => {
+    db
+        .collection('IMQualification')
+        .orderBy('Qualificationid', 'desc')
+        .get()
+        .then((data) => {
+            let qual = [];
+            data.forEach((doc) => {
+                qual.push({
+                    Qualification: doc.id,
+                    Qualificationid: doc.data().Qualificationid,
+                    Qualificationname: doc.data().Qualificationname
+                });
+            });
+            return response.json(qual);
+        })
+        .catch((err) => {
+            console.error(err);
+            return response.status(500).json({ error: err.code });
+        });
+};
+
+
 exports.postQualification = (request, response) => {
 
-    const newquaItem = {
-        qualificationid: request.body.qualificationid,
-        qualificationname: request.body.qualificationname
+    const newQuaItem = {
+        Qualificationid: request.body.Qualificationid,
+        Qualificationname: request.body.Qualificationname
     }
 
     db
         .collection('IMQualification')
-        .add(newquaItem)
+        .add(newQuaItem)
         .then((doc) => {
-            const responsequaItem = newquaItem;
-            responsequaItem.id = doc.id;
-            return response.json(responsequaItem);
+            const responseQuaItem = newQuaItem;
+            responseQuaItem.id = doc.id;
+            return response.json(responseQuaItem);
         })
         .catch((error) => {
             console.error(error);
@@ -21,15 +44,5 @@ exports.postQualification = (request, response) => {
         });
 };
 
-exports.getAllQualifications = (request, response) => {
-    db
-        .collection('IMQualificaton')
-        .get()
-        .then((doc) => {
-            return response.json({ "data": doc.data() });
-        })
-        .catch((err) => {
-            console.error(err);
-            return response.status(500).json({ error: err.code });
-        });
-};
+
+
