@@ -2,66 +2,34 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 
-export class Userdetails extends Component {
+export class Postajob extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            username: '',
-            phonenumber: '',
-            location: '',
-            percentage: '',
-            totalexperience: '',
-            highestqualification: '',
-            email: '',
-            jobtitle: '',
-            resume: '',
-            currentctc: '',
-            dateofbirth: ''
-        };
+     
         this.handleChange = this.handleChange.bind(this);
     }
 
-    getAllIndustries = () => {
+    getAllIndustries = () =>{
         axios.post('/imgetindustries')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
-    getallqualification = () => {
-        axios.post('/imgetqualification')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+    getAlllocations = () =>{
+        axios.post('/imgetlocation')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     };
 
-    handleuserdetail = () => {
-        const userdetailData = {
-            username: this.state.username,
-            phonenumber:this.state.phonenumber,
-            location:this.state.location,
-            percentage:this.state.percentage,
-            totalexperience: this.state.totalexperience,
-            highestqualification: this.state.highestqualification,
-            email: this.state.email,
-            jobtitle: this.state.jobtitle,
-            resume:this.state.resume,
-            currentctc: this.state.currentctc,
-            dateofbirth: this.state.dateofbirth
-        };
-        axios.post('/impostuserdetails', userdetailData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+
+    
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
