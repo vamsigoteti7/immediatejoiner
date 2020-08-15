@@ -2,39 +2,64 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 
-export class Logintbygoogle extends Component {
+export class Postajob extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            reenterpassword: ''
+            username: '',
+            companyname: '',
+            companylogo: '',
+            experience: '',
+            gender: '',
+            jobtype: '',
+            jobid: '',
+            jobposteddate: '',
+            jobpostexpires: '',
+            jobdescription: '',
+            place: '',
+            vacancies: '',
+            recruiteremail: '',
+            recruiterlinkdinlink: '',
+            recruiterphonenumber: '',
+            recruiterwebsite: '',
+            salary: '',
+            tagline: ''
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleLogin = () => {
-        const userData = {
-            username: this.state.email,
-            password: this.state.password
-        };
-        axios.post('/imjoiners', userData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    getAllIndustries = () =>{
+        axios.post('/imgetindustries')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    };
 
-    handleSignUp = () => {
+    handlejobpost = () => {
         const registerData = {
-            firstname: "fda",
-            username: this.state.email,
-            usertype: "candiate",
-            password: "12345"
+            username: this.state.username,
+            companyname: this.state.companyname,
+            companylogo: this.state.companylogo,
+            experience: this.state.experience,
+            gender: this.state.gender,
+            jobtype:this.state.jobtype,
+            jobid:this.state.jobid,
+            jobposteddate: this.state.jobposteddate,
+            jobpostexpires: this.state.jobpostexpires,
+            jobdescription: this.state.jobdescription,
+            place: this.state.place,
+            vacancies: this.state.vacancies,
+            recruiteremail: this.state.recruiteremail,
+            recruiterlinkdinlink:this.state.recruiterlinkdinlink,
+            recruiterphonenumber: this.state.recruiterphonenumber,
+            recruiterwebsite:this.state.recruiterwebsite,
+            salary: this.state.salary,
+            tagline: this.state.tagline
         };
-        axios.post('/impostRegisterus', registerData)
+        axios.post('/impostjob', registerData)
             .then(response => {
                 console.log(response.data);
             })
@@ -107,7 +132,7 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password"  className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                            <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
                                         </div>
                                     </div>
 
@@ -154,4 +179,4 @@ export class Logintbygoogle extends Component {
     }
 }
 
-export default Logintbygoogle
+export default Postajob
