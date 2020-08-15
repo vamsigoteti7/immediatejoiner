@@ -9,6 +9,7 @@ import RecruiterDashboard from './components/RecruiterDashboard';
 import Employeedashboard from './components/Employeedashboard';
 import Membershipimmediate from './components/Membershipimmediate';
 import Contactus from './components/Contactus';
+import Postajob from './components/Postajob';
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={ImmediatejoinerHome} ></Route>
               <Route path='/Login' component={Logintbygoogle} ></Route>
+              <Route path='/Postjob' component={Postajob} ></Route>
               <Route path='/Contactus' component={Contactus} ></Route>
               <Route path='/Dashboard' component={Dashboard} ></Route>
               <Route path='/Register' component={RegisterPage} ></Route>

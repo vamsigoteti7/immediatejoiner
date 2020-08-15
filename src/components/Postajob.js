@@ -28,14 +28,14 @@ export class Postajob extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    getAllIndustries = () =>{
+    getAllIndustries = () => {
         axios.post('/imgetindustries')
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     handlejobpost = () => {
@@ -45,17 +45,17 @@ export class Postajob extends Component {
             companylogo: this.state.companylogo,
             experience: this.state.experience,
             gender: this.state.gender,
-            jobtype:this.state.jobtype,
-            jobid:this.state.jobid,
+            jobtype: this.state.jobtype,
+            jobid: this.state.jobid,
             jobposteddate: this.state.jobposteddate,
             jobpostexpires: this.state.jobpostexpires,
             jobdescription: this.state.jobdescription,
             place: this.state.place,
             vacancies: this.state.vacancies,
             recruiteremail: this.state.recruiteremail,
-            recruiterlinkdinlink:this.state.recruiterlinkdinlink,
+            recruiterlinkdinlink: this.state.recruiterlinkdinlink,
             recruiterphonenumber: this.state.recruiterphonenumber,
-            recruiterwebsite:this.state.recruiterwebsite,
+            recruiterwebsite: this.state.recruiterwebsite,
             salary: this.state.salary,
             tagline: this.state.tagline
         };
@@ -111,69 +111,149 @@ export class Postajob extends Component {
                         </div>
                     </div> */}
                 </section>
-                <section className="site-section">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6 mb-5">
-                                <h2 className="mb-4">Sign Up To Immediate Joiner</h2>
-                                <form action="#" className="p-4 border rounded">
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="femailregister">Email</label>
-                                            <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
-                                        </div>
+                <section class="site-section">
+                    <div class="container">
+                        <div class="row align-items-center mb-5">
+                            <div class="col-lg-8 mb-4 mb-lg-0">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <h2>Post A Job</h2>
                                     </div>
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpasswordregister">Password</label>
-                                            <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
                                     </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                    <div class="col-6">
+                                        <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-lg-12">
+                                <form class="p-4 p-md-5 border rounded" method="post">
+                                    <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
+
+                                    <div class="form-group">
+                                        {/* <label for="company-website-tw d-block">Upload Featured Image</label> <br>
+                                            <label class="btn btn-primary btn-md btn-file">
+                                                Browse File<input type="file" hidden />
+                                            </label> */}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" id="email" placeholder="you@yourdomain.com" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="job-title">Job Title</label>
+                                        <input type="text" class="form-control" id="job-title" placeholder="Product Designer" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="job-location">Location</label>
+                                        <input type="text" class="form-control" id="job-location" placeholder="e.g. New York" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="job-region">Job Region</label>
+                                        <select class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
+                                            <option>Anywhere</option>
+                                            <option>San Francisco</option>
+                                            <option>Palo Alto</option>
+                                            <option>New York</option>
+                                            <option>Manhattan</option>
+                                            <option>Ontario</option>
+                                            <option>Toronto</option>
+                                            <option>Kansas</option>
+                                            <option>Mountain View</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="job-type">Job Type</label>
+                                        <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+                                            <option>Part Time</option>
+                                            <option>Full Time</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="job-description">Job Description</label>
+                                        <div class="editor" id="editor-1">
+                                            <p>Write Job Description!</p>
                                         </div>
                                     </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Sign Up" onClick={this.handleSignUp} className="btn px-4 btn-primary text-white" />
+
+                                    <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
+                                    <div class="form-group">
+                                        <label for="company-name">Company Name</label>
+                                        <input type="text" class="form-control" id="company-name" placeholder="e.g. New York" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="company-tagline">Tagline (Optional)</label>
+                                        <input type="text" class="form-control" id="company-tagline" placeholder="e.g. New York" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="job-description">Company Description (Optional)</label>
+                                        <div class="editor" id="editor-2">
+                                            <p>Description</p>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="company-website">Website (Optional)</label>
+                                        <input type="text" class="form-control" id="company-website" placeholder="https://" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="company-website-fb">Facebook Username (Optional)</label>
+                                        <input type="text" class="form-control" id="company-website-fb" placeholder="companyname" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="company-website-tw">Twitter Username (Optional)</label>
+                                        <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="company-website-tw">Linkedin Username (Optional)</label>
+                                        <input type="text" class="form-control" id="company-website-tw" placeholder="companyname" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        {/* <label for="company-website-tw d-block">Upload Logo</label> <br>
+                                                <label class="btn btn-primary btn-md btn-file">
+                                                    Browse File<input type="file" hidden />
+                                                </label> */}
+                                    </div>
+
                                 </form>
                             </div>
 
-                            <div className="col-lg-6">
-                                <h2 className="mb-4">Log In To Immediate Joiner</h2>
-                                <form action="#" className="p-4 border rounded">
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="femail">Email</label>
-                                            <input value={this.state.email} type="text" id="femail" className="form-control" placeholder="Email address" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input value={this.state.password} type="password" id="fpassword" className="form-control" placeholder="Password" />
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="row align-items-center mb-5">
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Log In"
-                                                onClick={this.handleLogin}
-                                                className="btn px-4 btn-primary text-white" />
-                                        </div>
+                            <div class="col-lg-4 ml-auto">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
                                     </div>
-
-                                </form>
+                                    <div class="col-6">
+                                        <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </section >
+                </section>
+
             </div >
         )
     }
