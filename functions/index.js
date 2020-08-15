@@ -63,11 +63,11 @@ const {
   postindustries
 } = require('./APIs/IMIndustries')
 
-const {
-  postQualification,
-  getAllQualifications
-} = require('./APIs/IMQualification')
 
+const {
+  getAllQualification,
+  postQualification
+} = require('./APIs/IMQualification')
 
 app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/impostRegisterus', postRegister);
@@ -108,8 +108,8 @@ app.post('/impostemployermempricebyid', getemployermempriceById);
 app.get('/imgetindustries', getAllIndustries);
 app.post('/impostindustiries', postindustries);
 
-app.post('/imqualification', postQualification);
-app.get('/imgetqualification', getAllQualifications);
+app.get('/imgetqualification', getAllQualification);
+app.post('/impostqualification', postQualification);
 
 app.post('/uploadprofilephoto', uploadProfilePhoto);
 
