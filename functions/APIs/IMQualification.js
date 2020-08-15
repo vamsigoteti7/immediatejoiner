@@ -25,8 +25,8 @@ exports.getAllQualifications = (request, response) => {
     db
         .collection('IMQualificaton')
         .get()
-        .then((data) => {
-            return response.json({ "data": data.data() });
+        .then((doc) => {
+            return response.json({ "data": doc.data() });
         })
         .catch((err) => {
             console.error(err);

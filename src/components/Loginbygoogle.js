@@ -5,18 +5,46 @@ import hero_1 from '../images/hero_1.jpg';
 export class Logintbygoogle extends Component {
     constructor(props) {
         super(props);
-        let i = 0;
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            email: '',
+            password: '',
+            reenterpassword: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
-    
-    handleSubmit() {
-        axios.get('/imjoiners')
+
+    handleLogin = () => {
+        const userData = {
+            username: this.state.email,
+            password: this.state.password
+        };
+        axios.post('/imjoiners', userData)
             .then(response => {
                 console.log(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    handleSignUp = () => {
+        const registerData = {
+            firstname: "deepthikrishna",
+            username: "deepthiklu78",
+            usertype: "candiate",
+            password: "12345"
+        };
+        axios.post('/impostRegisterus', registerData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     render() {
@@ -67,25 +95,25 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="femailregister">Email</label>
-                                            <input type="text" id="femailregister" className="form-control" placeholder="Email address" />
+                                            <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fpasswordregister">Password</label>
-                                            <input type="password" id="fpasswordregister" className="form-control" placeholder="Password" />
+                                            <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password" id="fretypepassword" className="form-control" placeholder="Re-type Password" />
+                                            <input type="password"  className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <input type="submit" value="Sign Up" className="btn px-4 btn-primary text-white" />
+                                            <input value="Sign Up" onClick={this.handleSignUp} className="btn px-4 btn-primary text-white" />
                                         </div>
                                     </div>
                                 </form>
@@ -98,20 +126,20 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="femail">Email</label>
-                                            <input type="text" id="femail" className="form-control" placeholder="Email address" />
+                                            <input value={this.state.email} type="text" id="femail" className="form-control" placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input type="password" id="fpassword" className="form-control" placeholder="Password" />
+                                            <input value={this.state.password} type="password" id="fpassword" className="form-control" placeholder="Password" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
                                             <input value="Log In"
-                                                onClick={() => this.handleSubmit()}
+                                                onClick={this.handleLogin}
                                                 className="btn px-4 btn-primary text-white" />
                                         </div>
                                     </div>
