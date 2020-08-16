@@ -15,18 +15,18 @@ export class Logintbygoogle extends Component {
     }
 
     handleLogin = () => {
-        // const userData = {
-        //     username: this.state.email,
-        //     password: this.state.password
-        // };
-        // axios.post('/imjoiners', userData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/Empdashboard');
+        const userData = {
+            username: this.state.email,
+            password: this.state.password
+        };
+        axios.post('/imjoiners', userData)
+            .then(response => {
+                console.log(response.data);
+                this.props.history.push('/Empdashboard');
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     handleSignUp = () => {
