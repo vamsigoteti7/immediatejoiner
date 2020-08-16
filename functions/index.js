@@ -1,6 +1,15 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require("cors");
 const app = express();
+const main = express();
+
+app.use(cors({ origin: true }));
+main.use(cors({ origin: true }));
+
+main.use(bodyParser.json());
+main.use(bodyParser.urlencoded({ extended: false }));
 
 const {
   getAllImmediateJoiners,
