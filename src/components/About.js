@@ -3,7 +3,7 @@ import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 
-class Contactus extends React.Component {
+class About extends React.Component {
     constructor(props) {
         super(props);
 
@@ -142,4 +142,4 @@ class Contactus extends React.Component {
     }
 }
 
-export default Contactus;
+export default About;

@@ -86,13 +86,13 @@ export class Postajob extends Component {
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="site-logo col-6"><a href="index.html">IMMEDIATE JOINER</a></div>
+                            <div className="site-logo col-6"><a href="/">IMMEDIATE JOINER</a></div>
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><a href="index.html" className="nav-link">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="/" className="nav-link">Home</a></li>
+                                    <li><a href="/About">About</a></li>
+                                    <li><a href="/Contactus">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>

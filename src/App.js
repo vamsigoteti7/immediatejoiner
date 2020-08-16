@@ -10,6 +10,7 @@ import Employeedashboard from './components/Employeedashboard';
 import Membershipimmediate from './components/Membershipimmediate';
 import Contactus from './components/Contactus';
 import Postajob from './components/Postajob';
+import About from './components/About';
 
 class App extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class App extends React.Component {
               <Route exact path='/' component={ImmediatejoinerHome} ></Route>
               <Route path='/Login' component={Logintbygoogle} ></Route>
               <Route path='/Postjob' component={Postajob} ></Route>
+              <Route path='/About' component={About} ></Route>
               <Route path='/Contactus' component={Contactus} ></Route>
               <Route path='/Dashboard' component={Dashboard} ></Route>
               <Route path='/Register' component={RegisterPage} ></Route>
