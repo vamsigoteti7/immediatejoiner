@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
+import { Link } from 'react-router-dom';
 
 export class Postajob extends Component {
     constructor(props) {
@@ -86,13 +87,13 @@ export class Postajob extends Component {
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="site-logo col-6"><a href="/">IMMEDIATE JOINER</a></div>
+                            <div className="site-logo col-6"><Link to="/">IMMEDIATE JOINER</Link></div>
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><a href="/" className="nav-link">Home</a></li>
-                                    <li><a href="/About">About</a></li>
-                                    <li><a href="/Contactus">Contact</a></li>
+                                    <li><Link to="/" className="nav-link">Home</Link></li>
+                                    <li><Link to="/About">About</Link></li>
+                                    <li><Link to="/Contactus">Contact</Link></li>
                                 </ul>
                             </nav>
                         </div>

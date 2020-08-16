@@ -46,7 +46,7 @@ class About extends React.Component {
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="site-logo col-6"><a href="/">IMMEDIATE JOINER</a></div>
+                            <div className="site-logo col-6"><Link to="/">IMMEDIATE JOINER</Link></div>
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
