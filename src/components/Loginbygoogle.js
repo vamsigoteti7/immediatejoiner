@@ -15,33 +15,35 @@ export class Logintbygoogle extends Component {
     }
 
     handleLogin = () => {
-        const userData = {
-            username: this.state.email,
-            password: this.state.password
-        };
-        axios.post('/imjoiners', userData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        // const userData = {
+        //     username: this.state.email,
+        //     password: this.state.password
+        // };
+        // axios.post('/imjoiners', userData)
+        //     .then(response => {
+        //         console.log(response.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        this.props.history.push('/Empdashboard');
     }
 
     handleSignUp = () => {
-        const registerData = {
-            firstname: "fda",
-            username: this.state.email,
-            usertype: "candiate",
-            password: "12345"
-        };
-        axios.post('/impostRegisterus', registerData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        // const registerData = {
+        //     firstname: "fda",
+        //     username: this.state.email,
+        //     usertype: "candiate",
+        //     password: "12345"
+        // };
+        // axios.post('/impostRegisterus', registerData)
+        //     .then(response => {
+        //         console.log(response.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        this.props.history.push('/RecruiterDashboard');
     }
 
     handleChange(event) {
@@ -62,7 +64,7 @@ export class Logintbygoogle extends Component {
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="site-logo col-6"><Link to="/">IMMEDIATE JOINER</Link></div>
+                            <div className="site-logo col-6"><Link to="/">Immediate Joiner</Link></div>
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
@@ -108,7 +110,7 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password"  className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                            <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
                                         </div>
                                     </div>
 

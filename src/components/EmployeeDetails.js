@@ -1,35 +1,50 @@
 import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
+import { Link } from 'react-router-dom';
 
-export class Postajob extends Component {
+export class EmployeeDetails extends Component {
     constructor(props) {
         super(props);
-     
+        this.state = {
+            email: '',
+            password: '',
+            reenterpassword: ''
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    getAllIndustries = () =>{
-        axios.post('/imgetindustries')
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    };
-    getAlllocations = () =>{
-        axios.post('/imgetlocation')
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    };
+    handleLogin = () => {
+        // const userData = {
+        //     username: this.state.email,
+        //     password: this.state.password
+        // };
+        // axios.post('/imjoiners', userData)
+        //     .then(response => {
+        //         console.log(response.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        this.props.history.push('/Empdashboard');
+    }
 
-
-    
+    handleSignUp = () => {
+        // const registerData = {
+        //     firstname: "fda",
+        //     username: this.state.email,
+        //     usertype: "candiate",
+        //     password: "12345"
+        // };
+        // axios.post('/impostRegisterus', registerData)
+        //     .then(response => {
+        //         console.log(response.data);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+        this.props.history.push('/RecruiterDashboard');
+    }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -142,4 +157,4 @@ export class Postajob extends Component {
     }
 }
 
-export default Postajob
+export default EmployeeDetails

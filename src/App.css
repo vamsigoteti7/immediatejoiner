@@ -65,9 +65,9 @@ link
         left: auto; } }
     .site-navbar .site-logo a {
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 2rem;
       letter-spacing: .2rem;
-      text-transform: uppercase; }
+       }
       .site-navbar .site-logo a:hover {
         text-decoration: none; }
   .site-navbar .site-burger-menu, .site-navbar .right-cta-menu {

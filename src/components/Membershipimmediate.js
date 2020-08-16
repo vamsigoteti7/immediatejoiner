@@ -17,7 +17,7 @@ class Membershipimmediate extends React.Component {
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="site-logo col-6"><Link to="/">Immediate Joiner Membership</Link></div>
+                            <div className="site-logo col-6"><Link to="/">Immediate Joiner</Link></div>
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">

@@ -11,6 +11,11 @@ import Membershipimmediate from './components/Membershipimmediate';
 import Contactus from './components/Contactus';
 import Postajob from './components/Postajob';
 import About from './components/About';
+import Jobdetails from './components/Jobdetails';
+
+import EmployeeDetails from './components/EmployeeDetails';
+import JobApplicationsDetail from './components/JobApplicationsDetail';
+
 
 class App extends React.Component {
   render() {
@@ -21,12 +26,15 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/' component={ImmediatejoinerHome} ></Route>
               <Route path='/Login' component={Logintbygoogle} ></Route>
+              <Route path='/EmpDetails' component={EmployeeDetails} ></Route>
+              <Route path='/JobApplicationDetails' component={JobApplicationsDetail} ></Route>
+              <Route path='/Jobdetail' component={Jobdetails} ></Route>
               <Route path='/Postjob' component={Postajob} ></Route>
               <Route path='/About' component={About} ></Route>
               <Route path='/Contactus' component={Contactus} ></Route>
               <Route path='/Dashboard' component={Dashboard} ></Route>
               <Route path='/Register' component={RegisterPage} ></Route>
-              <Route path='/Recruit' component={RecruiterDashboard} ></Route>
+              <Route path='/RecruiterDashboard' component={RecruiterDashboard} ></Route>
               <Route path='/Empdashboard' component={Employeedashboard} ></Route>
               <Route path='/Membership' component={Membershipimmediate} ></Route>
             </Switch>
