@@ -75,6 +75,7 @@ export class RecruiterDashboard extends Component {
                             </nav>
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                 <div className="ml-auto">
+                                    <Link to="/RecruiterDashboard" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</Link>
                                     <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</Link>
                                 </div>
                                 <a href="#" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></a>
@@ -97,7 +98,6 @@ export class RecruiterDashboard extends Component {
                 </section>
                 <section class="site-section">
                     <div class="container">
-
                         <div class="row mb-5 justify-content-center">
                             <div class="col-md-7 text-center">
                                 <h2 class="section-title mb-2">43,167 Job Listed</h2>

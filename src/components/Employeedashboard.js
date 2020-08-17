@@ -90,17 +90,17 @@ export class Employeedashboard extends Component {
                     </div> */}
                 </section>
 
-                <section class=" py-3 site-section mb-5">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-md btn-outline-primary border-width-2 d-block">Previous Project</a>
+                <section className=" py-3 site-section mb-5">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-4 text-center">
+                                <a href="#" className="btn btn-md btn-outline-primary border-width-2 d-block">Previous Project</a>
                             </div>
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-md btn-primary border-width-2 d-block">All Projects</a>
+                            <div className="col-md-4 text-center">
+                                <a href="#" className="btn btn-md btn-primary border-width-2 d-block">All Projects</a>
                             </div>
-                            <div class="col-md-4 text-center">
-                                <a href="#" class="btn btn-md btn-outline-primary border-width-2 d-block">Next Project</a>
+                            <div className="col-md-4 text-center">
+                                <a href="#" className="btn btn-md btn-outline-primary border-width-2 d-block">Next Project</a>
                             </div>
                         </div>
                     </div>

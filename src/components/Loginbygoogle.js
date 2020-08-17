@@ -7,17 +7,20 @@ export class Logintbygoogle extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loginemail: '',
+            loginpassword: '',
             email: '',
             password: '',
-            reenterpassword: ''
+            reenterpassword: '',
+            IsRecruiter: ''
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleLogin = () => {
         const userData = {
-            username: this.state.email,
-            password: this.state.password
+            username: this.state.loginemail,
+            password: this.state.loginpassword
         };
         axios.post('/imjoiners', userData)
             .then(response => {
@@ -30,20 +33,20 @@ export class Logintbygoogle extends Component {
     }
 
     handleSignUp = () => {
-        // const registerData = {
-        //     firstname: "fda",
-        //     username: this.state.email,
-        //     usertype: "candiate",
-        //     password: "12345"
-        // };
-        // axios.post('/impostRegisterus', registerData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/RecruiterDashboard');
+        const registerData = {
+            firstname: "",
+            username: this.state.email,
+            usertype: this.state.IsRecruiter == "true" ? "Recruiter" : "Candiate",
+            password: this.state.password
+        };
+        axios.post('/impostRegisterus', registerData)
+            .then(response => {
+                console.log(response.data);
+                this.props.history.push('/RecruiterDashboard');
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     handleChange(event) {
@@ -113,6 +116,12 @@ export class Logintbygoogle extends Component {
                                             <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
                                         </div>
                                     </div>
+                                    <div className="row form-group mb-4">
+                                        <div className="col-md-12 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
+                                            <input type="checkbox" name="IsRecruiter" value={this.state.IsRecruiter} onChange={this.handleChange} placeholder="IsRecruiter" />
+                                        </div>
+                                    </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
@@ -129,13 +138,13 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="femail">Email</label>
-                                            <input value={this.state.email} type="text" id="femail" className="form-control" placeholder="Email address" />
+                                            <input value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input value={this.state.password} type="password" id="fpassword" className="form-control" placeholder="Password" />
+                                            <input value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
                                         </div>
                                     </div>
 
