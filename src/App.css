@@ -18,6 +18,8 @@ link
   color: #fff;
 }
 
+ .carousel .slide{ background: transparent; } 
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

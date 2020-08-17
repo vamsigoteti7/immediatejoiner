@@ -7,13 +7,13 @@ class Immediatejoinerhome extends React.Component {
     render() {
         return (
             <div className="site-wrap">
-                <div class="site-mobile-menu site-navbar-target">
-                    <div class="site-mobile-menu-header">
-                        <div class="site-mobile-menu-close mt-3">
-                            <span class="icon-close2 js-menu-toggle"></span>
+                <div className="site-mobile-menu site-navbar-target">
+                    <div className="site-mobile-menu-header">
+                        <div className="site-mobile-menu-close mt-3">
+                            <span className="icon-close2 js-menu-toggle"></span>
                         </div>
                     </div>
-                    <div class="site-mobile-menu-body"></div>
+                    <div className="site-mobile-menu-body"></div>
                 </div>
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
@@ -39,46 +39,60 @@ class Immediatejoinerhome extends React.Component {
                     </div>
                 </header>
                 <section className="home-section section-hero overlay bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <Carousel>
-                                    <div class="row align-items-center justify-content-center">
-                                        <div class="col-md-12">
-                                            <div class="mb-5 text-center">
-                                                <h1 class="text-white font-weight-bold">Place For IMMEDIATE JOINERS</h1>
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="row mt-5"></div>
+								<div className="row mt-5"></div>
+                                <div className="row mt-5"></div>
+                                <div className="row mt-5"></div>
+                                <Carousel autoPlay className="row mt-5">
+                                    <div className="row align-items-center justify-content-center">
+                                        <div className="col-md-12">
+                                            <div className="mb-5 text-center">
+                                                <h1 className="text-white font-weight-bold">Job Portal For Medium/Small Scale Industries</h1>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row align-items-center justify-content-center">
-                                        <div class="col-md-12">
-                                            <div class="mb-5 text-center">
-                                                <h1 class="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
+                                    <div className="row align-items-center justify-content-center">
+                                        <div className="col-md-12">
+                                            <div className="mb-5 text-center">
+                                                <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
-                                        <p className="legend">Legend 1</p>
+                                    <div className="row align-items-center justify-content-center">
+                                        <div className="col-md-12">
+                                            <div className="mb-5 text-center">
+                                                <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="legend">Legend 1</p>
+                                    <div className="row align-items-center justify-content-center">
+                                        <div className="col-md-12">
+                                            <div className="mb-5 text-center">
+                                                <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Carousel>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="py-5 bg-image overlay-primary fixed overlay" style={{ backgroundImage: `url(${hero_1})` }}>
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-md-8">
-                                <h2 class="text-white">Looking For A Job?</h2>
-                                <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+                <section className="py-5 bg-image overlay-primary fixed overlay" style={{ backgroundImage: `url(${hero_1})` }}>
+                    <div className="container">
+                        <div className="row align-items-center">
+                            <div className="col-md-8">
+                                <h2 className="text-white">Looking For A Job?</h2>
+                                <p className="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
                             </div>
-                            <div class="col-md-3 ml-auto">
-                                <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+                            <div className="col-md-3 ml-auto">
+                                <a href="#" className="btn btn-warning btn-block btn-lg">Sign Up</a>
                             </div>
                         </div>
                     </div>
