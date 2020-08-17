@@ -1,6 +1,7 @@
 import React from 'react';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import { Carousel } from "react-responsive-carousel";
 
 class Immediatejoinerhome extends React.Component {
     render() {
@@ -41,15 +42,101 @@ class Immediatejoinerhome extends React.Component {
                     <div class="container">
                         <div class="row align-items-center justify-content-center">
                             <div class="col-md-12">
-                                <div class="mb-5 text-center">
-                                    <h1 class="text-white font-weight-bold">Place For IMMEDIATE JOINERS</h1>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-                                </div>
-                                
+                                <Carousel>
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-md-12">
+                                            <div class="mb-5 text-center">
+                                                <h1 class="text-white font-weight-bold">Place For IMMEDIATE JOINERS</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center justify-content-center">
+                                        <div class="col-md-12">
+                                            <div class="mb-5 text-center">
+                                                <h1 class="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="legend">Legend 1</p>
+                                    </div>
+                                    <div>
+                                        <p className="legend">Legend 1</p>
+                                    </div>
+                                </Carousel>
                             </div>
                         </div>
                     </div>
                 </section>
+                <section class="py-5 bg-image overlay-primary fixed overlay" style={{ backgroundImage: `url(${hero_1})` }}>
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h2 class="text-white">Looking For A Job?</h2>
+                                <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+                            </div>
+                            <div class="col-md-3 ml-auto">
+                                <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer className="site-footer">
+
+                    <a href="#top" className="smoothscroll scroll-top">
+                        <span className="icon-keyboard_arrow_up"></span>
+                    </a>
+
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Search Trending</h3>
+                                <ul className="list-unstyled">
+                                    <li><a href="#">Web Design</a></li>
+                                    <li><a href="#">Graphic Design</a></li>
+                                    <li><a href="#">Web Developers</a></li>
+                                    <li><a href="#">Python</a></li>
+                                    <li><a href="#">HTML5</a></li>
+                                    <li><a href="#">CSS3</a></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Company</h3>
+                                <ul className="list-unstyled">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Resources</a></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Support</h3>
+                                <ul className="list-unstyled">
+                                    <li><a href="#">Support</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Terms of Service</a></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Contact Us</h3>
+                                <div className="footer-social">
+                                    <a href="#"><span className="icon-facebook"></span></a>
+                                    <a href="#"><span className="icon-twitter"></span></a>
+                                    <a href="#"><span className="icon-instagram"></span></a>
+                                    <a href="#"><span className="icon-linkedin"></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row text-center">
+                            <div className="col-12">
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+
             </div>
         );
     }
