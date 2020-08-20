@@ -2,16 +2,7 @@ import React from 'react';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import { Carousel } from "react-responsive-carousel";
-
-// import NavDropdown from '@bit/react-bootstrap.react-bootstrap.nav-dropdown'
-// import Nav from '@bit/react-bootstrap.react-bootstrap.nav'
-// import Button from '@bit/react-bootstrap.react-bootstrap.button'
-// import Form from '@bit/react-bootstrap.react-bootstrap.form'
-// import FormControl from '@bit/react-bootstrap.react-bootstrap.form-control'
-// import Navbar from '@bit/react-bootstrap.react-bootstrap.navbar'
-// import ReactBootstrapStyle from '@bit/react-bootstrap.react-bootstrap.internal.style-links';
 import $ from 'jquery';
-//import { Nav, Navbar, NavbarBrand, Form, FormControl, NavDropdown, Button } from 'react-bootstrap';
 
 class Immediatejoinerhome extends React.Component {
 
