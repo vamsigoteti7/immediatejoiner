@@ -12,10 +12,8 @@ import Contactus from './components/Contactus';
 import Postajob from './components/Postajob';
 import About from './components/About';
 import Jobdetails from './components/Jobdetails';
-
 import EmployeeDetails from './components/EmployeeDetails';
 import JobApplicationsDetail from './components/JobApplicationsDetail';
-
 
 class App extends React.Component {
   render() {

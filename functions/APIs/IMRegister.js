@@ -25,6 +25,29 @@ exports.getAllImmediateJoiners = (request, response) => {
 		});
 };
 
+exports.getAllImmediateJoiner = (request, response) => {
+	db
+		.collection('IMRegister')
+		.get()
+		.then((data) => {
+			let immediatejoiners = [];
+			data.forEach((doc) => {
+				immediatejoiners.push({
+					immediatejoinerId: doc.id,
+					firstname: doc.data().firstname,
+					password: doc.data().password,
+					usertype: doc.data().usertype,
+					username: doc.data().username
+				});
+			});
+			return response.json(immediatejoiners);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
 // Upload profile picture
 exports.uploadProfilePhoto = (request, response) => {
 	

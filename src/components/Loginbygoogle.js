@@ -12,9 +12,10 @@ export class Logintbygoogle extends Component {
             email: '',
             password: '',
             reenterpassword: '',
-            IsRecruiter: ''
+            IsRecruiter: true
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleChecked = this.handleChecked.bind(this);
     }
 
     handleLogin = () => {
@@ -24,8 +25,17 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/imjoiners', userData)
             .then(response => {
-                console.log(response.data);
-                this.props.history.push('/Empdashboard');
+                if(response.data.length === 1)
+                {
+                    if(response.data[0].usertype === "Recruiter")
+                    {
+                        this.props.history.push('/RecruiterDashboard');
+                    }
+                    else if(response.data[0].usertype === "Candiate")
+                    {
+                        this.props.history.push('/Empdashboard');      
+                    }
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -36,13 +46,22 @@ export class Logintbygoogle extends Component {
         const registerData = {
             firstname: "",
             username: this.state.email,
-            usertype: this.state.IsRecruiter == "true" ? "Recruiter" : "Candiate",
+            usertype: this.state.IsRecruiter ? "Recruiter" : "Candiate",
             password: this.state.password
         };
         axios.post('/impostRegisterus', registerData)
             .then(response => {
-                console.log(response.data);
-                this.props.history.push('/RecruiterDashboard');
+                if(response.data.length === 1)
+                {
+                    if(response.data[0].usertype === "Recruiter")
+                    {
+                        this.props.history.push('/RecruiterDashboard');
+                    }
+                    else if(response.data[0].usertype === "Candiate")
+                    {
+                        this.props.history.push('/Empdashboard');      
+                    }
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -51,6 +70,10 @@ export class Logintbygoogle extends Component {
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
+    }
+
+    handleChecked(event) {
+        this.setState({ [event.target.name]: event.target.checked });
     }
 
     render() {
@@ -119,7 +142,7 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
-                                            <input type="checkbox" name="IsRecruiter" value={this.state.IsRecruiter} onChange={this.handleChange} placeholder="IsRecruiter" />
+                                            <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} defaultChecked={false} onChange={this.handleChecked} placeholder="Is Recruiter" />
                                         </div>
                                     </div>
 

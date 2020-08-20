@@ -14,20 +14,23 @@ import './css/custom-bs.css'
 import './css/jquery.fancybox.min.css'
 import './css/quill.snow.css'
 import './css/style.css'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-// // import './js/jquery.min.js'
-// // import './js/bootstrap.bundle.min.js'
-// // // import './js/isotope.pkgd.min.js'
-// // import './js/stickyfill.min.js'
-// // import './js/jquery.fancybox.min.js'
-// // import './js/jquery.easing.1.3.js'
-// // import './js/jquery.waypoints.min.js'
-// // import './js/jquery.animateNumber.min.js'
-// // import './js/owl.carousel.min.js'
-// // import './js/quill.min.js'
-// // import './js/bootstrap-select.min.js'
-// // import './js/custom.js'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import $ from 'jquery';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+// import './js/bootstrap.bundle.min.js'
+// import './js/isotope.pkgd.min.js'
+// import './js/stickyfill.min.js'
+// import './js/jquery.fancybox.min.js'
+// import './js/jquery.easing.1.3.js'
+// import './js/jquery.waypoints.min.js'
+// import './js/jquery.animateNumber.min.js'
+// import './js/owl.carousel.min.js'
+// import './js/quill.min.js'
+// import './js/bootstrap-select.min.js'
+ //import './js/custom.js'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

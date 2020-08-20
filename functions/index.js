@@ -13,6 +13,7 @@ main.use(bodyParser.urlencoded({ extended: false }));
 
 const {
   getAllImmediateJoiners,
+  getAllImmediateJoiner,
   postRegister,
   getregisterdetailsById,
   uploadProfilePhoto
@@ -79,6 +80,7 @@ const {
 } = require('./APIs/IMQualification')
 
 app.post('/imjoiners', getAllImmediateJoiners);
+app.post('/imjoiner', getAllImmediateJoiner);
 app.post('/impostRegisterus', postRegister);
 app.post('/impostRegisterdetailsbyidus', getregisterdetailsById);
 
