@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 
@@ -94,13 +93,13 @@ export class Employeedashboard extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-4 text-center">
-                                <a href="#" className="btn btn-md btn-outline-primary border-width-2 d-block">Previous Project</a>
+                                <Link to="/" className="btn btn-md btn-outline-primary border-width-2 d-block">Previous Project</Link>
                             </div>
                             <div className="col-md-4 text-center">
-                                <a href="#" className="btn btn-md btn-primary border-width-2 d-block">All Projects</a>
+                                <Link to="/" className="btn btn-md btn-primary border-width-2 d-block">All Projects</Link>
                             </div>
                             <div className="col-md-4 text-center">
-                                <a href="#" className="btn btn-md btn-outline-primary border-width-2 d-block">Next Project</a>
+                                <Link to="/" className="btn btn-md btn-outline-primary border-width-2 d-block">Next Project</Link>
                             </div>
                         </div>
                     </div>

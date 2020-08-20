@@ -14,19 +14,12 @@ import $ from 'jquery';
 //import { Nav, Navbar, NavbarBrand, Form, FormControl, NavDropdown, Button } from 'react-bootstrap';
 
 class Immediatejoinerhome extends React.Component {
-    componentDidMount() {
 
-        const h1 = $('nav')
-        console.log(h1);
+    componentDidMount() {
         $(".loader").delay(1000).fadeOut("slow");
         $("#overlayer").delay(1000).fadeOut("slow");
         var siteMenuClone = function () {
-
-
-
-
             setTimeout(function () {
-
                 var counter = 0;
                 $('.site-mobile-menu .has-children').each(function () {
                     var $this = $(this);
@@ -101,29 +94,29 @@ class Immediatejoinerhome extends React.Component {
         siteMenuClone();
 
 
-        var sitePlusMinus = function () {
-            $('.js-btn-minus').on('click', function (e) {
-                e.preventDefault();
-                if ($(this).closest('.input-group').find('.form-control').val() != 0) {
-                    $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
-                } else {
-                    $(this).closest('.input-group').find('.form-control').val(parseInt(0));
-                }
-            });
-            $('.js-btn-plus').on('click', function (e) {
-                e.preventDefault();
-                $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
-            });
-        };
+        // var sitePlusMinus = function () {
+        //     $('.js-btn-minus').on('click', function (e) {
+        //         e.preventDefault();
+        //         if ($(this).closest('.input-group').find('.form-control').val() !== 0) {
+        //             $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+        //         } else {
+        //             $(this).closest('.input-group').find('.form-control').val(parseInt(0));
+        //         }
+        //     });
+        //     $('.js-btn-plus').on('click', function (e) {
+        //         e.preventDefault();
+        //         $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+        //     });
+        // };
     }
 
     render() {
         return (
             <div>
                 <div id="overlayer"></div>
-                <div class="loader">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
+                <div className="loader">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
                     </div>
                 </div>
                 <div className="site-wrap">
@@ -183,7 +176,7 @@ class Immediatejoinerhome extends React.Component {
                                     <div className="row mt-5"></div>
                                     <div className="row mt-5"></div>
                                     <div className="row mt-5"></div>
-                                    <Carousel autoPlay className="row mt-5">
+                                    <Carousel autoPlay showThumbs={false} className="row mt-5">
                                         <div className="row align-items-center justify-content-center">
                                             <div className="col-md-12">
                                                 <div className="mb-5 text-center">
@@ -229,7 +222,7 @@ class Immediatejoinerhome extends React.Component {
                                     <p className="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
                                 </div>
                                 <div className="col-md-3 ml-auto">
-                                    <a href="#" className="btn btn-warning btn-block btn-lg">Sign Up</a>
+                                    <Link to="/" className="btn btn-warning btn-block btn-lg">Sign Up</Link>
                                 </div>
                             </div>
                         </div>
@@ -245,38 +238,38 @@ class Immediatejoinerhome extends React.Component {
                                 <div className="col-6 col-md-3 mb-4 mb-md-0">
                                     <h3>Search Trending</h3>
                                     <ul className="list-unstyled">
-                                        <li><a href="#">Web Design</a></li>
-                                        <li><a href="#">Graphic Design</a></li>
-                                        <li><a href="#">Web Developers</a></li>
-                                        <li><a href="#">Python</a></li>
-                                        <li><a href="#">HTML5</a></li>
-                                        <li><a href="#">CSS3</a></li>
+                                        <li><Link to="/">Web Design</Link></li>
+                                        <li><Link to="/">Graphic Design</Link></li>
+                                        <li><Link to="/">Web Developers</Link></li>
+                                        <li><Link to="/">Python</Link></li>
+                                        <li><Link to="/">HTML5</Link></li>
+                                        <li><Link to="/">CSS3</Link></li>
                                     </ul>
                                 </div>
                                 <div className="col-6 col-md-3 mb-4 mb-md-0">
                                     <h3>Company</h3>
                                     <ul className="list-unstyled">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Career</a></li>
-                                        <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Resources</a></li>
+                                        <li><Link to="/">About Us</Link></li>
+                                        <li><Link to="/">Career</Link></li>
+                                        <li><Link to="/">Blog</Link></li>
+                                        <li><Link to="/">Resources</Link></li>
                                     </ul>
                                 </div>
                                 <div className="col-6 col-md-3 mb-4 mb-md-0">
                                     <h3>Support</h3>
                                     <ul className="list-unstyled">
-                                        <li><a href="#">Support</a></li>
-                                        <li><a href="#">Privacy</a></li>
-                                        <li><a href="#">Terms of Service</a></li>
+                                        <li><Link to="/">Support</Link></li>
+                                        <li><Link to="/">Privacy</Link></li>
+                                        <li><Link to="/">Terms of Service</Link></li>
                                     </ul>
                                 </div>
                                 <div className="col-6 col-md-3 mb-4 mb-md-0">
                                     <h3>Contact Us</h3>
                                     <div className="footer-social">
-                                        <a href="#"><span className="icon-facebook"></span></a>
-                                        <a href="#"><span className="icon-twitter"></span></a>
-                                        <a href="#"><span className="icon-instagram"></span></a>
-                                        <a href="#"><span className="icon-linkedin"></span></a>
+                                        <Link to="/"><span className="icon-facebook"></span></Link>
+                                        <Link to="/"><span className="icon-twitter"></span></Link>
+                                        <Link to="/"><span className="icon-instagram"></span></Link>
+                                        <Link to="/"><span className="icon-linkedin"></span></Link>
                                     </div>
                                 </div>
                             </div>

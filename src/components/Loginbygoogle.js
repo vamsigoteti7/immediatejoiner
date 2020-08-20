@@ -12,10 +12,15 @@ export class Logintbygoogle extends Component {
             email: '',
             password: '',
             reenterpassword: '',
-            IsRecruiter: true
+            IsRecruiter: true,
+            IsSignUp: '',
+            IsSignIn : ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
+
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
     handleLogin = () => {
@@ -25,15 +30,12 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/imjoiners', userData)
             .then(response => {
-                if(response.data.length === 1)
-                {
-                    if(response.data[0].usertype === "Recruiter")
-                    {
+                if (response.data.length === 1) {
+                    if (response.data[0].usertype === "Recruiter") {
                         this.props.history.push('/RecruiterDashboard');
                     }
-                    else if(response.data[0].usertype === "Candiate")
-                    {
-                        this.props.history.push('/Empdashboard');      
+                    else if (response.data[0].usertype === "Candiate") {
+                        this.props.history.push('/Empdashboard');
                     }
                 }
             })
@@ -51,15 +53,12 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/impostRegisterus', registerData)
             .then(response => {
-                if(response.data.length === 1)
-                {
-                    if(response.data[0].usertype === "Recruiter")
-                    {
+                if (response.data.length === 1) {
+                    if (response.data[0].usertype === "Recruiter") {
                         this.props.history.push('/RecruiterDashboard');
                     }
-                    else if(response.data[0].usertype === "Candiate")
-                    {
-                        this.props.history.push('/Empdashboard');      
+                    else if (response.data[0].usertype === "Candiate") {
+                        this.props.history.push('/Empdashboard');
                     }
                 }
             })
@@ -124,31 +123,31 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="femailregister">Email</label>
-                                            <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
+                                            <input autoComplete="on" type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fpasswordregister">Password</label>
-                                            <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                                            <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                            <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
-                                            <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} defaultChecked={false} onChange={this.handleChecked} placeholder="Is Recruiter" />
+                                            <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} onChange={this.handleChecked} placeholder="Is Recruiter" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <input value="Sign Up" onClick={this.handleSignUp} className="btn px-4 btn-primary text-white" />
+                                            <input value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                         </div>
                                     </div>
                                 </form>
@@ -161,19 +160,21 @@ export class Logintbygoogle extends Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="femail">Email</label>
-                                            <input value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                            <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
+                                            <input autoComplete="on" value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
                                             <input value="Log In"
+                                                onChange={this.handleChange}
+                                                name="IsLogIn"
                                                 onClick={this.handleLogin}
                                                 className="btn px-4 btn-primary text-white" />
                                         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import data from '../data/geo.json';
 
 export class RecruiterDashboard extends Component {
     constructor(props) {
@@ -12,6 +12,10 @@ export class RecruiterDashboard extends Component {
             reenterpassword: ''
         };
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount(){
+        console.log(data);
     }
 
     handleLogin = () => {
@@ -75,10 +79,10 @@ export class RecruiterDashboard extends Component {
                             </nav>
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                 <div className="ml-auto">
-                                    <Link to="/Postjob" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</Link>
+                                    <Link to="/Postjob" className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-add"></span>Post a Job</Link>
                                     <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</Link>
                                 </div>
-                                <a href="#" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
                             </div>
                         </div>
                     </div>
@@ -96,168 +100,168 @@ export class RecruiterDashboard extends Component {
                         </div>
                     </div> */}
                 </section>
-                <section class="site-section">
-                    <div class="container">
-                        <div class="row mb-5 justify-content-center">
-                            <div class="col-md-7 text-center">
-                                <h2 class="section-title mb-2">43,167 Job Listed</h2>
+                <section className="site-section">
+                    <div className="container">
+                        <div className="row mb-5 justify-content-center">
+                            <div className="col-md-7 text-center">
+                                <h2 className="section-title mb-2">43,167 Job Listed</h2>
                             </div>
                         </div>
 
-                        <ul class="job-listings mb-5">
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                        <ul className="job-listings mb-5">
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                                 <Link to="/Jobdetail"></Link>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Product Designer</h2>
                                         <strong>Adidas</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> New York, New York
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> New York, New York
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-danger">Part Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-danger">Part Time</span>
                                     </div>
                                 </div>
 
                             </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                                <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Digital Marketing Director</h2>
                                         <strong>Sprint</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> Overland Park, Kansas
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-success">Full Time</span>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_3.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                            <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_3.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Back-end Engineer (Python)</h2>
                                         <strong>Amazon</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> Overland Park, Kansas
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-success">Full Time</span>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_4.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                            <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_4.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Senior Art Director</h2>
                                         <strong>Microsoft</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Anywhere
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> Anywhere
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-success">Full Time</span>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_5.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                            <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_5.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Product Designer</h2>
                                         <strong>Puma</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> San Mateo, CA
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> San Mateo, CA
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-success">Full Time</span>
                                     </div>
                                 </div>
                             </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                            <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Product Designer</h2>
                                         <strong>Adidas</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> New York, New York
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> New York, New York
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-danger">Part Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-danger">Part Time</span>
                                     </div>
                                 </div>
 
                             </li>
-                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <a href="job-single.html"></a>
-                                <div class="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid" />
+                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                            <Link to="/"></Link>
+                                <div className="job-listing-logo">
+                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                 </div>
 
-                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                                         <h2>Digital Marketing Director</h2>
                                         <strong>Sprint</strong>
                                     </div>
-                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span class="icon-room"></span> Overland Park, Kansas
+                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span className="icon-room"></span> Overland Park, Kansas
               </div>
-                                    <div class="job-listing-meta">
-                                        <span class="badge badge-success">Full Time</span>
+                                    <div className="job-listing-meta">
+                                        <span className="badge badge-success">Full Time</span>
                                     </div>
                                 </div>
                             </li>
                         </ul>
-                        <div class="row pagination-wrap">
-                            <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+                        <div className="row pagination-wrap">
+                            <div className="col-md-6 text-center text-md-left mb-4 mb-md-0">
                                 <span>Showing 1-7 Of 43,167 Jobs</span>
                             </div>
-                            <div class="col-md-6 text-center text-md-right">
-                                <div class="custom-pagination ml-auto">
-                                    <a href="#" class="prev">Prev</a>
-                                    <div class="d-inline-block">
-                                        <a href="#" class="active">1</a>
-                                        <a href="#">2</a>
-                                        <a href="#">3</a>
-                                        <a href="#">4</a>
+                            <div className="col-md-6 text-center text-md-right">
+                                <div className="custom-pagination ml-auto">
+                                    <Link to="/" className="prev">Prev</Link>
+                                    <div className="d-inline-block">
+                                        <Link to="/" className="active">1</Link>
+                                        <Link to="/">2</Link>
+                                        <Link to="/">3</Link>
+                                        <Link to="/">4</Link>
                                     </div>
-                                    <a href="#" class="next">Next</a>
+                                    <Link to="/" className="next">Next</Link>
                                 </div>
                             </div>
                         </div>

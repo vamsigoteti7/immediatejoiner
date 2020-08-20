@@ -6,13 +6,13 @@ class Membershipimmediate extends React.Component {
     render() {
         return (
             <div className="site-wrap">
-                <div class="site-mobile-menu site-navbar-target">
-                    <div class="site-mobile-menu-header">
-                        <div class="site-mobile-menu-close mt-3">
-                            <span class="icon-close2 js-menu-toggle"></span>
+                <div className="site-mobile-menu site-navbar-target">
+                    <div className="site-mobile-menu-header">
+                        <div className="site-mobile-menu-close mt-3">
+                            <span className="icon-close2 js-menu-toggle"></span>
                         </div>
                     </div>
-                    <div class="site-mobile-menu-body"></div>
+                    <div className="site-mobile-menu-body"></div>
                 </div>
                 <header className="site-navbar mt-3">
                     <div className="container-fluid">
@@ -31,18 +31,18 @@ class Membershipimmediate extends React.Component {
                                 <div className="ml-auto">
                                     <Link to="/Login" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log In</Link>
                                 </div>
-                                <a href="#" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
                             </div>
 
                         </div>
                     </div>
                 </header>
                 <section className="home-section section-hero overlay bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <div class="mb-5 text-center">
-                                    <h1 class="text-white font-weight-bold">Place For IMMEDIATE JOINERS</h1>
+                    <div className="container">
+                        <div className="row align-items-center justify-content-center">
+                            <div className="col-md-12">
+                                <div className="mb-5 text-center">
+                                    <h1 className="text-white font-weight-bold">Place For IMMEDIATE JOINERS</h1>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
                                 </div>
                             </div>

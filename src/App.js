@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
 import Logintbygoogle from './components/Loginbygoogle';
-import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
-import RegisterPage from './components/Register';
 import ImmediatejoinerHome from './components/Immediatejoinerhome';
 import RecruiterDashboard from './components/RecruiterDashboard';
 import Employeedashboard from './components/Employeedashboard';
@@ -30,8 +28,6 @@ class App extends React.Component {
               <Route path='/Postjob' component={Postajob} ></Route>
               <Route path='/About' component={About} ></Route>
               <Route path='/Contactus' component={Contactus} ></Route>
-              <Route path='/Dashboard' component={Dashboard} ></Route>
-              <Route path='/Register' component={RegisterPage} ></Route>
               <Route path='/RecruiterDashboard' component={RecruiterDashboard} ></Route>
               <Route path='/Empdashboard' component={Employeedashboard} ></Route>
               <Route path='/Membership' component={Membershipimmediate} ></Route>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 
