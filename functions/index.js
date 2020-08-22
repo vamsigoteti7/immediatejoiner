@@ -79,6 +79,22 @@ const {
   postQualification
 } = require('./APIs/IMQualification')
 
+const {
+  postCountries,
+  getallcountries
+} = require('./APIs/IMCountries')
+
+const {
+  postCities,
+  getcitiesbycountryid
+} = require('./APIs/IMCities')
+
+app.post('/impostcountry', postCountries);
+app.get('/imgetcountrys', getallcountries);
+
+app.post('/impostcity', postCities);
+app.post('/imgetcitybyid', getcitiesbycountryid);
+
 app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/imjoiner', getAllImmediateJoiner);
 app.post('/impostRegisterus', postRegister);

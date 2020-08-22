@@ -2,11 +2,37 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+import Select from 'react-select';
 
 export class Postajob extends Component {
     constructor(props) {
         super(props);
+        this.modules = {
+            toolbar: [
+                [{ 'font': [] }],
+                [{ 'size': ['small', false, 'large', 'huge'] }],
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'align': [] }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['clean']
+            ]
+        };
+
+        this.formats = [
+            'font',
+            'size',
+            'bold', 'italic', 'underline',
+            'list', 'bullet',
+            'align',
+            'color', 'background'
+        ];
         this.state = {
+            recruiteremail: '',
+            jobtitle: '',
             username: '',
             companyname: '',
             companylogo: '',
@@ -19,20 +45,98 @@ export class Postajob extends Component {
             jobdescription: '',
             place: '',
             vacancies: '',
-            recruiteremail: '',
             recruiterlinkdinlink: '',
             recruiterphonenumber: '',
             recruiterwebsite: '',
             salary: '',
-            tagline: ''
+            tagline: '',
+            comments: '',
+            selectedOption: null,
+            countries: [
+            ],
+            selectedcountry: '',
+            selectedcity: '',
+            selecteddepartment: '',
+            departments: [
+            ],
+            cities: [
+            ]
         };
         this.handleChange = this.handleChange.bind(this);
+        this.rteChange = this.rteChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.getAllCountrys();
+        this.getAllIndustries();
+    }
+
+    rteChange = (content, delta, source, editor) => {
+        console.log(editor.getHTML()); // HTML/rich text
+        console.log(editor.getText()); // plain text
+        console.log(editor.getLength()); // number of characters
     }
 
     getAllIndustries = () => {
-        axios.post('/imgetindustries')
+        axios.get('/imgetindustries')
             .then(response => {
-                console.log(response.data);
+                let industriesApi = response.data.map(data => {
+                    return { value: data.industryname,id:data.industryid, label: data.industryname };
+                });
+                this.setState({
+                    industries: [
+                        {
+                            value: "",
+                            label:"",
+                            id:0,
+                        }
+                    ].concat(industriesApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    getAllCountrys = () => {
+        axios.get('/imgetcountrys')
+            .then(response => {
+                let countriesApi = response.data.map(data => {
+                    return { value: data.name,id:data.countryid, label: data.name };
+                });
+                this.setState({
+                    countries: [
+                        {
+                            value: "",
+                            label:"",
+                            id:0,
+                        }
+                    ].concat(countriesApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    getCityByCountryId = () => {
+        const countryData = {
+            countryid: this.state.selectedcountry
+        };
+        axios.get('/imgetcitybyid',countryData)
+            .then(response => {
+                let cityApi = response.data.map(data => {
+                    return { value: data.city,id:data.countryid, label: data.city };
+                });
+                this.setState({
+                    citys: [
+                        {
+                            value: "",
+                            label:"",
+                            id:0,
+                        }
+                    ].concat(cityApi)
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -73,6 +177,7 @@ export class Postajob extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+
     render() {
         return (
             <div className="site-wrap">
@@ -88,7 +193,6 @@ export class Postajob extends Component {
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="site-logo col-6"><Link to="/">Immediate Joiner</Link></div>
-
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                                     <li><Link to="/" className="nav-link">Home</Link></li>
@@ -100,17 +204,17 @@ export class Postajob extends Component {
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    {/* <div className="container">
+                    <div className="container">
                         <div className="row">
                             <div className="col-md-7">
                                 <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
                                 <div className="custom-breadcrumbs">
-                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
+                                    <Link to="/">Home</Link> <span className="mx-2 slash">/</span>
                                     <span className="text-white"><strong>Log In</strong></span>
                                 </div>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
                 </section>
                 <section className="site-section">
                     <div className="container">
@@ -139,99 +243,107 @@ export class Postajob extends Component {
                                     <h3 className="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
                                     <div className="form-group">
-                                        {/* <label for="company-website-tw d-block">Upload Featured Image</label> <br>
-                                            <label class="btn btn-primary btn-md btn-file">
-                                                Browse File<input type="file" hidden />
-                                            </label> */}
+                                        <label htmlFor="company-website-tw d-block">Upload Featured Image</label> <br />
+                                        <label className="btn btn-primary btn-md btn-file">
+                                            Browse File<input type="file" hidden />
+                                        </label>
+                                        {/* <input value="Browse File" class="btn btn-primary btn-md btn-file" type="file"/> */}
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="email">Email</label>
-                                        <input type="text" className="form-control" id="email" placeholder="you@yourdomain.com" />
+                                        <input type="text" value={this.state.recruiteremail} className="form-control" id="email" placeholder="you@yourdomain.com" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="job-title">Job Title</label>
-                                        <input type="text" className="form-control" id="job-title" placeholder="Product Designer" />
+                                        <input type="text" value={this.state.jobtitle} className="form-control" id="job-title" placeholder="Product Designer" />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="job-location">Location</label>
-                                        <input type="text" className="form-control" id="job-location" placeholder="e.g. New York" />
+                                        <label htmlFor="job-country">Country</label>
+                                        <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
+                                            onChange={this.handleChange}
+                                            options={this.state.countries}
+                                            value={this.state.selectedcountry}>
+                                            {this.state.countries.map(team => (
+                                                <option
+                                                    key={team.value}
+                                                    value={team.value}
+                                                >
+                                                    {team.display}
+                                                </option>
+                                            ))}
+                                        </Select>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="job-region">Job Region</label>
-                                        <select className="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-                                            <option>Anywhere</option>
-                                            <option>San Francisco</option>
-                                            <option>Palo Alto</option>
-                                            <option>New York</option>
-                                            <option>Manhattan</option>
-                                            <option>Ontario</option>
-                                            <option>Toronto</option>
-                                            <option>Kansas</option>
-                                            <option>Mountain View</option>
-                                        </select>
+                                        <label htmlFor="job-city">City</label>
+                                        <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City">
+                                            onChange={this.handleChange}
+                                            options={this.state.cities}
+                                            value={this.state.selectedcity}
+                                        </Select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="departments">Departments</label>
+                                        <Select className="selectpicker border rounded" id="departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department">
+                                            onChange={this.handleChange}
+                                            options={this.state.departments}
+                                            value={this.state.selecteddepartment}
+                                        </Select>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-type">Job Type</label>
-                                        <select className="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
-                                            <option>Part Time</option>
-                                            <option>Full Time</option>
-                                        </select>
+                                        <Select className="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+                                            onChange={this.handleChange}
+                                            options={this.state.jobtypes}
+                                            value={this.state.selectedjobtype}
+                                        </Select>
                                     </div>
 
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Job Description</label>
-                                        <div className="editor" id="editor-1">
-                                            <p>Write Job Description!</p>
-                                        </div>
+                                        <ReactQuill theme="snow" modules={this.modules}
+                                            formats={this.formats} onChange={this.rteChange}
+                                             />
                                     </div>
 
 
                                     <h3 className="text-black my-5 border-bottom pb-2">Company Details</h3>
                                     <div className="form-group">
                                         <label htmlFor="company-name">Company Name</label>
-                                        <input type="text" className="form-control" id="company-name" placeholder="e.g. New York" />
+                                        <input type="text" value={this.state.companyname} className="form-control" id="company-name" placeholder="e.g. New York" />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="company-tagline">Tagline (Optional)</label>
-                                        <input type="text" className="form-control" id="company-tagline" placeholder="e.g. New York" />
+                                        <input type="text" value={this.state.companytagline} className="form-control" id="company-tagline" placeholder="e.g. New York" />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Company Description (Optional)</label>
-                                        <div className="editor" id="editor-2">
-                                            <p>Description</p>
-                                        </div>
+                                        <ReactQuill theme="snow" modules={this.modules}
+                                            formats={this.formats} onChange={this.rteChange}
+                                             />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="company-website">Website (Optional)</label>
-                                        <input type="text" className="form-control" id="company-website" placeholder="https://" />
+                                        <input type="text" value={this.state.recruiterwebsite} className="form-control" id="company-website" placeholder="https://" />
                                     </div>
 
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-fb">Facebook Username (Optional)</label>
-                                        <input type="text" className="form-control" id="company-website-fb" placeholder="companyname" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw">Twitter Username (Optional)</label>
-                                        <input type="text" className="form-control" id="company-website-tw" placeholder="@companyname" />
-                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="company-website-tw">Linkedin Username (Optional)</label>
-                                        <input type="text" className="form-control" id="company-website-tw" placeholder="companyname" />
+                                        <input type="text" value={this.state.recruiterlinkdinlink} className="form-control" id="company-website-tw" placeholder="companyname" />
                                     </div>
 
                                     <div className="form-group">
-                                        {/* <label for="company-website-tw d-block">Upload Logo</label> <br>
-                                                <label class="btn btn-primary btn-md btn-file">
-                                                    Browse File<input type="file" hidden />
-                                                </label> */}
+                                        <label htmlFor="company-website-tw d-block">Upload Logo</label> <br />
+                                        <label className="btn btn-primary btn-md btn-file">
+                                            Browse File<input type="file" hidden />
+                                        </label>
                                     </div>
 
                                 </form>

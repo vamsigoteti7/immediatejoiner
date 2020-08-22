@@ -88,8 +88,6 @@ class Contactus extends React.Component {
                                             <input onClick={this.handleSubmit} value="Send Message" className="btn btn-primary btn-md text-white" />
                                         </div>
                                     </div>
-
-
                                 </form>
                             </div>
                             <div className="col-lg-5 ml-auto">

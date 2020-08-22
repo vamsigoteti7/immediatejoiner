@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import data from '../data/geo.json';
 
 export class RecruiterDashboard extends Component {
     constructor(props) {
@@ -15,7 +14,7 @@ export class RecruiterDashboard extends Component {
     }
 
     componentDidMount(){
-        console.log(data);
+        
     }
 
     handleLogin = () => {
