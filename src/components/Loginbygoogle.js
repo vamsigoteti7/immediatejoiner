@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import { SmartToaster, toast } from 'react-smart-toaster';
 
 export class Logintbygoogle extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class Logintbygoogle extends Component {
             reenterpassword: '',
             IsRecruiter: true,
             IsSignUp: '',
-            IsSignIn : ''
+            IsSignIn: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -55,10 +56,12 @@ export class Logintbygoogle extends Component {
             .then(response => {
                 if (response.data.length === 1) {
                     if (response.data[0].usertype === "Recruiter") {
-                        this.props.history.push('/RecruiterDashboard');
+                        toast.success("Logged In Successfully");
+                        //this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Empdashboard');
+                        toast.success("Logged In Successfully");
+                        //this.props.history.push('/Empdashboard');
                     }
                 }
             })
@@ -98,6 +101,11 @@ export class Logintbygoogle extends Component {
                                     <li><Link to="/Contactus">Contact</Link></li>
                                 </ul>
                             </nav>
+                            <SmartToaster
+                                store={toast}
+                                lightBackground={true}
+                                position={"top_right"}
+                            />
                         </div>
                     </div>
                 </header>
@@ -187,57 +195,57 @@ export class Logintbygoogle extends Component {
                 </section>
                 <footer className="site-footer">
 
-                        <a href="#top" className="smoothscroll scroll-top">
-                            <span className="icon-keyboard_arrow_up"></span>
-                        </a>
+                    <a href="#top" className="smoothscroll scroll-top">
+                        <span className="icon-keyboard_arrow_up"></span>
+                    </a>
 
-                        <div className="container">
-                            <div className="row mb-5">
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Search Trending</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">Web Design</Link></li>
-                                        <li><Link to="/">Graphic Design</Link></li>
-                                        <li><Link to="/">Web Developers</Link></li>
-                                        <li><Link to="/">Python</Link></li>
-                                        <li><Link to="/">HTML5</Link></li>
-                                        <li><Link to="/">CSS3</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Company</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">About Us</Link></li>
-                                        <li><Link to="/">Career</Link></li>
-                                        <li><Link to="/">Blog</Link></li>
-                                        <li><Link to="/">Resources</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Support</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">Support</Link></li>
-                                        <li><Link to="/">Privacy</Link></li>
-                                        <li><Link to="/">Terms of Service</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Contact Us</h3>
-                                    <div className="footer-social">
-                                        <Link to="/"><span className="icon-facebook"></span></Link>
-                                        <Link to="/"><span className="icon-twitter"></span></Link>
-                                        <Link to="/"><span className="icon-instagram"></span></Link>
-                                        <Link to="/"><span className="icon-linkedin"></span></Link>
-                                    </div>
-                                </div>
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Search Trending</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Web Design</Link></li>
+                                    <li><Link to="/">Graphic Design</Link></li>
+                                    <li><Link to="/">Web Developers</Link></li>
+                                    <li><Link to="/">Python</Link></li>
+                                    <li><Link to="/">HTML5</Link></li>
+                                    <li><Link to="/">CSS3</Link></li>
+                                </ul>
                             </div>
-
-                            <div className="row text-center">
-                                <div className="col-12">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Company</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">About Us</Link></li>
+                                    <li><Link to="/">Career</Link></li>
+                                    <li><Link to="/">Blog</Link></li>
+                                    <li><Link to="/">Resources</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Support</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Support</Link></li>
+                                    <li><Link to="/">Privacy</Link></li>
+                                    <li><Link to="/">Terms of Service</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Contact Us</h3>
+                                <div className="footer-social">
+                                    <Link to="/"><span className="icon-facebook"></span></Link>
+                                    <Link to="/"><span className="icon-twitter"></span></Link>
+                                    <Link to="/"><span className="icon-instagram"></span></Link>
+                                    <Link to="/"><span className="icon-linkedin"></span></Link>
                                 </div>
                             </div>
                         </div>
-                    </footer>
+
+                        <div className="row text-center">
+                            <div className="col-12">
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 
             </div >
         )

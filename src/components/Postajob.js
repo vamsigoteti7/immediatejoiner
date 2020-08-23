@@ -38,7 +38,8 @@ export class Postajob extends Component {
             companylogo: '',
             experience: '',
             gender: '',
-            jobtype: '',
+            jobtypes: [],
+            selectedjobtype:'',
             jobid: '',
             jobposteddate: '',
             jobpostexpires: '',
@@ -81,14 +82,14 @@ export class Postajob extends Component {
         axios.get('/imgetindustries')
             .then(response => {
                 let industriesApi = response.data.map(data => {
-                    return { value: data.industryname,id:data.industryid, label: data.industryname };
+                    return { value: data.industryname, id: data.industryid, label: data.industryname };
                 });
                 this.setState({
                     industries: [
                         {
                             value: "",
-                            label:"",
-                            id:0,
+                            label: "",
+                            id: 0,
                         }
                     ].concat(industriesApi)
                 });
@@ -102,14 +103,14 @@ export class Postajob extends Component {
         axios.get('/imgetcountrys')
             .then(response => {
                 let countriesApi = response.data.map(data => {
-                    return { value: data.name,id:data.countryid, label: data.name };
+                    return { value: data.name, id: data.countryid, label: data.name };
                 });
                 this.setState({
                     countries: [
                         {
                             value: "",
-                            label:"",
-                            id:0,
+                            label: "",
+                            id: 0,
                         }
                     ].concat(countriesApi)
                 });
@@ -123,17 +124,17 @@ export class Postajob extends Component {
         const countryData = {
             countryid: this.state.selectedcountry
         };
-        axios.get('/imgetcitybyid',countryData)
+        axios.get('/imgetcitybyid', countryData)
             .then(response => {
                 let cityApi = response.data.map(data => {
-                    return { value: data.city,id:data.countryid, label: data.city };
+                    return { value: data.city, id: data.countryid, label: data.city };
                 });
                 this.setState({
                     citys: [
                         {
                             value: "",
-                            label:"",
-                            id:0,
+                            label: "",
+                            id: 0,
                         }
                     ].concat(cityApi)
                 });
@@ -177,7 +178,6 @@ export class Postajob extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-
     render() {
         return (
             <div className="site-wrap">
@@ -204,7 +204,7 @@ export class Postajob extends Component {
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    <div className="container">
+                    {/* <div className="container">
                         <div className="row">
                             <div className="col-md-7">
                                 <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
@@ -214,7 +214,7 @@ export class Postajob extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
@@ -261,7 +261,11 @@ export class Postajob extends Component {
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
                                         <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
-                                            onChange={this.handleChange}
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedcountry: e
+                                                })
+                                            }
                                             options={this.state.countries}
                                             value={this.state.selectedcountry}>
                                             {this.state.countries.map(team => (
@@ -269,7 +273,7 @@ export class Postajob extends Component {
                                                     key={team.value}
                                                     value={team.value}
                                                 >
-                                                    {team.display}
+                                                    {team.value}
                                                 </option>
                                             ))}
                                         </Select>
@@ -277,28 +281,64 @@ export class Postajob extends Component {
 
                                     <div className="form-group">
                                         <label htmlFor="job-city">City</label>
-                                        <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City">
-                                            onChange={this.handleChange}
+                                        <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedcity: e
+                                                })
+                                            }
                                             options={this.state.cities}
-                                            value={this.state.selectedcity}
+                                            value={this.state.selectedcity}>
+                                            {this.state.cities.map(city => (
+                                                <option
+                                                    key={city.value}
+                                                    value={city.value}
+                                                >
+                                                    {city.value}
+                                                </option>
+                                            ))}
                                         </Select>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="departments">Departments</label>
-                                        <Select className="selectpicker border rounded" id="departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department">
-                                            onChange={this.handleChange}
+                                        <Select className="selectpicker border rounded" id="job-departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selecteddepartment: e
+                                                })
+                                            }
                                             options={this.state.departments}
-                                            value={this.state.selecteddepartment}
+                                            value={this.state.selecteddepartment}>
+                                            {this.state.departments.map(city => (
+                                                <option
+                                                    key={city.value}
+                                                    value={city.value}
+                                                >
+                                                    {city.value}
+                                                </option>
+                                            ))}
                                         </Select>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-type">Job Type</label>
-                                        <Select className="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
-                                            onChange={this.handleChange}
+                                        <Select className="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select JobType"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedjobtype: e
+                                                })
+                                            }
                                             options={this.state.jobtypes}
-                                            value={this.state.selectedjobtype}
+                                            value={this.state.selectedjobtype}>
+                                            {this.state.jobtypes.map(city => (
+                                                <option
+                                                    key={city.value}
+                                                    value={city.value}
+                                                >
+                                                    {city.value}
+                                                </option>
+                                            ))}
                                         </Select>
                                     </div>
 
@@ -307,7 +347,7 @@ export class Postajob extends Component {
                                         <label htmlFor="job-description">Job Description</label>
                                         <ReactQuill theme="snow" modules={this.modules}
                                             formats={this.formats} onChange={this.rteChange}
-                                             />
+                                        />
                                     </div>
 
 
@@ -326,7 +366,7 @@ export class Postajob extends Component {
                                         <label htmlFor="job-description">Company Description (Optional)</label>
                                         <ReactQuill theme="snow" modules={this.modules}
                                             formats={this.formats} onChange={this.rteChange}
-                                             />
+                                        />
                                     </div>
 
                                     <div className="form-group">
