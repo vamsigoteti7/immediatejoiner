@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import { SmartToaster, toast } from 'react-smart-toaster';
+// import { SmartToaster, toast } from 'react-smart-toaster';
 
 export class Logintbygoogle extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ export class Logintbygoogle extends Component {
                 
                 if (response.data.length === 1) {
                     if (response.data[0].usertype === "Recruiter") {
-                        toast.success("Logged In Successfully");        
+                        //toast.success("Logged In Successfully");        
                         this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
@@ -58,12 +58,12 @@ export class Logintbygoogle extends Component {
             .then(response => {
                 if (response.data.length === 1) {
                     if (response.data[0].usertype === "Recruiter") {
-                        toast.success("Logged In Successfully");
-                        //this.props.history.push('/RecruiterDashboard');
+                        //toast.success("Logged In Successfully");
+                        this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        toast.success("Logged In Successfully");
-                        //this.props.history.push('/Empdashboard');
+                       // toast.success("Logged In Successfully");
+                        this.props.history.push('/Empdashboard');
                     }
                 }
             })
@@ -103,11 +103,11 @@ export class Logintbygoogle extends Component {
                                     <li><Link to="/Contactus">Contact</Link></li>
                                 </ul>
                             </nav>
-                            <SmartToaster
+                            {/* <SmartToaster
                                 store={toast}
                                 lightBackground={true}
                                 position={"top_right"}
-                            />
+                            /> */}
                         </div>
                     </div>
                 </header>

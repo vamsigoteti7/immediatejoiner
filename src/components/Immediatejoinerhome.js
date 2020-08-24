@@ -2,87 +2,87 @@ import React from 'react';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import { Carousel } from "react-responsive-carousel";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 class Immediatejoinerhome extends React.Component {
 
-    componentDidMount() {
-        $(".loader").delay(1000).fadeOut("slow");
-        $("#overlayer").delay(1000).fadeOut("slow");
-        var siteMenuClone = function () {
-            setTimeout(function () {
-                var counter = 0;
-                $('.site-mobile-menu .has-children').each(function () {
-                    var $this = $(this);
+    //componentDidMount() {
+        // $(".loader").delay(1000).fadeOut("slow");
+        // $("#overlayer").delay(1000).fadeOut("slow");
+        // var siteMenuClone = function () {
+        //     setTimeout(function () {
+        //         var counter = 0;
+        //         $('.site-mobile-menu .has-children').each(function () {
+        //             var $this = $(this);
 
-                    $this.prepend('<span class="arrow-collapse collapsed">');
+        //             $this.prepend('<span class="arrow-collapse collapsed">');
 
-                    $this.find('.arrow-collapse').attr({
-                        'data-toggle': 'collapse',
-                        'data-target': '#collapseItem' + counter,
-                    });
+        //             $this.find('.arrow-collapse').attr({
+        //                 'data-toggle': 'collapse',
+        //                 'data-target': '#collapseItem' + counter,
+        //             });
 
-                    $this.find('> ul').attr({
-                        'class': 'collapse',
-                        'id': 'collapseItem' + counter,
-                    });
+        //             $this.find('> ul').attr({
+        //                 'class': 'collapse',
+        //                 'id': 'collapseItem' + counter,
+        //             });
 
-                    counter++;
+        //             counter++;
 
-                });
+        //         });
 
-            }, 1000);
+        //     }, 1000);
 
-            $('body').on('click', '.arrow-collapse', function (e) {
-                var $this = $(this);
-                if ($this.closest('li').find('.collapse').hasClass('show')) {
-                    $this.removeClass('active');
-                } else {
-                    $this.addClass('active');
-                }
-                e.preventDefault();
+        //     $('body').on('click', '.arrow-collapse', function (e) {
+        //         var $this = $(this);
+        //         if ($this.closest('li').find('.collapse').hasClass('show')) {
+        //             $this.removeClass('active');
+        //         } else {
+        //             $this.addClass('active');
+        //         }
+        //         e.preventDefault();
 
-            });
+        //     });
 
-            $(window).resize(function () {
-                var $this = $(this),
-                    w = $this.width();
+        //     $(window).resize(function () {
+        //         var $this = $(this),
+        //             w = $this.width();
 
-                if (w > 768) {
-                    if ($('body').hasClass('offcanvas-menu')) {
-                        $('body').removeClass('offcanvas-menu');
-                    }
-                }
-            })
+        //         if (w > 768) {
+        //             if ($('body').hasClass('offcanvas-menu')) {
+        //                 $('body').removeClass('offcanvas-menu');
+        //             }
+        //         }
+        //     })
 
-            $('body').on('click', '.js-menu-toggle', function (e) {
-                $('.js-clone-nav').each(function () {
-                    var $this = $(this);
-                    $this.attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
-                });
-                var $this = $(this);
-                //  e.preventDefault();
+        //     $('body').on('click', '.js-menu-toggle', function (e) {
+        //         $('.js-clone-nav').each(function () {
+        //             var $this = $(this);
+        //             $this.attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+        //         });
+        //         var $this = $(this);
+        //         //  e.preventDefault();
 
-                if ($('body').hasClass('offcanvas-menu')) {
-                    $('body').removeClass('offcanvas-menu');
-                    $this.removeClass('active');
-                } else {
-                    $('body').addClass('offcanvas-menu');
-                    $this.addClass('active');
-                }
-            })
+        //         if ($('body').hasClass('offcanvas-menu')) {
+        //             $('body').removeClass('offcanvas-menu');
+        //             $this.removeClass('active');
+        //         } else {
+        //             $('body').addClass('offcanvas-menu');
+        //             $this.addClass('active');
+        //         }
+        //     })
 
-            //click outisde offcanvas
-            $(document).mouseup(function (e) {
-                var container = $(".site-mobile-menu");
-                if (!container.is(e.target) && container.has(e.target).length === 0) {
-                    if ($('body').hasClass('offcanvas-menu')) {
-                        $('body').removeClass('offcanvas-menu');
-                    }
-                }
-            });
-        };
-        siteMenuClone();
+        //     //click outisde offcanvas
+        //     $(document).mouseup(function (e) {
+        //         var container = $(".site-mobile-menu");
+        //         if (!container.is(e.target) && container.has(e.target).length === 0) {
+        //             if ($('body').hasClass('offcanvas-menu')) {
+        //                 $('body').removeClass('offcanvas-menu');
+        //             }
+        //         }
+        //     });
+        // };
+        // siteMenuClone();
 
 
         // var sitePlusMinus = function () {
@@ -99,17 +99,17 @@ class Immediatejoinerhome extends React.Component {
         //         $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
         //     });
         // };
-    }
+    //}
 
     render() {
         return (
             <div>
-                <div id="overlayer"></div>
+                {/* <div id="overlayer"></div>
                 <div className="loader">
                     <div className="spinner-border text-primary" role="status">
                         <span className="sr-only">Loading...</span>
                     </div>
-                </div>
+                </div> */}
                 <div className="site-wrap">
                     <div className="site-mobile-menu site-navbar-target">
                         <div className="site-mobile-menu-header">

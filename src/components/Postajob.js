@@ -6,6 +6,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
+import { storage } from '../firebase';
+import { NoImage } from '../images/No-image-available.png';
 
 export class Postajob extends Component {
     constructor(props) {
@@ -30,6 +32,7 @@ export class Postajob extends Component {
             'align',
             'color', 'background'
         ];
+
         this.state = {
             recruiteremail: '',
             jobtitle: '',
@@ -70,11 +73,16 @@ export class Postajob extends Component {
             selectedindustry: '',
             cities: [
             ],
-            experience:[],
-            selectedexperience:''
+            experience: [],
+            selectedexperience: '',
+            imagename: '',
+            imageurl: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.rteChange = this.rteChange.bind(this);
+
+        this.handleImageChange = this.handleImageChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
     }
 
     componentDidMount() {
@@ -207,11 +215,44 @@ export class Postajob extends Component {
             });
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+    handleImageChange = (e) => {
+        if (e.target.files[0]) {
+            this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
+        }
+    };
+
+    handleUpload = () => {
+        const uploadTask = storage.ref(`images/${this.state.imagename.name}`).put(this.state.imagename);
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+                this.setState({
+                    progress: Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    )
+                });
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage
+                    .ref("images")
+                    .child(this.state.imagename.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        this.setState({ imageurl: url });
+                    });
+            }
+        );
+    };
+
     render() {
+        const photoimg = this.state.imageurl === '' ? NoImage : this.state.imageurl;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -275,12 +316,14 @@ export class Postajob extends Component {
                                 <form className="p-4 p-md-5 border rounded" method="post">
                                     <h3 className="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw d-block">Upload Featured Image</label> <br />
-                                        <label className="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" hidden />
+                                    <div class="form-group">
+                                        <label for="company-website-tw d-block">Upload Featured Image</label> <br />
+                                        <label class="btn btn-primary btn-md btn-file">
+                                            Browse File<input type="file" onChange={this.handleImageChange} hidden />
                                         </label>
-                                        {/* <input value="Browse File" class="btn btn-primary btn-md btn-file" type="file"/> */}
+                                        <br />
+
+                                        <img src={photoimg} height="100" width="100" alt="firebase-image" />
                                     </div>
 
                                     <div className="form-group">

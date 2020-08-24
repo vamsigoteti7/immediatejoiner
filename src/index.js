@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import '../node_modules/bootstrap/scss/bootstrap.scss'
-import './fonts/icomoon/style.css'
-import './fonts/line-icons/style.css'
+// import './fonts/icomoon/style.css'
+// import './fonts/line-icons/style.css'
 import './scss/style.scss'
 import './scss/custom-bs.scss'
 import './scss/_custom-variables.scss'
