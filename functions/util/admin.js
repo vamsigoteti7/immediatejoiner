@@ -4,7 +4,8 @@ var serviceAccount = require("../immediatejoiner-firebase-adminsdk-g66wx-610caa5
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://immediatejoiner.firebaseio.com"
+  databaseURL: "https://immediatejoiner.firebaseio.com",
+  storageBucket: "gs://immediatejoiner.appspot.com"
 });
 
 const db = admin.firestore();

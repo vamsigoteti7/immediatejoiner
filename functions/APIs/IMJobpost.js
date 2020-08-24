@@ -10,23 +10,19 @@ exports.getAlljobposts = (request, response) => {
                     jp.push({
                          jobpostid: doc.id,
                          companyname: doc.data().companyname,
-                         companylogo: doc.data().companylogo,
-                         experience: doc.data().experience,
-                         gender: doc.data().gender,
-                         jobid: doc.data().jobid,
-                         jobposteddate: doc.data().jobposteddate,
-                         jobpostexpires: doc.data().jobpostexpires,
-                         place: doc.data().place,
-                         jobdescription: doc.data().jobdescription,
+                         email: doc.data().email,
+                         jobtitle: doc.data().jobtitle,
+                         country: doc.data().country,
+                         city: doc.data().city,
+                         industry: doc.data().industry,
                          jobtype: doc.data().jobtype,
-                         vacancies: doc.data().vacancies,
-                         username: doc.data().username,
-                         recruiteremail: doc.data().recruiteremail,
-                         recruiterphonenumber: doc.data().recruiterphonenumber,
-                         recruiterlinkdinlink: doc.data().recruiterlinkdinlink,
-                         recruiterwebsite: doc.data().recruiterwebsite,
-                         salary: doc.data().salary,
-                         tagline: doc.data().tagline
+                         jobdescription: doc.data().jobdescription,
+                         companyname: doc.data().companyname,
+                         tagline: doc.data().tagline,
+                         companydescription: doc.data().companydescription,
+                         companywebsite: doc.data().companywebsite,
+                         linkedinusername: doc.data().linkedinusername,
+                         experiencerequired:doc.data().experiencerequired
                     });
                });
                return response.json(jp);
@@ -39,24 +35,19 @@ exports.getAlljobposts = (request, response) => {
 exports.postJob = (request, response) => {
 
      const newJobpostItem = {
-          username: request.body.username,
-          companyname: request.body.companyname,
-          companylogo: request.body.companylogo,
-          experience: request.body.experience,
-          gender: request.body.gender,
+          email: request.body.email,
+          jobtitle: request.body.jobtitle,
+          country: request.body.country,
+          city: request.body.city,
+          industry: request.body.industry,
           jobtype: request.body.jobtype,
-          jobid: request.body.jobid,
-          jobposteddate: request.body.jobposteddate,
-          jobpostexpires: request.body.jobpostexpires,
           jobdescription: request.body.jobdescription,
-          place: request.body.place,
-          vacancies: request.body.vacancies,
-          recruiteremail: request.body.recruiteremail,
-          recruiterlinkdinlink: request.body.recruiterlinkdinlink,
-          recruiterphonenumber: request.body.recruiterphonenumber,
-          recruiterwebsite: request.body.recruiterwebsite,
-          salary: request.body.salary,
-          tagline: request.body.tagline
+          companyname: request.body.companyname,
+          tagline: request.body.tagline,
+          companydescription: request.body.companydescription,
+          companywebsite: request.body.companywebsite,
+          linkedinusername: request.body.linkedinusername,
+          experiencerequired:request.body.experiencerequired
      }
 
      db

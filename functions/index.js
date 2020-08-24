@@ -89,6 +89,11 @@ const {
   getcitiesbycountryid
 } = require('./APIs/IMCities')
 
+const {
+  getallexperience
+} = require('./APIs/IMExperience')
+
+app.get('/imgetexperience', getallexperience);
 app.post('/impostcountry', postCountries);
 app.get('/imgetcountrys', getallcountries);
 

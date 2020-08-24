@@ -8,7 +8,7 @@ export class Logintbygoogle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginemail: '',
+            loginemail:'',
             loginpassword: '',
             email: '',
             password: '',
@@ -31,8 +31,10 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/imjoiners', userData)
             .then(response => {
+                
                 if (response.data.length === 1) {
                     if (response.data[0].usertype === "Recruiter") {
+                        toast.success("Logged In Successfully");        
                         this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {

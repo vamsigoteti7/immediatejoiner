@@ -36,10 +36,17 @@ export class Postajob extends Component {
             username: '',
             companyname: '',
             companylogo: '',
-            experience: '',
             gender: '',
-            jobtypes: [],
-            selectedjobtype:'',
+            jobtypes: [{
+                value: 'Full Time',
+                label: 'Full Time',
+            },
+            {
+                value: 'Part Time',
+                label: 'Part Time',
+            }
+            ],
+            selectedjobtype: '',
             jobid: '',
             jobposteddate: '',
             jobpostexpires: '',
@@ -58,10 +65,13 @@ export class Postajob extends Component {
             selectedcountry: '',
             selectedcity: '',
             selecteddepartment: '',
-            departments: [
+            industries: [
             ],
+            selectedindustry: '',
             cities: [
-            ]
+            ],
+            experience:[],
+            selectedexperience:''
         };
         this.handleChange = this.handleChange.bind(this);
         this.rteChange = this.rteChange.bind(this);
@@ -70,6 +80,7 @@ export class Postajob extends Component {
     componentDidMount() {
         this.getAllCountrys();
         this.getAllIndustries();
+        this.getAllExperiences();
     }
 
     rteChange = (content, delta, source, editor) => {
@@ -120,17 +131,39 @@ export class Postajob extends Component {
             });
     };
 
+    getAllExperiences = () => {
+        axios.get('/imgetexperiences')
+            .then(response => {
+                let experiencesApi = response.data.map(data => {
+                    return { value: data.name, id: data.experienceid, label: data.name };
+                });
+                this.setState({
+                    experience: [
+                        {
+                            value: "",
+                            label: "",
+                            id: 0,
+                        }
+                    ].concat(experiencesApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     getCityByCountryId = () => {
         const countryData = {
-            countryid: this.state.selectedcountry
+            countryid: this.state.selectedcountry.id
         };
-        axios.get('/imgetcitybyid', countryData)
+        axios.post('/imgetcitybyid', countryData)
             .then(response => {
                 let cityApi = response.data.map(data => {
                     return { value: data.city, id: data.countryid, label: data.city };
                 });
+                this.setState({ selectedcity: '' });
                 this.setState({
-                    citys: [
+                    cities: [
                         {
                             value: "",
                             label: "",
@@ -261,10 +294,11 @@ export class Postajob extends Component {
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
                                         <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
-                                            onChange={e =>
+                                            onChange={e => {
                                                 this.setState({
                                                     selectedcountry: e
-                                                })
+                                                }, () => { this.getCityByCountryId(); })
+                                            }
                                             }
                                             options={this.state.countries}
                                             value={this.state.selectedcountry}>
@@ -301,21 +335,42 @@ export class Postajob extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="departments">Departments</label>
+                                        <label htmlFor="departments">Industries</label>
                                         <Select className="selectpicker border rounded" id="job-departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
                                             onChange={e =>
                                                 this.setState({
-                                                    selecteddepartment: e
+                                                    selectedindustry: e
                                                 })
                                             }
-                                            options={this.state.departments}
-                                            value={this.state.selecteddepartment}>
-                                            {this.state.departments.map(city => (
+                                            options={this.state.industries}
+                                            value={this.state.selectedindustry}>
+                                            {this.state.industries.map(industry => (
                                                 <option
-                                                    key={city.value}
-                                                    value={city.value}
+                                                    key={industry.value}
+                                                    value={industry.value}
                                                 >
-                                                    {city.value}
+                                                    {industry.value}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="experience">Experience</label>
+                                        <Select className="selectpicker border rounded" id="experience" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Experience"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedexperience: e
+                                                })
+                                            }
+                                            options={this.state.experience}
+                                            value={this.state.selectedexperience}>
+                                            {this.state.experience.map(exp => (
+                                                <option
+                                                    key={exp.value}
+                                                    value={exp.value}
+                                                >
+                                                    {exp.value}
                                                 </option>
                                             ))}
                                         </Select>
