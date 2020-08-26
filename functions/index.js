@@ -90,10 +90,12 @@ const {
 } = require('./APIs/IMCities')
 
 const {
-  getallexperience
+  getallexperience,
+  postExperience
 } = require('./APIs/IMExperience')
 
 app.get('/imgetexperience', getallexperience);
+app.post('/impostexperience', postExperience);
 app.post('/impostcountry', postCountries);
 app.get('/imgetcountrys', getallcountries);
 

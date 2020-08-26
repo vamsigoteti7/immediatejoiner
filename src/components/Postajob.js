@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css';
+// import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
 import { storage } from '../firebase';
 import { NoImage } from '../images/No-image-available.png';
@@ -12,26 +12,26 @@ import { NoImage } from '../images/No-image-available.png';
 export class Postajob extends Component {
     constructor(props) {
         super(props);
-        this.modules = {
-            toolbar: [
-                [{ 'font': [] }],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                [{ 'align': [] }],
-                [{ 'color': [] }, { 'background': [] }],
-                ['clean']
-            ]
-        };
+        // this.modules = {
+        //     toolbar: [
+        //         [{ 'font': [] }],
+        //         [{ 'size': ['small', false, 'large', 'huge'] }],
+        //         ['bold', 'italic', 'underline'],
+        //         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        //         [{ 'align': [] }],
+        //         [{ 'color': [] }, { 'background': [] }],
+        //         ['clean']
+        //     ]
+        // };
 
-        this.formats = [
-            'font',
-            'size',
-            'bold', 'italic', 'underline',
-            'list', 'bullet',
-            'align',
-            'color', 'background'
-        ];
+        // this.formats = [
+        //     'font',
+        //     'size',
+        //     'bold', 'italic', 'underline',
+        //     'list', 'bullet',
+        //     'align',
+        //     'color', 'background'
+        // ];
 
         this.state = {
             jobtitle: '',
@@ -74,6 +74,7 @@ export class Postajob extends Component {
 
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
+        this.handlejobpost = this.handlejobpost.bind(this);
     }
 
     componentDidMount() {
@@ -131,10 +132,10 @@ export class Postajob extends Component {
     };
 
     getAllExperiences = () => {
-        axios.get('/imgetexperiences')
+        axios.get('/imgetexperience')
             .then(response => {
                 let experiencesApi = response.data.map(data => {
-                    return { value: data.name, id: data.experienceid, label: data.name };
+                    return { value: data.name, id: data.experiencedocid, label: data.name };
                 });
                 this.setState({
                     experience: [
@@ -302,7 +303,7 @@ export class Postajob extends Component {
                                         <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
                                     </div>
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-primary btn-md">Save Job</Link>
+                                        <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
                                     </div>
                                 </div>
                             </div>
@@ -312,9 +313,9 @@ export class Postajob extends Component {
                                 <form className="p-4 p-md-5 border rounded" method="post">
                                     <h3 className="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
-                                    <div class="form-group">
-                                        <label for="company-website-tw d-block">Upload Featured Image</label> <br />
-                                        <label class="btn btn-primary btn-md btn-file">
+                                    <div className="form-group">
+                                        <label htmlFor="company-website-tw d-block">Upload Featured Image</label> <br />
+                                        <label className="btn btn-primary btn-md btn-file">
                                             Browse File<input type="file" onChange={this.handleImageChange} hidden />
                                         </label>
                                         <br />
@@ -435,9 +436,9 @@ export class Postajob extends Component {
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Job Description</label>
-                                        <ReactQuill theme="snow" modules={this.modules}
+                                        {/* <ReactQuill theme="snow" modules={this.modules}
                                             formats={this.formats} onChange={this.rteChange}
-                                        />
+                                        /> */}
                                     </div>
 
 
@@ -449,9 +450,9 @@ export class Postajob extends Component {
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Company Description (Optional)</label>
-                                        <ReactQuill theme="snow" modules={this.modules}
+                                        {/* <ReactQuill theme="snow" modules={this.modules}
                                             formats={this.formats} onChange={this.rteChange}
-                                        />
+                                        /> */}
                                     </div>
 
                                     <div className="form-group">
@@ -477,7 +478,7 @@ export class Postajob extends Component {
                                         <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
                                     </div>
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-primary btn-md">Save Job</Link>
+                                        <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
                                     </div>
                                 </div>
                             </div>

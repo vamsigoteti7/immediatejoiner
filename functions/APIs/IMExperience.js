@@ -1,3 +1,5 @@
+const { db } = require('../util/admin');
+
 exports.getallexperience = (request, response) => {
 	db
 		.collection('IMExperience')
@@ -15,5 +17,25 @@ exports.getallexperience = (request, response) => {
 		.catch((err) => {
 			console.error(err);
 			return response.status(500).json({ error: err.code });
+		});
+};
+
+exports.postExperience = (request, response) => {
+
+	const newExperienceItem = {
+		expname: request.body.expname
+	}
+	
+	db
+		.collection('IMExperience')
+		.add(newExperienceItem)
+		.then((doc) => {
+			const responseexperienceItem = newExperienceItem;
+			responseexperienceItem.id = doc.id;
+			return response.json(responseexperienceItem);
+		})
+		.catch((error) => {
+			console.error(error);
+			response.status(500).json({ error: 'Something went wrong' });
 		});
 };
