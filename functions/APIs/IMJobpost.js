@@ -47,7 +47,8 @@ exports.postJob = (request, response) => {
           companydescription: request.body.companydescription,
           companywebsite: request.body.companywebsite,
           linkedinusername: request.body.linkedinusername,
-          experiencerequired:request.body.experiencerequired
+          experiencerequired:request.body.experiencerequired,
+          createddate: new Date().toISOString()
      }
 
      db

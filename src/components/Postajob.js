@@ -34,12 +34,19 @@ export class Postajob extends Component {
         ];
 
         this.state = {
-            recruiteremail: '',
             jobtitle: '',
-            username: '',
+            selectedcountry: '',
+            selectedcity: '',
+            selectedindustry: '',
+            selectedjobtype: '',
+            jobdescription: '',
             companyname: '',
+            tagline: '',
+            companydescription:'',
+            companywebsite: '',
+            selectedexperience: '',
+            recruiterpic:'',
             companylogo: '',
-            gender: '',
             jobtypes: [{
                 value: 'Full Time',
                 label: 'Full Time',
@@ -49,34 +56,18 @@ export class Postajob extends Component {
                 label: 'Part Time',
             }
             ],
-            selectedjobtype: '',
             jobid: '',
             jobposteddate: '',
             jobpostexpires: '',
-            jobdescription: '',
-            place: '',
-            vacancies: '',
-            recruiterlinkdinlink: '',
             recruiterphonenumber: '',
-            recruiterwebsite: '',
-            salary: '',
-            tagline: '',
-            comments: '',
-            selectedOption: null,
             countries: [
             ],
-            selectedcountry: '',
-            selectedcity: '',
             selecteddepartment: '',
             industries: [
             ],
-            selectedindustry: '',
             cities: [
             ],
-            experience: [],
-            selectedexperience: '',
-            imagename: '',
-            imageurl: ''
+            experience: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.rteChange = this.rteChange.bind(this);
@@ -187,24 +178,19 @@ export class Postajob extends Component {
 
     handlejobpost = () => {
         const registerData = {
-            username: this.state.username,
-            companyname: this.state.companyname,
-            companylogo: this.state.companylogo,
-            experience: this.state.experience,
-            gender: this.state.gender,
+            email: this.state.email,
+            jobtitle: this.state.jobtitle,
+            country: this.state.country,
+            city: this.state.city,
+            industry: this.state.industry,
             jobtype: this.state.jobtype,
-            jobid: this.state.jobid,
-            jobposteddate: this.state.jobposteddate,
-            jobpostexpires: this.state.jobpostexpires,
             jobdescription: this.state.jobdescription,
-            place: this.state.place,
-            vacancies: this.state.vacancies,
-            recruiteremail: this.state.recruiteremail,
-            recruiterlinkdinlink: this.state.recruiterlinkdinlink,
-            recruiterphonenumber: this.state.recruiterphonenumber,
-            recruiterwebsite: this.state.recruiterwebsite,
-            salary: this.state.salary,
-            tagline: this.state.tagline
+            companyname: this.state.companyname,
+            tagline: this.state.tagline,
+            companydescription: this.state.companydescription,
+            companywebsite: this.state.companywebsite,
+            linkedinusername: this.state.linkedinusername,
+            experiencerequired:this.state.experiencerequired,
         };
         axios.post('/impostjob', registerData)
             .then(response => {
@@ -220,6 +206,12 @@ export class Postajob extends Component {
     }
 
     handleImageChange = (e) => {
+        if (e.target.files[0]) {
+            this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
+        }
+    };
+
+    handleCompanyChange = (e)=>{
         if (e.target.files[0]) {
             this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
         }
@@ -250,6 +242,10 @@ export class Postajob extends Component {
             }
         );
     };
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
 
     render() {
         const photoimg = this.state.imageurl === '' ? NoImage : this.state.imageurl;
@@ -323,16 +319,12 @@ export class Postajob extends Component {
                                         </label>
                                         <br />
 
-                                        <img src={photoimg} height="100" width="100" alt="firebase-image" />
+                                        <img src={photoimg} height="100" width="100" alt="Profile Image" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="email">Email</label>
-                                        <input type="text" value={this.state.recruiteremail} className="form-control" id="email" placeholder="you@yourdomain.com" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="job-title">Job Title</label>
-                                        <input type="text" value={this.state.jobtitle} className="form-control" id="job-title" placeholder="Product Designer" />
+                                        <label htmlFor="jobtitle">Job Title</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.jobtitle} className="form-control" name="jobtitle" placeholder="Product Designer" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
@@ -345,12 +337,12 @@ export class Postajob extends Component {
                                             }
                                             options={this.state.countries}
                                             value={this.state.selectedcountry}>
-                                            {this.state.countries.map(team => (
+                                            {this.state.countries.map(country => (
                                                 <option
-                                                    key={team.value}
-                                                    value={team.value}
+                                                    key={country.value}
+                                                    value={country.value}
                                                 >
-                                                    {team.value}
+                                                    {country.value}
                                                 </option>
                                             ))}
                                         </Select>
@@ -378,8 +370,8 @@ export class Postajob extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="departments">Industries</label>
-                                        <Select className="selectpicker border rounded" id="job-departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
+                                        <label htmlFor="industries">Industries</label>
+                                        <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
                                             onChange={e =>
                                                 this.setState({
                                                     selectedindustry: e
@@ -429,12 +421,12 @@ export class Postajob extends Component {
                                             }
                                             options={this.state.jobtypes}
                                             value={this.state.selectedjobtype}>
-                                            {this.state.jobtypes.map(city => (
+                                            {this.state.jobtypes.map(job => (
                                                 <option
-                                                    key={city.value}
-                                                    value={city.value}
+                                                    key={job.value}
+                                                    value={job.value}
                                                 >
-                                                    {city.value}
+                                                    {job.value}
                                                 </option>
                                             ))}
                                         </Select>
@@ -451,13 +443,8 @@ export class Postajob extends Component {
 
                                     <h3 className="text-black my-5 border-bottom pb-2">Company Details</h3>
                                     <div className="form-group">
-                                        <label htmlFor="company-name">Company Name</label>
-                                        <input type="text" value={this.state.companyname} className="form-control" id="company-name" placeholder="e.g. New York" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-tagline">Tagline (Optional)</label>
-                                        <input type="text" value={this.state.companytagline} className="form-control" id="company-tagline" placeholder="e.g. New York" />
+                                        <label htmlFor="companyname">Company Name</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.companyname} className="form-control" name="companyname" placeholder="e.g. New York" />
                                     </div>
 
                                     <div className="form-group">
@@ -468,26 +455,19 @@ export class Postajob extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="company-website">Website (Optional)</label>
-                                        <input type="text" value={this.state.recruiterwebsite} className="form-control" id="company-website" placeholder="https://" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw">Linkedin Username (Optional)</label>
-                                        <input type="text" value={this.state.recruiterlinkdinlink} className="form-control" id="company-website-tw" placeholder="companyname" />
+                                        <label htmlFor="companywebsite">Website (Optional)</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.companywebsite} className="form-control" name="companywebsite" placeholder="https://" />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="company-website-tw d-block">Upload Logo</label> <br />
                                         <label className="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" hidden />
+                                            Browse File<input type="file" onChange={this.handleCompanyChange} hidden />
                                         </label>
                                     </div>
 
                                 </form>
                             </div>
-
-
                         </div>
                         <div className="row align-items-center mb-5">
 

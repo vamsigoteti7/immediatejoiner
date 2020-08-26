@@ -7,8 +7,7 @@ exports.getallexperience = (request, response) => {
 			data.forEach((doc) => {
 				experience.push({
 					experiencedocid: doc.id,
-					experienceid: doc.data().experienceid,
-					name: doc.data().name
+					name: doc.data().expname
 				});
 			});
 			return response.json(experience);
