@@ -379,18 +379,6 @@ export class EmployeeDetails extends Component {
                                         <label htmlFor="skills">Skills</label>
                                         <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
                                     </div>
-
-                                    <h3 className="text-black my-5 border-bottom pb-2">Company Details</h3>
-                                    <div className="form-group">
-                                        <label htmlFor="companyname">Company Name</label>
-                                        <input type="text" onChange={this.handleChange} value={this.state.companyname} className="form-control" name="companyname" placeholder="e.g. New York" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="companywebsite">Website (Optional)</label>
-                                        <input type="text" onChange={this.handleChange} value={this.state.companywebsite} className="form-control" name="companywebsite" placeholder="https://" />
-                                    </div>
-
                                 </form>
                             </div>
                         </div>
