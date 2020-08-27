@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
 import { storage } from '../firebase';
 import { NoImage } from '../images/No-image-available.png';
@@ -175,7 +172,7 @@ export class EmployeeDetails extends Component {
             currentctc: this.state.currentctc,
             dateofbirth: this.state.dateofbirth,
         };
-        axios.post('/impostjob', registerData)
+        axios.post('/impostjob', employeeData)
             .then(response => {
                 console.log(response.data);
             })
@@ -291,14 +288,8 @@ export class EmployeeDetails extends Component {
                                             Browse File<input type="file" onChange={this.handleResumeChange} hidden />
                                         </label>
                                         <br />
-
-                                        <img src={photoimg} height="100" width="100" alt="Profile Image" />
                                     </div>
 
-                                    <div className="form-group">
-                                        <label htmlFor="jobtitle">Job Title</label>
-                                        <input type="text" onChange={this.handleChange} value={this.state.jobtitle} className="form-control" name="jobtitle" placeholder="Product Designer" />
-                                    </div>
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
                                         <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
@@ -385,38 +376,9 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="job-type">Job Type</label>
-                                        <Select className="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select JobType"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedjobtype: e
-                                                })
-                                            }
-                                            options={this.state.jobtypes}
-                                            value={this.state.selectedjobtype}>
-                                            {this.state.jobtypes.map(job => (
-                                                <option
-                                                    key={job.value}
-                                                    value={job.value}
-                                                >
-                                                    {job.value}
-                                                </option>
-                                            ))}
-                                        </Select>
-                                    </div>
-                                    
-                                    <div className="form-group">
                                         <label htmlFor="skills">Skills</label>
                                         <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
                                     </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="job-description">Job Description</label>
-                                        <ReactQuill theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.jobdescriptionChange}
-                                        />
-                                    </div>
-
 
                                     <h3 className="text-black my-5 border-bottom pb-2">Company Details</h3>
                                     <div className="form-group">
@@ -425,22 +387,8 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="company-description">Company Description (Optional)</label>
-                                        <ReactQuill name="company-description" theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.companydescriptionChange}
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
                                         <label htmlFor="companywebsite">Website (Optional)</label>
                                         <input type="text" onChange={this.handleChange} value={this.state.companywebsite} className="form-control" name="companywebsite" placeholder="https://" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw d-block">Upload Logo</label> <br />
-                                        <label className="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" onChange={this.handleCompanyChange} hidden />
-                                        </label>
                                     </div>
 
                                 </form>

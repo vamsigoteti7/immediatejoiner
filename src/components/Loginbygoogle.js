@@ -39,7 +39,7 @@ export class Logintbygoogle extends Component {
                         this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Empdashboard');
+                        this.props.history.push('/EmpDetails');
                     }
                 }
             })
@@ -57,14 +57,14 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/impostRegisterus', registerData)
             .then(response => {
-                if (response.data.length === 1) {
-                    if (response.data[0].usertype === "Recruiter") {
+                if (response.data !== undefined) {
+                    if (response.data.usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");
                         this.props.history.push('/RecruiterDashboard');
                     }
-                    else if (response.data[0].usertype === "Candiate") {
+                    else if (response.data.usertype === "Candiate") {
                        // toast.success("Logged In Successfully");
-                        this.props.history.push('/Empdashboard');
+                        this.props.history.push('/EmpDetails');
                     }
                 }
             })
