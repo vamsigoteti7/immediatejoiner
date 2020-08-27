@@ -33,6 +33,7 @@ export class Logintbygoogle extends Component {
             .then(response => {
                 
                 if (response.data.length === 1) {
+                    localStorage.setItem('LoginData', response.data[0].username);
                     if (response.data[0].usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");        
                         this.props.history.push('/RecruiterDashboard');

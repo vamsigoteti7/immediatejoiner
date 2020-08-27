@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-// import ReactQuill from 'react-quill';
-// import 'react-quill/dist/quill.snow.css';
-// import 'react-quill/dist/quill.bubble.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
 import { storage } from '../firebase';
 import { NoImage } from '../images/No-image-available.png';
@@ -12,26 +12,26 @@ import { NoImage } from '../images/No-image-available.png';
 export class Postajob extends Component {
     constructor(props) {
         super(props);
-        // this.modules = {
-        //     toolbar: [
-        //         [{ 'font': [] }],
-        //         [{ 'size': ['small', false, 'large', 'huge'] }],
-        //         ['bold', 'italic', 'underline'],
-        //         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        //         [{ 'align': [] }],
-        //         [{ 'color': [] }, { 'background': [] }],
-        //         ['clean']
-        //     ]
-        // };
+        this.modules = {
+            toolbar: [
+                [{ 'font': [] }],
+                [{ 'size': ['small', false, 'large', 'huge'] }],
+                ['bold', 'italic', 'underline'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                [{ 'align': [] }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['clean']
+            ]
+        };
 
-        // this.formats = [
-        //     'font',
-        //     'size',
-        //     'bold', 'italic', 'underline',
-        //     'list', 'bullet',
-        //     'align',
-        //     'color', 'background'
-        // ];
+        this.formats = [
+            'font',
+            'size',
+            'bold', 'italic', 'underline',
+            'list', 'bullet',
+            'align',
+            'color', 'background'
+        ];
 
         this.state = {
             jobtitle: '',
@@ -39,13 +39,14 @@ export class Postajob extends Component {
             selectedcity: '',
             selectedindustry: '',
             selectedjobtype: '',
+            skills:'',
             jobdescription: '',
             companyname: '',
             tagline: '',
-            companydescription:'',
+            companydescription: '',
             companywebsite: '',
             selectedexperience: '',
-            recruiterpic:'',
+            recruiterpic: '',
             companylogo: '',
             jobtypes: [{
                 value: 'Full Time',
@@ -59,7 +60,6 @@ export class Postajob extends Component {
             jobid: '',
             jobposteddate: '',
             jobpostexpires: '',
-            recruiterphonenumber: '',
             countries: [
             ],
             selecteddepartment: '',
@@ -70,10 +70,11 @@ export class Postajob extends Component {
             experience: []
         };
         this.handleChange = this.handleChange.bind(this);
-        this.rteChange = this.rteChange.bind(this);
-
+        this.companydescriptionChange = this.companydescriptionChange.bind(this);
+        this.jobdescriptionChange = this.jobdescriptionChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
-        this.handleUpload = this.handleUpload.bind(this);
+        this.handleRecruiterPicUpload = this.handleRecruiterPicUpload.bind(this);
+        this.handleCompanyPicUpload = this.handleCompanyPicUpload.bind(this);
         this.handlejobpost = this.handlejobpost.bind(this);
     }
 
@@ -83,10 +84,16 @@ export class Postajob extends Component {
         this.getAllExperiences();
     }
 
-    rteChange = (content, delta, source, editor) => {
-        console.log(editor.getHTML()); // HTML/rich text
-        console.log(editor.getText()); // plain text
-        console.log(editor.getLength()); // number of characters
+    jobdescriptionChange = (content, delta, source, editor) => {
+        this.setState({
+            jobdescription:editor.getHTML()
+        });
+    }
+
+    companydescriptionChange = (content, delta, source, editor) => {
+        this.setState({
+            companydescription:editor.getHTML()
+        });
     }
 
     getAllIndustries = () => {
@@ -178,20 +185,23 @@ export class Postajob extends Component {
     };
 
     handlejobpost = () => {
+        var logindata = localStorage.getItem('LoginData');
+
         const registerData = {
-            email: this.state.email,
+            email: logindata,
             jobtitle: this.state.jobtitle,
-            country: this.state.country,
-            city: this.state.city,
-            industry: this.state.industry,
-            jobtype: this.state.jobtype,
+            country: this.state.selectedcountry.value,
+            city: this.state.selectedcity.value,
+            industry: this.state.selectedindustry.value,
+            jobtype: this.state.selectedjobtype.value,
+            skills:this.state.skills,
             jobdescription: this.state.jobdescription,
             companyname: this.state.companyname,
-            tagline: this.state.tagline,
             companydescription: this.state.companydescription,
             companywebsite: this.state.companywebsite,
-            linkedinusername: this.state.linkedinusername,
-            experiencerequired:this.state.experiencerequired,
+            experiencerequired: this.state.selectedexperience.value,
+            recruiterimageurl: this.state.recruiterimageurl,
+            companylogourl:this.state.companylogourl
         };
         axios.post('/impostjob', registerData)
             .then(response => {
@@ -208,18 +218,18 @@ export class Postajob extends Component {
 
     handleImageChange = (e) => {
         if (e.target.files[0]) {
-            this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
+            this.setState({ recruiterimage: e.target.files[0] }, () => { this.handleRecruiterPicUpload(); });
         }
     };
 
-    handleCompanyChange = (e)=>{
+    handleCompanyChange = (e) => {
         if (e.target.files[0]) {
-            this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
+            this.setState({ companylogo: e.target.files[0] }, () => { this.handleCompanyPicUpload(); });
         }
     };
 
-    handleUpload = () => {
-        const uploadTask = storage.ref(`images/${this.state.imagename.name}`).put(this.state.imagename);
+    handleRecruiterPicUpload = () => {
+        const uploadTask = storage.ref(`recruiterimages/${this.state.recruiterimage.name}`).put(this.state.recruiterimage);
         uploadTask.on(
             "state_changed",
             snapshot => {
@@ -234,15 +244,42 @@ export class Postajob extends Component {
             },
             () => {
                 storage
-                    .ref("images")
-                    .child(this.state.imagename.name)
+                    .ref("recruiterimages")
+                    .child(this.state.recruiterimage.name)
                     .getDownloadURL()
                     .then(url => {
-                        this.setState({ imageurl: url });
+                        this.setState({ recruiterimageurl: url });
                     });
             }
         );
     };
+
+    handleCompanyPicUpload = () => {
+        const uploadTask = storage.ref(`companylogos/${this.state.companylogo.name}`).put(this.state.companylogo);
+        uploadTask.on(
+            "state_changed",
+            snapshot => {
+                this.setState({
+                    companylogoprogress: Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    )
+                });
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage
+                    .ref("companylogos")
+                    .child(this.state.companylogo.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        this.setState({ companylogourl: url });
+                    });
+            }
+        );
+    };
+
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -432,13 +469,17 @@ export class Postajob extends Component {
                                             ))}
                                         </Select>
                                     </div>
-
+                                    
+                                    <div className="form-group">
+                                        <label htmlFor="skills">Skills</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
+                                    </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Job Description</label>
-                                        {/* <ReactQuill theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.rteChange}
-                                        /> */}
+                                        <ReactQuill theme="snow" modules={this.modules}
+                                            formats={this.formats} onChange={this.jobdescriptionChange}
+                                        />
                                     </div>
 
 
@@ -449,10 +490,10 @@ export class Postajob extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="job-description">Company Description (Optional)</label>
-                                        {/* <ReactQuill theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.rteChange}
-                                        /> */}
+                                        <label htmlFor="company-description">Company Description (Optional)</label>
+                                        <ReactQuill name="company-description" theme="snow" modules={this.modules}
+                                            formats={this.formats} onChange={this.companydescriptionChange}
+                                        />
                                     </div>
 
                                     <div className="form-group">

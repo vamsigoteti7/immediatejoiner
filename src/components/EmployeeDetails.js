@@ -12,90 +12,62 @@ import { NoImage } from '../images/No-image-available.png';
 export class EmployeeDetails extends Component {
     constructor(props) {
         super(props);
-        this.modules = {
-            toolbar: [
-                [{ 'font': [] }],
-                [{ 'size': ['small', false, 'large', 'huge'] }],
-                ['bold', 'italic', 'underline'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                [{ 'align': [] }],
-                [{ 'color': [] }, { 'background': [] }],
-                ['clean']
-            ]
-        };
-
-        this.formats = [
-            'font',
-            'size',
-            'bold', 'italic', 'underline',
-            'list', 'bullet',
-            'align',
-            'color', 'background'
-        ];
 
         this.state = {
-            recruiteremail: '',
-            jobtitle: '',
-            username: '',
-            companyname: '',
-            companylogo: '',
-            gender: '',
-            jobtypes: [{
-                value: 'Full Time',
-                label: 'Full Time',
-            },
-            {
-                value: 'Part Time',
-                label: 'Part Time',
-            }
-            ],
-            selectedjobtype: '',
-            jobid: '',
-            jobposteddate: '',
-            jobpostexpires: '',
-            jobdescription: '',
-            place: '',
-            vacancies: '',
-            recruiterlinkdinlink: '',
-            recruiterphonenumber: '',
-            recruiterwebsite: '',
-            salary: '',
-            tagline: '',
-            comments: '',
-            selectedOption: null,
-            countries: [
-            ],
+            phonenumber: '',
+            highestqualification: '',
+            percentage: '',
+            totalexperience: '',
+            resumeurl: '',
+            currentctc: '',
+            dateofbirth: '',
             selectedcountry: '',
             selectedcity: '',
+            selectedindustry: '',
+            selectedjobtype: '',
+            skills:'',
+            selectedexperience: '',
+            countries: [
+            ],
             selecteddepartment: '',
             industries: [
             ],
-            selectedindustry: '',
             cities: [
             ],
-            experience: [],
-            selectedexperience: '',
-            imagename: '',
-            imageurl: ''
+            experience: []
         };
         this.handleChange = this.handleChange.bind(this);
-        this.rteChange = this.rteChange.bind(this);
-
-        this.handleImageChange = this.handleImageChange.bind(this);
-        this.handleUpload = this.handleUpload.bind(this);
+        this.handleResumeChange = this.handleResumeChange.bind(this);
+        this.handleemployeedetails = this.handleemployeedetails.bind(this);
     }
 
     componentDidMount() {
         this.getAllCountrys();
         this.getAllIndustries();
         this.getAllExperiences();
+        this.getAllQualifications();
     }
 
-    rteChange = (content, delta, source, editor) => {
-        console.log(editor.getHTML()); // HTML/rich text
-        console.log(editor.getText()); // plain text
-        console.log(editor.getLength()); // number of characters
-    }
+    getAllQualifications = () => {
+        axios.get('/imgetqualification')
+            .then(response => {
+                let qualificationApi = response.data.map(data => {
+                    return { value: data.Qualificationname, id: data.Qualificationid, label: data.Qualificationname };
+                });
+                this.setState({
+                    qualifications: [
+                        {
+                            value: "",
+                            label: "",
+                            id: 0,
+                        }
+                    ].concat(qualificationApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     getAllIndustries = () => {
         axios.get('/imgetindustries')
@@ -140,10 +112,10 @@ export class EmployeeDetails extends Component {
     };
 
     getAllExperiences = () => {
-        axios.get('/imgetexperiences')
+        axios.get('/imgetexperience')
             .then(response => {
                 let experiencesApi = response.data.map(data => {
-                    return { value: data.name, id: data.experienceid, label: data.name };
+                    return { value: data.name, id: data.experiencedocid, label: data.name };
                 });
                 this.setState({
                     experience: [
@@ -185,26 +157,23 @@ export class EmployeeDetails extends Component {
             });
     };
 
-    handlejobpost = () => {
-        const registerData = {
-            username: this.state.username,
-            companyname: this.state.companyname,
-            companylogo: this.state.companylogo,
-            experience: this.state.experience,
-            gender: this.state.gender,
-            jobtype: this.state.jobtype,
-            jobid: this.state.jobid,
-            jobposteddate: this.state.jobposteddate,
-            jobpostexpires: this.state.jobpostexpires,
-            jobdescription: this.state.jobdescription,
-            place: this.state.place,
-            vacancies: this.state.vacancies,
-            recruiteremail: this.state.recruiteremail,
-            recruiterlinkdinlink: this.state.recruiterlinkdinlink,
-            recruiterphonenumber: this.state.recruiterphonenumber,
-            recruiterwebsite: this.state.recruiterwebsite,
-            salary: this.state.salary,
-            tagline: this.state.tagline
+    handleemployeedetails = () => {
+        var logindata = localStorage.getItem('LoginData');
+
+        const employeeData = {
+            email: logindata,
+            phonenumber: this.state.phonenumber,
+            country: this.state.selectedcountry.value,
+            city: this.state.selectedcity.value,
+            industry: this.state.selectedindustry.value,
+            jobtype: this.state.selectedjobtype.value,
+            skills:this.state.skills,
+            highestqualification: this.state.highestqualification,
+            percentage: this.state.percentage,
+            totalexperience: this.state.totalexperience,
+            resumeurl: this.state.resumeurl,
+            currentctc: this.state.currentctc,
+            dateofbirth: this.state.dateofbirth,
         };
         axios.post('/impostjob', registerData)
             .then(response => {
@@ -219,19 +188,19 @@ export class EmployeeDetails extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleImageChange = (e) => {
+    handleResumeChange = (e) => {
         if (e.target.files[0]) {
-            this.setState({ imagename: e.target.files[0]},()=>{ this.handleUpload(); });
+            this.setState({ resume: e.target.files[0] }, () => { this.handleResumeUpload(); });
         }
     };
 
-    handleUpload = () => {
-        const uploadTask = storage.ref(`images/${this.state.imagename.name}`).put(this.state.imagename);
+    handleResumeUpload = () => {
+        const uploadTask = storage.ref(`resumes/${this.state.resume.name}`).put(this.state.resume);
         uploadTask.on(
             "state_changed",
             snapshot => {
                 this.setState({
-                    progress: Math.round(
+                    resumeprogress: Math.round(
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     )
                 });
@@ -241,11 +210,11 @@ export class EmployeeDetails extends Component {
             },
             () => {
                 storage
-                    .ref("images")
-                    .child(this.state.imagename.name)
+                    .ref("companylogos")
+                    .child(this.state.resume.name)
                     .getDownloadURL()
                     .then(url => {
-                        this.setState({ imageurl: url });
+                        this.setState({ resumeurl: url });
                     });
             }
         );
@@ -296,7 +265,7 @@ export class EmployeeDetails extends Component {
                             <div className="col-lg-8 mb-4 mb-lg-0">
                                 <div className="d-flex align-items-center">
                                     <div>
-                                        <h2>Post A Job</h2>
+                                        <h2>Profile Details</h2>
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +275,7 @@ export class EmployeeDetails extends Component {
                                         <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
                                     </div>
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-primary btn-md">Save Job</Link>
+                                        <Link to="/" onClick={this.handleemployeedetails} className="btn btn-block btn-primary btn-md">Save Profile</Link>
                                     </div>
                                 </div>
                             </div>
@@ -314,25 +283,21 @@ export class EmployeeDetails extends Component {
                         <div className="row mb-5">
                             <div className="col-lg-12">
                                 <form className="p-4 p-md-5 border rounded" method="post">
-                                    <h3 className="text-black mb-5 border-bottom pb-2">Job Details</h3>
+                                    <h3 className="text-black mb-5 border-bottom pb-2">Profile Details</h3>
 
-                                    <div class="form-group">
-                                        <label for="company-website-tw d-block">Upload Featured Image</label> <br />
-                                        <label class="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" onChange={this.handleImageChange} hidden />
+                                    <div className="form-group">
+                                        <label htmlFor="company-website-tw d-block">Upload Resume</label> <br />
+                                        <label className="btn btn-primary btn-md btn-file">
+                                            Browse File<input type="file" onChange={this.handleResumeChange} hidden />
                                         </label>
                                         <br />
 
-                                        <img src={photoimg} height="100" width="100" alt="firebase-image" />
+                                        <img src={photoimg} height="100" width="100" alt="Profile Image" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="email">Email</label>
-                                        <input type="text" value={this.state.recruiteremail} className="form-control" id="email" placeholder="you@yourdomain.com" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="job-title">Job Title</label>
-                                        <input type="text" value={this.state.jobtitle} className="form-control" id="job-title" placeholder="Product Designer" />
+                                        <label htmlFor="jobtitle">Job Title</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.jobtitle} className="form-control" name="jobtitle" placeholder="Product Designer" />
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
@@ -345,12 +310,12 @@ export class EmployeeDetails extends Component {
                                             }
                                             options={this.state.countries}
                                             value={this.state.selectedcountry}>
-                                            {this.state.countries.map(team => (
+                                            {this.state.countries.map(country => (
                                                 <option
-                                                    key={team.value}
-                                                    value={team.value}
+                                                    key={country.value}
+                                                    value={country.value}
                                                 >
-                                                    {team.value}
+                                                    {country.value}
                                                 </option>
                                             ))}
                                         </Select>
@@ -378,8 +343,8 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="departments">Industries</label>
-                                        <Select className="selectpicker border rounded" id="job-departments" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
+                                        <label htmlFor="industries">Industries</label>
+                                        <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
                                             onChange={e =>
                                                 this.setState({
                                                     selectedindustry: e
@@ -429,58 +394,52 @@ export class EmployeeDetails extends Component {
                                             }
                                             options={this.state.jobtypes}
                                             value={this.state.selectedjobtype}>
-                                            {this.state.jobtypes.map(city => (
+                                            {this.state.jobtypes.map(job => (
                                                 <option
-                                                    key={city.value}
-                                                    value={city.value}
+                                                    key={job.value}
+                                                    value={job.value}
                                                 >
-                                                    {city.value}
+                                                    {job.value}
                                                 </option>
                                             ))}
                                         </Select>
                                     </div>
-
+                                    
+                                    <div className="form-group">
+                                        <label htmlFor="skills">Skills</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
+                                    </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-description">Job Description</label>
                                         <ReactQuill theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.rteChange}
+                                            formats={this.formats} onChange={this.jobdescriptionChange}
                                         />
                                     </div>
 
 
                                     <h3 className="text-black my-5 border-bottom pb-2">Company Details</h3>
                                     <div className="form-group">
-                                        <label htmlFor="company-name">Company Name</label>
-                                        <input type="text" value={this.state.companyname} className="form-control" id="company-name" placeholder="e.g. New York" />
+                                        <label htmlFor="companyname">Company Name</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.companyname} className="form-control" name="companyname" placeholder="e.g. New York" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="company-tagline">Tagline (Optional)</label>
-                                        <input type="text" value={this.state.companytagline} className="form-control" id="company-tagline" placeholder="e.g. New York" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="job-description">Company Description (Optional)</label>
-                                        <ReactQuill theme="snow" modules={this.modules}
-                                            formats={this.formats} onChange={this.rteChange}
+                                        <label htmlFor="company-description">Company Description (Optional)</label>
+                                        <ReactQuill name="company-description" theme="snow" modules={this.modules}
+                                            formats={this.formats} onChange={this.companydescriptionChange}
                                         />
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="company-website">Website (Optional)</label>
-                                        <input type="text" value={this.state.recruiterwebsite} className="form-control" id="company-website" placeholder="https://" />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw">Linkedin Username (Optional)</label>
-                                        <input type="text" value={this.state.recruiterlinkdinlink} className="form-control" id="company-website-tw" placeholder="companyname" />
+                                        <label htmlFor="companywebsite">Website (Optional)</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.companywebsite} className="form-control" name="companywebsite" placeholder="https://" />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="company-website-tw d-block">Upload Logo</label> <br />
                                         <label className="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" hidden />
+                                            Browse File<input type="file" onChange={this.handleCompanyChange} hidden />
                                         </label>
                                     </div>
 
@@ -488,13 +447,14 @@ export class EmployeeDetails extends Component {
                             </div>
                         </div>
                         <div className="row align-items-center mb-5">
+
                             <div className="col-lg-4 ml-auto">
                                 <div className="row">
                                     <div className="col-6">
                                         <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
                                     </div>
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-primary btn-md">Save Job</Link>
+                                        <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
                                     </div>
                                 </div>
                             </div>
@@ -502,9 +462,11 @@ export class EmployeeDetails extends Component {
                     </div>
                 </section>
                 <footer className="site-footer">
+
                     <a href="#top" className="smoothscroll scroll-top">
                         <span className="icon-keyboard_arrow_up"></span>
                     </a>
+
                     <div className="container">
                         <div className="row mb-5">
                             <div className="col-6 col-md-3 mb-4 mb-md-0">

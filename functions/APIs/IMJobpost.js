@@ -16,13 +16,16 @@ exports.getAlljobposts = (request, response) => {
                          city: doc.data().city,
                          industry: doc.data().industry,
                          jobtype: doc.data().jobtype,
+                         skills: doc.data().skills,
                          jobdescription: doc.data().jobdescription,
                          companyname: doc.data().companyname,
                          tagline: doc.data().tagline,
                          companydescription: doc.data().companydescription,
                          companywebsite: doc.data().companywebsite,
                          linkedinusername: doc.data().linkedinusername,
-                         experiencerequired:doc.data().experiencerequired
+                         experiencerequired: doc.data().experiencerequired,
+                         recruiterimageurl: doc.data().recruiterimageurl,
+                         companylogourl: doc.data().companylogourl
                     });
                });
                return response.json(jp);
@@ -41,13 +44,14 @@ exports.postJob = (request, response) => {
           city: request.body.city,
           industry: request.body.industry,
           jobtype: request.body.jobtype,
+          skills: request.body.skills,
           jobdescription: request.body.jobdescription,
           companyname: request.body.companyname,
-          tagline: request.body.tagline,
           companydescription: request.body.companydescription,
           companywebsite: request.body.companywebsite,
-          linkedinusername: request.body.linkedinusername,
-          experiencerequired:request.body.experiencerequired,
+          experiencerequired: request.body.experiencerequired,
+          recruiterimageurl: request.body.recruiterimageurl,
+          companylogourl: request.body.companylogourl,
           createddate: new Date().toISOString()
      }
 
