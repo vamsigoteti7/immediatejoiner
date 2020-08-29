@@ -4,7 +4,6 @@ import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { storage } from '../firebase';
-import { NoImage } from '../images/No-image-available.png';
 
 export class EmployeeDetails extends Component {
     constructor(props) {
@@ -14,15 +13,14 @@ export class EmployeeDetails extends Component {
             phonenumber: '',
             highestqualification: '',
             percentage: '',
-            totalexperience: '',
             resumeurl: '',
-            currentctc: '',
-            dateofbirth: '',
+            currentsalary: '',
+            age: '',
             selectedcountry: '',
             selectedcity: '',
             selectedindustry: '',
             selectedjobtype: '',
-            skills:'',
+            skills: '',
             selectedexperience: '',
             countries: [
             ],
@@ -31,7 +29,9 @@ export class EmployeeDetails extends Component {
             ],
             cities: [
             ],
-            experience: []
+            experience: [],
+            qualifications: [],
+            gender:[]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleResumeChange = this.handleResumeChange.bind(this);
@@ -43,6 +43,7 @@ export class EmployeeDetails extends Component {
         this.getAllIndustries();
         this.getAllExperiences();
         this.getAllQualifications();
+        this.getAllGenders();
     }
 
     getAllQualifications = () => {
@@ -129,6 +130,27 @@ export class EmployeeDetails extends Component {
             });
     };
 
+    getAllGenders = () => {
+        axios.get('/imgetgender')
+            .then(response => {
+                let genderApi = response.data.map(data => {
+                    return { value: data.genderName, label: data.genderName };
+                });
+                this.setState({
+                    gender: [
+                        {
+                            value: "",
+                            label: "",
+                            id: 0,
+                        }
+                    ].concat(genderApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     getCityByCountryId = () => {
         const countryData = {
             countryid: this.state.selectedcountry.id
@@ -160,19 +182,19 @@ export class EmployeeDetails extends Component {
         const employeeData = {
             email: logindata,
             phonenumber: this.state.phonenumber,
+            age: this.state.age,
+            gender:this.state.selectedgender.value,
             country: this.state.selectedcountry.value,
             city: this.state.selectedcity.value,
             industry: this.state.selectedindustry.value,
-            jobtype: this.state.selectedjobtype.value,
-            skills:this.state.skills,
-            highestqualification: this.state.highestqualification,
+            highestqualification: this.state.selectedqualification.value,
             percentage: this.state.percentage,
-            totalexperience: this.state.totalexperience,
+            totalexperience: this.state.selectedexperience.value,
+            skills: this.state.skills,
             resumeurl: this.state.resumeurl,
-            currentctc: this.state.currentctc,
-            dateofbirth: this.state.dateofbirth,
+            currentsalary: this.state.currentsalary,
         };
-        axios.post('/impostjob', employeeData)
+        axios.post('/impostuserdetails', employeeData)
             .then(response => {
                 console.log(response.data);
             })
@@ -207,7 +229,7 @@ export class EmployeeDetails extends Component {
             },
             () => {
                 storage
-                    .ref("companylogos")
+                    .ref("resumes")
                     .child(this.state.resume.name)
                     .getDownloadURL()
                     .then(url => {
@@ -218,7 +240,6 @@ export class EmployeeDetails extends Component {
     };
 
     render() {
-        const photoimg = this.state.imageurl === '' ? NoImage : this.state.imageurl;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -291,6 +312,11 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
+                                        <label htmlFor="phonenumber">Phone Number</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.phonenumber} className="form-control" name="phonenumber" placeholder="Enter Phone" />
+                                    </div>
+
+                                    <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
                                         <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
                                             onChange={e => {
@@ -334,6 +360,32 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
+                                        <label htmlFor="qualification">Qualification</label>
+                                        <Select className="selectpicker border rounded" id="qualification" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedqualification: e
+                                                })
+                                            }
+                                            options={this.state.qualifications}
+                                            value={this.state.selectedqualification}>
+                                            {this.state.qualifications.map(qual => (
+                                                <option
+                                                    key={qual.value}
+                                                    value={qual.value}
+                                                >
+                                                    {qual.value}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="percentage">Percentage</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.percentage} className="form-control" name="percentage" placeholder="Enter Percentage" />
+                                    </div>
+
+                                    <div className="form-group">
                                         <label htmlFor="industries">Industries</label>
                                         <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
                                             onChange={e =>
@@ -352,6 +404,37 @@ export class EmployeeDetails extends Component {
                                                 </option>
                                             ))}
                                         </Select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="age">Age</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.age} className="form-control" name="age" placeholder="Enter Age" />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="gender">Gender</label>
+                                        <Select className="selectpicker border rounded" name="gender" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Gender"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedgender: e
+                                                })
+                                            }
+                                            options={this.state.gender}
+                                            value={this.state.selectedgender}>
+                                            {this.state.gender.map(gen => (
+                                                <option
+                                                    key={gen.value}
+                                                    value={gen.value}
+                                                >
+                                                    {gen.value}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="skills">Skills</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
                                     </div>
 
                                     <div className="form-group">
@@ -376,9 +459,11 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="skills">Skills</label>
-                                        <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
+                                        <label htmlFor="currentsalary">Current Salary</label>
+                                        <input type="text" onChange={this.handleChange} value={this.state.currentsalary} className="form-control" name="currentsalary" placeholder="Enter Current Salary" />
                                     </div>
+
+
                                 </form>
                             </div>
                         </div>
@@ -390,7 +475,7 @@ export class EmployeeDetails extends Component {
                                         <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
                                     </div>
                                     <div className="col-6">
-                                        <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
+                                        <Link to="/" onClick={this.handleemployeedetails} className="btn btn-block btn-primary btn-md">Save Profile</Link>
                                     </div>
                                 </div>
                             </div>

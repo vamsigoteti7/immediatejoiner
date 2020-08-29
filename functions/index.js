@@ -20,6 +20,10 @@ const {
 } = require('./APIs/IMRegister')
 
 const {
+  getallgender
+} = require('./APIs/IMGender')
+
+const {
   getAllcontacts,
   postContactus,
   getcontactusById
@@ -95,6 +99,7 @@ const {
 } = require('./APIs/IMExperience')
 
 app.get('/imgetexperience', getallexperience);
+app.get('/imgetgender', getallgender);
 app.post('/impostexperience', postExperience);
 app.post('/impostcountry', postCountries);
 app.get('/imgetcountrys', getallcountries);

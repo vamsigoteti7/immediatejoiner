@@ -9,17 +9,19 @@ exports.getAllIMUserdetails = (request, response) => {
 			data.forEach((doc) => {
 				ud.push({
 					userdetailId: doc.id,
-					username: doc.data().username,
+					email: doc.data().email,
 					phonenumber: doc.data().phonenumber,
-					location: doc.data().location,
+					age: doc.data().age,
+					gender: doc.data().gender,
+					country: doc.data().country,
+					city: doc.data().city,
+					industry: doc.data().industry,
+					highestqualification: doc.data().highestqualification,
 					percentage: doc.data().percentage,
 					totalexperience: doc.data().totalexperience,
-					highestqualification: doc.data().highestqualification,
-					email: doc.data().email,
-					jobtitle: doc.data().jobtitle,
-					resume: doc.data().resume,
-					currentctc: doc.data().currentctc,
-					dateofbirth: doc.data().dateofbirth
+					skills: doc.data().skills,
+					resumeurl: doc.data().resumeurl,
+					currentsalary: doc.data().currentsalary
 				});
 			});
 			return response.json(ud);
@@ -32,17 +34,19 @@ exports.getAllIMUserdetails = (request, response) => {
 exports.postuserdetails = (request, response) => {
 
 	const newuserdetailsItem = {
-		username: request.body.username,
+		email: request.body.email,
 		phonenumber: request.body.phonenumber,
-		location: request.body.location,
+		age: request.body.age,
+		gender: request.body.gender,
+		country: request.body.country,
+		city: request.body.city,
+		industry: request.body.industry,
+		highestqualification: request.body.highestqualification,
 		percentage: request.body.percentage,
 		totalexperience: request.body.totalexperience,
-		highestqualification: request.body.highestqualification,
-		email: request.body.email,
-		jobtitle: request.body.jobtitle,
-		resume: request.body.resume,
-		currentctc: request.body.currentctc,
-		dateofbirth: request.body.dateofbirth
+		skills: request.body.skills,
+		resumeurl: request.body.resumeurl,
+		currentsalary: request.body.currentsalary
 	}
 
 	db
