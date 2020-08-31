@@ -96,11 +96,11 @@ export class MembershipPage extends Component {
                 <section className="site-section">
                     <div className="container">
                         <input></input>
-                        <GooglePayButton
+                        {/* <GooglePayButton
                             environment="TEST"
                             paymentRequest={{ ... }}
                             onLoadPaymentData={() => { }}
-                        />
+                        /> */}
                     </div>
                 </section >
             </div >

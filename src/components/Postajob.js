@@ -205,7 +205,7 @@ export class Postajob extends Component {
         };
         axios.post('/impostjob', registerData)
             .then(response => {
-                console.log(response.data);
+                this.props.history.push('/RecruiterDashboard');
             })
             .catch(error => {
                 console.log(error);

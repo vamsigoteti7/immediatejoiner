@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import axios from '../axios-immediatejoiner';
 
 export class RecruiterDashboard extends Component {
     constructor(props) {
@@ -14,40 +15,22 @@ export class RecruiterDashboard extends Component {
     }
 
     componentDidMount(){
-        
+        this.getJobpostsByRecruiterId();
     }
 
-    handleLogin = () => {
-        // const userData = {
-        //     username: this.state.email,
-        //     password: this.state.password
-        // };
-        // axios.post('/imjoiners', userData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/Empdashboard');
-    }
-
-    handleSignUp = () => {
-        // const registerData = {
-        //     firstname: "fda",
-        //     username: this.state.email,
-        //     usertype: "candiate",
-        //     password: "12345"
-        // };
-        // axios.post('/impostRegisterus', registerData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/RecruiterDashboard');
-    }
+    getJobpostsByRecruiterId = () => {
+        var logindata = localStorage.getItem('LoginData');
+        const recruiterData = {
+            email: logindata
+        };
+        axios.post('/imjobpostbyrecruiterid', recruiterData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -103,165 +86,7 @@ export class RecruiterDashboard extends Component {
                     <div className="container">
                         <div className="row mb-5 justify-content-center">
                             <div className="col-md-7 text-center">
-                                <h2 className="section-title mb-2">43,167 Job Listed</h2>
-                            </div>
-                        </div>
-
-                        <ul className="job-listings mb-5">
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <Link to="/Jobdetail"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Adidas</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> New York, New York
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-danger">Part Time</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Digital Marketing Director</h2>
-                                        <strong>Sprint</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> Overland Park, Kansas
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_3.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Back-end Engineer (Python)</h2>
-                                        <strong>Amazon</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> Overland Park, Kansas
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_4.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Senior Art Director</h2>
-                                        <strong>Microsoft</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> Anywhere
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_5.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Puma</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> San Mateo, CA
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Product Designer</h2>
-                                        <strong>Adidas</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> New York, New York
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-danger">Part Time</span>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                            <Link to="/"></Link>
-                                <div className="job-listing-logo">
-                                    <img src="images/job_logo_2.jpg" alt="Free Website Template by Free-Template.co" className="img-fluid" />
-                                </div>
-
-                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                                        <h2>Digital Marketing Director</h2>
-                                        <strong>Sprint</strong>
-                                    </div>
-                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                                        <span className="icon-room"></span> Overland Park, Kansas
-              </div>
-                                    <div className="job-listing-meta">
-                                        <span className="badge badge-success">Full Time</span>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div className="row pagination-wrap">
-                            <div className="col-md-6 text-center text-md-left mb-4 mb-md-0">
-                                <span>Showing 1-7 Of 43,167 Jobs</span>
-                            </div>
-                            <div className="col-md-6 text-center text-md-right">
-                                <div className="custom-pagination ml-auto">
-                                    <Link to="/" className="prev">Prev</Link>
-                                    <div className="d-inline-block">
-                                        <Link to="/" className="active">1</Link>
-                                        <Link to="/">2</Link>
-                                        <Link to="/">3</Link>
-                                        <Link to="/">4</Link>
-                                    </div>
-                                    <Link to="/" className="next">Next</Link>
-                                </div>
+                                <h2 className="section-title mb-2">Posted Jobs</h2>
                             </div>
                         </div>
                     </div>

@@ -9,5 +9,8 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
+var settings = { timestampsInSnapshots: true }; // force Timestamp object instead of Date
+
+db.settings(settings);
 
 module.exports = { admin, db };

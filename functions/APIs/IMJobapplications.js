@@ -40,6 +40,9 @@ exports.postJobapplications = (request, response) => {
 			response.status(500).json({ error: 'Something went wrong' });
 		});
 };
+
+
+
 exports.getjobapplicationsById = (request, response) => {
 
 	var docRef = db.collection("IMuserjobapplications").doc(request.body.docid);
