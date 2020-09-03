@@ -36,10 +36,10 @@ export class Logintbygoogle extends Component {
                     localStorage.setItem('LoginData', response.data[0].username);
                     if (response.data[0].usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");        
-                        this.props.history.push('/RecruiterDashboard');
+                        this.props.history.push('/Membership');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/EmpDetails');
+                        this.props.history.push('/Membership');
                     }
                 }
             })
@@ -60,11 +60,11 @@ export class Logintbygoogle extends Component {
                 if (response.data !== undefined) {
                     if (response.data.usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");
-                        this.props.history.push('/RecruiterDashboard');
+                        this.props.history.push('/Membership');
                     }
                     else if (response.data.usertype === "Candiate") {
                        // toast.success("Logged In Successfully");
-                        this.props.history.push('/EmpDetails');
+                        this.props.history.push('/Membership');
                     }
                 }
             })
