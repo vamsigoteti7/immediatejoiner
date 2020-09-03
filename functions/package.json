@@ -19,7 +19,9 @@
     "firebase-functions": "^3.11.0",
     "fs": "0.0.1-security",
     "os": "^0.1.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "stripe": "^7.1.0",
+    "dotenv": "^8.0.0"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"

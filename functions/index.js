@@ -1,9 +1,13 @@
 const functions = require('firebase-functions');
+const env = require("dotenv").config({ path: "./.env" });
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const bodyParser = require('body-parser');
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const cors = require("cors");
 const app = express();
 const main = express();
+const { resolve } = require("path");
 
 app.use(cors({ origin: true }));
 main.use(cors({ origin: true }));
