@@ -100,7 +100,7 @@ export default function CheckoutForm() {
             minimumFractionDigits: 2,
           })}{" "}
         </h1>
-        <h4>Pre-order the Pasha package</h4>
+        <h4>Pay INR 100  (Validity 30 days)</h4>
 
         <div className="sr-combo-inputs">
           <div className="sr-combo-inputs-row">

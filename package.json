@@ -24,6 +24,7 @@
     "react-scripts": "3.4.3",
     "react-select": "^3.1.0"
   },
+  "proxy": "https://us-central1-immediatejoiner.cloudfunctions.net/app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

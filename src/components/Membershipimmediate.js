@@ -7,7 +7,6 @@ import api from "./api";
 import CheckoutForm from './CheckoutForm';
 
 class Membershipimmediate extends React.Component {
-   
     render() {
         const stripePromise = api.getPublicStripeKey().then(key => loadStripe(key));
         return (
