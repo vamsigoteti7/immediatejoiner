@@ -103,13 +103,7 @@ export class Postajob extends Component {
                     return { value: data.industryname, id: data.industryid, label: data.industryname };
                 });
                 this.setState({
-                    industries: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(industriesApi)
+                    industries: industriesApi
                 });
             })
             .catch(error => {
@@ -124,13 +118,7 @@ export class Postajob extends Component {
                     return { value: data.name, id: data.countryid, label: data.name };
                 });
                 this.setState({
-                    countries: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(countriesApi)
+                    countries: countriesApi
                 });
             })
             .catch(error => {
@@ -145,13 +133,7 @@ export class Postajob extends Component {
                     return { value: data.name, id: data.experiencedocid, label: data.name };
                 });
                 this.setState({
-                    experience: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(experiencesApi)
+                    experience: experiencesApi
                 });
             })
             .catch(error => {
@@ -170,13 +152,7 @@ export class Postajob extends Component {
                 });
                 this.setState({ selectedcity: '' });
                 this.setState({
-                    cities: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(cityApi)
+                    cities: cityApi
                 });
             })
             .catch(error => {

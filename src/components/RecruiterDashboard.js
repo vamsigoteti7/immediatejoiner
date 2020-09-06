@@ -59,17 +59,7 @@ export class RecruiterDashboard extends Component {
                     }
                 });
                 this.setState({
-                    jobposts: [
-                        {
-                            email: "",
-                            companyname: "",
-                            companylogourl: "",
-                            city: "",
-                            jobtitle: "",
-                            jobtype: "",
-                            jobpostid: ""
-                        }
-                    ].concat(jobpostsApi)
+                    jobposts: jobpostsApi
                 });
             })
             .catch(error => {
@@ -96,17 +86,7 @@ export class RecruiterDashboard extends Component {
                     }
                 });
                 this.setState({
-                    jobposts: [
-                        {
-                            email: "",
-                            companyname: "",
-                            companylogourl: "",
-                            city: "",
-                            jobtitle: "",
-                            jobtype: "",
-                            jobpostid: ""
-                        }
-                    ].concat(jobpostsApi)
+                    jobposts: jobpostsApi
                 });
             })
             .catch(error => {
