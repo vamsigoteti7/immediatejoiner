@@ -34,12 +34,20 @@ export class Logintbygoogle extends Component {
                 
                 if (response.data.length === 1) {
                     localStorage.setItem('LoginData', response.data[0].username);
+                    // if (response.data[0].usertype === "Recruiter") {
+                    //     //toast.success("Logged In Successfully");        
+                    //     this.props.history.push('/Membership');
+                    // }
+                    // else if (response.data[0].usertype === "Candiate") {
+                    //     this.props.history.push('/Membership');
+                    // }
+
                     if (response.data[0].usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");        
-                        this.props.history.push('/Membership');
+                        this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Membership');
+                        this.props.history.push('/RecruiterDashboard');
                     }
                 }
             })

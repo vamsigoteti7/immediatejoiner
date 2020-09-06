@@ -114,17 +114,11 @@ exports.getjobpostsByDocid = (request, response) => {
      var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('email', '==', request.body.email);
      ref.get().then(function (snapshot) {
           let jp = [];
-          // snapshot.forEach(function (doc) {
-          //      jp.push(doc.data());
-          // });
-
-          var last;
-          ref.limit(1).get().then(function (snapshot) {
+          ref.limit(2).get().then(function (snapshot) {
                snapshot.forEach(function (doc) {
                     jp.push(doc.data());
-                    last = doc;
                });
-               return response.json({ "data": jp, "last": last });
+               return response.json({ jp });
           })
      });
 };
@@ -139,7 +133,7 @@ exports.getjobpostsByStartAfter = (request, response) => {
 
           docRef.get().then(function (doc) {
                if (doc.exists) {
-                    ref.startAfter(doc).limit(1).get().then(function (snapshot) {
+                    ref.startAfter(doc).limit(2).get().then(function (snapshot) {
                          snapshot.forEach(function (doc) {
                               jp.push(doc.data());
                          })

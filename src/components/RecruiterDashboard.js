@@ -7,14 +7,12 @@ export class RecruiterDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            reenterpassword: ''
+            jobposts: []
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getJobpostsByRecruiterId();
     }
 
@@ -23,9 +21,30 @@ export class RecruiterDashboard extends Component {
         const recruiterData = {
             email: logindata
         };
-        axios.post('/imjobpostbyrecruiterid', recruiterData)
+        axios.post('/imjobpostsByDocid', recruiterData)
             .then(response => {
-                console.log(response.data);
+                let jobpostsApi = response.data.jp.map(data => {
+                    return {
+                        email: data.email,
+                        companyname: data.companyname,
+                        companylogourl: data.companylogourl,
+                        city: data.city,
+                        jobtitle: data.jobtitle,
+                        jobtype: data.jobtype
+                    }
+                });
+                this.setState({
+                    jobposts: [
+                        {
+                            email: "",
+                            companyname: "",
+                            companylogourl: "",
+                            city: "",
+                            jobtitle: "",
+                            jobtype: ""
+                        }
+                    ].concat(jobpostsApi)
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -88,62 +107,98 @@ export class RecruiterDashboard extends Component {
                             <div className="col-md-7 text-center">
                                 <h2 className="section-title mb-2">Posted Jobs</h2>
                             </div>
+                            <ul class="job-listings mb-5">
+                                {this.state.jobposts.map(function (tier, i) {
+                                    if (tier.email !== '') {
+                                        return (
+                                            <li key={i} className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                                                <a href="job-single.html"></a>
+                                                <div className="job-listing-logo">
+                                                    <img src={tier.companylogourl} alt="Free Website Template by Free-Template.co" className="img-fluid" />
+                                                </div>
+
+                                                <div className="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                                    <div className="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                                        <h2>{tier.jobtitle}</h2>
+                                                        <strong>{tier.companyname}</strong>
+                                                    </div>
+                                                    <div className="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                                        <span className="icon-room"></span> {tier.city}
+                                                    </div>
+                                                    <div className="job-listing-meta">
+                                                        <span className="badge badge-success">{tier.jobtype}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        )
+                                    }
+                                })}
+                            </ul>
+                            <div className="container">
+                                <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
+                                    <div className="ml-auto">
+                                        <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Previous</Link>
+                                        <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Next</Link>
+                                    </div>
+                                    <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
                 <footer className="site-footer">
 
-                        <a href="#top" className="smoothscroll scroll-top">
-                            <span className="icon-keyboard_arrow_up"></span>
-                        </a>
+                    <a href="#top" className="smoothscroll scroll-top">
+                        <span className="icon-keyboard_arrow_up"></span>
+                    </a>
 
-                        <div className="container">
-                            <div className="row mb-5">
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Search Trending</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">Web Design</Link></li>
-                                        <li><Link to="/">Graphic Design</Link></li>
-                                        <li><Link to="/">Web Developers</Link></li>
-                                        <li><Link to="/">Python</Link></li>
-                                        <li><Link to="/">HTML5</Link></li>
-                                        <li><Link to="/">CSS3</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Company</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">About Us</Link></li>
-                                        <li><Link to="/">Career</Link></li>
-                                        <li><Link to="/">Blog</Link></li>
-                                        <li><Link to="/">Resources</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Support</h3>
-                                    <ul className="list-unstyled">
-                                        <li><Link to="/">Support</Link></li>
-                                        <li><Link to="/">Privacy</Link></li>
-                                        <li><Link to="/">Terms of Service</Link></li>
-                                    </ul>
-                                </div>
-                                <div className="col-6 col-md-3 mb-4 mb-md-0">
-                                    <h3>Contact Us</h3>
-                                    <div className="footer-social">
-                                        <Link to="/"><span className="icon-facebook"></span></Link>
-                                        <Link to="/"><span className="icon-twitter"></span></Link>
-                                        <Link to="/"><span className="icon-instagram"></span></Link>
-                                        <Link to="/"><span className="icon-linkedin"></span></Link>
-                                    </div>
-                                </div>
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Search Trending</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Web Design</Link></li>
+                                    <li><Link to="/">Graphic Design</Link></li>
+                                    <li><Link to="/">Web Developers</Link></li>
+                                    <li><Link to="/">Python</Link></li>
+                                    <li><Link to="/">HTML5</Link></li>
+                                    <li><Link to="/">CSS3</Link></li>
+                                </ul>
                             </div>
-
-                            <div className="row text-center">
-                                <div className="col-12">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Company</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">About Us</Link></li>
+                                    <li><Link to="/">Career</Link></li>
+                                    <li><Link to="/">Blog</Link></li>
+                                    <li><Link to="/">Resources</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Support</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Support</Link></li>
+                                    <li><Link to="/">Privacy</Link></li>
+                                    <li><Link to="/">Terms of Service</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Contact Us</h3>
+                                <div className="footer-social">
+                                    <Link to="/"><span className="icon-facebook"></span></Link>
+                                    <Link to="/"><span className="icon-twitter"></span></Link>
+                                    <Link to="/"><span className="icon-instagram"></span></Link>
+                                    <Link to="/"><span className="icon-linkedin"></span></Link>
                                 </div>
                             </div>
                         </div>
-                    </footer>
+
+                        <div className="row text-center">
+                            <div className="col-12">
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         )
     }
