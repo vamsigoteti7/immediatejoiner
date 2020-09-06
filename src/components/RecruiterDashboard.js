@@ -7,14 +7,75 @@ export class RecruiterDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jobposts: []
+            jobposts: [],
+            nextdocid: '',
+            previousdocid: '',
+            firstdocid: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleNext = this.handleNext.bind(this);
+        this.handlePrevious = this.handlePrevious.bind(this);
     }
 
     componentDidMount() {
         this.getJobpostsByRecruiterId();
     }
+
+    handlePrevious = () => {
+        this.getJobpostsByDocId(this.state.previousdocid);
+    }
+
+    handleNext = () => {
+        if (this.state.jobposts.length > 0) {
+            var jobpostsLength = this.state.jobposts.length;
+            var lstelement = this.state.jobposts[jobpostsLength - 1];
+            var frstelement = this.state.jobposts[0];
+            this.setState({ previousdocid: frstelement.jobpostid });
+            this.setState({ nextdocid: lstelement.jobpostid });
+            if (this.state.firstdocid === '') {
+                this.setState({ firstdocid: frstelement.jobpostid });
+            }
+            this.getJobpostsByDocId(lstelement.jobpostid);
+        }
+    }
+
+    getJobpostsByDocId = (docid) => {
+        var logindata = localStorage.getItem('LoginData');
+        const recruiterData = {
+            email: logindata,
+            docid: docid
+        };
+        axios.post('/imjobpostsByStartAfter', recruiterData)
+            .then(response => {
+                let jobpostsApi = response.data.jp.map(data => {
+                    return {
+                        email: data.email,
+                        companyname: data.companyname,
+                        companylogourl: data.companylogourl,
+                        city: data.city,
+                        jobtitle: data.jobtitle,
+                        jobtype: data.jobtype,
+                        jobpostid: data.jobpostid
+                    }
+                });
+                this.setState({
+                    jobposts: [
+                        {
+                            email: "",
+                            companyname: "",
+                            companylogourl: "",
+                            city: "",
+                            jobtitle: "",
+                            jobtype: "",
+                            jobpostid: ""
+                        }
+                    ].concat(jobpostsApi)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     getJobpostsByRecruiterId = () => {
         var logindata = localStorage.getItem('LoginData');
@@ -30,7 +91,8 @@ export class RecruiterDashboard extends Component {
                         companylogourl: data.companylogourl,
                         city: data.city,
                         jobtitle: data.jobtitle,
-                        jobtype: data.jobtype
+                        jobtype: data.jobtype,
+                        jobpostid: data.jobpostid
                     }
                 });
                 this.setState({
@@ -41,7 +103,8 @@ export class RecruiterDashboard extends Component {
                             companylogourl: "",
                             city: "",
                             jobtitle: "",
-                            jobtype: ""
+                            jobtype: "",
+                            jobpostid: ""
                         }
                     ].concat(jobpostsApi)
                 });
@@ -135,12 +198,11 @@ export class RecruiterDashboard extends Component {
                                 })}
                             </ul>
                             <div className="container">
-                                <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
+                                <div className="right-cta-menu text-right d-flex aligin-items-center col-11">
                                     <div className="ml-auto">
-                                        <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Previous</Link>
-                                        <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Next</Link>
+                                        <button onClick={this.handlePrevious} className="btn btn-primary border-width-20 mb-5 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Previous</button>
+                                        <button onClick={this.handleNext} className="btn btn-primary border-width-20 mb-5 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Next</button>
                                     </div>
-                                    <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
                                 </div>
                             </div>
                         </div>
