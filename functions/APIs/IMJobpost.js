@@ -116,7 +116,15 @@ exports.getjobpostsByDocid = (request, response) => {
           let jp = [];
           ref.limit(2).get().then(function (snapshot) {
                snapshot.forEach(function (doc) {
-                    jp.push(doc.data());
+                    jp.push({
+                         jobtitle: doc.data().jobtitle,
+                         companyname:doc.data().companyname,
+                         companylogourl:doc.data().companylogourl,
+                         email:doc.data().email,
+                         city:doc.data().city,
+                         jobtype:doc.data().jobtype,
+                         jobpostid:doc.id
+                    });
                });
                return response.json({ jp });
           })
@@ -135,7 +143,15 @@ exports.getjobpostsByStartAfter = (request, response) => {
                if (doc.exists) {
                     ref.startAfter(doc).limit(2).get().then(function (snapshot) {
                          snapshot.forEach(function (doc) {
-                              jp.push(doc.data());
+                              jp.push({
+                                   jobtitle: doc.data().jobtitle,
+                                   companyname:doc.data().companyname,
+                                   companylogourl:doc.data().companylogourl,
+                                   email:doc.data().email,
+                                   city:doc.data().city,
+                                   jobtype:doc.data().jobtype,
+                                   jobpostid:doc.id
+                              });
                          })
                          return response.json({ jp });
                     });
