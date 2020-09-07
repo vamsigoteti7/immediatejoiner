@@ -165,6 +165,41 @@ exports.getjobpostsByStartAfter = (request, response) => {
      });
 };
 
+exports.getjobsearchStartAfter = (request, response) => {
+     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
+
+     ref.get().then(function (snapshot) {
+          let jp = [];
+
+          var docRef = db.collection("IMjobpost").doc(request.body.docid);
+
+          docRef.get().then(function (doc) {
+               if (doc.exists) {
+                    ref.startAfter(doc).limit(2).get().then(function (snapshot) {
+                         snapshot.forEach(function (doc) {
+                              jp.push({
+                                   jobtitle: doc.data().jobtitle,
+                                   companyname:doc.data().companyname,
+                                   companylogourl:doc.data().companylogourl,
+                                   email:doc.data().email,
+                                   city:doc.data().city,
+                                   jobtype:doc.data().jobtype,
+                                   jobpostid:doc.id
+                              });
+                         })
+                         return response.json({ jp });
+                    });
+               } else {
+                    // doc.data() will be undefined in this case
+                    return response.json({ "status": "no such document" });
+               }
+          }).catch(function (error) {
+               console.log("Error getting document:", error);
+          });
+     });
+};
+
+
 exports.getjobsearch = (request, response) => {
      var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
      ref.get().then(function (snapshot) {
