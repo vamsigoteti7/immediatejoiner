@@ -1,52 +1,59 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import axios from '../axios-immediatejoiner';
 
 export class Jobdetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            reenterpassword: ''
+            docid: '',
+            jobpostdata: []
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleLogin = () => {
-        // const userData = {
-        //     username: this.state.email,
-        //     password: this.state.password
-        // };
-        // axios.post('/imjoiners', userData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/Empdashboard');
-    }
-
-    handleSignUp = () => {
-        // const registerData = {
-        //     firstname: "fda",
-        //     username: this.state.email,
-        //     usertype: "candiate",
-        //     password: "12345"
-        // };
-        // axios.post('/impostRegisterus', registerData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/RecruiterDashboard');
-    }
-
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
+    }
+
+    componentDidMount() {
+        this.getjobdetailbyjobid();
+    }
+
+    getjobdetailbyjobid() {
+        const jobData = {
+            docid: this.state.docid
+        };
+        axios.post('/imjobpostsbyid', jobData)
+            .then(response => {
+                let jobpostsApi = response.data.jp.map(data => {
+                    return {
+                        jobpostid: doc.id,
+                        email: data.email,
+                        jobtitle: data.jobtitle,
+                        country: data.country,
+                        city: data.city,
+                        industry: data.industry,
+                        jobtype: data.jobtype,
+                        skills: data.skills,
+                        jobdescription: data.jobdescription,
+                        companyname: data.companyname,
+                        companydescription: data.companydescription,
+                        companywebsite: data.companywebsite,
+                        experiencerequired: data.experiencerequired,
+                        recruiterimageurl: data.recruiterimageurl,
+                        companylogourl: data.companylogourl,
+                        createddate: data.createddate
+                    }
+                });
+                this.setState({
+                    jobpostdata: jobpostsApi
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render() {

@@ -230,7 +230,6 @@ exports.getJobPostById = (request, response) => {
           if (doc.exists) {
                return response.json({
                     jobpostid: doc.id,
-                    companyname: doc.data().companyname,
                     email: doc.data().email,
                     jobtitle: doc.data().jobtitle,
                     country: doc.data().country,
@@ -240,13 +239,12 @@ exports.getJobPostById = (request, response) => {
                     skills: doc.data().skills,
                     jobdescription: doc.data().jobdescription,
                     companyname: doc.data().companyname,
-                    tagline: doc.data().tagline,
                     companydescription: doc.data().companydescription,
                     companywebsite: doc.data().companywebsite,
-                    linkedinusername: doc.data().linkedinusername,
                     experiencerequired: doc.data().experiencerequired,
                     recruiterimageurl: doc.data().recruiterimageurl,
-                    companylogourl: doc.data().companylogourl
+                    companylogourl: doc.data().companylogourl,
+                    createddate: doc.data().createddate
                });
           } else {
                // doc.data() will be undefined in this case
