@@ -165,6 +165,27 @@ exports.getjobpostsByStartAfter = (request, response) => {
      });
 };
 
+exports.getjobsearch = (request, response) => {
+     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry);
+     ref.get().then(function (snapshot) {
+          let jp = [];
+          ref.limit(2).get().then(function (snapshot) {
+               snapshot.forEach(function (doc) {
+                    jp.push({
+                         jobtitle: doc.data().jobtitle,
+                         companyname:doc.data().companyname,
+                         companylogourl:doc.data().companylogourl,
+                         email:doc.data().email,
+                         city:doc.data().city,
+                         jobtype:doc.data().jobtype,
+                         jobpostid:doc.id
+                    });
+               });
+               return response.json({ jp });
+          })
+     });
+};
+
 
 exports.getJobPostById = (request, response) => {
 

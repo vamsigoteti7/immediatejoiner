@@ -9,6 +9,8 @@ export class EmployeeDashboard extends Component {
         super(props);
         this.state = {
             jobposts: [],
+            selectedindustry:'',
+            selectedcity:'',
             nextdocid: '',
             previousdocid: '',
             firstdocid: '',
@@ -135,6 +137,33 @@ export class EmployeeDashboard extends Component {
             });
     };
 
+    getJobsearch = () => {
+        
+        const recruiterData = {
+            industry: this.state.selectedindustry
+        };
+        axios.post('/imjobsearch', recruiterData)
+            .then(response => {
+                let jobpostsApi = response.data.jp.map(data => {
+                    return {
+                        email: data.email,
+                        companyname: data.companyname,
+                        companylogourl: data.companylogourl,
+                        city: data.city,
+                        jobtitle: data.jobtitle,
+                        jobtype: data.jobtype,
+                        jobpostid: data.jobpostid
+                    }
+                });
+                this.setState({
+                    jobposts: jobpostsApi
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
@@ -233,7 +262,7 @@ export class EmployeeDashboard extends Component {
                                             </Select>
                                         </div>
                                         <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                            <button type="submit" className="btn btn-primary btn-lg btn-block text-white btn-search"><span className="icon-search icon mr-2"></span>Search Job</button>
+                                            <button onClick={this.getJobsearch} className="btn btn-primary btn-lg btn-block text-white btn-search"><span className="icon-search icon mr-2"></span>Search Job</button>
                                         </div>
                                     </div>
                                 </form>

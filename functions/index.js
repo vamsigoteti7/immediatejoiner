@@ -51,7 +51,8 @@ const {
   postJob,
   getjobpostsByRecruiterId,
   getjobpostsByDocid,
-  getjobpostsByStartAfter
+  getjobpostsByStartAfter,
+  getjobsearch
 } = require('./APIs/IMJobpost')
 
 const {
@@ -151,6 +152,7 @@ app.post('/impostjob', postJob);
 app.post('/imjobpostbyrecruiterid', getjobpostsByRecruiterId);
 app.post('/imjobpostsByDocid', getjobpostsByDocid);
 app.post('/imjobpostsByStartAfter', getjobpostsByStartAfter);
+app.post('/imjobsearch', getjobsearch);
 
 app.get('/imuserdetails', getAllIMUserdetails);
 app.post('/impostuserdetails', postuserdetails);
