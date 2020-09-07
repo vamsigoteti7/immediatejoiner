@@ -166,7 +166,7 @@ exports.getjobpostsByStartAfter = (request, response) => {
 };
 
 exports.getjobsearch = (request, response) => {
-     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry);
+     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
      ref.get().then(function (snapshot) {
           let jp = [];
           ref.limit(2).get().then(function (snapshot) {

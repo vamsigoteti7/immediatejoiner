@@ -9,8 +9,8 @@ export class EmployeeDashboard extends Component {
         super(props);
         this.state = {
             jobposts: [],
-            selectedindustry:'',
-            selectedcity:'',
+            selectedindustry: '',
+            selectedcity: '',
             nextdocid: '',
             previousdocid: '',
             firstdocid: '',
@@ -138,9 +138,10 @@ export class EmployeeDashboard extends Component {
     };
 
     getJobsearch = () => {
-        
+
         const recruiterData = {
-            industry: this.state.selectedindustry
+            industry: this.state.selectedindustry.value,
+            city: this.state.selectedcity.value
         };
         axios.post('/imjobsearch', recruiterData)
             .then(response => {
@@ -217,61 +218,61 @@ export class EmployeeDashboard extends Component {
                 <section className="site-section">
                     <div className="container">
                         <div className="row align-items-center justify-content-center">
-                            <div class="col-md-12">
-                                <form method="post" className="search-jobs-form">
-                                    <div className="row mb-5">
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                            <input type="text" className="form-control form-control-lg" placeholder="Job title, Company..." />
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                            <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City"
-                                                onChange={e =>
-                                                    this.setState({
-                                                        selectedcity: e
-                                                    })
-                                                }
-                                                options={this.state.cities}
-                                                value={this.state.selectedcity}>
-                                                {this.state.cities.map(city => (
-                                                    <option
-                                                        key={city.value}
-                                                        value={city.value}
-                                                    >
-                                                        {city.value}
-                                                    </option>
-                                                ))}
-                                            </Select>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                            <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
-                                                onChange={e =>
-                                                    this.setState({
-                                                        selectedindustry: e
-                                                    })
-                                                }
-                                                options={this.state.industries}
-                                                value={this.state.selectedindustry}>
-                                                {this.state.industries.map(industry => (
-                                                    <option
-                                                        key={industry.value}
-                                                        value={industry.value}
-                                                    >
-                                                        {industry.value}
-                                                    </option>
-                                                ))}
-                                            </Select>
-                                        </div>
-                                        <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                            <button onClick={this.getJobsearch} className="btn btn-primary btn-lg btn-block text-white btn-search"><span className="icon-search icon mr-2"></span>Search Job</button>
-                                        </div>
+                            <div className="col-md-12">
+
+                                <div className="row mb-5">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <input type="text" className="form-control form-control-lg" placeholder="Job title, Company..." />
                                     </div>
-                                </form>
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedcity: e
+                                                })
+                                            }
+                                            options={this.state.cities}
+                                            value={this.state.selectedcity}>
+                                            {this.state.cities.map(city => (
+                                                <option
+                                                    key={city.value}
+                                                    value={city.value}
+                                                >
+                                                    {city.value}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
+                                            onChange={e =>
+                                                this.setState({
+                                                    selectedindustry: e
+                                                })
+                                            }
+                                            options={this.state.industries}
+                                            value={this.state.selectedindustry}>
+                                            {this.state.industries.map(industry => (
+                                                <option
+                                                    key={industry.value}
+                                                    value={industry.value}
+                                                >
+                                                    {industry.value}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                                        <button onClick={this.getJobsearch} className="btn btn-primary btn-lg btn-block text-white btn-search"><span className="icon-search icon mr-2"></span>Search Job</button>
+                                    </div>
+                                </div>
+
                                 <ul className="job-listings mb-5">
                                     {this.state.jobposts.map(function (tier, i) {
                                         if (tier.email !== '') {
                                             return (
                                                 <li key={i} className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                                    <a href="job-single.html"></a>
+                                                    <Link to="/Jobdetail" params={{ jobid: "abcd" }}></Link>
                                                     <div className="job-listing-logo">
                                                         <img src={tier.companylogourl} alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                                     </div>
