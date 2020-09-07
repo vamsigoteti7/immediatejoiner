@@ -118,12 +118,12 @@ exports.getjobpostsByDocid = (request, response) => {
                snapshot.forEach(function (doc) {
                     jp.push({
                          jobtitle: doc.data().jobtitle,
-                         companyname:doc.data().companyname,
-                         companylogourl:doc.data().companylogourl,
-                         email:doc.data().email,
-                         city:doc.data().city,
-                         jobtype:doc.data().jobtype,
-                         jobpostid:doc.id
+                         companyname: doc.data().companyname,
+                         companylogourl: doc.data().companylogourl,
+                         email: doc.data().email,
+                         city: doc.data().city,
+                         jobtype: doc.data().jobtype,
+                         jobpostid: doc.id
                     });
                });
                return response.json({ jp });
@@ -145,12 +145,12 @@ exports.getjobpostsByStartAfter = (request, response) => {
                          snapshot.forEach(function (doc) {
                               jp.push({
                                    jobtitle: doc.data().jobtitle,
-                                   companyname:doc.data().companyname,
-                                   companylogourl:doc.data().companylogourl,
-                                   email:doc.data().email,
-                                   city:doc.data().city,
-                                   jobtype:doc.data().jobtype,
-                                   jobpostid:doc.id
+                                   companyname: doc.data().companyname,
+                                   companylogourl: doc.data().companylogourl,
+                                   email: doc.data().email,
+                                   city: doc.data().city,
+                                   jobtype: doc.data().jobtype,
+                                   jobpostid: doc.id
                               });
                          })
                          return response.json({ jp });
@@ -179,12 +179,12 @@ exports.getjobsearchStartAfter = (request, response) => {
                          snapshot.forEach(function (doc) {
                               jp.push({
                                    jobtitle: doc.data().jobtitle,
-                                   companyname:doc.data().companyname,
-                                   companylogourl:doc.data().companylogourl,
-                                   email:doc.data().email,
-                                   city:doc.data().city,
-                                   jobtype:doc.data().jobtype,
-                                   jobpostid:doc.id
+                                   companyname: doc.data().companyname,
+                                   companylogourl: doc.data().companylogourl,
+                                   email: doc.data().email,
+                                   city: doc.data().city,
+                                   jobtype: doc.data().jobtype,
+                                   jobpostid: doc.id
                               });
                          })
                          return response.json({ jp });
@@ -208,12 +208,12 @@ exports.getjobsearch = (request, response) => {
                snapshot.forEach(function (doc) {
                     jp.push({
                          jobtitle: doc.data().jobtitle,
-                         companyname:doc.data().companyname,
-                         companylogourl:doc.data().companylogourl,
-                         email:doc.data().email,
-                         city:doc.data().city,
-                         jobtype:doc.data().jobtype,
-                         jobpostid:doc.id
+                         companyname: doc.data().companyname,
+                         companylogourl: doc.data().companylogourl,
+                         email: doc.data().email,
+                         city: doc.data().city,
+                         jobtype: doc.data().jobtype,
+                         jobpostid: doc.id
                     });
                });
                return response.json({ jp });
@@ -228,7 +228,26 @@ exports.getJobPostById = (request, response) => {
 
      docRef.get().then(function (doc) {
           if (doc.exists) {
-               return response.json({ "data": doc.data() });
+               return response.json({
+                    jobpostid: doc.id,
+                    companyname: doc.data().companyname,
+                    email: doc.data().email,
+                    jobtitle: doc.data().jobtitle,
+                    country: doc.data().country,
+                    city: doc.data().city,
+                    industry: doc.data().industry,
+                    jobtype: doc.data().jobtype,
+                    skills: doc.data().skills,
+                    jobdescription: doc.data().jobdescription,
+                    companyname: doc.data().companyname,
+                    tagline: doc.data().tagline,
+                    companydescription: doc.data().companydescription,
+                    companywebsite: doc.data().companywebsite,
+                    linkedinusername: doc.data().linkedinusername,
+                    experiencerequired: doc.data().experiencerequired,
+                    recruiterimageurl: doc.data().recruiterimageurl,
+                    companylogourl: doc.data().companylogourl
+               });
           } else {
                // doc.data() will be undefined in this case
                return response.json({ "status": "no such document" });
