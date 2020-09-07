@@ -47,7 +47,7 @@ export class Logintbygoogle extends Component {
                         this.props.history.push('/RecruiterDashboard');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/RecruiterDashboard');
+                        this.props.history.push('/Empdashboard');
                     }
                 }
             })
