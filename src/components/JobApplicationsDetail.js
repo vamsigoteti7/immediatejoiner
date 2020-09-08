@@ -63,11 +63,11 @@ export class JobApplicationsDetail extends Component {
 
     downloadresume = (resumeurl) => {
 
-        var starsRef = storageRef.child(resumeurl);
+        var starsRef = storageRef.child(`resumes/Vamsi (1).docx`);
 
 
         starsRef.getDownloadURL().then(function (url) {
-
+            console.log(url);
         }).catch(function (error) {
             switch (error.code) {
                 case 'storage/object-not-found':
@@ -151,7 +151,7 @@ export class JobApplicationsDetail extends Component {
                                     {this.state.jobapplications.map((row) => (
                                         <TableRow key={row.jobid}>
                                             <TableCell component="th" scope="row">
-                                                <button onClick={() => this.downloadresume(row.resumeurl)}>Download</button>
+                                                <a href={row.resumeurl} download>Download</a>
                                             </TableCell>
                                             <TableCell align="right">{row.email}</TableCell>
                                             <TableCell align="right">{row.totalexperience}</TableCell>
