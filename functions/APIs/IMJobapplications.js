@@ -20,6 +20,50 @@ exports.getAlljobapplications = (request, response) => {
 			return response.status(500).json({ error: err.code });
 		});
 };
+
+exports.getjobapplicationsByJobId = (request, response) => {
+	db
+		.collection('IMuserjobapplications')
+		.where('jobid', '==', request.body.jobid)
+		.get()
+		.then((data) => {
+			let jobap = [];
+			data.forEach((doc) => {
+				jobap.push(
+					doc.data().username
+				);
+			});
+			if (jobap.length > 0) {
+				db
+					.collection('IMuserdetails')
+					.where('email', 'in', jobap)
+					.get()
+					.then((userdata) => {
+						let empdata = [];
+						userdata.forEach((doc) => {
+							empdata.push(
+								doc.data()
+							);
+						});
+
+						return response.json(empdata);
+					})
+					.catch((err) => {
+						console.error(err);
+						return response.status(500).json({ error: err.code });
+					});
+			}
+			else
+			{
+				return response.json({"data": "No Data"});
+			}
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
 exports.postJobapplications = (request, response) => {
 
 	const newJobappItem = {

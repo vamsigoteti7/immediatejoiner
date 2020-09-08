@@ -155,7 +155,7 @@ export class RecruiterDashboard extends Component {
                                     if (tier.email !== '') {
                                         return (
                                             <li key={i} className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                                <a href="job-single.html"></a>
+                                                <Link to={{ pathname: '/JobApplicationDetails', query: tier.jobpostid  }}></Link>
                                                 <div className="job-listing-logo">
                                                     <img src={tier.companylogourl} alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                                 </div>

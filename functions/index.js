@@ -42,7 +42,8 @@ const {
 const {
   getAlljobapplications,
   postJobapplications,
-  getjobapplicationsById
+  getjobapplicationsById,
+  getjobapplicationsByJobId
 } = require('./APIs/IMJobapplications')
 
 const {
@@ -146,6 +147,8 @@ app.post('/impostcontactusbyid', getcontactusById);
 app.get('/imjobapplications', getAlljobapplications);
 app.post('/imuserjobapplications', postJobapplications);
 app.post('/imuserjobapplicationsbyid', getjobapplicationsById);
+app.post('/imuserjobapplicationsbyjobid', getjobapplicationsByJobId);
+
 
 app.get('/imjobposts', getAlljobposts);
 app.post('/imjobpostsbyid', getJobPostById);

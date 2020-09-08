@@ -1,55 +1,101 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import axios from '../axios-immediatejoiner';
+import { storageRef } from '../firebase';
 
 export class JobApplicationsDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            reenterpassword: ''
+            jobid: this.props.location.query,
+            jobapplications: []
         };
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleLogin = () => {
-        // const userData = {
-        //     username: this.state.email,
-        //     password: this.state.password
-        // };
-        // axios.post('/imjoiners', userData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/Empdashboard');
+    componentDidMount() {
+        const userData = {
+            jobid: this.state.jobid
+        };
+        axios.post('/imuserjobapplicationsbyjobid', userData)
+            .then(response => {
+                let jobapplicationsApi = response.data.map(data => {
+                    return {
+                        percentage: data.percentage,
+                        highestqualification: data.highestqualification,
+                        gender: data.gender,
+                        currentsalary: data.currentsalary,
+                        industry: data.industry,
+                        phonenumber: data.phonenumber,
+                        skills: data.skills,
+                        email: data.email,
+                        totalexperience: data.totalexperience,
+                        city: data.city,
+                        age: data.age,
+                        country: data.country,
+                        resumeurl: data.resumeurl
+                    }
+                }
+                );
+                this.setState({
+                    jobapplications: jobapplicationsApi
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
-    handleSignUp = () => {
-        // const registerData = {
-        //     firstname: "fda",
-        //     username: this.state.email,
-        //     usertype: "candiate",
-        //     password: "12345"
-        // };
-        // axios.post('/impostRegisterus', registerData)
-        //     .then(response => {
-        //         console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-        this.props.history.push('/RecruiterDashboard');
-    }
+
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }
 
+    downloadresume = (resumeurl) => {
+
+        var starsRef = storageRef.child(resumeurl);
+
+
+        starsRef.getDownloadURL().then(function (url) {
+
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object-not-found':
+
+                    break;
+
+                case 'storage/unauthorized':
+
+                    break;
+
+                case 'storage/canceled':
+
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    break;
+            }
+        });
+    }
+
     render() {
+        const classes = makeStyles({
+            table: {
+                minWidth: 650,
+            },
+        });
+        // const classes = useStyles();
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -90,65 +136,32 @@ export class JobApplicationsDetail extends Component {
                 </section>
                 <section className="site-section">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6 mb-5">
-                                <h2 className="mb-4">Sign Up To Immediate Joiner</h2>
-                                <form action="#" className="p-4 border rounded">
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="femailregister">Email</label>
-                                            <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpasswordregister">Password</label>
-                                            <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
-                                        </div>
-                                    </div>
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Sign Up" onClick={this.handleSignUp} className="btn px-4 btn-primary text-white" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div className="col-lg-6">
-                                <h2 className="mb-4">Log In To Immediate Joiner</h2>
-                                <form action="#" className="p-4 border rounded">
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="femail">Email</label>
-                                            <input value={this.state.email} type="text" id="femail" className="form-control" placeholder="Email address" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input value={this.state.password} type="password" id="fpassword" className="form-control" placeholder="Password" />
-                                        </div>
-                                    </div>
-
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Log In"
-                                                onClick={this.handleLogin}
-                                                className="btn px-4 btn-primary text-white" />
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
+                        <TableContainer component={Paper}>
+                            <Table className={classes.table} size="small" aria-label="a dense table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Resume</TableCell>
+                                        <TableCell align="right">Email</TableCell>
+                                        <TableCell align="right">Experience</TableCell>
+                                        <TableCell align="right">Skills</TableCell>
+                                        <TableCell align="right">Place</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {this.state.jobapplications.map((row) => (
+                                        <TableRow key={row.jobid}>
+                                            <TableCell component="th" scope="row">
+                                                <button onClick={() => this.downloadresume(row.resumeurl)}>Download</button>
+                                            </TableCell>
+                                            <TableCell align="right">{row.email}</TableCell>
+                                            <TableCell align="right">{row.totalexperience}</TableCell>
+                                            <TableCell align="right">{row.skills}</TableCell>
+                                            <TableCell align="right">{row.city}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </div>
                 </section >
             </div >
