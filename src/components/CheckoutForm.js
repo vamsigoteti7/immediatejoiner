@@ -220,44 +220,47 @@ export default function CheckoutForm() {
             ))}
           </Grid>
         </Container>
-        <form onSubmit={handleSubmit}>
-          <h1>
-            {currency.toLocaleUpperCase()}{" "}
-            {amount.toLocaleString(navigator.language, {
-              minimumFractionDigits: 2,
-            })}{" "}
-          </h1>
-          <h4>Pay INR 100  (Validity 30 days)</h4>
+        <div className="row mt-5"></div>
+        <div className="checkout-form" alignItems="center" justifyContent="center" align="center">
+          <form onSubmit={handleSubmit} align="center">
+            <h1>
+              {currency.toLocaleUpperCase()}{" "}
+              {amount.toLocaleString(navigator.language, {
+                minimumFractionDigits: 2,
+              })}{" "}
+            </h1>
+            {/* <h4>Pay INR 100  (Validity 30 days)</h4> */}
 
-          <div className="sr-combo-inputs">
-            <div className="sr-combo-inputs-row">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Name"
-                autoComplete="cardholder"
-                className="sr-input"
-              />
+            <div className="sr-combo-inputs">
+              <div className="sr-combo-inputs-row">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Name On The Card"
+                  autoComplete="cardholder"
+                  className="form-control"
+                />
+              </div>
+
+              <div className="sr-combo-inputs-row">
+                <CardElement
+                  className="sr-input sr-card-element"
+                  options={options}
+                />
+              </div>
             </div>
 
-            <div className="sr-combo-inputs-row">
-              <CardElement
-                className="sr-input sr-card-element"
-                options={options}
-              />
-            </div>
-          </div>
+            {error && <div className="message sr-field-error">{error}</div>}
 
-          {error && <div className="message sr-field-error">{error}</div>}
-
-          <button
-            className="btn"
-            disabled={processing || !clientSecret || !stripe}
-          >
-            {processing ? "Processing…" : "Pay"}
-          </button>
-        </form>
+            <button
+              className="btn px-4 btn-primary text-white"
+              disabled={processing || !clientSecret || !stripe}
+            >
+              {processing ? "Processing…" : "Pay"}
+            </button>
+          </form>
+        </div>
       </React.Fragment>
     );
   };
