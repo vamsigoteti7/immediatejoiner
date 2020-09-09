@@ -8,7 +8,7 @@ export class Logintbygoogle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginemail:'',
+            loginemail: '',
             loginpassword: '',
             email: '',
             password: '',
@@ -31,24 +31,24 @@ export class Logintbygoogle extends Component {
         };
         axios.post('/imjoiners', userData)
             .then(response => {
-                
+
                 if (response.data.length === 1) {
                     localStorage.setItem('LoginData', response.data[0].username);
-                    // if (response.data[0].usertype === "Recruiter") {
-                    //     //toast.success("Logged In Successfully");        
-                    //     this.props.history.push('/Membership');
-                    // }
-                    // else if (response.data[0].usertype === "Candiate") {
-                    //     this.props.history.push('/Membership');
-                    // }
-
                     if (response.data[0].usertype === "Recruiter") {
                         //toast.success("Logged In Successfully");        
-                        this.props.history.push('/RecruiterDashboard');
+                        this.props.history.push('/Membership');
                     }
                     else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Empdashboard');
+                        this.props.history.push('/Membership');
                     }
+
+                    // if (response.data[0].usertype === "Recruiter") {
+                    //     //toast.success("Logged In Successfully");        
+                    //     this.props.history.push('/RecruiterDashboard');
+                    // }
+                    // else if (response.data[0].usertype === "Candiate") {
+                    //     this.props.history.push('/Empdashboard');
+                    // }
                 }
             })
             .catch(error => {
@@ -71,7 +71,7 @@ export class Logintbygoogle extends Component {
                         this.props.history.push('/Membership');
                     }
                     else if (response.data.usertype === "Candiate") {
-                       // toast.success("Logged In Successfully");
+                        // toast.success("Logged In Successfully");
                         this.props.history.push('/Membership');
                     }
                 }

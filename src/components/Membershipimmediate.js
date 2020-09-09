@@ -55,9 +55,9 @@ class Membershipimmediate extends React.Component {
                 <section className="site-section">
                     <div className="container">
                         <div className="row">
-                            <Elements stripe={stripePromise}>
+                             <Elements stripe={stripePromise}>
                                 <CheckoutForm />
-                            </Elements>
+                            </Elements> 
                         </div>
                     </div>
                 </section>
