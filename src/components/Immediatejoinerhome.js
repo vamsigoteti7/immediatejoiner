@@ -7,98 +7,98 @@ import { Carousel } from "react-responsive-carousel";
 class Immediatejoinerhome extends React.Component {
 
     //componentDidMount() {
-        // $(".loader").delay(1000).fadeOut("slow");
-        // $("#overlayer").delay(1000).fadeOut("slow");
-        // var siteMenuClone = function () {
-        //     setTimeout(function () {
-        //         var counter = 0;
-        //         $('.site-mobile-menu .has-children').each(function () {
-        //             var $this = $(this);
+    // $(".loader").delay(1000).fadeOut("slow");
+    // $("#overlayer").delay(1000).fadeOut("slow");
+    // var siteMenuClone = function () {
+    //     setTimeout(function () {
+    //         var counter = 0;
+    //         $('.site-mobile-menu .has-children').each(function () {
+    //             var $this = $(this);
 
-        //             $this.prepend('<span class="arrow-collapse collapsed">');
+    //             $this.prepend('<span class="arrow-collapse collapsed">');
 
-        //             $this.find('.arrow-collapse').attr({
-        //                 'data-toggle': 'collapse',
-        //                 'data-target': '#collapseItem' + counter,
-        //             });
+    //             $this.find('.arrow-collapse').attr({
+    //                 'data-toggle': 'collapse',
+    //                 'data-target': '#collapseItem' + counter,
+    //             });
 
-        //             $this.find('> ul').attr({
-        //                 'class': 'collapse',
-        //                 'id': 'collapseItem' + counter,
-        //             });
+    //             $this.find('> ul').attr({
+    //                 'class': 'collapse',
+    //                 'id': 'collapseItem' + counter,
+    //             });
 
-        //             counter++;
+    //             counter++;
 
-        //         });
+    //         });
 
-        //     }, 1000);
+    //     }, 1000);
 
-        //     $('body').on('click', '.arrow-collapse', function (e) {
-        //         var $this = $(this);
-        //         if ($this.closest('li').find('.collapse').hasClass('show')) {
-        //             $this.removeClass('active');
-        //         } else {
-        //             $this.addClass('active');
-        //         }
-        //         e.preventDefault();
+    //     $('body').on('click', '.arrow-collapse', function (e) {
+    //         var $this = $(this);
+    //         if ($this.closest('li').find('.collapse').hasClass('show')) {
+    //             $this.removeClass('active');
+    //         } else {
+    //             $this.addClass('active');
+    //         }
+    //         e.preventDefault();
 
-        //     });
+    //     });
 
-        //     $(window).resize(function () {
-        //         var $this = $(this),
-        //             w = $this.width();
+    //     $(window).resize(function () {
+    //         var $this = $(this),
+    //             w = $this.width();
 
-        //         if (w > 768) {
-        //             if ($('body').hasClass('offcanvas-menu')) {
-        //                 $('body').removeClass('offcanvas-menu');
-        //             }
-        //         }
-        //     })
+    //         if (w > 768) {
+    //             if ($('body').hasClass('offcanvas-menu')) {
+    //                 $('body').removeClass('offcanvas-menu');
+    //             }
+    //         }
+    //     })
 
-        //     $('body').on('click', '.js-menu-toggle', function (e) {
-        //         $('.js-clone-nav').each(function () {
-        //             var $this = $(this);
-        //             $this.attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
-        //         });
-        //         var $this = $(this);
-        //         //  e.preventDefault();
+    //     $('body').on('click', '.js-menu-toggle', function (e) {
+    //         $('.js-clone-nav').each(function () {
+    //             var $this = $(this);
+    //             $this.attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+    //         });
+    //         var $this = $(this);
+    //         //  e.preventDefault();
 
-        //         if ($('body').hasClass('offcanvas-menu')) {
-        //             $('body').removeClass('offcanvas-menu');
-        //             $this.removeClass('active');
-        //         } else {
-        //             $('body').addClass('offcanvas-menu');
-        //             $this.addClass('active');
-        //         }
-        //     })
+    //         if ($('body').hasClass('offcanvas-menu')) {
+    //             $('body').removeClass('offcanvas-menu');
+    //             $this.removeClass('active');
+    //         } else {
+    //             $('body').addClass('offcanvas-menu');
+    //             $this.addClass('active');
+    //         }
+    //     })
 
-        //     //click outisde offcanvas
-        //     $(document).mouseup(function (e) {
-        //         var container = $(".site-mobile-menu");
-        //         if (!container.is(e.target) && container.has(e.target).length === 0) {
-        //             if ($('body').hasClass('offcanvas-menu')) {
-        //                 $('body').removeClass('offcanvas-menu');
-        //             }
-        //         }
-        //     });
-        // };
-        // siteMenuClone();
+    //     //click outisde offcanvas
+    //     $(document).mouseup(function (e) {
+    //         var container = $(".site-mobile-menu");
+    //         if (!container.is(e.target) && container.has(e.target).length === 0) {
+    //             if ($('body').hasClass('offcanvas-menu')) {
+    //                 $('body').removeClass('offcanvas-menu');
+    //             }
+    //         }
+    //     });
+    // };
+    // siteMenuClone();
 
 
-        // var sitePlusMinus = function () {
-        //     $('.js-btn-minus').on('click', function (e) {
-        //         e.preventDefault();
-        //         if ($(this).closest('.input-group').find('.form-control').val() !== 0) {
-        //             $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
-        //         } else {
-        //             $(this).closest('.input-group').find('.form-control').val(parseInt(0));
-        //         }
-        //     });
-        //     $('.js-btn-plus').on('click', function (e) {
-        //         e.preventDefault();
-        //         $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
-        //     });
-        // };
+    // var sitePlusMinus = function () {
+    //     $('.js-btn-minus').on('click', function (e) {
+    //         e.preventDefault();
+    //         if ($(this).closest('.input-group').find('.form-control').val() !== 0) {
+    //             $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+    //         } else {
+    //             $(this).closest('.input-group').find('.form-control').val(parseInt(0));
+    //         }
+    //     });
+    //     $('.js-btn-plus').on('click', function (e) {
+    //         e.preventDefault();
+    //         $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+    //     });
+    // };
     //}
 
     render() {
@@ -160,47 +160,33 @@ class Immediatejoinerhome extends React.Component {
                         </div>
                     </header>
                     <section className="home-section section-hero overlay bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                        <div className="container-fluid">
+                        <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div className="row mt-5"></div>
                                     <div className="row mt-5"></div>
                                     <div className="row mt-5"></div>
                                     <div className="row mt-5"></div>
-                                    <Carousel autoPlay showThumbs={false} className="row mt-5">
+                                    <div className="row mt-5"></div>
+                                    <div className="row mt-5"></div>
+                                    <Carousel showThumbs={false} showStatus={false} useKeyboardArrows className="presentation-mode">
+                                        <div className="row align-items-center justify-content-center">
+                                            <div className="col-md-12">
+                                                <div className="mb-5 text-center">
+                                                    <h1 className="text-white font-weight-bold">India's First Low Priced Job Portal</h1>
+                                                    <p>Spend 100 Rs To Post A Job</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div className="row align-items-center justify-content-center">
                                             <div className="col-md-12">
                                                 <div className="mb-5 text-center">
                                                     <h1 className="text-white font-weight-bold">Job Portal For Medium/Small Scale Industries</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row align-items-center justify-content-center">
-                                            <div className="col-md-12">
-                                                <div className="mb-5 text-center">
-                                                    <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row align-items-center justify-content-center">
-                                            <div className="col-md-12">
-                                                <div className="mb-5 text-center">
-                                                    <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row align-items-center justify-content-center">
-                                            <div className="col-md-12">
-                                                <div className="mb-5 text-center">
-                                                    <h1 className="text-white font-weight-bold">Spend 100 Rs to post a job</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </Carousel>
+
                                 </div>
                             </div>
                         </div>
