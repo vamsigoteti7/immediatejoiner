@@ -212,7 +212,7 @@ export default function CheckoutForm() {
                   </CardContent>
                   <CardActions>
                     <div className="col-md-12">
-                      <input value={tier.buttonText} name="IsSignUp" className="btn px-4 btn-primary text-white" />
+                      {/* <input value={tier.buttonText} name="IsSignUp" className="btn px-4 btn-primary text-white" /> */}
                     </div>
                   </CardActions>
                 </Card>
@@ -221,7 +221,7 @@ export default function CheckoutForm() {
           </Grid>
         </Container>
         <div className="row mt-5"></div>
-        <div className="checkout-form" alignItems="center" justifyContent="center" align="center">
+        <div className="checkout-form" alignitems="center" justifycontent="center" align="center">
           <form onSubmit={handleSubmit} align="center">
             <h1>
               {currency.toLocaleUpperCase()}{" "}

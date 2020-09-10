@@ -1,4 +1,6 @@
 const { db } = require('../util/admin');
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 exports.MembershipPublickey = (request, response) => {
     response.send({ publicKey: process.env.STRIPE_PUBLISHABLE_KEY });
@@ -17,21 +19,10 @@ exports.CreatePaymentIntent = async (request, response) => {
         ...body,
         amount: productDetails.amount,
         currency: productDetails.currency,
-        description: 'Software development services',
     };
 
     try {
         const paymentIntent = await stripe.paymentIntents.create(options);
-        var customer = await stripe.customers.create({
-            name: 'Jenny Rosen',
-            address: {
-                line1: '510 Townsend St',
-                postal_code: '98140',
-                city: 'San Francisco',
-                state: 'CA',
-                country: 'US',
-            }
-        });
         response.json(paymentIntent);
     } catch (err) {
         response.json(err);
