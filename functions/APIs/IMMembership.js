@@ -1,6 +1,11 @@
+'use strict';
+const functions = require('firebase-functions');
 const { db } = require('../util/admin');
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+const stripe = require('stripe')(functions.config().stripe.secret, {
+    apiVersion: '2020-03-02',
+  });
+
 
 exports.MembershipPublickey = (request, response) => {
     response.send({ publicKey: process.env.STRIPE_PUBLISHABLE_KEY });

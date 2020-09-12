@@ -120,6 +120,7 @@ exports.postRegister = (request, response) => {
 			response.status(500).json({ error: 'Something went wrong' });
 		});
 };
+
 exports.getregisterdetailsById = (request, response) => {
 
 	var docRef = db.collection("IMRegister").doc(request.body.docid);

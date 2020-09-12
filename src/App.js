@@ -12,6 +12,8 @@ import About from './components/About';
 import Jobdetails from './components/Jobdetails';
 import EmployeeDetails from './components/EmployeeDetails';
 import JobApplicationsDetail from './components/JobApplicationsDetail';
+import Immediatepayment from './components/payments/Immediatepayment';
+import Immediatejoinerhome from './components/Immediatejoinerhome';
 
 class App extends React.Component {
   render() {
@@ -20,7 +22,7 @@ class App extends React.Component {
         <BrowserRouter>
           <Router>
             <Switch>
-              <Route exact path='/' component={ImmediatejoinerHome} ></Route>
+              <Route exact path='/' component={Immediatejoinerhome} ></Route>
               <Route path='/Login' component={Logintbygoogle} ></Route>
               <Route path='/EmpDetails' component={EmployeeDetails} ></Route>
               <Route path='/JobApplicationDetails' component={JobApplicationsDetail} ></Route>
