@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react'
+import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import { auth, generateUserDocument } from '../firebase/index';
-import firebase from "firebase/app";
-import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
+// import { SmartToaster, toast } from 'react-smart-toaster';
+import { auth, signInWithGoogle } from '../firebase/index';
 
-class Membershipimmediate extends React.Component {
-
+export class ImmediateJoinerPasswordReset extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            email: '',
+            emailSent : false,
+            error: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    OnLogOut = () =>{
-
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
     }
+
+    sendResetEmail = event => {
+        event.preventDefault();
+        auth
+            .sendPasswordResetEmail(this.state.email)
+            .then(() => {
+                this.setState({emailSent : true});
+                setTimeout(() => { this.setState({emailSent : false}); }, 3000);
+            })
+            .catch(() => {
+                this.setState({error : 'Error resetting password'});
+            });
+    };
 
     render() {
-        const stripePromise = loadStripe('pk_test_51HL4l2FTZGo3gXDdM3fMEyMnJVuAP3ASpTzBR4EEFo9ZjLScOt5ObuWOdadfwJwUd6GXmqh0N4OYWCVFHMyYcMCv00z57Vbv5V');
-        const userid = this.props.userid
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -42,43 +56,61 @@ class Membershipimmediate extends React.Component {
                                     <li><Link to="/Contactus">Contact</Link></li>
                                 </ul>
                             </nav>
-                            <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
-                                <div className="ml-auto">
-                                    <button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
-                                </div>
-                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
-                            </div>
                             {/* <SmartToaster
-                            store={toast}
-                            lightBackground={true}
-                            position={"top_right"}
-                        /> */}
+                                store={toast}
+                                lightBackground={true}
+                                position={"top_right"}
+                            /> */}
                         </div>
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
                     {/* <div className="container">
-                    <div className="row">
-                        <div className="col-md-7">
-                            <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                            <div className="custom-breadcrumbs">
-                                <a href="#">Home</a> <span className="mx-2 slash">/</span>
-                                <span className="text-white"><strong>Log In</strong></span>
+                        <div className="row">
+                            <div className="col-md-7">
+                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
+                                <div className="custom-breadcrumbs">
+                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
+                                    <span className="text-white"><strong>Log In</strong></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div> */}
+                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
-                        <div className="row">
-                            <Elements stripe={stripePromise}>
-                                <ElementsConsumer>
-                                    {({ stripe, elements }) => (
-                                        <CheckoutForm userid={userid} stripe={stripe} elements={elements} />
-                                    )}
-                                </ElementsConsumer>
-                            </Elements>
+
+                        <div className="row mb-5 justify-content-center">
+                            <div className="col-lg-6 text-center">
+                                <h2 className="section-title mb-2">Reset your Password</h2>
+                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                <form action="#" className="p-4 border rounded">
+
+                                    <div className="row form-group">
+                                        <div className="col-md-12 mb-3 mb-md-0">
+                                            <label htmlFor="loginemail">Email</label>
+                                            <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                        </div>
+                                    </div>
+
+                                    <div className="row form-group">
+                                        <div className="col-md-12">
+                                            <input value="Send Me A Reset Link"
+                                                onChange={this.handleChange}
+                                                name="IsLogIn"
+                                                onClick={this.handleLogin}
+                                                className="btn px-4 btn-primary text-white" />
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <Link
+                                    to="/Login"
+                                    className="my-2 text-blue-700 hover:text-blue-800 text-center block"
+                                >
+                                    &larr; back to sign in page
+        </Link>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -135,9 +167,10 @@ class Membershipimmediate extends React.Component {
                         </div>
                     </div>
                 </footer>
+
             </div >
-        );
+        )
     }
 }
 
-export default Membershipimmediate;
+export default ImmediateJoinerPasswordReset

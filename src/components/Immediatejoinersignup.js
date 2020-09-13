@@ -3,84 +3,20 @@ import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
-import { auth, signInWithGoogle } from '../firebase/index';
+import { auth, signInWithGoogle,generateUserDocument } from '../firebase/index';
 
-export class Logintbygoogle extends Component {
+export class Immediatejoinersignup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginemail: '',
-            loginpassword: '',
             email: '',
             password: '',
-            reenterpassword: '',
+            displayName: '',
             IsRecruiter: true,
-            IsSignUp: '',
-            IsSignIn: '',
             error: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
-
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleSignUp = this.handleSignUp.bind(this);
-    }
-
-    handleLogin = () => {
-        const userData = {
-            username: this.state.loginemail,
-            password: this.state.loginpassword
-        };
-        axios.post('/imjoiners', userData)
-            .then(response => {
-
-                if (response.data.length === 1) {
-                    localStorage.setItem('LoginData', response.data[0].username);
-                    if (response.data[0].usertype === "Recruiter") {
-                        //toast.success("Logged In Successfully");        
-                        this.props.history.push('/Membership');
-                    }
-                    else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Membership');
-                    }
-
-                    // if (response.data[0].usertype === "Recruiter") {
-                    //     //toast.success("Logged In Successfully");        
-                    //     this.props.history.push('/RecruiterDashboard');
-                    // }
-                    // else if (response.data[0].usertype === "Candiate") {
-                    //     this.props.history.push('/Empdashboard');
-                    // }
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
-    handleSignUp = () => {
-        const registerData = {
-            firstname: "",
-            username: this.state.email,
-            usertype: this.state.IsRecruiter ? "Recruiter" : "Candiate",
-            password: this.state.password
-        };
-        axios.post('/impostRegisterus', registerData)
-            .then(response => {
-                if (response.data !== undefined) {
-                    if (response.data.usertype === "Recruiter") {
-                        //toast.success("Logged In Successfully");
-                        this.props.history.push('/Membership');
-                    }
-                    else if (response.data.usertype === "Candiate") {
-                        // toast.success("Logged In Successfully");
-                        this.props.history.push('/Membership');
-                    }
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
     }
 
     handleChange(event) {
@@ -96,6 +32,22 @@ export class Logintbygoogle extends Component {
         auth.signInWithEmailAndPassword(email, password).catch(error => {
             this.setState({ error: "Error signing in with password and email!" });
         });
+    };
+
+    createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+        event.preventDefault();
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+            const displayName = this.state.displayName;
+            generateUserDocument(user, { displayName });
+        }
+        catch (error) {
+            this.setState({ error: "Error signing in with password and email!" });
+        }
+
+        this.setState({ email: '' });
+        this.setState({ password: '' });
+        this.setState({ displayName: '' });
     };
 
     render() {
@@ -147,52 +99,58 @@ export class Logintbygoogle extends Component {
 
                         <div className="row mb-5 justify-content-center">
                             <div className="col-lg-6 text-center">
-                                <h2 className="section-title mb-2">Log In To Immediate Joiner</h2>
+                                <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
                                 {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
                                 <form action="#" className="p-4 border rounded">
-
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label htmlFor="loginemail">Email</label>
-                                            <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                            <label className="text-black" htmlFor="femailregister">Email</label>
+                                            <input autoComplete="on" type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
+                                        </div>
+                                    </div>
+                                    <div className="row form-group">
+                                        <div className="col-md-12 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="fpasswordregister">Password</label>
+                                            <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                                         </div>
                                     </div>
                                     <div className="row form-group mb-4">
                                         <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input autoComplete="on" value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
+                                            <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
+                                            <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                        </div>
+                                    </div>
+                                    <div className="row form-group mb-4">
+                                        <div className="col-md-12 mb-3 mb-md-0">
+                                            <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
+                                            <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} onChange={this.handleChecked} placeholder="Is Recruiter" />
                                         </div>
                                     </div>
 
                                     <div className="row form-group">
                                         <div className="col-md-12">
-                                            <input value="Log In"
-                                                onChange={this.handleChange}
-                                                name="IsLogIn"
-                                                onClick={this.handleLogin}
-                                                className="btn px-4 btn-primary text-white" />
+                                            <input value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                         </div>
                                     </div>
-
                                 </form>
                                 <p className="text-center my-3">or</p>
                                 <button
-                                    className="btn px-4 btn-primary text-white"
                                     onClick={() => {
-                                        signInWithGoogle();
-                                      }}
+                                        try {
+                                            signInWithGoogle();
+                                        } catch (error) {
+                                            console.error("Error signing in with Google", error);
+                                        }
+                                    }}
+                                    className="btn px-4 btn-primary text-white"
                                 >
-                                    Sign in with Google
+                                    Sign In with Google
         </button>
                                 <p className="text-center my-3">
-                                    Don't have an account?{" "}
-                                    <Link to="signUp" className="text-blue-500 hover:text-blue-600">
-                                        Sign up here
+                                    Already have an account?{" "}
+                                    <Link to="/Login" className="text-blue-500 hover:text-blue-600">
+                                        Sign in here
           </Link>{" "}
-                                    <br />{" "}
-                                    <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
-                                        Forgot Password?
-          </Link>
                                 </p>
                             </div>
                         </div>
@@ -257,4 +215,4 @@ export class Logintbygoogle extends Component {
     }
 }
 
-export default Logintbygoogle
+export default Immediatejoinersignup
