@@ -201,8 +201,9 @@ export class Logintbygoogle extends Component {
                             <Tabs
                                 value={this.state.value}
                                 onChange={this.handleChange}
-                                indicatorColor="primary"
-                                textColor="primary"
+                                TabIndicatorProps={{style: {background:'#89ba16'}}}
+                                indicatorColor="#89ba16"
+                                textColor="#89ba16"
                                 variant="fullWidth"
                                 aria-label="full width tabs example"
                             >
