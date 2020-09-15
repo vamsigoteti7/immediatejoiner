@@ -124,13 +124,11 @@ const {
   postExperience
 } = require('./APIs/IMExperience')
 
-// const {
-//   MembershipPublickey,
-//   MembershipProductDetails,
-//   CreatePaymentIntent,
-//   Membershipwebhook
-// } = require('./APIs/IMMembership')
+const {
+  getMembershipPlansByType
+} = require('./APIs/IMMembership')
 
+ app.post('/getmembershipplans', getMembershipPlansByType);
 // app.get('/public-key', MembershipPublickey);
 // app.get('/product-details', MembershipProductDetails);
 // app.post('/create-payment-intent', CreatePaymentIntent);

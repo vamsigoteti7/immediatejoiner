@@ -1,25 +1,78 @@
 import React from 'react';
-import hero_1 from '../images/hero_1.jpg';
-import { Link } from 'react-router-dom';
-import { auth, generateUserDocument } from '../firebase/index';
+import ReactDOM from 'react-dom';
+import { auth, generateUserDocument } from '../../firebase/index';
 import firebase from "firebase/app";
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
+import { Link } from 'react-router-dom';
+import hero_1 from '../../images/hero_1.jpg';
 
-class Membershipimmediate extends React.Component {
+class MembershipCheckout extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            cardholdername: '',
+            error: '',
+            status: ''
+        };
+        
+        this.paymentamount();
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    OnLogOut = () =>{
+    paymentamount = async () => {
+        await firebase
+            .firestore()
+            .collection('stripe_customers')
+            .doc(this.props.userid.user.uid)
+            .collection('payment_amount')
+            .add({
+                amount: 10000,
+                currency: "INR",
+                description: 'Software Services'
+            });
+    }
 
+    newcardform = async () => {
+        const { stripe, elements } = this.props;
+
+        const customer = await firebase
+            .firestore()
+            .collection('stripe_customers')
+            .doc(this.props.userid.user.uid)
+            .get();
+
+        const payment = customer.data().payment.client_secret;
+
+        try {
+            const payload = await stripe.confirmCardPayment(payment, {
+                payment_method: {
+                    card: elements.getElement(CardElement),
+                    billing_details: {
+                        name: this.state.cardholdername,
+                    },
+                },
+            });
+
+            if (payload.error) {
+                this.setState({ error: payload.error });
+                console.log("[error]", payload.error);
+            } else {
+                console.log("[PaymentIntent]", payload.paymentIntent);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     render() {
-        const stripePromise = loadStripe('pk_test_51HL4l2FTZGo3gXDdM3fMEyMnJVuAP3ASpTzBR4EEFo9ZjLScOt5ObuWOdadfwJwUd6GXmqh0N4OYWCVFHMyYcMCv00z57Vbv5V');
-        const userid = this.props.userid
+        const { stripe } = this.props;
+        const user = this.props.userid.user;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -42,43 +95,44 @@ class Membershipimmediate extends React.Component {
                                     <li><Link to="/Contactus">Contact</Link></li>
                                 </ul>
                             </nav>
-                            <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
-                                <div className="ml-auto">
-                                    <button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
-                                </div>
-                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
-                            </div>
                             {/* <SmartToaster
-                            store={toast}
-                            lightBackground={true}
-                            position={"top_right"}
-                        /> */}
+                                store={toast}
+                                lightBackground={true}
+                                position={"top_right"}
+                            /> */}
                         </div>
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
                     {/* <div className="container">
-                    <div className="row">
-                        <div className="col-md-7">
-                            <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                            <div className="custom-breadcrumbs">
-                                <a href="#">Home</a> <span className="mx-2 slash">/</span>
-                                <span className="text-white"><strong>Log In</strong></span>
+                        <div className="row">
+                            <div className="col-md-7">
+                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
+                                <div className="custom-breadcrumbs">
+                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
+                                    <span className="text-white"><strong>Log In</strong></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div> */}
+                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
-                        <div className="row">
-                            <Elements stripe={stripePromise}>
-                                <ElementsConsumer>
-                                    {({ stripe, elements }) => (
-                                        <CheckoutForm userid={userid} stripe={stripe} elements={elements} />
-                                    )}
-                                </ElementsConsumer>
-                            </Elements>
+
+                        <div className="row mb-5 justify-content-center">
+                            <div className="col-lg-6 text-center">
+                                <h2 className="section-title mb-2">Log In To Immediate Joiner</h2>
+                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                <form action="#" className="p-4 border rounded">
+
+                                    <div className="row form-group">
+                                        <div className="col-md-12 mb-3 mb-md-0">
+                                            <input autoComplete="on" value={this.state.cardholdername} type="text" name="cardholdername" onChange={this.handleChange} className="form-control" placeholder="Enter The Name On The Card" required />
+                                            <CardElement />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -135,9 +189,36 @@ class Membershipimmediate extends React.Component {
                         </div>
                     </div>
                 </footer>
+
             </div >
         );
     }
 }
 
-export default Membershipimmediate;
+class Membership extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentuserid: ''
+        };
+    }
+
+    render() {
+        const stripePromise = loadStripe('pk_live_51HL4l2FTZGo3gXDdd6Cqg134r9FVGbhI0hOTQlbSfcs1b6LBOEw2tORB7PTXLgvmTvx0IE6LwRXzaTXCrowTaUF900H6UqqfZ0');
+        const userid = this.props.userid
+        var plan = this.props.location.query;
+        return (
+            <Elements stripe={stripePromise}>
+                <ElementsConsumer>
+                    {({ stripe, elements }) => (
+                        <MembershipCheckout userid={userid} plan={plan} stripe={stripe} elements={elements} />
+                    )}
+                </ElementsConsumer>
+            </Elements>
+        );
+    }
+
+}
+
+export default Membership;

@@ -2,11 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from './providers/UserProvider';
 import RecruiterDashboard from './RecruiterDashboard';
 import Employeedashboard from './Employeedashboard';
-import Membershipimmediate from './Membershipimmediate';
+import MembershipPlans from './MembershipPlans';
 import Contactus from './Contactus';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import PasswordReset from './PasswordReset';
 import Postajob from './Postajob';
 import About from './About';
 import Jobdetails from './Jobdetails';
@@ -16,7 +13,7 @@ import Logintbygoogle from './Loginbygoogle';
 import Immediatejoinerhome from './Immediatejoinerhome';
 import ImmediateJoinerPasswordReset from './ImmediateJoinerPasswordReset';
 import Immediatejoinersignup from './Immediatejoinersignup';
-import Membership from './payments/Immediatepayment';
+import Membership from './payments/Membership';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
 
 function Application() {
@@ -26,16 +23,15 @@ function Application() {
       <BrowserRouter>
         <Router>
           <Switch>
-            {/* <Route path='/EmpDetails' component={EmployeeDetails} ></Route>
-            <Route path='/JobApplicationDetails' component={JobApplicationsDetail} ></Route>
-            <Route path='/Jobdetail' component={Jobdetails} ></Route>
-            <Route path='/Postjob' component={Postajob} ></Route>
-            <Route path='/RecruiterDashboard' component={RecruiterDashboard} ></Route>
-            <Route path='/Empdashboard' component={Employeedashboard} ></Route> 
-            <Route path='/' userid={user} component={Membershipimmediate} ></Route>*/}
-            <Postajob path="/Postjob"/>
+            <EmployeeDetails path='/EmpDetails' userid={user}/>
+            <JobApplicationsDetail path='/JobApplicationDetails' userid={user}/>
+            <Jobdetails path='/Jobdetail' userid={user}/>
+            <Postajob path='/Postjob' userid={user}/>
+            <RecruiterDashboard path='/RecruiterDashboard' userid={user}/>
+            <Employeedashboard path='/Empdashboard' userid={user} />
+            <Postajob path="/Postjob" userid={user}/>
             <Membership path="/Payment" userid={user}/>
-            <Membershipimmediate path="/" userid={user} />
+            <MembershipPlans path="/" userid={user} />
           </Switch>
         </Router>
       </BrowserRouter>

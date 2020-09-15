@@ -1,3 +1,30 @@
+const { db, admin } = require('../util/admin');
+
+exports.getMembershipPlansByType = (request, response) => {
+	db
+		.collection('IMMembershipPlans')
+		.where('MemberType', '==', request.body.membertype)
+		.get()
+		.then((data) => {
+			let plans = [];
+			data.forEach((doc) => {
+				plans.push({
+					planId: doc.id,
+					title: doc.data().title,
+					price: doc.data().price,
+					description: doc.data().description,
+                    buttonText: doc.data().buttonText,
+                    MemberType: doc.data().MemberType
+				});
+			});
+			return response.json(plans);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
 // 'use strict';
 // const functions = require('firebase-functions');
 // const { db } = require('../util/admin');

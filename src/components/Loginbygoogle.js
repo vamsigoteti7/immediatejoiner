@@ -4,6 +4,40 @@ import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
 import { auth, signInWithGoogle } from '../firebase/index';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
 
 export class Logintbygoogle extends Component {
     constructor(props) {
@@ -17,7 +51,8 @@ export class Logintbygoogle extends Component {
             IsRecruiter: true,
             IsSignUp: '',
             IsSignIn: '',
-            error: ''
+            error: '',
+            value: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -25,6 +60,17 @@ export class Logintbygoogle extends Component {
         this.handleLogin = this.handleLogin.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
     }
+
+    handleChange = (event, newValue) => {
+        // setValue(newValue);
+        if (newValue !== undefined)
+            this.setState({ value: newValue });
+    };
+
+    handleChangeIndex = (index) => {
+        this.setState({ value: index });
+        // setValue(index);
+    };
 
     handleLogin = () => {
         const userData = {
@@ -98,6 +144,13 @@ export class Logintbygoogle extends Component {
         });
     };
 
+    a11yProps(index) {
+        return {
+            id: `full-width-tab-${index}`,
+            'aria-controls': `full-width-tabpanel-${index}`,
+        };
+    }
+
     render() {
         return (
             <div className="site-wrap">
@@ -144,58 +197,132 @@ export class Logintbygoogle extends Component {
                 </section>
                 <section className="site-section">
                     <div className="container">
+                        <AppBar position="static" color="default">
+                            <Tabs
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                                indicatorColor="primary"
+                                textColor="primary"
+                                variant="fullWidth"
+                                aria-label="full width tabs example"
+                            >
+                                <Tab label="Candiate Login" {...this.a11yProps(0)} />
+                                <Tab label="Employer Login" {...this.a11yProps(1)} />
+                            </Tabs>
+                        </AppBar>
+                        <SwipeableViews
+                            axis={this.props.theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                            index={this.state.value}
+                            onChangeIndex={this.handleChangeIndex}
+                        >
+                            <TabPanel value={this.state.value} index={0} dir={this.props.theme.direction}>
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        {/* <h2 className="section-title mb-2">Log In To Immediate Joiner</h2> */}
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
 
-                        <div className="row mb-5 justify-content-center">
-                            <div className="col-lg-6 text-center">
-                                <h2 className="section-title mb-2">Log In To Immediate Joiner</h2>
-                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
-                                <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label htmlFor="loginemail">Email</label>
+                                                    <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fpassword">Password</label>
+                                                    <input autoComplete="on" value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
+                                                </div>
+                                            </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label htmlFor="loginemail">Email</label>
-                                            <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpassword">Password</label>
-                                            <input autoComplete="on" value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
-                                        </div>
-                                    </div>
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <input value="Log In"
+                                                        onChange={this.handleChange}
+                                                        name="IsLogIn"
+                                                        onClick={this.handleLogin}
+                                                        className="btn px-4 btn-primary text-white" />
+                                                </div>
+                                            </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Log In"
-                                                onChange={this.handleChange}
-                                                name="IsLogIn"
-                                                onClick={this.handleLogin}
-                                                className="btn px-4 btn-primary text-white" />
-                                        </div>
-                                    </div>
-
-                                </form>
-                                <p className="text-center my-3">or</p>
-                                <button
-                                    className="btn px-4 btn-primary text-white"
-                                    onClick={() => {
-                                        signInWithGoogle();
-                                      }}
-                                >
-                                    Sign in with Google
+                                        </form>
+                                        <p className="text-center my-3">or</p>
+                                        <button
+                                            className="btn px-4 btn-primary text-white"
+                                            onClick={() => {
+                                                signInWithGoogle();
+                                            }}
+                                        >
+                                            Sign in with Google
         </button>
-                                <p className="text-center my-3">
-                                    Don't have an account?{" "}
-                                    <Link to="signUp" className="text-blue-500 hover:text-blue-600">
-                                        Sign up here
+                                        <p className="text-center my-3">
+                                            Don't have an account?{" "}
+                                            <Link to="signUp" className="text-blue-500 hover:text-blue-600">
+                                                Sign up here
           </Link>{" "}
-                                    <br />{" "}
-                                    <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
-                                        Forgot Password?
+                                            <br />{" "}
+                                            <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
+                                                Forgot Password?
           </Link>
-                                </p>
-                            </div>
-                        </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value={this.state.value} index={1} dir={this.props.theme.direction}>
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        {/* <h2 className="section-title mb-2">Log In To Immediate Joiner</h2> */}
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
+
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label htmlFor="loginemail">Email</label>
+                                                    <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fpassword">Password</label>
+                                                    <input autoComplete="on" value={this.state.loginpassword} type="password" name="loginpassword" onChange={this.handleChange} className="form-control" placeholder="Password" />
+                                                </div>
+                                            </div>
+
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <input value="Log In"
+                                                        onChange={this.handleChange}
+                                                        name="IsLogIn"
+                                                        onClick={this.handleLogin}
+                                                        className="btn px-4 btn-primary text-white" />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <p className="text-center my-3">or</p>
+                                        <button
+                                            className="btn px-4 btn-primary text-white"
+                                            onClick={() => {
+                                                signInWithGoogle();
+                                            }}
+                                        >
+                                            Sign in with Google
+        </button>
+                                        <p className="text-center my-3">
+                                            Don't have an account?{" "}
+                                            <Link to="signUp" className="text-blue-500 hover:text-blue-600">
+                                                Sign up here
+          </Link>{" "}
+                                            <br />{" "}
+                                            <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
+                                                Forgot Password?
+          </Link>
+                                        </p>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        </SwipeableViews>
+
                     </div>
                 </section>
                 <footer className="site-footer">
@@ -251,10 +378,9 @@ export class Logintbygoogle extends Component {
                         </div>
                     </div>
                 </footer>
-
             </div >
         )
     }
 }
 
-export default Logintbygoogle
+export default withTheme(Logintbygoogle)

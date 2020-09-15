@@ -30,9 +30,6 @@ class UserProvider extends Component {
                   customerData: customerDataVal,
                 },
               });
-              // this.startDataListeners(currentUser);
-              // document.getElementById('loader').style.display = 'none';
-              // document.getElementById('content').style.display = 'block';
             } else {
               console.warn(
                 `No Stripe customer found in Firestore for user: ${currentUser.uid}`
@@ -40,7 +37,6 @@ class UserProvider extends Component {
             }
           });
       } else {
-        // document.getElementById('content').style.display = 'none';
       }
       const userVal = await generateUserDocument(firebaseUser);
 
@@ -54,23 +50,7 @@ class UserProvider extends Component {
   };
 
   render() {
-    // const stripePromise = api.getPublicStripeKey().then(key => loadStripe(key));
-
     const { allContextValue } = this.state;
-    // user.customerData = this.state.customerData;
-    // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-    // const elements = stripe.elements();
-    // const cardElement = elements.create('card');
-    // cardElement.mount('#card-element');
-    // cardElement.on('change', ({ error }) => {
-    //   const displayError = document.getElementById('error-message');
-    //   if (error) {
-    //     displayError.textContent = error.message;
-    //   } else {
-    //     displayError.textContent = '';
-    //   }
-    // });
-
     return (
       <UserContext.Provider value={allContextValue}>
         {this.props.children}
