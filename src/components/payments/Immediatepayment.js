@@ -4,15 +4,31 @@ import { auth, generateUserDocument } from '../../firebase/index';
 import firebase from "firebase/app";
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
+import { ArrowRightAlt } from '@material-ui/icons';
 
 class MembershipCheckout extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            currentuserid: ''
+            currentuserid: '',
+            clientSecret: []
         };
-        this.startDataListeners(this.props.userid.user);
+        this.paymentamount();
+        //this.startDataListeners(this.props.userid.user);
+    }
+
+    paymentamount = async () => {
+        await firebase
+            .firestore()
+            .collection('stripe_customers')
+            .doc(this.props.userid.user.uid)
+            .collection('payment_amount')
+            .add({
+                amount: 100,
+                currency: "INR",
+                description: 'Software Services'
+            });
     }
 
     startDataListeners(currentUser) {
@@ -24,80 +40,65 @@ class MembershipCheckout extends React.Component {
                 .firestore()
                 .collection('stripe_customers')
                 .doc(currentUser.uid)
-                .collection('payment_methods')
                 .onSnapshot((snapshot) => {
-                    snapshot.forEach(function (doc) {
-                        const paymentMethod = doc.data();
-                        if (!paymentMethod.card) {
-                            return;
+                    snapshot.forEach((doc) => {
+                        const payment = doc.data();
+
+                        if (payment.payment != null) {
+                            this.setState({ clientSecret: payment.payment });
                         }
-
-                        const optionId = `card-${doc.id}`;
-                        let optionElement = document.getElementById(optionId);
-
-                        // Add a new option if one doesn't exist yet.
-                        if (!optionElement) {
-                            optionElement = document.createElement('option');
-                            optionElement.id = optionId;
-                            document
-                                .querySelector('select[name=payment-method]')
-                                .appendChild(optionElement);
-                        }
-
-                        optionElement.value = paymentMethod.id;
-                        optionElement.text = `${paymentMethod.card.brand} •••• ${paymentMethod.card.last4} | Expires ${paymentMethod.card.exp_month}/${paymentMethod.card.exp_year}`;
                     });
                 });
 
             /**
              * Get all payments for the logged in customer
              */
-            firebase
-                .firestore()
-                .collection('stripe_customers')
-                .doc(currentUser.uid)
-                .collection('payments')
-                .onSnapshot((snapshot) => {
-                    snapshot.forEach((doc) => {
-                        const payment = doc.data();
+            // firebase
+            //     .firestore()
+            //     .collection('stripe_customers')
+            //     .doc(currentUser.uid)
+            //     .collection('payments')
+            //     .onSnapshot((snapshot) => {
+            //         snapshot.forEach((doc) => {
+            //             const payment = doc.data();
 
-                        // let liElement = document.getElementById(`payment-${doc.id}`);
-                        // if (!liElement) {
-                        //     liElement = document.createElement('li');
-                        //     liElement.id = `payment-${doc.id}`;
-                        // }
+            //             // let liElement = document.getElementById(`payment-${doc.id}`);
+            //             // if (!liElement) {
+            //             //     liElement = document.createElement('li');
+            //             //     liElement.id = `payment-${doc.id}`;
+            //             // }
 
-                        // let content = '';
-                        // if (
-                        //     payment.status === 'new' ||
-                        //     payment.status === 'requires_confirmation'
-                        // ) {
-                        //     content = `Creating Payment for ${this.formatAmount(
-                        //         payment.amount,
-                        //         payment.currency
-                        //     )}`;
-                        // } else if (payment.status === 'succeeded') {
-                        //     const card = payment.charges.data[0].payment_method_details.card;
-                        //     content = `✅ Payment for ${this.formatAmount(
-                        //         payment.amount,
-                        //         payment.currency
-                        //     )} on ${card.brand} card •••• ${card.last4}.`;
-                        // } else if (payment.status === 'requires_action') {
-                        //     content = `🚨 Payment for ${this.formatAmount(
-                        //         payment.amount,
-                        //         payment.currency
-                        //     )} ${payment.status}`;
-                        //     this.handleCardAction(payment, doc.id, currentUser);
-                        // } else {
-                        //     content = `⚠️ Payment for ${this.formatAmount(
-                        //         payment.amount,
-                        //         payment.currency
-                        //     )} ${payment.status}`;
-                        // }
-                        // liElement.innerText = content;
-                        // document.querySelector('#payments-list').appendChild(liElement);
-                    });
-                });
+            //             // let content = '';
+            //             // if (
+            //             //     payment.status === 'new' ||
+            //             //     payment.status === 'requires_confirmation'
+            //             // ) {
+            //             //     content = `Creating Payment for ${this.formatAmount(
+            //             //         payment.amount,
+            //             //         payment.currency
+            //             //     )}`;
+            //             // } else if (payment.status === 'succeeded') {
+            //             //     const card = payment.charges.data[0].payment_method_details.card;
+            //             //     content = `✅ Payment for ${this.formatAmount(
+            //             //         payment.amount,
+            //             //         payment.currency
+            //             //     )} on ${card.brand} card •••• ${card.last4}.`;
+            //             // } else if (payment.status === 'requires_action') {
+            //             //     content = `🚨 Payment for ${this.formatAmount(
+            //             //         payment.amount,
+            //             //         payment.currency
+            //             //     )} ${payment.status}`;
+            //             //     this.handleCardAction(payment, doc.id, currentUser);
+            //             // } else {
+            //             //     content = `⚠️ Payment for ${this.formatAmount(
+            //             //         payment.amount,
+            //             //         payment.currency
+            //             //     )} ${payment.status}`;
+            //             // }
+            //             // liElement.innerText = content;
+            //             // document.querySelector('#payments-list').appendChild(liElement);
+            //         });
+            //     });
         }
     }
 
@@ -175,41 +176,69 @@ class MembershipCheckout extends React.Component {
     newcardform = async () => {
         const { stripe, elements } = this.props;
 
+        const customer = await firebase
+            .firestore()
+            .collection('stripe_customers')
+            .doc(this.props.userid.user.uid)
+            .get()
+        // try {
+        const payment = customer.data().payment;
+
         try {
-            const { setupIntent, error } = await stripe.confirmCardSetup(
-                this.props.userid.customerData.setup_secret,
-                {
-                    payment_method: {
-                        card: elements.getElement(CardElement),
-                        billing_details: {
-                            name: 'vamsi krishna goteti',
-                        },
+            const payload = await stripe.confirmCardPayment(payment, {
+                payment_method: {
+                    card: elements.getElement(CardElement),
+                    billing_details: {
+                        name: 'Goteti Vamsi Krishna',
                     },
-                }
-            );
+                },
+            });
 
-            if (error) {
-
-                return;
+            if (payload.error) {
+                // setError(`Payment failed: ${payload.error.message}`);
+                // setProcessing(false);
+                console.log("[error]", payload.error);
+            } else {
+                // setError(null);
+                // setSucceeded(true);
+                // setProcessing(false);
+                // setMetadata(payload.paymentIntent);
+                console.log("[PaymentIntent]", payload.paymentIntent);
             }
-
-            await firebase
-                .firestore()
-                .collection('stripe_customers')
-                .doc(this.props.userid.user.uid)
-                .collection('payment_methods')
-                .add({ id: setupIntent.payment_method });
-
         } catch (error) {
-            alert(error);
+            console.log(error);
         }
+
+
+        //     const { setupIntent, error } = await stripe.confirmCardSetup(
+        //         this.props.userid.customerData.setup_secret,
+        //         {
+        //             payment_method: {
+        //                 card: elements.getElement(CardElement),
+        //                 billing_details: {
+        //                     name: 'vamsi krishna goteti',
+        //                 },
+        //             },
+        //         }
+        //     );
+
+        //     if (error) {
+
+        //         return;
+        //     }
+
+
+
+        // } catch (error) {
+        //     alert(error);
+        // }
     }
 
     paymentForm = async () => {
         const data = {
             payment_method: 'pm_1HQH9nFTZGo3gXDdRWYiLO1Y',
-            currency : 'INR',
-            amount: this.formatAmountForStripe(100,'INR'),
+            currency: 'INR',
+            amount: this.formatAmountForStripe(100, 'INR'),
             status: 'new',
         };
 
