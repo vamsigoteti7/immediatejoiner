@@ -25,7 +25,7 @@ class MembershipCheckout extends React.Component {
             .doc(this.props.userid.user.uid)
             .collection('payment_amount')
             .add({
-                amount: 100,
+                amount: 10000,
                 currency: "INR",
                 description: 'Software Services'
             });
@@ -182,7 +182,7 @@ class MembershipCheckout extends React.Component {
             .doc(this.props.userid.user.uid)
             .get()
         // try {
-        const payment = customer.data().payment;
+        const payment = customer.data().payment.client_secret;
 
         try {
             const payload = await stripe.confirmCardPayment(payment, {

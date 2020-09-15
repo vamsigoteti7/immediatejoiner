@@ -228,7 +228,7 @@ exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   
   const paymentIntent = await stripe.paymentIntents.create(
     {
-      amount : 100,
+      amount : 10000,
       currency : 'INR',
       description: 'Software development services',
     }
