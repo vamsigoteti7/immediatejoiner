@@ -225,12 +225,22 @@ exports.app = functions.https.onRequest(app);
  */
 exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   const customer = await stripe.customers.create({ email: user.email });
-  const intent = await stripe.setupIntents.create({
-    customer: customer.id,
-  });
+  
+  const paymentIntent = await stripe.paymentIntents.create(
+    {
+      amount : 100,
+      currency : 'INR',
+      customer,
+      payment_method,
+      off_session: false,
+      confirm: true,
+      confirmation_method: 'manual',
+    },
+    { idempotencyKey }
+  );
   await admin.firestore().collection('stripe_customers').doc(user.uid).set({
     customer_id: customer.id,
-    setup_secret: intent.client_secret,
+    payment:paymentIntent
   });
   return;
 });
