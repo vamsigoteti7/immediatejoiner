@@ -23,13 +23,13 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use((req, res, next) => {
-  if (req.originalUrl === '/webhook') {
-    next();
-  } else {
-    bodyParser.json()(req, res, next);
-  }
-});
+// app.use((req, res, next) => {
+//   if (req.originalUrl === '/webhook') {
+//     next();
+//   } else {
+//     bodyParser.json()(req, res, next);
+//   }
+// });
 
 const {
   getAllImmediateJoiners,
@@ -124,17 +124,17 @@ const {
   postExperience
 } = require('./APIs/IMExperience')
 
-const {
-  MembershipPublickey,
-  MembershipProductDetails,
-  CreatePaymentIntent,
-  Membershipwebhook
-} = require('./APIs/IMMembership')
+// const {
+//   MembershipPublickey,
+//   MembershipProductDetails,
+//   CreatePaymentIntent,
+//   Membershipwebhook
+// } = require('./APIs/IMMembership')
 
-app.get('/public-key', MembershipPublickey);
-app.get('/product-details', MembershipProductDetails);
-app.post('/create-payment-intent', CreatePaymentIntent);
-app.post('/webhook', bodyParser.raw({ type: 'application/json' }), Membershipwebhook);
+// app.get('/public-key', MembershipPublickey);
+// app.get('/product-details', MembershipProductDetails);
+// app.post('/create-payment-intent', CreatePaymentIntent);
+// app.post('/webhook', bodyParser.raw({ type: 'application/json' }), Membershipwebhook);
 
 app.get('/imgetexperience', getallexperience);
 app.get('/imgetgender', getallgender);

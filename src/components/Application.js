@@ -16,6 +16,7 @@ import Logintbygoogle from './Loginbygoogle';
 import Immediatejoinerhome from './Immediatejoinerhome';
 import ImmediateJoinerPasswordReset from './ImmediateJoinerPasswordReset';
 import Immediatejoinersignup from './Immediatejoinersignup';
+import Membership from './payments/Immediatepayment';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
 
 function Application() {
@@ -32,6 +33,8 @@ function Application() {
             <Route path='/RecruiterDashboard' component={RecruiterDashboard} ></Route>
             <Route path='/Empdashboard' component={Employeedashboard} ></Route> 
             <Route path='/' userid={user} component={Membershipimmediate} ></Route>*/}
+            <Postajob path="/Postjob"/>
+            <Membership path="/Payment" userid={user}/>
             <Membershipimmediate path="/" userid={user} />
           </Switch>
         </Router>
