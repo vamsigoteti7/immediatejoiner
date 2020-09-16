@@ -62,12 +62,15 @@ class MembershipPlans extends React.Component {
 
     constructor(props) {
         super(props);
+        const loginTypeValue = localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0;
+        const loginType = loginTypeValue === 0 ? 'Candiate' : 'Recruiter';
         this.state = {
             currentuserid: '',
             currency: '',
             amount: '',
             error: '',
             plandetail: '',
+            membershiptype: loginType,
             tiers: []
         };
     }
@@ -93,28 +96,28 @@ class MembershipPlans extends React.Component {
     }
 
     render() {
-        const tiers = [
-            {
-                title: 'Pro',
-                price: '100',
-                description: [
-                    'Post One Job For 100 Rs',
-                    'Have 30 days Access For One Posted Job'
-                ],
-                buttonText: 'Select 100 Rs Plan',
-                buttonVariant: 'contained',
-            },
-            {
-                title: 'Enterprise',
-                price: '1000',
-                description: [
-                    'Post 15 Jobs For 1000 Rs',
-                    'Have 30 days Access For One Posted Job'
-                ],
-                buttonText: 'Select 1000 Rs Plan',
-                buttonVariant: 'contained',
-            },
-        ];
+        // const tiers = [
+        //     {
+        //         title: 'Pro',
+        //         price: '100',
+        //         description: [
+        //             'Post One Job For 100 Rs',
+        //             'Have 30 days Access For One Posted Job'
+        //         ],
+        //         buttonText: 'Select 100 Rs Plan',
+        //         buttonVariant: 'contained',
+        //     },
+        //     {
+        //         title: 'Enterprise',
+        //         price: '1000',
+        //         description: [
+        //             'Post 15 Jobs For 1000 Rs',
+        //             'Have 30 days Access For One Posted Job'
+        //         ],
+        //         buttonText: 'Select 1000 Rs Plan',
+        //         buttonVariant: 'contained',
+        //     },
+        // ];
 
         const { classes } = this.props;
         return (
@@ -179,7 +182,7 @@ class MembershipPlans extends React.Component {
                             </Container>
                             <Container maxWidth="md" align="center" component="main">
                                 <Grid container spacing={5} align="center">
-                                    {tiers.map((tier) => (
+                                    {this.state.tiers.map((tier) => (
                                         <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={6}>
                                             <Card>
                                                 <CardHeader

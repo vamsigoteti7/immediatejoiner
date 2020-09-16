@@ -6,6 +6,14 @@ import { Carousel } from "react-responsive-carousel";
 
 class Immediatejoinerhome extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { isLoading: true }
+    }
+
+    componentDidMount() {
+        this.setState({ isLoading: false })
+    }
     //componentDidMount() {
     // $(".loader").delay(1000).fadeOut("slow");
     // $("#overlayer").delay(1000).fadeOut("slow");
@@ -102,14 +110,21 @@ class Immediatejoinerhome extends React.Component {
     //}
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <div>
+                    <div id="overlayer"></div>
+                    <div className="loader">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div>
-                {/* <div id="overlayer"></div>
-                <div className="loader">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                </div> */}
+
                 <div className="site-wrap">
                     <div className="site-mobile-menu site-navbar-target">
                         <div className="site-mobile-menu-header">
