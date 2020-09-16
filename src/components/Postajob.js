@@ -333,7 +333,7 @@ export class Postajob extends Component {
                                         </label>
                                         <br />
 
-                                        <img src={photoimg} height="100" width="100" alt="Profile Image" />
+                                        <img src={photoimg} height="100" width="100" alt="personalpic" />
                                     </div>
 
                                     <div className="form-group">

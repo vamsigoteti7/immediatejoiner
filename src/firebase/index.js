@@ -22,21 +22,26 @@ export const firestore = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
+
+
 };
+
 
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
 
-  const userRef = firestore.doc(`users/${user.uid}`);
+  const userRef = firestore.doc(`IMRegister/${user.uid}`);
   const snapshot = await userRef.get();
-
+  const loginTypeValue = localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0;
+  const loginType = loginTypeValue === 0 ? 'Candiate' : 'Recruiter';
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = user;
     try {
       await userRef.set({
         displayName,
-        email,
+        "username": email,
         photoURL,
+        "usertype": loginType,
         ...additionalData
       });
     } catch (error) {
@@ -49,7 +54,7 @@ export const generateUserDocument = async (user, additionalData) => {
 const getUserDocument = async uid => {
   if (!uid) return null;
   try {
-    const userDocument = await firestore.doc(`users/${uid}`).get();
+    const userDocument = await firestore.doc(`IMRegister/${uid}`).get();
 
     return {
       uid,

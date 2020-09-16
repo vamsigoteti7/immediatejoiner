@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
-import { auth, signInWithGoogle } from '../firebase/index';
+import { auth } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';

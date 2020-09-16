@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { auth, generateUserDocument } from '../../firebase/index';
 import firebase from "firebase/app";
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js';
@@ -71,8 +69,6 @@ class MembershipCheckout extends React.Component {
     }
 
     render() {
-        const { stripe } = this.props;
-        const user = this.props.userid.user;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">

@@ -8,10 +8,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
 import { Link as RouterLink } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import hero_1 from '../images/hero_1.jpg';
 import axios from '../axios-immediatejoiner';
-import { auth, generateUserDocument } from '../firebase/index';
+import { auth } from '../firebase/index';
 
 const useStyles = theme => ({
     '@global': {
@@ -93,7 +93,6 @@ class MembershipPlans extends React.Component {
     }
 
     render() {
-        const user = this.props.userid.user;
         const tiers = [
             {
                 title: 'Pro',
@@ -117,24 +116,6 @@ class MembershipPlans extends React.Component {
             },
         ];
 
-
-        const options = {
-            style: {
-                base: {
-                    color: "#32325d",
-                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                    fontSmoothing: "antialiased",
-                    fontSize: "16px",
-                    "::placeholder": {
-                        color: "#aab7c4",
-                    },
-                },
-                invalid: {
-                    color: "#fa755a",
-                    iconColor: "#fa755a",
-                },
-            },
-        };
         const { classes } = this.props;
         return (
             <React.Fragment>

@@ -175,6 +175,10 @@ export class RecruiterDashboard extends Component {
                                             </li>
                                         )
                                     }
+                                    else
+                                    {
+                                        return(<div><h1>No Job Posts Yet</h1></div>)
+                                    }
                                 })}
                             </ul>
                             <div className="container">

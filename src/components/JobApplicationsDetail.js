@@ -85,6 +85,9 @@ export class JobApplicationsDetail extends Component {
                 case 'storage/unknown':
                     // Unknown error occurred, inspect the server response
                     break;
+
+                default:
+                    break;
             }
         });
     }
