@@ -3,7 +3,41 @@ import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
-import { auth, signInWithGoogle,generateUserDocument } from '../firebase/index';
+import { auth, signInWithGoogle, generateUserDocument } from '../firebase/index';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
 
 export class Immediatejoinersignup extends Component {
     constructor(props) {
@@ -13,7 +47,8 @@ export class Immediatejoinersignup extends Component {
             password: '',
             displayName: '',
             IsRecruiter: true,
-            error: ''
+            error: '',
+            value: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -48,6 +83,25 @@ export class Immediatejoinersignup extends Component {
         this.setState({ email: '' });
         this.setState({ password: '' });
         this.setState({ displayName: '' });
+    };
+
+    a11yProps(index) {
+        return {
+            id: `full-width-tab-${index}`,
+            'aria-controls': `full-width-tabpanel-${index}`,
+        };
+    }
+
+
+    handleChange = (event, newValue) => {
+        // setValue(newValue);
+        if (newValue !== undefined)
+            this.setState({ value: newValue });
+    };
+
+    handleChangeIndex = (index) => {
+        this.setState({ value: index });
+        // setValue(index);
     };
 
     render() {
@@ -96,64 +150,140 @@ export class Immediatejoinersignup extends Component {
                 </section>
                 <section className="site-section">
                     <div className="container">
+                        <AppBar position="static" color="default">
+                            <Tabs
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                                TabIndicatorProps={{ style: { background: '#89ba16' } }}
+                                indicatorColor="#89ba16"
+                                textColor="#89ba16"
+                                variant="fullWidth"
+                                aria-label="full width tabs example"
+                            >
+                                <Tab label="Candiate Login" {...this.a11yProps(0)} />
+                                <Tab label="Employer Login" {...this.a11yProps(1)} />
+                            </Tabs>
+                        </AppBar>
+                        <SwipeableViews
+                            axis={this.props.theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                            index={this.state.value}
+                            onChangeIndex={this.handleChangeIndex}
+                        >
+                            <TabPanel value={this.state.value} index={0} dir={this.props.theme.direction}>
 
-                        <div className="row mb-5 justify-content-center">
-                            <div className="col-lg-6 text-center">
-                                <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
-                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
-                                <form action="#" className="p-4 border rounded">
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="femailregister">Email</label>
-                                            <input autoComplete="on" type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fpasswordregister">Password</label>
-                                            <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                            <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
-                                        </div>
-                                    </div>
-                                    <div className="row form-group mb-4">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
-                                            <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} onChange={this.handleChecked} placeholder="Is Recruiter" />
-                                        </div>
-                                    </div>
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="femailregister">Email</label>
+                                                    <input autoComplete="on" type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fpasswordregister">Password</label>
+                                                    <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
+                                                    <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
+                                                    <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} onChange={this.handleChecked} placeholder="Is Recruiter" />
+                                                </div>
+                                            </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
-                                        </div>
-                                    </div>
-                                </form>
-                                <p className="text-center my-3">or</p>
-                                <button
-                                    onClick={() => {
-                                        try {
-                                            signInWithGoogle();
-                                        } catch (error) {
-                                            console.error("Error signing in with Google", error);
-                                        }
-                                    }}
-                                    className="btn px-4 btn-primary text-white"
-                                >
-                                    Sign In with Google
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <input value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <p className="text-center my-3">or</p>
+                                        <button
+                                            onClick={() => {
+                                                try {
+                                                    signInWithGoogle();
+                                                } catch (error) {
+                                                    console.error("Error signing in with Google", error);
+                                                }
+                                            }}
+                                            className="btn px-4 btn-primary text-white"
+                                        >
+                                            Sign In with Google
         </button>
-                                <p className="text-center my-3">
-                                    Already have an account?{" "}
-                                    <Link to="/Login" className="text-blue-500 hover:text-blue-600">
-                                        Sign in here
+                                        <p className="text-center my-3">
+                                            Already have an account?{" "}
+                                            <Link to="/Login" className="text-blue-500 hover:text-blue-600">
+                                                Sign in here
           </Link>{" "}
-                                </p>
-                            </div>
-                        </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value={this.state.value} index={0} dir={this.props.theme.direction}>
+
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="femailregister">Email</label>
+                                                    <input autoComplete="on" type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email address" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fpasswordregister">Password</label>
+                                                    <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                                                </div>
+                                            </div>
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
+                                                    <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
+                                                </div>
+                                            </div>
+
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <button value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <p className="text-center my-3">or</p>
+                                        <button
+                                            onClick={() => {
+                                                try {
+                                                    signInWithGoogle();
+                                                } catch (error) {
+                                                    console.error("Error signing in with Google", error);
+                                                }
+                                            }}
+                                            className="btn px-4 btn-primary text-white"
+                                        >
+                                            Sign In with Google
+</button>
+                                        <p className="text-center my-3">
+                                            Already have an account?{" "}
+                                            <Link to="/Login" className="text-blue-500 hover:text-blue-600">
+                                                Sign in here
+</Link>{" "}
+                                        </p>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        </SwipeableViews>
                     </div>
                 </section>
                 <footer className="site-footer">
@@ -215,4 +345,4 @@ export class Immediatejoinersignup extends Component {
     }
 }
 
-export default Immediatejoinersignup
+export default withTheme(Immediatejoinersignup)

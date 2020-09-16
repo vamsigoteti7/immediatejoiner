@@ -4,14 +4,49 @@ import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
 import { auth, signInWithGoogle } from '../firebase/index';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import PropTypes from 'prop-types';
+
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
 
 export class ImmediateJoinerPasswordReset extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            emailSent : false,
-            error: ''
+            emailSent: false,
+            error: '',
+            value: 0
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -25,13 +60,33 @@ export class ImmediateJoinerPasswordReset extends Component {
         auth
             .sendPasswordResetEmail(this.state.email)
             .then(() => {
-                this.setState({emailSent : true});
-                setTimeout(() => { this.setState({emailSent : false}); }, 3000);
+                this.setState({ emailSent: true });
+                setTimeout(() => { this.setState({ emailSent: false }); }, 3000);
             })
             .catch(() => {
-                this.setState({error : 'Error resetting password'});
+                this.setState({ error: 'Error resetting password' });
             });
     };
+
+    a11yProps(index) {
+        return {
+            id: `full-width-tab-${index}`,
+            'aria-controls': `full-width-tabpanel-${index}`,
+        };
+    }
+
+
+    handleChange = (event, newValue) => {
+        // setValue(newValue);
+        if (newValue !== undefined)
+            this.setState({ value: newValue });
+    };
+
+    handleChangeIndex = (index) => {
+        this.setState({ value: index });
+        // setValue(index);
+    };
+
 
     render() {
         return (
@@ -79,39 +134,94 @@ export class ImmediateJoinerPasswordReset extends Component {
                 </section>
                 <section className="site-section">
                     <div className="container">
+                        <AppBar position="static" color="default">
+                            <Tabs
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                                TabIndicatorProps={{ style: { background: '#89ba16' } }}
+                                indicatorColor="#89ba16"
+                                textColor="#89ba16"
+                                variant="fullWidth"
+                                aria-label="full width tabs example"
+                            >
+                                <Tab label="Candiate Login" {...this.a11yProps(0)} />
+                                <Tab label="Employer Login" {...this.a11yProps(1)} />
+                            </Tabs>
+                        </AppBar>
+                        <SwipeableViews
+                            axis={this.props.theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                            index={this.state.value}
+                            onChangeIndex={this.handleChangeIndex}
+                        >
+                            <TabPanel value={this.state.value} index={0} dir={this.props.theme.direction}>
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        <h2 className="section-title mb-2">Reset your Password</h2>
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
 
-                        <div className="row mb-5 justify-content-center">
-                            <div className="col-lg-6 text-center">
-                                <h2 className="section-title mb-2">Reset your Password</h2>
-                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
-                                <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label htmlFor="loginemail">Email</label>
+                                                    <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                                </div>
+                                            </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12 mb-3 mb-md-0">
-                                            <label htmlFor="loginemail">Email</label>
-                                            <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
-                                        </div>
-                                    </div>
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <button value="Send Me A Reset Link"
+                                                        onChange={this.handleChange}
+                                                        name="IsLogIn"
+                                                        onClick={this.handleLogin}
+                                                        className="btn px-4 btn-primary text-white" />
+                                                </div>
+                                            </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input value="Send Me A Reset Link"
-                                                onChange={this.handleChange}
-                                                name="IsLogIn"
-                                                onClick={this.handleLogin}
-                                                className="btn px-4 btn-primary text-white" />
-                                        </div>
-                                    </div>
-
-                                </form>
-                                <Link
-                                    to="/Login"
-                                    className="my-2 text-blue-700 hover:text-blue-800 text-center block"
-                                >
-                                    &larr; back to sign in page
+                                        </form>
+                                        <Link
+                                            to="/Login"
+                                            className="my-2 text-blue-700 hover:text-blue-800 text-center block"
+                                        >
+                                            &larr; back to sign in page
         </Link>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                            <TabPanel value={this.state.value} index={1} dir={this.props.theme.direction}>
+                                <div className="row mb-5 justify-content-center">
+                                    <div className="col-lg-6 text-center">
+                                        <h2 className="section-title mb-2">Reset your Password</h2>
+                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        <form action="#" className="p-4 border rounded">
+
+                                            <div className="row form-group">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label htmlFor="loginemail">Email</label>
+                                                    <input autoComplete="on" value={this.state.loginemail} type="text" name="loginemail" onChange={this.handleChange} className="form-control" placeholder="Email address" />
+                                                </div>
+                                            </div>
+
+                                            <div className="row form-group">
+                                                <div className="col-md-12">
+                                                    <button value="Send Me A Reset Link"
+                                                        onChange={this.handleChange}
+                                                        name="IsLogIn"
+                                                        onClick={this.handleLogin}
+                                                        className="btn px-4 btn-primary text-white" />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <Link
+                                            to="/Login"
+                                            className="my-2 text-blue-700 hover:text-blue-800 text-center block"
+                                        >
+                                            &larr; back to sign in page
+        </Link>
+                                    </div>
+                                </div>
+                            </TabPanel>
+                        </SwipeableViews>
                     </div>
                 </section>
                 <footer className="site-footer">
@@ -173,4 +283,4 @@ export class ImmediateJoinerPasswordReset extends Component {
     }
 }
 
-export default ImmediateJoinerPasswordReset
+export default withTheme(ImmediateJoinerPasswordReset)
