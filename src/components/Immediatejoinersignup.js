@@ -184,7 +184,7 @@ export class Immediatejoinersignup extends Component {
                                             <div className="row form-group">
                                                 <div className="col-md-12">
                                                     <button value="Sign Up" name="IsSignUp" onClick={event => {
-                                                        createUserWithEmailAndPasswordHandler(event);
+                                                        this.createUserWithEmailAndPasswordHandler(event);
                                                     }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                                 </div>
                                             </div>
@@ -242,7 +242,7 @@ export class Immediatejoinersignup extends Component {
                                             <div className="row form-group">
                                                 <div className="col-md-12">
                                                     <button value="Sign Up" name="IsSignUp" onClick={event => {
-                                                        createUserWithEmailAndPasswordHandler(event);
+                                                        this.createUserWithEmailAndPasswordHandler(event);
                                                     }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                                 </div>
                                             </div>

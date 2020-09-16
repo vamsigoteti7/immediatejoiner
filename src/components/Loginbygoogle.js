@@ -176,7 +176,7 @@ export class Logintbygoogle extends Component {
                                                 <div className="col-md-12">
                                                     <button value="Log In"
                                                         name="IsLogIn"
-                                                        onClick = {(event) => {signInWithEmailAndPasswordHandler(event)}}
+                                                        onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>
@@ -228,7 +228,7 @@ export class Logintbygoogle extends Component {
                                                 <div className="col-md-12">
                                                     <button value="Log In"
                                                         name="IsLogIn"
-                                                        onClick = {(event) => {signInWithEmailAndPasswordHandler(event)}}
+                                                        onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>
