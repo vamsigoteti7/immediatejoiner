@@ -50,6 +50,7 @@ export class Immediatejoinersignup extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
+        this.handletabChange = this.handletabChange.bind(this);
     }
 
     handleChange(event) {
@@ -68,7 +69,7 @@ export class Immediatejoinersignup extends Component {
             generateUserDocument(user, { displayName });
         }
         catch (error) {
-            this.setState({ error: "Error signing in with password and email!" });
+            this.setState({ error: error.message });
         }
     };
 
@@ -79,7 +80,7 @@ export class Immediatejoinersignup extends Component {
         };
     }
 
-    handleChange = (event, newValue) => {
+    handletabChange = (event, newValue) => {
         if (newValue !== undefined) {
             localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
@@ -139,7 +140,7 @@ export class Immediatejoinersignup extends Component {
                         <AppBar position="static" color="default">
                             <Tabs
                                 value={this.state.value}
-                                onChange={this.handleChange}
+                                onChange={this.handletabChange}
                                 TabIndicatorProps={{ style: { background: '#89ba16' } }}
                                 indicatorColor="#89ba16"
                                 textColor="#89ba16"
@@ -183,9 +184,9 @@ export class Immediatejoinersignup extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Sign Up" name="IsSignUp" onClick={event => {
+                                                    <button name="IsSignUp" onClick={event => {
                                                         this.createUserWithEmailAndPasswordHandler(event);
-                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" >Sign Up</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -243,7 +244,7 @@ export class Immediatejoinersignup extends Component {
                                                 <div className="col-md-12">
                                                     <button value="Sign Up" name="IsSignUp" onClick={event => {
                                                         this.createUserWithEmailAndPasswordHandler(event);
-                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" >Sign Up</button>
                                                 </div>
                                             </div>
                                         </form>

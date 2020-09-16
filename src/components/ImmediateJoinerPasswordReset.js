@@ -48,6 +48,7 @@ export class ImmediateJoinerPasswordReset extends Component {
             value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handletabChange = this.handletabChange.bind(this);
     }
 
     handleChange(event) {
@@ -75,7 +76,7 @@ export class ImmediateJoinerPasswordReset extends Component {
     }
 
 
-    handleChange = (event, newValue) => {
+    handletabChange = (event, newValue) => {
         // setValue(newValue);
         if (newValue !== undefined)
         {
@@ -139,7 +140,7 @@ export class ImmediateJoinerPasswordReset extends Component {
                         <AppBar position="static" color="default">
                             <Tabs
                                 value={this.state.value}
-                                onChange={this.handleChange}
+                                onChange={this.handletabChange}
                                 TabIndicatorProps={{ style: { background: '#89ba16' } }}
                                 indicatorColor="#89ba16"
                                 textColor="#89ba16"

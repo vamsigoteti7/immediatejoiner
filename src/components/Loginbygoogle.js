@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from '../axios-immediatejoiner';
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
@@ -50,9 +49,10 @@ export class Logintbygoogle extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
+        this.handletabChange = this.handletabChange.bind(this);
     }
 
-    handleChange = (event, newValue) => {
+    handletabChange = (event, newValue) => {
         if (newValue !== undefined)
         {
             localStorage.setItem('tabindex', newValue);
@@ -76,7 +76,7 @@ export class Logintbygoogle extends Component {
     signInWithEmailAndPasswordHandler = (event) => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(this.state.loginemail, this.state.loginpassword).catch(error => {
-            this.setState({ error: "Error signing in with password and email!" });
+            this.setState({ error: error.message });
         });
     };
 
@@ -136,7 +136,7 @@ export class Logintbygoogle extends Component {
                         <AppBar position="static" color="default">
                             <Tabs
                                 value={this.state.value}
-                                onChange={this.handleChange}
+                                onChange={this.handletabChange}
                                 TabIndicatorProps={{style: {background:'#89ba16'}}}
                                 indicatorColor="#89ba16"
                                 textColor="#89ba16"
@@ -174,10 +174,11 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Log In"
+                                                    <button 
                                                         name="IsLogIn"
                                                         onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
-                                                        className="btn px-4 btn-primary text-white" />
+                                                        className="btn px-4 btn-primary text-white" >Log In
+                                                            </button>
                                                 </div>
                                             </div>
 
@@ -226,10 +227,11 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Log In"
+                                                    <button 
                                                         name="IsLogIn"
                                                         onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
-                                                        className="btn px-4 btn-primary text-white" />
+                                                        className="btn px-4 btn-primary text-white" >Log In
+                                                            </button>
                                                 </div>
                                             </div>
 
