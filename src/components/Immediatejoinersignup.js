@@ -45,7 +45,6 @@ export class Immediatejoinersignup extends Component {
             email: '',
             password: '',
             displayName: '',
-            IsRecruiter: true,
             error: '',
             value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
@@ -61,27 +60,16 @@ export class Immediatejoinersignup extends Component {
         this.setState({ [event.target.name]: event.target.checked });
     }
 
-    signInWithEmailAndPasswordHandler = (event, email, password) => {
-        event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
-            this.setState({ error: "Error signing in with password and email!" });
-        });
-    };
-
-    createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+    createUserWithEmailAndPasswordHandler = async (event) => {
         event.preventDefault();
         try {
-            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+            const { user } = await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
             const displayName = this.state.displayName;
             generateUserDocument(user, { displayName });
         }
         catch (error) {
             this.setState({ error: "Error signing in with password and email!" });
         }
-
-        this.setState({ email: '' });
-        this.setState({ password: '' });
-        this.setState({ displayName: '' });
     };
 
     a11yProps(index) {
@@ -91,9 +79,7 @@ export class Immediatejoinersignup extends Component {
         };
     }
 
-
     handleChange = (event, newValue) => {
-        // setValue(newValue);
         if (newValue !== undefined) {
             localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
@@ -102,7 +88,6 @@ export class Immediatejoinersignup extends Component {
 
     handleChangeIndex = (index) => {
         this.setState({ value: index });
-        // setValue(index);
     };
 
     render() {
@@ -198,7 +183,9 @@ export class Immediatejoinersignup extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                    <button value="Sign Up" name="IsSignUp" onClick={event => {
+                                                        createUserWithEmailAndPasswordHandler(event);
+                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                                 </div>
                                             </div>
                                         </form>
@@ -254,7 +241,9 @@ export class Immediatejoinersignup extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                    <button value="Sign Up" name="IsSignUp" onClick={event => {
+                                                        createUserWithEmailAndPasswordHandler(event);
+                                                    }} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                                 </div>
                                             </div>
                                         </form>

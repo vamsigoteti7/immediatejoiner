@@ -174,7 +174,9 @@ export class ImmediateJoinerPasswordReset extends Component {
                                                     <button value="Send Me A Reset Link"
                                                         onChange={this.handleChange}
                                                         name="IsLogIn"
-                                                        onClick={this.handleLogin}
+                                                        onClick={event => {
+                                                            this.sendResetEmail(event);
+                                                          }}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>
@@ -208,7 +210,9 @@ export class ImmediateJoinerPasswordReset extends Component {
                                                     <button value="Send Me A Reset Link"
                                                         onChange={this.handleChange}
                                                         name="IsLogIn"
-                                                        onClick={this.handleLogin}
+                                                        onClick={event => {
+                                                            this.sendResetEmail(event);
+                                                          }}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>

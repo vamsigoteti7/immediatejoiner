@@ -45,24 +45,14 @@ export class Logintbygoogle extends Component {
         this.state = {
             loginemail: '',
             loginpassword: '',
-            email: '',
-            password: '',
-            reenterpassword: '',
-            IsRecruiter: true,
-            IsSignUp: '',
-            IsSignIn: '',
             error: '',
             value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
-
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleSignUp = this.handleSignUp.bind(this);
     }
 
     handleChange = (event, newValue) => {
-        // setValue(newValue);
         if (newValue !== undefined)
         {
             localStorage.setItem('tabindex', newValue);
@@ -73,65 +63,7 @@ export class Logintbygoogle extends Component {
 
     handleChangeIndex = (index) => {
         this.setState({ value: index });
-        // setValue(index);
     };
-
-    handleLogin = () => {
-        const userData = {
-            username: this.state.loginemail,
-            password: this.state.loginpassword
-        };
-        axios.post('/imjoiners', userData)
-            .then(response => {
-
-                if (response.data.length === 1) {
-                    localStorage.setItem('LoginData', response.data[0].username);
-                    if (response.data[0].usertype === "Recruiter") {
-                        //toast.success("Logged In Successfully");        
-                        this.props.history.push('/Membership');
-                    }
-                    else if (response.data[0].usertype === "Candiate") {
-                        this.props.history.push('/Membership');
-                    }
-
-                    // if (response.data[0].usertype === "Recruiter") {
-                    //     //toast.success("Logged In Successfully");        
-                    //     this.props.history.push('/RecruiterDashboard');
-                    // }
-                    // else if (response.data[0].usertype === "Candiate") {
-                    //     this.props.history.push('/Empdashboard');
-                    // }
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
-    handleSignUp = () => {
-        const registerData = {
-            firstname: "",
-            username: this.state.email,
-            usertype: this.state.IsRecruiter ? "Recruiter" : "Candiate",
-            password: this.state.password
-        };
-        axios.post('/impostRegisterus', registerData)
-            .then(response => {
-                if (response.data !== undefined) {
-                    if (response.data.usertype === "Recruiter") {
-                        //toast.success("Logged In Successfully");
-                        this.props.history.push('/Membership');
-                    }
-                    else if (response.data.usertype === "Candiate") {
-                        // toast.success("Logged In Successfully");
-                        this.props.history.push('/Membership');
-                    }
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -141,9 +73,9 @@ export class Logintbygoogle extends Component {
         this.setState({ [event.target.name]: event.target.checked });
     }
 
-    signInWithEmailAndPasswordHandler = (event, email, password) => {
+    signInWithEmailAndPasswordHandler = (event) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
+        auth.signInWithEmailAndPassword(this.state.loginemail, this.state.loginpassword).catch(error => {
             this.setState({ error: "Error signing in with password and email!" });
         });
     };
@@ -242,10 +174,9 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input value="Log In"
-                                                        onChange={this.handleChange}
+                                                    <button value="Log In"
                                                         name="IsLogIn"
-                                                        onClick={this.handleLogin}
+                                                        onClick = {(event) => {signInWithEmailAndPasswordHandler(event)}}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>
@@ -295,10 +226,9 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input value="Log In"
-                                                        onChange={this.handleChange}
+                                                    <button value="Log In"
                                                         name="IsLogIn"
-                                                        onClick={this.handleLogin}
+                                                        onClick = {(event) => {signInWithEmailAndPasswordHandler(event)}}
                                                         className="btn px-4 btn-primary text-white" />
                                                 </div>
                                             </div>
