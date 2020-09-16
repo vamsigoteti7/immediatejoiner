@@ -46,7 +46,7 @@ export class ImmediateJoinerPasswordReset extends Component {
             email: '',
             emailSent: false,
             error: '',
-            value: 0
+            value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -79,7 +79,10 @@ export class ImmediateJoinerPasswordReset extends Component {
     handleChange = (event, newValue) => {
         // setValue(newValue);
         if (newValue !== undefined)
+        {
+            localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
+        }
     };
 
     handleChangeIndex = (index) => {

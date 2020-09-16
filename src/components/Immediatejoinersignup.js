@@ -48,7 +48,7 @@ export class Immediatejoinersignup extends Component {
             displayName: '',
             IsRecruiter: true,
             error: '',
-            value: 0
+            value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -95,8 +95,10 @@ export class Immediatejoinersignup extends Component {
 
     handleChange = (event, newValue) => {
         // setValue(newValue);
-        if (newValue !== undefined)
+        if (newValue !== undefined) {
+            localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
+        }
     };
 
     handleChangeIndex = (index) => {
@@ -176,6 +178,12 @@ export class Immediatejoinersignup extends Component {
                                         <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
                                         {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
                                         <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="displayname">Display Name</label>
+                                                    <input autoComplete="on" type="text" className="form-control" name="displayName" value={this.state.displayName} onChange={this.handleChange} placeholder="Display Name" />
+                                                </div>
+                                            </div>
                                             <div className="row form-group">
                                                 <div className="col-md-12 mb-3 mb-md-0">
                                                     <label className="text-black" htmlFor="femailregister">Email</label>
@@ -188,22 +196,10 @@ export class Immediatejoinersignup extends Component {
                                                     <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                                                 </div>
                                             </div>
-                                            <div className="row form-group mb-4">
-                                                <div className="col-md-12 mb-3 mb-md-0">
-                                                    <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                                    <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
-                                                </div>
-                                            </div>
-                                            <div className="row form-group mb-4">
-                                                <div className="col-md-12 mb-3 mb-md-0">
-                                                    <label className="text-black" htmlFor="IsRecruiter">IsRecruiter</label>
-                                                    <input type="checkbox" name="IsRecruiter" checked={this.state.IsRecruiter} onChange={this.handleChecked} placeholder="Is Recruiter" />
-                                                </div>
-                                            </div>
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <input value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
+                                                    <button value="Sign Up" name="IsSignUp" onClick={this.handleSignUp} onChange={this.handleChange} className="btn px-4 btn-primary text-white" placeholder="Is Signup" />
                                                 </div>
                                             </div>
                                         </form>
@@ -229,13 +225,20 @@ export class Immediatejoinersignup extends Component {
                                     </div>
                                 </div>
                             </TabPanel>
-                            <TabPanel value={this.state.value} index={0} dir={this.props.theme.direction}>
+                            <TabPanel value={this.state.value} index={1} dir={this.props.theme.direction}>
 
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
                                         {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
                                         <form action="#" className="p-4 border rounded">
+                                            <div className="row form-group mb-4">
+                                                <div className="col-md-12 mb-3 mb-md-0">
+                                                    <label className="text-black" htmlFor="displayname">Display Name</label>
+                                                    <input autoComplete="on" type="text" className="form-control" name="displayName" value={this.state.displayName} onChange={this.handleChange} placeholder="Display Name" />
+                                                </div>
+                                            </div>
+
                                             <div className="row form-group">
                                                 <div className="col-md-12 mb-3 mb-md-0">
                                                     <label className="text-black" htmlFor="femailregister">Email</label>
@@ -248,12 +251,7 @@ export class Immediatejoinersignup extends Component {
                                                     <input autoComplete="on" type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
                                                 </div>
                                             </div>
-                                            <div className="row form-group mb-4">
-                                                <div className="col-md-12 mb-3 mb-md-0">
-                                                    <label className="text-black" htmlFor="fretypepassword">Re-Type Password</label>
-                                                    <input autoComplete="on" type="password" className="form-control" name="reenterpassword" value={this.state.reenterpassword} onChange={this.handleChange} placeholder="Re-type Password" />
-                                                </div>
-                                            </div>
+
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">

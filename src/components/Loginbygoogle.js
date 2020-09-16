@@ -52,7 +52,7 @@ export class Logintbygoogle extends Component {
             IsSignUp: '',
             IsSignIn: '',
             error: '',
-            value: 0
+            value: localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
@@ -64,7 +64,11 @@ export class Logintbygoogle extends Component {
     handleChange = (event, newValue) => {
         // setValue(newValue);
         if (newValue !== undefined)
+        {
+            localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
+        }
+            
     };
 
     handleChangeIndex = (index) => {
