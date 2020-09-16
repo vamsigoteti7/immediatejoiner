@@ -224,16 +224,9 @@ exports.app = functions.https.onRequest(app);
 exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   const customer = await stripe.customers.create({ email: user.email });
   
-  const paymentIntent = await stripe.paymentIntents.create(
-    {
-      amount : 10000,
-      currency : 'INR',
-      description: 'Software development services',
-    }
-  );
-  await admin.firestore().collection('stripe_customers').doc(user.uid).set({
+  await admin.firestore().collection('stripe_customers').doc(user.uid).collection('stripe_transactions').doc(customer.id).set({
     customer_id: customer.id,
-    payment:paymentIntent
+    createdDate : admin.firestore.Timestamp.fromDate(new Date())
   });
   return;
 });
@@ -243,7 +236,7 @@ exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
  * this function is triggered to retrieve the payment method details.
  */
 exports.addPaymentMethodDetails = functions.firestore
-  .document('/stripe_customers/{userId}/payment_amount/{pushId}')
+  .document('/stripe_customers/{userId}/stripe_transactions/{customerid}/payment_amount/{pushId}')
   .onCreate(async (snap, context) => {
     try {
       const amount = snap.data().amount;
@@ -258,7 +251,7 @@ exports.addPaymentMethodDetails = functions.firestore
         }
       );
       await admin.firestore().collection('stripe_customers')
-      .doc(user.uid).collection('payment_amount').set({
+      .doc(user.uid).collection('stripe_transactions').doc(customer.id).collection('payment_amount').set({
         payment:paymentIntent
       });
       return;

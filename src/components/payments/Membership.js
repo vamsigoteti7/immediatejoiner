@@ -12,7 +12,8 @@ class MembershipCheckout extends React.Component {
         this.state = {
             cardholdername: '',
             error: '',
-            status: ''
+            status: '',
+            plan:this.props.plan
         };
         
         this.paymentamount();
@@ -24,6 +25,8 @@ class MembershipCheckout extends React.Component {
             .firestore()
             .collection('stripe_customers')
             .doc(this.props.userid.user.uid)
+            .collection('stripe_customers')
+            .doc()
             .collection('payment_amount')
             .add({
                 amount: 10000,
