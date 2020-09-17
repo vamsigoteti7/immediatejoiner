@@ -53,12 +53,11 @@ export class Logintbygoogle extends Component {
     }
 
     handletabChange = (event, newValue) => {
-        if (newValue !== undefined)
-        {
+        if (newValue !== undefined) {
             localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
         }
-            
+
     };
 
     handleChangeIndex = (index) => {
@@ -137,7 +136,7 @@ export class Logintbygoogle extends Component {
                             <Tabs
                                 value={this.state.value}
                                 onChange={this.handletabChange}
-                                TabIndicatorProps={{style: {background:'#89ba16'}}}
+                                TabIndicatorProps={{ style: { background: '#89ba16' } }}
                                 indicatorColor="#89ba16"
                                 textColor="#89ba16"
                                 variant="fullWidth"
@@ -156,7 +155,18 @@ export class Logintbygoogle extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         {/* <h2 className="section-title mb-2">Log In To Immediate Joiner</h2> */}
-                                        {this.state.error !== '' && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        {
+                                            function(){
+                                                if(this.state.error !== "")
+                                                {
+                                                    return(<div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>)
+                                                }
+                                                else
+                                                {
+                                                    return(<div></div>);
+                                                }
+                                            }
+                                        }
                                         <form action="#" className="p-4 border rounded">
                                             <div className="row form-group">
                                                 <div className="col-md-12 mb-3 mb-md-0">
@@ -173,9 +183,9 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button 
+                                                    <button
                                                         name="IsLogIn"
-                                                        onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
+                                                        onClick={(event) => { this.signInWithEmailAndPasswordHandler(event) }}
                                                         className="btn px-4 btn-primary text-white" >Log In
                                                             </button>
                                                 </div>
@@ -208,7 +218,18 @@ export class Logintbygoogle extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         {/* <h2 className="section-title mb-2">Log In To Immediate Joiner</h2> */}
-                                        {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                        {
+                                            function(){
+                                                if(this.state.error !== "")
+                                                {
+                                                    return(<div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>)
+                                                }
+                                                else
+                                                {
+                                                    return(<div></div>);
+                                                }
+                                            }
+                                        }
                                         <form action="#" className="p-4 border rounded">
 
                                             <div className="row form-group">
@@ -226,9 +247,9 @@ export class Logintbygoogle extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button 
+                                                    <button
                                                         name="IsLogIn"
-                                                        onClick = {(event) => {this.signInWithEmailAndPasswordHandler(event)}}
+                                                        onClick={(event) => { this.signInWithEmailAndPasswordHandler(event) }}
                                                         className="btn px-4 btn-primary text-white" >Log In
                                                             </button>
                                                 </div>

@@ -139,7 +139,7 @@ class MembershipCheckout extends React.Component {
                                         <div className="col-md-12">
                                             <button
                                                 name="pay"
-                                                onClick={(event) => { this.newpayment }}
+                                                onClick={this.newpayment }
                                                 className="btn px-4 btn-primary text-white" >Pay
                                                             </button>
                                         </div>
