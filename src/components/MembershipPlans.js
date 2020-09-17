@@ -85,10 +85,7 @@ class MembershipPlans extends React.Component {
         };
         axios.post('/getmembershipplans', userData)
             .then(response => {
-
-                if (response.data.length === 1) {
-                    this.setState({ tiers: response.data });
-                }
+                this.setState({ tiers: response.data });
             })
             .catch(error => {
                 console.log(error);
@@ -195,7 +192,7 @@ class MembershipPlans extends React.Component {
                                                 <CardContent>
                                                     <div className={classes.cardPricing}>
                                                         <Typography component="h2" variant="h3" color="textPrimary">
-                                                            Rs{tier.price}
+                                                            Rs{(tier.price/100).toFixed(2)}
                                                         </Typography>
                                                     </div>
                                                     <ul>
