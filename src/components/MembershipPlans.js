@@ -81,7 +81,7 @@ class MembershipPlans extends React.Component {
 
     getMembershipPlans = () => {
         const userData = {
-            membershiptype: this.state.membershiptype
+            membertype: this.state.membershiptype
         };
         axios.post('/getmembershipplans', userData)
             .then(response => {
