@@ -161,18 +161,8 @@ export class Immediatejoinersignup extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
-                                        {
-                                            function(){
-                                                if(this.state.error !== "")
-                                                {
-                                                    return(<div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>)
-                                                }
-                                                else
-                                                {
-                                                    return(<div></div>);
-                                                }
-                                            }
-                                        }
+                                        {this.state.error &&
+                                            <div className="py-4 bg-red-600 w-full text-white text-center mb-3"> {this.state.error} </div>}
                                         <form action="#" className="p-4 border rounded">
                                             <div className="row form-group mb-4">
                                                 <div className="col-md-12 mb-3 mb-md-0">
@@ -228,18 +218,8 @@ export class Immediatejoinersignup extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         <h2 className="section-title mb-2">Sign Up To Immediate Joiner</h2>
-                                        {
-                                            function(){
-                                                if(this.state.error !== "")
-                                                {
-                                                    return(<div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>)
-                                                }
-                                                else
-                                                {
-                                                    return(<div></div>);
-                                                }
-                                            }
-                                        }
+                                        {this.state.error &&
+                                            <div className="py-4 bg-red-600 w-full text-white text-center mb-3"> {this.state.error} </div>}
                                         <form action="#" className="p-4 border rounded">
                                             <div className="row form-group mb-4">
                                                 <div className="col-md-12 mb-3 mb-md-0">
