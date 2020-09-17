@@ -13,7 +13,10 @@ exports.getMembershipPlansByType = (request, response) => {
 					"price": doc.data().price,
 					"description": doc.data().description,
 					"buttonText": doc.data().buttonText,
-					"title": doc.data().title
+					"title": doc.data().title,
+					"currency": doc.data().currency,
+					"countryid": doc.data().countryid,
+					"paymentdescription": doc.data().paymentdescription
 				});
 			});
 			return response.json(plans);
