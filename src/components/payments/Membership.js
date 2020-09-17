@@ -13,9 +13,9 @@ class MembershipCheckout extends React.Component {
             cardholdername: '',
             error: '',
             status: '',
-            plan:this.props.plan
+            plan: this.props.plan
         };
-        
+
         this.paymentamount();
         this.handleChange = this.handleChange.bind(this);
     }
@@ -25,23 +25,29 @@ class MembershipCheckout extends React.Component {
             .firestore()
             .collection('stripe_customers')
             .doc(this.props.userid.user.uid)
-            .collection('stripe_customers')
-            .doc()
+            .collection('stripe_transactions')
+            .orderBy('createdDate', 'desc')
+            .limitToLast(1)
             .collection('payment_amount')
             .add({
-                amount: 10000,
-                currency: "INR",
+                amount: this.state.plan.price,
+                currency: this.state.plan.currency,
                 description: 'Software Services'
             });
     }
 
-    newcardform = async () => {
+    newpayment = async () => {
         const { stripe, elements } = this.props;
 
         const customer = await firebase
             .firestore()
             .collection('stripe_customers')
             .doc(this.props.userid.user.uid)
+            .collection('stripe_transactions')
+            .orderBy('createdDate', 'desc')
+            .limitToLast(1)
+            .collection('payment_amount')
+            .limitToLast(1)
             .get();
 
         const payment = customer.data().payment.client_secret;
@@ -120,14 +126,22 @@ class MembershipCheckout extends React.Component {
 
                         <div className="row mb-5 justify-content-center">
                             <div className="col-lg-6 text-center">
-                                <h2 className="section-title mb-2">Log In To Immediate Joiner</h2>
-                                {this.state.error !== null && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
+                                <h2 className="section-title mb-2">{this.state.plan.paymentdescription}</h2>
+                                {this.state.error !== '' && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
                                 <form action="#" className="p-4 border rounded">
-
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <input autoComplete="on" value={this.state.cardholdername} type="text" name="cardholdername" onChange={this.handleChange} className="form-control" placeholder="Enter The Name On The Card" required />
                                             <CardElement />
+                                        </div>
+                                    </div>
+                                    <div className="row form-group">
+                                        <div className="col-md-12">
+                                            <button
+                                                name="pay"
+                                                onClick={(event) => { this.newpayment }}
+                                                className="btn px-4 btn-primary text-white" >Pay
+                                                            </button>
                                         </div>
                                     </div>
                                 </form>
