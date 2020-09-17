@@ -9,7 +9,11 @@ exports.getMembershipPlansByType = (request, response) => {
 			let plans = [];
 			data.forEach((doc) => {
 				plans.push({
-					"data": doc.data()
+					"membertype": doc.data().MemberType,
+					"price": doc.data().price,
+					"description": doc.data().description,
+					"buttonText": doc.data().buttonText,
+					"title": doc.data().title
 				});
 			});
 			return response.json(plans);
