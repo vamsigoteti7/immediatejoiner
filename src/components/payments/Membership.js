@@ -21,18 +21,30 @@ class MembershipCheckout extends React.Component {
     }
 
     paymentamount = async () => {
+        var data = await firebase
+            .firestore()
+            .collection('stripe_customers')
+            .doc(this.props.userid.user.uid)
+            .collection('stripe_transactions')
+            .orderBy('createdDate', 'desc')
+            .limit(1)
+            .get();
+        const data1 = data.data();
+
+
         await firebase
             .firestore()
             .collection('stripe_customers')
             .doc(this.props.userid.user.uid)
             .collection('stripe_transactions')
             .orderBy('createdDate', 'desc')
-            .limitToLast(1)
+            .limit(1)
             .collection('payment_amount')
             .add({
                 amount: this.state.plan.price,
                 currency: this.state.plan.currency,
-                description: 'Software Services'
+                description: 'Software Services',
+                createdDate: firebase.firestore.Timestamp.fromDate(new Date())
             });
     }
 
@@ -45,9 +57,9 @@ class MembershipCheckout extends React.Component {
             .doc(this.props.userid.user.uid)
             .collection('stripe_transactions')
             .orderBy('createdDate', 'desc')
-            .limitToLast(1)
+            .limit(1)
             .collection('payment_amount')
-            .limitToLast(1)
+            .limit(1)
             .get();
 
         const payment = customer.data().payment.client_secret;
@@ -139,7 +151,7 @@ class MembershipCheckout extends React.Component {
                                         <div className="col-md-12">
                                             <button
                                                 name="pay"
-                                                onClick={this.newpayment }
+                                                onClick={this.newpayment}
                                                 className="btn px-4 btn-primary text-white" >Pay
                                                             </button>
                                         </div>

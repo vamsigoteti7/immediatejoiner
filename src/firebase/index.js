@@ -21,6 +21,7 @@ export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => {
+
   auth.signInWithPopup(provider);
 
 
@@ -51,7 +52,7 @@ export const generateUserDocument = async (user, additionalData) => {
   return getUserDocument(user.uid);
 };
 
-const getUserDocument = async uid => {
+export const getUserDocument = async uid => {
   if (!uid) return null;
   try {
     const userDocument = await firestore.doc(`IMRegister/${uid}`).get();

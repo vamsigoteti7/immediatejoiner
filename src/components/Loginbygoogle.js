@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
-import { auth, signInWithGoogle } from '../firebase/index';
+import { auth, generateUserDocument,getUserDocument, signInWithGoogle } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -72,11 +72,18 @@ export class Logintbygoogle extends Component {
         this.setState({ [event.target.name]: event.target.checked });
     }
 
-    signInWithEmailAndPasswordHandler = (event) => {
+    signInWithEmailAndPasswordHandler = async(event) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(this.state.loginemail, this.state.loginpassword).catch(error => {
+        const login = await auth.signInWithEmailAndPassword(this.state.loginemail, this.state.loginpassword).catch(error => {
             this.setState({ error: error.message });
         });
+        if(login !== undefined)
+        {
+            if(login.user !== undefined)
+            {
+                getUserDocument(login.user.uid)
+            }
+        }
     };
 
     a11yProps(index) {
