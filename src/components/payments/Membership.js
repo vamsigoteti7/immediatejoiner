@@ -13,25 +13,19 @@ class MembershipCheckout extends React.Component {
             cardholdername: '',
             error: '',
             status: '',
-            plan: this.props.plan
+            plan: this.props.plan,
+            stripetransactions: []
         };
 
-        this.paymentamount();
+
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidMount() {
+        this.paymentamount();
+    }
+
     paymentamount = async () => {
-        var data = await firebase
-            .firestore()
-            .collection('stripe_customers')
-            .doc(this.props.userid.user.uid)
-            .collection('stripe_transactions')
-            .orderBy('createdDate', 'desc')
-            .limit(1)
-            .get();
-        const data1 = data.data();
-
-
         await firebase
             .firestore()
             .collection('stripe_customers')
@@ -39,12 +33,33 @@ class MembershipCheckout extends React.Component {
             .collection('stripe_transactions')
             .orderBy('createdDate', 'desc')
             .limit(1)
-            .collection('payment_amount')
-            .add({
-                amount: this.state.plan.price,
-                currency: this.state.plan.currency,
-                description: 'Software Services',
-                createdDate: firebase.firestore.Timestamp.fromDate(new Date())
+            .get()
+            .then(response => {
+                const stripetrans = [];
+                response.forEach(document =>{
+
+                    firebase.firestore().collection('stripe_customers')
+                        .doc(this.props.userid.user.uid)
+                        .collection('stripe_transactions')
+                        .doc(document.id)
+                        .collection('payment_amount').add({
+                            amount: this.state.plan.price,
+                            currency: this.state.plan.currency,
+                            description: 'Software Services',
+                            createdDate: firebase.firestore.Timestamp.fromDate(new Date())
+                        });
+
+                    const stripetransact = {
+                        id: document.id,
+                        ...document.data()
+                    };
+                    stripetrans.push(stripetransact);
+                });
+                //this.setState({stripetransactions : stripetransactions});
+                //setMovies(fetchedMovies);
+            })
+            .catch(error => {
+                console.log(error);
             });
     }
 
