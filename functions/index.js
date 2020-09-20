@@ -128,6 +128,17 @@ const {
   getMembershipPlansByType
 } = require('./APIs/IMMembership')
 
+const {
+  getuserjobs
+} = require('./APIs/IMUserJobs')
+
+const {
+  getuserpaymentbyid
+} = require('./APIs/IMUserPayment')
+
+app.post('/getuserjobs', getuserjobs);
+app.post('/getuserpaymentbyid', getuserpaymentbyid);
+
 app.post('/getmembershipplans', getMembershipPlansByType);
 // app.get('/public-key', MembershipPublickey);
 // app.get('/product-details', MembershipProductDetails);
@@ -251,6 +262,26 @@ exports.addPaymentMethodDetails = functions.firestore
         }
       );
       await snap.ref.set({ payment: paymentIntent }, { merge: true });
+      return;
+    } catch (error) {
+      await snap.ref.set({ error: userFacingMessage(error) }, { merge: true });
+      await reportError(error, { user: context.params.userId });
+    }
+  });
+
+exports.addUserPayment = functions.firestore
+  .document('/IMUserPayment/{userId}')
+  .onCreate(async (snap, context) => {
+    try {
+      const userid = snap.data().userid;
+      const usertype = snap.data().usertype;
+      const amount = snap.data().payment.amount;
+
+
+      await admin.firestore().collection('IMUserJobs').doc(user.uid).add({
+        userid: userid,
+        jobcount : amount === 1000 ? 15 : 1
+      });
       return;
     } catch (error) {
       await snap.ref.set({ error: userFacingMessage(error) }, { merge: true });

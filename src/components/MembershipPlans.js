@@ -76,12 +76,25 @@ class MembershipPlans extends React.Component {
     }
 
     componentDidMount() {
-        this.getMembershipPlans();
+        this.getpaymentdetails();
+    }
+
+    getpaymentdetails = () => {
+        const userData = {
+            membertype: this.state.membershiptype
+        };
+        axios.post('/getuserpaymentbyid', userData)
+            .then(response => {
+                const data1 = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     getMembershipPlans = () => {
         const userData = {
-            membertype: this.state.membershiptype
+            userid: this.props.userid.user.uid
         };
         axios.post('/getmembershipplans', userData)
             .then(response => {
@@ -93,29 +106,6 @@ class MembershipPlans extends React.Component {
     }
 
     render() {
-        // const tiers = [
-        //     {
-        //         title: 'Pro',
-        //         price: '100',
-        //         description: [
-        //             'Post One Job For 100 Rs',
-        //             'Have 30 days Access For One Posted Job'
-        //         ],
-        //         buttonText: 'Select 100 Rs Plan',
-        //         buttonVariant: 'contained',
-        //     },
-        //     {
-        //         title: 'Enterprise',
-        //         price: '1000',
-        //         description: [
-        //             'Post 15 Jobs For 1000 Rs',
-        //             'Have 30 days Access For One Posted Job'
-        //         ],
-        //         buttonText: 'Select 1000 Rs Plan',
-        //         buttonVariant: 'contained',
-        //     },
-        // ];
-
         const { classes } = this.props;
         return (
             <React.Fragment>
