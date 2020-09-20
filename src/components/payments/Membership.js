@@ -11,12 +11,13 @@ class MembershipCheckout extends React.Component {
         super(props);
         this.state = {
             cardholdername: '',
-            error: '',
+            error: [],
             status: '',
             plan: this.props.plan,
-            stripetransactions: []
+            stripetransactions: [],
+            documentId: '',
+            payment: []
         };
-
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -36,8 +37,9 @@ class MembershipCheckout extends React.Component {
             .get()
             .then(response => {
                 const stripetrans = [];
-                response.forEach(document =>{
-
+                response.forEach(document => {
+                    this.setState({ documentId: document.id });
+                    this.startDataListeners();
                     firebase.firestore().collection('stripe_customers')
                         .doc(this.props.userid.user.uid)
                         .collection('stripe_transactions')
@@ -48,55 +50,56 @@ class MembershipCheckout extends React.Component {
                             description: 'Software Services',
                             createdDate: firebase.firestore.Timestamp.fromDate(new Date())
                         });
-
-                    const stripetransact = {
-                        id: document.id,
-                        ...document.data()
-                    };
-                    stripetrans.push(stripetransact);
                 });
-                //this.setState({stripetransactions : stripetransactions});
-                //setMovies(fetchedMovies);
             })
             .catch(error => {
                 console.log(error);
             });
     }
 
-    newpayment = async () => {
-        const { stripe, elements } = this.props;
-
-        const customer = await firebase
-            .firestore()
-            .collection('stripe_customers')
+    startDataListeners() {
+        firebase.firestore().collection('stripe_customers')
             .doc(this.props.userid.user.uid)
             .collection('stripe_transactions')
+            .doc(this.state.documentId)
+            .collection('payment_amount')
             .orderBy('createdDate', 'desc')
             .limit(1)
-            .collection('payment_amount')
-            .limit(1)
-            .get();
-
-        const payment = customer.data().payment.client_secret;
-
-        try {
-            const payload = await stripe.confirmCardPayment(payment, {
-                payment_method: {
-                    card: elements.getElement(CardElement),
-                    billing_details: {
-                        name: this.state.cardholdername,
-                    },
-                },
+            .onSnapshot((snapshot) => {
+                snapshot.forEach((doc) => {
+                    if (doc.data().payment !== undefined) {
+                        this.setState({ payment: doc.data().payment });
+                    }
+                });
             });
+    }
 
-            if (payload.error) {
-                this.setState({ error: payload.error });
-                console.log("[error]", payload.error);
-            } else {
-                console.log("[PaymentIntent]", payload.paymentIntent);
+
+    newpayment = async (ev) => {
+        ev.preventDefault();
+        const { stripe, elements } = this.props;
+        if (this.state.payment !== []) {
+            try {
+                const payment = this.state.payment.client_secret;
+                var card = elements.getElement(CardElement);
+                const payload = await stripe.confirmCardPayment(payment, {
+                    payment_method: {
+                        card: elements.getElement(CardElement),
+                        billing_details: {
+                            name: this.state.cardholdername,
+                        },
+                    },
+                });
+
+                if (payload.error) {
+                    this.setState({ error: payload.error });
+                    console.log("[error]", payload.error);
+                } else {
+                    console.log("[PaymentIntent]", payload.paymentIntent);
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
         }
     }
 
