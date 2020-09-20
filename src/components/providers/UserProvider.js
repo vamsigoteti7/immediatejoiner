@@ -16,26 +16,7 @@ class UserProvider extends Component {
     auth.onAuthStateChanged(async firebaseUser => {
       if (firebaseUser) {
         var currentUser = firebaseUser;
-        firebase
-          .firestore()
-          .collection('stripe_customers')
-          .doc(currentUser.uid)
-          .collection('stripe_transactions')
-          .get()
-          .then(response => {
-            const fetchedMovies = [];
-            response.forEach(document => {
-              const fetchedMovie = {
-                id: document.id,
-                ...document.data()
-              };
-              fetchedMovies.push(fetchedMovie);
-            });
-            //setMovies(fetchedMovies);
-          })
-          .catch(error => {
-            // setError(error);
-          });
+       
       }
       const userVal = await generateUserDocument(firebaseUser);
 
