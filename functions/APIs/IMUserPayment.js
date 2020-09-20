@@ -2,7 +2,7 @@ const { db } = require('../util/admin');
 
 exports.getuserpaymentbyid = (request, response) => {
 	db
-		.collection('IMUserPayment')
+		.collection('IMUserPayments')
         .where('userid', '==', request.body.userid)
         .orderBy('createdDate','desc')
         .limit(1)

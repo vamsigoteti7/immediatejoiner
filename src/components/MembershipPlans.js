@@ -71,7 +71,8 @@ class MembershipPlans extends React.Component {
             error: '',
             plandetail: '',
             membershiptype: loginType,
-            tiers: []
+            tiers: [],
+            payment: []
         };
     }
 
@@ -81,11 +82,33 @@ class MembershipPlans extends React.Component {
 
     getpaymentdetails = () => {
         const userData = {
-            membertype: this.state.membershiptype
+            userid: this.props.userid.user.uid
         };
         axios.post('/getuserpaymentbyid', userData)
             .then(response => {
-                const data1 = response.data;
+                if (response.data.length === 0) {
+                    this.getMembershipPlans();
+                }
+                else {
+                    const data1 = response.data;
+                    if (this.state.membershiptype === "Candiate") {
+                        if (data1.payment === 100) {
+                            var date = new Date();
+                            date.setDate(date.getDate() - 30);
+                            var currentdate = date.toISOString().split('T');
+                            // data1
+
+                        }
+                        else if (data1.payment === 300) {
+
+                        }
+                        this.props.history.push('/Empdashboard');
+                    }
+                    else if (this.state.membershiptype === "Recruiter") {
+                        this.props.history.push('/RecruiterDashboard');
+                    }
+
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -94,7 +117,7 @@ class MembershipPlans extends React.Component {
 
     getMembershipPlans = () => {
         const userData = {
-            userid: this.props.userid.user.uid
+            membertype: this.state.membershiptype
         };
         axios.post('/getmembershipplans', userData)
             .then(response => {
@@ -182,7 +205,7 @@ class MembershipPlans extends React.Component {
                                                 <CardContent>
                                                     <div className={classes.cardPricing}>
                                                         <Typography component="h2" variant="h3" color="textPrimary">
-                                                            Rs{(tier.price/100).toFixed(2)}
+                                                            Rs{(tier.price / 100).toFixed(2)}
                                                         </Typography>
                                                     </div>
                                                     <ul>

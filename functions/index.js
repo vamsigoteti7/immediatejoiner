@@ -239,6 +239,7 @@ exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
     customer_id: customer.id,
     createdDate: admin.firestore.Timestamp.fromDate(new Date())
   });
+  
   return;
 });
 

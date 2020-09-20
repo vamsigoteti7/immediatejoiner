@@ -37,7 +37,6 @@ class MembershipCheckout extends React.Component {
             .limit(1)
             .get()
             .then(response => {
-                const stripetrans = [];
                 response.forEach(document => {
                     this.setState({ documentId: document.id });
                     this.startDataListeners();
@@ -82,7 +81,6 @@ class MembershipCheckout extends React.Component {
         if (this.state.payment !== []) {
             try {
                 const payment = this.state.payment.client_secret;
-                var card = elements.getElement(CardElement);
                 const payload = await stripe.confirmCardPayment(payment, {
                     payment_method: {
                         card: elements.getElement(CardElement),

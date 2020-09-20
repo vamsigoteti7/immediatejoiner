@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 // import { SmartToaster, toast } from 'react-smart-toaster';
-import { auth, generateUserDocument,getUserDocument, signInWithGoogle } from '../firebase/index';
+import { auth, getUserDocument, signInWithGoogle } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
