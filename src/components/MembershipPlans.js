@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { component } from 'react';
+import { withRouter } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -90,16 +91,15 @@ class MembershipPlans extends React.Component {
                     this.getMembershipPlans();
                 }
                 else {
-                    const data1 = response.data;
+                    const data1 = response.data[0];
                     if (this.state.membershiptype === "Candiate") {
-                        if (data1.payment === 100) {
+                        if (data1.payment.amount === 100) {
                             var date = new Date();
                             date.setDate(date.getDate() - 30);
                             var currentdate = date.toISOString().split('T');
-                            // data1
-
+                            console.log(currentdate);
                         }
-                        else if (data1.payment === 300) {
+                        else if (data1.payment.amount === 300) {
 
                         }
                         this.props.history.push('/Empdashboard');

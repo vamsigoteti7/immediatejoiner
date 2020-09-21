@@ -15,13 +15,14 @@ import ImmediateJoinerPasswordReset from './ImmediateJoinerPasswordReset';
 import Immediatejoinersignup from './Immediatejoinersignup';
 import Membership from './payments/Membership';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
+import history from './history';
 
 function Application() {
   const user = useContext(UserContext);
   return (
     user.user ? 
       <BrowserRouter>
-        <Router>
+        <Router history={history}>
           <Switch>
             <EmployeeDetails path='/EmpDetails' userid={user}/>
             <JobApplicationsDetail path='/JobApplicationDetails' userid={user}/>
