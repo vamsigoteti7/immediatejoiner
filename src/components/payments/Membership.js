@@ -10,6 +10,10 @@ class MembershipCheckout extends React.Component {
 
     constructor(props) {
         super(props);
+
+        const loginTypeValue = localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0;
+        const loginType = loginTypeValue === 0 ? 'Candiate' : 'Recruiter';
+
         this.state = {
             cardholdername: '',
             error: '',
@@ -17,8 +21,10 @@ class MembershipCheckout extends React.Component {
             plan: this.props.plan,
             stripetransactions: [],
             documentId: '',
+            membershiptype: loginType,
             payment: []
         };
+
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -95,19 +101,20 @@ class MembershipCheckout extends React.Component {
                     console.log("[error]", payload.error);
                 } else {
                     firebase.firestore()
-                    .collection('IMUserPayments').add({
-                        userid: this.props.userid.user.uid,
-                        payment: payload.paymentIntent,
-                        createdDate: firebase.firestore.Timestamp.fromDate(new Date())
-                    });
-                    this.props.history.push('/RecruiterDashboard');
+                        .collection('IMUserPayments').add({
+                            userid: this.props.userid.user.uid,
+                            payment: payload.paymentIntent,
+                            createdDate: firebase.firestore.Timestamp.fromDate(new Date())
+                        });
                     console.log("[PaymentIntent]", payload.paymentIntent);
+                    if (this.state.membershiptype === "Candiate") {
+                        this.props.history.push('/EmpDetails');
+                    }
+                    else if (this.state.membershiptype === "Recruiter") {
+                        this.props.history.push('/RecruiterDashboard');
+                    }
                 }
             } catch (error) {
-
-                
-
-
                 console.log(error);
             }
         }

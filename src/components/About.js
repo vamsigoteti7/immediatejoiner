@@ -44,6 +44,70 @@ class About extends React.Component {
                 </div> */}
                 </section>
 
+                <section className="site-section">
+                    <div className="container">
+                        <div className="row mb-5 justify-content-center">
+                            <div className="col-lg-6 text-center">
+                                <h2 className="section-title mb-2">About Us</h2>
+                                <h5 className="text-center my-3">Immediate Joiners is the first low priced job portal which will cover all the industries</h5>
+                                <h5 className="text-center my-3">Immediate Joiners Portal is mainly to help the job seekers who are looking for jobs,We have analyzed the job portals and have made new product which will be low priced model for both employee and employers.The product will be usefull for freelancers as well.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer className="site-footer">
+
+                    <a href="#top" className="smoothscroll scroll-top">
+                        <span className="icon-keyboard_arrow_up"></span>
+                    </a>
+
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Search Trending</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Web Design</Link></li>
+                                    <li><Link to="/">Graphic Design</Link></li>
+                                    <li><Link to="/">Web Developers</Link></li>
+                                    <li><Link to="/">Python</Link></li>
+                                    <li><Link to="/">HTML5</Link></li>
+                                    <li><Link to="/">CSS3</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Company</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">About Us</Link></li>
+                                    <li><Link to="/">Career</Link></li>
+                                    <li><Link to="/">Blog</Link></li>
+                                    <li><Link to="/">Resources</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Support</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Support</Link></li>
+                                    <li><Link to="/">Privacy</Link></li>
+                                    <li><Link to="/">Terms of Service</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Contact Us</h3>
+                                <div className="footer-social">
+                                    <Link to="/"><span className="icon-facebook"></span></Link>
+                                    <Link to="/"><span className="icon-twitter"></span></Link>
+                                    <Link to="/"><span className="icon-instagram"></span></Link>
+                                    <Link to="/"><span className="icon-linkedin"></span></Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row text-center">
+                            <div className="col-12">
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div >);
     }
 }

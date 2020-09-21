@@ -7,11 +7,11 @@ class Contactus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname:'',
-            lastname:'',
-            email:'',
-            subject:'',
-            message:'',
+            firstname: '',
+            lastname: '',
+            email: '',
+            subject: '',
+            message: '',
         }
     }
 
@@ -29,7 +29,7 @@ class Contactus extends React.Component {
         axios.post('/impostcontactus', contactusData)
             .then(response => {
                 if (response.data.length === 1) {
-                    
+
                 }
             })
             .catch(error => {
@@ -79,54 +79,113 @@ class Contactus extends React.Component {
 
                 <section className="site-section" id="next-section">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6 mb-5 mb-lg-0">
-                                <form action="#" className="">
+                        <div className="row mb-5 justify-content-center">
+                            <div className="col-lg-6 text-center">
+                                <h2 className="section-title mb-2">Contact Us</h2>
+                            </div>
+                            
+                        </div>
+                        <div className="row mb-5 justify-content-center">
+                                <div className="col-lg-6 mb-5 mb-lg-0">
+                                    <form action="#" className="">
 
-                                    <div className="row form-group">
-                                        <div className="col-md-6 mb-3 mb-md-0">
-                                            <label className="text-black" htmlFor="fname">First Name</label>
-                                            <input type="text" name="firstname" value={this.state.firstName} onChange={this.handleChange} className="form-control" />
+                                        <div className="row form-group">
+                                            <div className="col-md-6 mb-3 mb-md-0">
+                                                <label className="text-black" htmlFor="fname">First Name</label>
+                                                <input type="text" name="firstname" value={this.state.firstName} onChange={this.handleChange} className="form-control" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label className="text-black" htmlFor="lname">Last Name</label>
+                                                <input type="text" id="lname" value={this.state.lastname} className="form-control" onChange={this.handleChange} />
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label className="text-black" htmlFor="lname">Last Name</label>
-                                            <input type="text" id="lname" value={this.state.lastname} className="form-control" onChange={this.handleChange} />
+
+                                        <div className="row form-group">
+
+                                            <div className="col-md-12">
+                                                <label className="text-black" htmlFor="email">Email</label>
+                                                <input type="email" id="email" value={this.state.email} className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="row form-group">
+                                        <div className="row form-group">
 
-                                        <div className="col-md-12">
-                                            <label className="text-black" htmlFor="email">Email</label>
-                                            <input type="email" id="email" value={this.state.email} className="form-control" />
+                                            <div className="col-md-12">
+                                                <label className="text-black" htmlFor="subject">Subject</label>
+                                                <input type="subject" id="subject" value={this.state.subject} className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="row form-group">
-
-                                        <div className="col-md-12">
-                                            <label className="text-black" htmlFor="subject">Subject</label>
-                                            <input type="subject" id="subject" value={this.state.subject} className="form-control" />
+                                        <div className="row form-group">
+                                            <div className="col-md-12">
+                                                <label className="text-black" htmlFor="message">Message</label>
+                                                <textarea name="message" id="message" value={this.state.message} cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."></textarea>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <label className="text-black" htmlFor="message">Message</label>
-                                            <textarea name="message" id="message" value={this.state.message} cols="30" rows="7" className="form-control" placeholder="Write your notes or questions here..."></textarea>
+                                        <div className="row form-group">
+                                            <div className="col-md-12">
+                                                <input onClick={this.handleContactUs} value="Send Message" className="btn btn-primary btn-md text-white" />
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                </section>
+                <footer className="site-footer">
 
-                                    <div className="row form-group">
-                                        <div className="col-md-12">
-                                            <input onClick={this.handleContactUs} value="Send Message" className="btn btn-primary btn-md text-white" />
-                                        </div>
-                                    </div>
-                                </form>
+                    <a href="#top" className="smoothscroll scroll-top">
+                        <span className="icon-keyboard_arrow_up"></span>
+                    </a>
+
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Search Trending</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Web Design</Link></li>
+                                    <li><Link to="/">Graphic Design</Link></li>
+                                    <li><Link to="/">Web Developers</Link></li>
+                                    <li><Link to="/">Python</Link></li>
+                                    <li><Link to="/">HTML5</Link></li>
+                                    <li><Link to="/">CSS3</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Company</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">About Us</Link></li>
+                                    <li><Link to="/">Career</Link></li>
+                                    <li><Link to="/">Blog</Link></li>
+                                    <li><Link to="/">Resources</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Support</h3>
+                                <ul className="list-unstyled">
+                                    <li><Link to="/">Support</Link></li>
+                                    <li><Link to="/">Privacy</Link></li>
+                                    <li><Link to="/">Terms of Service</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-6 col-md-3 mb-4 mb-md-0">
+                                <h3>Contact Us</h3>
+                                <div className="footer-social">
+                                    <Link to="/"><span className="icon-facebook"></span></Link>
+                                    <Link to="/"><span className="icon-twitter"></span></Link>
+                                    <Link to="/"><span className="icon-instagram"></span></Link>
+                                    <Link to="/"><span className="icon-linkedin"></span></Link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row text-center">
+                            <div className="col-12">
                             </div>
                         </div>
                     </div>
-                </section>
+                </footer>
             </div >);
     }
 }
