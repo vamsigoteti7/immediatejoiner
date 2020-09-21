@@ -82,7 +82,21 @@ export class Postajob extends Component {
         this.getAllCountrys();
         this.getAllIndustries();
         this.getAllExperiences();
+
     }
+
+    getuserjobs = () => {
+        const userData = {
+            userid: this.props.userid.user.uid
+        };
+        axios.post('/getuserjobs',userData)
+            .then(response => {
+                
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
 
     jobdescriptionChange = (content, delta, source, editor) => {
         this.setState({
