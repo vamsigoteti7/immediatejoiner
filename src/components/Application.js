@@ -65,6 +65,8 @@ function Application() {
               <Membership history={history} userid={user} />
             )}
             />
+            <Route path='/About' component={About} ></Route>
+            <Route path='/Contactus' component={Contactus} ></Route>
           </Switch>
         </Router>
       </BrowserRouter>

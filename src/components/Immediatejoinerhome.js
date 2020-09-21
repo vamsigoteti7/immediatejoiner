@@ -145,21 +145,6 @@ class Immediatejoinerhome extends React.Component {
                                         <li className="d-lg-none"><Link className="js-menu-toggle" to="/Login">Log In</Link></li>
                                     </ul>
                                 </nav>
-                                {/* <Navbar bg="transparent" expand="lg" style={{ width: 400 }}>
-                                <Navbar.Brand className="site-logo col-6" href="/">Immediate Joiner</Navbar.Brand>
-                                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                                <Navbar.Collapse id="basic-navbar-nav">
-                                    <Nav className="mr-auto">
-                                        <Nav.Link href="#home">Home</Nav.Link>
-                                        <Nav.Link href="#link">About</Nav.Link>
-                                        <Nav.Link href="#link">Contactus</Nav.Link>
-                                    </Nav>
-                                    <Form inline>
-                                        <Button>Log In</Button>
-                                    </Form>
-                                </Navbar.Collapse>
-                            </Navbar> */}
-
                                 <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                     <div className="ml-auto">
                                         <Link to="/Login" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log In</Link>
