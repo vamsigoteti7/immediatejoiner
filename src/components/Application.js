@@ -15,23 +15,27 @@ import ImmediateJoinerPasswordReset from './ImmediateJoinerPasswordReset';
 import Immediatejoinersignup from './Immediatejoinersignup';
 import Membership from './payments/Membership';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
-import history from './history';
+// import history from './history';
 
 function Application() {
   const user = useContext(UserContext);
   return (
-    user.user ? 
+    user.user ?
       <BrowserRouter>
-        <Router history={history}>
+        <Router>
           <Switch>
-            <EmployeeDetails path='/EmpDetails' userid={user}/>
-            <JobApplicationsDetail path='/JobApplicationDetails' userid={user}/>
-            <Jobdetails path='/Jobdetail' userid={user}/>
-            <Postajob path='/Postjob' userid={user}/>
-            <RecruiterDashboard path='/RecruiterDashboard' userid={user}/>
-            <Employeedashboard path='/Empdashboard' userid={user} />
-            <Postajob path="/Postjob" userid={user}/>
-            <Membership path="/Payment" userid={user}/>
+            <Route exact path='/Empdashboard' render={({ history }) => (
+                <Employeedashboard  history={history} userid={user} />
+              )}
+            />
+            <EmployeeDetails path='/EmpDetails' userid={user} />
+            <JobApplicationsDetail path='/JobApplicationDetails' userid={user} />
+            <Jobdetails path='/Jobdetail' userid={user} />
+            <Postajob path='/Postjob' userid={user} />
+            <RecruiterDashboard path='/RecruiterDashboard' userid={user} />
+            
+            <Postajob path="/Postjob" userid={user} />
+            <Membership path="/Payment" userid={user} />
             <MembershipPlans path="/" userid={user} />
           </Switch>
         </Router>

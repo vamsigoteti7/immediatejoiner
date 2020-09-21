@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import hero_1 from '../images/hero_1.jpg';
 import axios from '../axios-immediatejoiner';
 import { auth } from '../firebase/index';
+import history from './history';
 
 const useStyles = theme => ({
     '@global': {
@@ -88,7 +89,8 @@ class MembershipPlans extends React.Component {
         axios.post('/getuserpaymentbyid', userData)
             .then(response => {
                 if (response.data.length === 0) {
-                    this.getMembershipPlans();
+                    this.props.history.push('/Empdashboard');
+                    //this.getMembershipPlans();
                 }
                 else {
                     const data1 = response.data[0];
