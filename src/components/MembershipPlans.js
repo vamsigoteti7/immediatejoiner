@@ -1,5 +1,4 @@
-import React, { component } from 'react';
-import { withRouter } from 'react-router-dom'
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -13,7 +12,6 @@ import { Link } from "react-router-dom";
 import hero_1 from '../images/hero_1.jpg';
 import axios from '../axios-immediatejoiner';
 import { auth } from '../firebase/index';
-import history from './history';
 
 const useStyles = theme => ({
     '@global': {
@@ -89,27 +87,37 @@ class MembershipPlans extends React.Component {
         axios.post('/getuserpaymentbyid', userData)
             .then(response => {
                 if (response.data.length === 0) {
-                    this.props.history.push('/Empdashboard');
-                    //this.getMembershipPlans();
+                    this.getMembershipPlans();
                 }
                 else {
                     const data1 = response.data[0];
                     if (this.state.membershiptype === "Candiate") {
+                        const dbdate = new Date(data1.createdDate._seconds * 1000 + data1.createdDate._nanoseconds / 1000000)
                         if (data1.payment.amount === 100) {
                             var date = new Date();
                             date.setDate(date.getDate() - 30);
-                            var currentdate = date.toISOString().split('T');
-                            console.log(currentdate);
+                            if (date < dbdate) {
+                                this.props.history.push('/Empdashboard');
+                            }
+                            else {
+                                this.getMembershipPlans();
+                            }
                         }
                         else if (data1.payment.amount === 300) {
-
+                            var dateent = new Date();
+                            dateent.setDate(date.getDate() - 90);
+                            if (dateent < dbdate) {
+                                this.props.history.push('/Empdashboard');
+                            }
+                            else {
+                                this.getMembershipPlans();
+                            }
                         }
-                        this.props.history.push('/Empdashboard');
+
                     }
                     else if (this.state.membershiptype === "Recruiter") {
                         this.props.history.push('/RecruiterDashboard');
                     }
-
                 }
             })
             .catch(error => {

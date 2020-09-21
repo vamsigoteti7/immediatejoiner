@@ -3,6 +3,7 @@ import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import axios from '../axios-immediatejoiner';
 import Select from 'react-select';
+import { auth } from '../firebase/index';
 
 export class EmployeeDashboard extends Component {
     constructor(props) {
@@ -194,8 +195,7 @@ export class EmployeeDashboard extends Component {
                             </nav>
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                 <div className="ml-auto">
-                                    <Link to="/Postjob" className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-add"></span>Post a Job</Link>
-                                    <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</Link>
+                                    <button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
                                 </div>
                                 <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
                             </div>
@@ -272,7 +272,7 @@ export class EmployeeDashboard extends Component {
                                         if (tier.email !== '') {
                                             return (
                                                 <li key={i} className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                                    <Link to={{ pathname: '/Jobdetail', query: tier.jobpostid  }}></Link>
+                                                    <Link to={{ pathname: '/Jobdetail', query: tier.jobpostid }}></Link>
                                                     <div className="job-listing-logo">
                                                         <img src={tier.companylogourl} alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                                     </div>
@@ -292,9 +292,8 @@ export class EmployeeDashboard extends Component {
                                                 </li>
                                             )
                                         }
-                                        else
-                                        {
-                                            return(<div><h1>No Job Posts Yet</h1></div>)
+                                        else {
+                                            return (<div><h1>No Job Posts Yet</h1></div>)
                                         }
                                     })}
                                 </ul>

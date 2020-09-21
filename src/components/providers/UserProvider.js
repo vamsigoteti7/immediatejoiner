@@ -21,6 +21,7 @@ class UserProvider extends Component {
           user: userVal,
         },
       });
+      
     });
   };
 

@@ -15,7 +15,6 @@ import ImmediateJoinerPasswordReset from './ImmediateJoinerPasswordReset';
 import Immediatejoinersignup from './Immediatejoinersignup';
 import Membership from './payments/Membership';
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from 'react-router-dom';
-// import history from './history';
 
 function Application() {
   const user = useContext(UserContext);
@@ -25,18 +24,47 @@ function Application() {
         <Router>
           <Switch>
             <Route exact path='/Empdashboard' render={({ history }) => (
-                <Employeedashboard  history={history} userid={user} />
-              )}
+              <Employeedashboard history={history} userid={user} />
+            )}
             />
-            <EmployeeDetails path='/EmpDetails' userid={user} />
-            <JobApplicationsDetail path='/JobApplicationDetails' userid={user} />
-            <Jobdetails path='/Jobdetail' userid={user} />
-            <Postajob path='/Postjob' userid={user} />
-            <RecruiterDashboard path='/RecruiterDashboard' userid={user} />
-            
-            <Postajob path="/Postjob" userid={user} />
-            <Membership path="/Payment" userid={user} />
-            <MembershipPlans path="/" userid={user} />
+            <Route exact path='/Login' render={({ history }) => (
+              <MembershipPlans history={history} userid={user} />
+            )}
+            />
+            <Route exact path='/' render={({ history }) => (
+              <MembershipPlans history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path='/EmpDetails' render={({ history }) => (
+              <EmployeeDetails history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path='/JobApplicationDetails' render={({ history }) => (
+              <JobApplicationsDetail history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path='/Jobdetail' render={({ history }) => (
+              <Jobdetails history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path='/Postjob' render={({ history }) => (
+              <Postajob history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path='/RecruiterDashboard' render={({ history }) => (
+              <RecruiterDashboard history={history} userid={user} />
+            )}
+            />
+
+            <Route exact path="/Payment" render={({ history }) => (
+              <Membership history={history} userid={user} />
+            )}
+            />
           </Switch>
         </Router>
       </BrowserRouter>
@@ -45,7 +73,10 @@ function Application() {
       <Router>
         <Route path='/About' component={About} ></Route>
         <Route path='/Contactus' component={Contactus} ></Route>
-        <Route path='/Login' component={Logintbygoogle} ></Route>
+        <Route exact path='/Login' render={({ history }) => (
+          <Logintbygoogle history={history} userid={user} />
+        )}
+        />
         <Route exact path='/' component={Immediatejoinerhome} ></Route>
         <Route path='/Signin' component={Logintbygoogle} ></Route>
         <Route path="/Signup" component={Immediatejoinersignup} ></Route>
