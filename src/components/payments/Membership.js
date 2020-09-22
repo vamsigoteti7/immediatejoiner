@@ -10,12 +10,15 @@ class MembershipCheckout extends React.Component {
 
     constructor(props) {
         super(props);
+        const loginTypeValue = localStorage.getItem('tabindex') ? Number(localStorage.getItem('tabindex')) : 0;
+        const loginType = loginTypeValue === 0 ? 'Candiate' : 'Recruiter';
         this.state = {
             cardholdername: '',
             error: '',
             status: '',
             plan: this.props.plan,
             stripetransactions: [],
+            membershiptype: loginType,
             documentId: '',
             payment: []
         };
@@ -100,6 +103,13 @@ class MembershipCheckout extends React.Component {
                             payment: payload.paymentIntent,
                             createdDate: firebase.firestore.Timestamp.fromDate(new Date())
                         });
+
+                    if (this.state.membershiptype === "Candiate") {
+                        this.props.history.push('/EmpDetails');
+                    }
+                    else if (this.state.membershiptype === "Recruiter") {
+                        this.props.history.push('/RecruiterDashboard');
+                    }
 
                     this.props.history.push('/RecruiterDashboard');
                     console.log("[PaymentIntent]", payload.paymentIntent);

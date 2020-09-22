@@ -17,7 +17,7 @@ export class JobApplicationsDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            jobid: this.props.location.query,
+            jobid: this.props.history.location.query,
             jobapplications: []
         };
         this.handleChange = this.handleChange.bind(this);

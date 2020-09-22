@@ -12,7 +12,7 @@ export class Jobdetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            docid: this.props.location.query,
+            docid: this.props.history.location.query,
             jobpostdata: []
         };
         this.handleChange = this.handleChange.bind(this);

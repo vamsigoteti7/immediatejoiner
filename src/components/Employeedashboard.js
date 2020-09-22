@@ -188,9 +188,11 @@ export class EmployeeDashboard extends Component {
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><Link to="/" className="nav-link">Home</Link></li>
-                                    <li><Link to="/About">About</Link></li>
-                                    <li><Link to="/Contactus">Contact</Link></li>
+                                    <li><Link to="/" className="nav-link active js-menu-toggle">Home</Link></li>
+                                    <li><Link className="js-menu-toggle" to="/About">About</Link></li>
+                                    <li><Link className="js-menu-toggle" to="/Empdashboard">Dashboard</Link></li>
+                                    <li><Link className="js-menu-toggle" to="/EmpDetails">MyProfile</Link></li>
+                                    <li><Link className="js-menu-toggle" to="/Contactus">Contact</Link></li>
                                     <li className="d-lg-none"><button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block js-menu-toggle">Log Out</button></li>
                                 </ul>
                             </nav>
