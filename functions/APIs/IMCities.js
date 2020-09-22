@@ -1114,7 +1114,6 @@ exports.postCities = (request, response) => {
 			city: 'Moga',
 			countryid: 2
 		},
-		v
 		{
 			city: 'Hansi',
 			countryid: 2
@@ -1799,59 +1798,2121 @@ exports.postCities = (request, response) => {
 			city: 'Palani',
 			countryid: 2
 		},
-	
-		"", "", "", "Pali", "Bokaro", "Sidhi", "Asansol", "Darjeeling", "Kohima", "Shahdara",
-		 "Chandannagar", "Nadgaon", "Haripad", "Sitapur", "Vapi", "Bambolim", "Baidyabati", "Connaught Place", "Singtam", 
-		"Shyamnagar", "Sikar", "Choolai", "Mayapur", "Puruliya", "Habra", "Kanchrapara", "Goregaon", "Tiptur", "Kalpakkam", "Serampore", "Konnagar",
-		 "Port Blair", "Canning", "Mahad", "Alibag", "Pimpri", "Panchgani", "Karjat", "Vaikam", "Mhow", "Lakhimpur", "Madhoganj",
-		 "Kheri", "Gudivada", "Avanigadda", "Nayagarh", "Bemetara", "Bhatapara", "Ramgarh", "Dhubri", "Goshaingaon", "Bellare", "Puttur",
-		 "Narnaul", "Porbandar", "Keshod", "Dhrol", "Kailaras", "Morena", "Deolali", "Banda", "Orai", "Fatehpur", 
-		"Mirzapur", "Adilabad", "Pithapuram", "Ramavaram", "Amalapuram", "Champa", "Ambikapur", "Korba", "Pehowa", "Yamunanagar", 
-		"Shahabad", "Hamirpur", "Gulbarga", "Sagar", "Bhadravati", "Sirsi", "Honavar", "Siruguppa", "Koppal", "Gargoti", 
-		"Kankauli", "Jalna", "Parbhani", "Koraput", "Barpali", "Jaypur", "Banswara", "Tindivanam", "Mettur",
-		 "Srirangam", "Deoria", "Basti", "Padrauna", "Budaun", "Bolpur", "Gujrat", "Balurghat", "Binnaguri", "Guruvayur", 
-		"Chandauli", "Madikeri", "Piduguralla", "Vinukonda", "Berasia", "Sultans Battery", "Ramanagaram", "Angadipuram", 
-		"Mattanur", "Gobichettipalayam", "Banga", "Sibsagar", "Namrup", "North Lakhimpur", "Dhenkanal", "Karanja", "Cheyyar", 
-		"Vandavasi", "Arakkonam", "Tiruvannamalai", "Akividu", "Tadepallegudem", "Madanapalle", "Puttur", "Edavanna", "Kodungallur", 
-		"Marmagao", "Sanquelim", "Sakri", "Shahdol", "Satna", "Thasra", "Bundi", "Kishangarh", "Firozpur", "Kot Isa Khan", "Barnala", 
-		"Sunam", "Pithoragarh", "Jaspur", "Jhargram", "Dimapur", "Churachandpur", "Raxaul", "Motihari", "Munger", "Purnea", "Mannargudi",
-		 "Kumbakonam", "Eral", "Nagercoil", "Kanniyakumari", "Ramanathapuram", "Sivaganga", "Rajapalaiyam", "Srivilliputhur", 
-		"Suratgarh", "Gohana", "Sirsa", "Fatehabad", "Nurpur", "Chamba", "Khergam", "Dindigul", "Pudukkottai", "Kaimganj", 
-		"Tarn Taran", "Khanna", "Irinjalakuda", "Sehore", "Parra", "Dicholi", "Chicalim", "Saligao", "Changanacheri", "Igatpuri", 
-		"Sangamner", "Ganganagar", "Kanhangad", "Chidambaram", "Chittur", "Nilambur", "Arvi", "Jalesar", "Kasganj", 
-		"Chandausi", "Beawar", "Bharatpur", "Kathua", "Chalisgaon", "Karamsad", "Peranampattu", "Arani", "Payyanur", 
-		"Pattambi", "Pattukkottai", "Pakala", "Vikarabad", "Bhatkal", "Rupnarayanpur", "Kulti", "Koch Bihar", "Nongstoin", "Budbud", 
-		"Balangir", "Kharar", "Mukerian", "Mansa", "Punalur", "Mandya", "Nandyal", "Dhone", "Candolim", "Aldona",
-		 "Solim", "Daman", "Koothanallur", "Sojat", "Alanallur", "Kagal", "Jhunjhunun", "Sirhind", "Kurali", "Khinwara", "Machhiwara", 
-		"Talwandi Sabo", "Malpur", "Dhar", "Medarametla", "Pileru", "Yercaud", "Ottappalam", "Alangulam", "Palus", "Chiplun", "Durg", "Damoh", "Ambarnath", 
-		"Haveri", "Mundgod", "Mandvi", "Behala", "Fort", "Bela", "Balana", "Odhan", "Mawana", "Firozabad", "Bichpuri", "Almora", "Pauri", "Azamgarh", "Phaphamau", 
-		"Nongpoh", "Gangrar", "Jhalawar", "Nathdwara", "Jaisalmer", "Pushkar", "Sirohi", "Baroda", "Ambah", "Ambejogai", "Ambad",
-		 "Osmanabad", "Betalbatim", "Gangapur", "Dindori", "Yeola", "Pandharpur", "Neri", "Umred", "Patelguda", "Patancheru", 
-		"Singarayakonda", "Peddapuram", "Gadag", "Chikmagalūr", "Chikodi", "Amer", "Chintamani", "Tambaram", "Palayam", "Karamadai", "Omalur", "Kuzhithurai", "Faizabad",
-		 "Thirumangalam", "Kodaikanal", "Devipattinam", "Dharapuram", "Rudrapur", "Talcher", "Haldia", "Karsiyang", "Sandur", "Bapatla", 
-		"Shamsabad", "Kandi", "Ramapuram", "Anchal", "Trimbak", "Calangute", "Arpora", "Khargone", "Mandla",
-		 "Kalan", "Pachmarhi", "Dhamtari", "Kumhari", "Aundh", "Tala", "Tuljapur", "Botad", "Sidhpur", "Sanand", "Nagwa", "Mussoorie", "Vadamadurai",
-		 "Sholavandan", "Pochampalli", "Perundurai", "Lalgudi", "Ponneri", "Mount Abu", "Vadner", "Shanti Grama", "Nalagarh", "Pahalgam",
-		 "Dinanagar", "Jatani", "Ganga", "Barmer", "Hoshangabad", "Khajuraho Group of Monuments", "Betul", "Sangola", "Tirumala", "Mirza Murad", "Attur", 
-		"Budha", "Pala", "Tonk", "Koni", "Rajpur", "Shrigonda", "Hazaribagh", "Nagaur", "Mandapeta", "Nabadwip", "Nandurbar", "Nazira", 
-		"Kasia", "Bargarh", "Kollegal", "Shahkot", "Jagraon", "Channapatna", "Madurantakam", "Kamalpur", "Ranaghat", "Mundra", 
-		"Mashobra", "Rama", "Chirala", "Bawana", "Dhaka", "Mahal", "Chitradurga", "Mandsaur", "Dewas", "Sachin", 
-		"Andra", "Kalkaji Devi", "Pilkhuwa", "Mehra", "Chhachhrauli", "Samastipur", "Bangaon", "Ghatal", "Jayanti", "Belgharia", "Kamat", "Dhariwal",
-		 "Morinda", "Kottagudem", "Suriapet", "Mahesh", "Sirwani", "Kanakpura", "Mahajan", "Sodhi", "Chand", "Nagal", "Hong", "Raju", 
-		"Tikamgarh", "Parel", "Jaynagar", "Mill", "Khambhat", "Ballabgarh", "Begusarai", "Shahapur", "Banka", "Golaghat", "Palwal", 
-		"Kalra", "Chandan", "Maru", "Nanda", "Chopra", "Kasal", "Rana", "Chetan", "Charu", "Arora", "Chhabra", 
-		"Bishnupur", "Manu", "Karimganj", "Ellora Caves", "Adwani", "Amreli", "Soni", "Sarwar", "Balu", "Rawal", 
-		"Darsi", "Nandigama", "Mathan", "Panchal", "Jha Jha", "Hira", "Manna", "Amal", 
-		"Kheda", "Abdul", "Roshan", "Bhandari", "Binavas", "Hari", "Nandi",
-		 "Rajapur", "Suman", "Sakri", "Khalapur", "Dangi", "Thiruthani", "Bawan", "Basu", "Kosamba", "Medchal", 
-		"Kakdwip", "Kamalpura", "Dogadda", "Charan", "Basirhat", "Nagari", "Kangayam", "Sopara",
-		 "Nadia", "Mahulia", "Alipur", "Hamirpur", "Fatehgarh", "Bagh", "Naini", "Karari", "Ajabpur", "Jaunpur",
-		 "Iglas", "Pantnagar", "Dwarahat", "Dasna", "Mithapur", "Bali", "Nilokheri", "Kolayat", "Haripur", "Dang"
-		"Chhota Udepur", "Matar", "Sukma", "Guna", "Dona Paula", "Navelim", "Vainguinim", "Curchorem", "Balaghat", 
-		"Bhagwan", "Vijapur", "Sinnar", "Mangaon", "Hadadi", "Bobbili", "Yanam", "Udaigiri", "Balanagar",
-		"Kanigiri", "Muddanuru", "Panruti", "Proddatur", "Puliyur", "Perambalur", "Turaiyur", "Tiruchchendur", "Shadnagar"
-		, "Markal", "Sultan", "Rayagada", "Kaniyambadi", "Vandalur", "Sangam", "Katoya", "Gudur", "Farakka", "Baramati", "Tohana"
+		{
+			city: 'Pali',
+			countryid: 2
+		},
+		{
+			city: 'Bokaro',
+			countryid: 2
+		},
+		{
+			city: 'Sidhi',
+			countryid: 2
+		},
+		{
+			city: 'Asansol',
+			countryid: 2
+		},
+		{
+			city: 'Darjeeling',
+			countryid: 2
+		},
+		{
+			city: 'Kohima',
+			countryid: 2
+		},
+		{
+			city: 'Shahdara',
+			countryid: 2
+		},
+		{
+			city: 'Chandannagar',
+			countryid: 2
+		},
+		{
+			city: 'Nadgaon',
+			countryid: 2
+		},
+		{
+			city: 'Haripad',
+			countryid: 2
+		},
+		{
+			city: 'Sitapur',
+			countryid: 2
+		},
+		{
+			city: 'Vapi',
+			countryid: 2
+		},
+		{
+			city: 'Bambolim',
+			countryid: 2
+		},
+		{
+			city: 'Baidyabati',
+			countryid: 2
+		},
+		{
+			city: 'Connaught Place',
+			countryid: 2
+		},
+		{
+			city: 'Singtam',
+			countryid: 2
+		},
+		{
+			city: 'Shyamnagar',
+			countryid: 2
+		},
+		{
+			city: 'Sikar',
+			countryid: 2
+		},
+		{
+			city: 'Choolai',
+			countryid: 2
+		},
+		{
+			city: 'Mayapur',
+			countryid: 2
+		},
+		v
+			{
+			city: 'Puruliya',
+			countryid: 2
+		},
+		{
+			city: 'Habra',
+			countryid: 2
+		},
+		{
+			city: 'Kanchrapara',
+			countryid: 2
+		},
+		{
+			city: 'Goregaon',
+			countryid: 2
+		},
+		{
+			city: 'Tiptur',
+			countryid: 2
+		},
+		{
+			city: 'Kalpakkam',
+			countryid: 2
+		},
+		{
+			city: 'Serampore',
+			countryid: 2
+		},
+		{
+			city: 'Konnagar',
+			countryid: 2
+		},
+		{
+			city: 'Blair',
+			countryid: 2
+		},
+		{
+			city: 'Canning',
+			countryid: 2
+		},
+		{
+			city: 'Mahad',
+			countryid: 2
+		},
+		{
+			city: 'Alibag',
+			countryid: 2
+		},
+		{
+			city: 'Pimpri',
+			countryid: 2
+		},
+			{
+			city: 'Panchgani',
+			countryid: 2
+		},
+		{
+			city: 'Karjat',
+			countryid: 2
+		},
+		{
+			city: 'Vaikam',
+			countryid: 2
+		},
+		{
+			city: 'Mhow',
+			countryid: 2
+		},
+		{
+			city: 'Lakhimpur',
+			countryid: 2
+		},
+		{
+			city: 'Madhoganj',
+			countryid: 2
+		},
+		{
+			city: 'Gudivada',
+			countryid: 2
+		},
+		{
+			city: 'Avanigadda',
+			countryid: 2
+		},
+		{
+			city: 'Nayagarh',
+			countryid: 2
+		},
+		{
+			city: 'Bemetara',
+			countryid: 2
+		},
+		{
+			city: 'Bhatapara',
+			countryid: 2
+		},
+		{
+			city: 'Kheri',
+			countryid: 2
+		},
+		{
+			city: 'Ramgarh',
+			countryid: 2
+		},
+		{
+			city: 'Dhubri',
+			countryid: 2
+		},
+		{
+			city: 'Goshaingaon',
+			countryid: 2
+		},
+		{
+			city: 'Bellare',
+			countryid: 2
+		},
+		{
+			city: 'Puttur',
+			countryid: 2
+		},
+		{
+			city: 'Narnaul',
+			countryid: 2
+		},
+		{
+			city: 'Porbandar',
+			countryid: 2
+		},
+		{
+			city: 'Keshod',
+			countryid: 2
+		},
+		{
+			city: 'Dhrol',
+			countryid: 2
+		},
+		{
+			city: 'Kailaras',
+			countryid: 2
+		},
+		{
+			city: 'Morena',
+			countryid: 2
+		},
+		{
+			city: 'Deolali',
+			countryid: 2
+		},
+		{
+			city: 'Banda',
+			countryid: 2
+		},
+		{
+			city: 'Orai',
+			countryid: 2
+		},
+		{
+			city: 'Fatehpur',
+			countryid: 2
+		},
+		{
+			city: 'Mirzapur',
+			countryid: 2
+		},
+		{
+			city: 'Adilabad',
+			countryid: 2
+		},
+		{
+			city: 'Pithapuram',
+			countryid: 2
+		},
+		{
+			city: 'Ramavaram',
+			countryid: 2
+		},
+		{
+			city: 'Amalapuram',
+			countryid: 2
+		},
+		{
+			city: 'Ambikapur',
+			countryid: 2
+		},
+		{
+			city: 'Korba',
+			countryid: 2
+		},
+		{
+			city: 'Pehowa',
+			countryid: 2
+		},
+		{
+			city: 'Yamunanagar',
+			countryid: 2
+		},
+		{
+			city: 'Shahabad',
+			countryid: 2
+		},
+		{
+			city: 'Hamirpur',
+			countryid: 2
+		},
+		{
+			city: 'Gulbarga',
+			countryid: 2
+		},
+		{
+			city: 'Sagar',
+			countryid: 2
+		},
+		{
+			city: 'Bhadravati',
+			countryid: 2
+		},
+		{
+			city: 'Sirsi',
+			countryid: 2
+		},
+		{
+			city: 'Honavar',
+			countryid: 2
+		},
+		{
+			city: 'Siruguppa',
+			countryid: 2
+		},
+		{
+			city: 'Koppal',
+			countryid: 2
+		},
+		{
+			city: 'Gargoti',
+			countryid: 2
+		},
+		{
+			city: 'Kankauli',
+			countryid: 2
+		},
+		{
+			city: 'Jalna',
+			countryid: 2
+		},
+		{
+			city: 'Parbhani',
+			countryid: 2
+		},
+		{
+			city: 'Koraput',
+			countryid: 2
+		},
+		{
+			city: 'Barpali',
+			countryid: 2
+		},
+		{
+			city: 'Jaypur',
+			countryid: 2
+		},
+		{
+			city: 'Banswara',
+			countryid: 2
+		},
+		{
+			city: 'Adilabad',
+			countryid: 2
+		},
+		{
+			city: 'Adilabad',
+			countryid: 2
+		},
+		{
+			city: 'Adilabad',
+			countryid: 2
+		},
+		{
+			city: 'Tindivanam',
+			countryid: 2
+		},
+		{
+			city: 'Mettur',
+			countryid: 2
+		},
+		{
+			city: 'Srirangam',
+			countryid: 2
+		},
+		{
+			city: 'Deoria',
+			countryid: 2
+		},
+		{
+			city: 'Basti',
+			countryid: 2
+		},
+		{
+			city: 'Padrauna',
+			countryid: 2
+		},
+		{
+			city: 'Budaun',
+			countryid: 2
+		},
+		{
+			city: 'Bolpur',
+			countryid: 2
+		},
+		{
+			city: 'Gujrat',
+			countryid: 2
+		},
+		{
+			city: 'Balurghat',
+			countryid: 2
+		},
+		{
+			city: 'Binnaguri',
+			countryid: 2
+		},
+		{
+			city: 'Guruvayur',
+			countryid: 2
+		},
+		{
+			city: 'Chandauli',
+			countryid: 2
+		},
+		{
+			city: 'Madikeri',
+			countryid: 2
+		},
+		{
+			city: 'Piduguralla',
+			countryid: 2
+		},
+		{
+			city: 'Vinukonda',
+			countryid: 2
+		},
+		{
+			city: 'Berasia',
+			countryid: 2
+		},
+		{
+			city: 'Sultans Battery',
+			countryid: 2
+		},
+		{
+			city: 'Ramanagaram',
+			countryid: 2
+		},
+		{
+			city: 'Angadipuram',
+			countryid: 2
+		},
+		{
+			city: 'Mattanur',
+			countryid: 2
+		},
+		{
+			city: 'Banga',
+			countryid: 2
+		},
+		{
+			city: 'Sibsagar',
+			countryid: 2
+		},
+		{
+			city: 'Namrup',
+			countryid: 2
+		},
+		{
+			city: 'North Lakhimpur',
+			countryid: 2
+		},
+		{
+			city: 'Dhenkanal',
+			countryid: 2
+		},
+		{
+			city: 'Karanja',
+			countryid: 2
+		},
+		{
+			city: 'Cheyyar',
+			countryid: 2
+		},
+		{
+			city: 'Vandavasi',
+			countryid: 2
+		},
+		{
+			city: 'Arakkonam',
+			countryid: 2
+		},
+		{
+			city: 'Tiruvannamalai',
+			countryid: 2
+		},
+		{
+			city: 'Akividu',
+			countryid: 2
+		},
+		{
+			city: 'Tadepallegudem',
+			countryid: 2
+		},
+		{
+			city: 'Madanapalle',
+			countryid: 2
+		},
+		{
+			city: 'Puttur',
+			countryid: 2
+		},
+		{
+			city: 'Edavanna',
+			countryid: 2
+		},
+		{
+			city: 'Kodungallur',
+			countryid: 2
+		},
+		{
+			city: 'Marmagao',
+			countryid: 2
+		},
+		{
+			city: 'Sanquelim',
+			countryid: 2
+		},
+		{
+			city: 'Sakri',
+			countryid: 2
+		},
+		{
+			city: 'Shahdol',
+			countryid: 2
+		},
+		{
+			city: 'Satna',
+			countryid: 2
+		},
+		{
+			city: 'Thasra',
+			countryid: 2
+		},
+		{
+			city: 'Bundi',
+			countryid: 2
+		},
+		{
+			city: 'Gobichettipalayam',
+			countryid: 2
+		},
+		{
+			city: 'Jhargram',
+			countryid: 2
+		},
+		{
+			city: 'Jaspur',
+			countryid: 2
+		},
+		{
+			city: 'Pithoragarh',
+			countryid: 2
+		},
+		{
+			city: 'Sunam',
+			countryid: 2
+		},
+		{
+			city: 'Barnala',
+			countryid: 2
+		},
+			{
+			city: 'Kot Isa Khan',
+			countryid: 2
+		},
+		{
+			city: 'Firozpur',
+			countryid: 2
+		},
+		{
+			city: 'Kishangarh',
+			countryid: 2
+		},
+		{
+			city: 'Dhone',
+			countryid: 2
+		},
+		{
+			city: 'Candolim',
+			countryid: 2
+		},
+		{
+			city: 'Aldona',
+			countryid: 2
+		},
+		{
+			city: 'Solim',
+			countryid: 2
+		},
+		{
+			city: 'Daman',
+			countryid: 2
+		},
+		{
+			city: 'Nandyal',
+			countryid: 2
+		},
+		{
+			city: 'Mandya',
+			countryid: 2
+		},
+		{
+			city: 'Punalur',
+			countryid: 2
+		},
+		{
+			city: 'Mansa',
+			countryid: 2
+		},
+		{
+			city: 'Mukerian',
+			countryid: 2
+		},
+		{
+			city: 'Kharar',
+			countryid: 2
+		},
+		{
+			city: 'Balangir',
+			countryid: 2
+		},
+		{
+			city: 'Budbud',
+			countryid: 2
+		},
+		{
+			city: 'Nongstoin',
+			countryid: 2
+		},
+		{
+			city: 'Koch Bihar',
+			countryid: 2
+		},
+		{
+			city: 'Kulti',
+			countryid: 2
+		},
+		{
+			city: 'Rupnarayanpur',
+			countryid: 2
+		},
+		{
+			city: 'Bhatkal',
+			countryid: 2
+		},
+		{
+			city: 'Vikarabad',
+			countryid: 2
+		},
+		{
+			city: 'Pakala',
+			countryid: 2
+		},
+		{
+			city: 'Kishangarh',
+			countryid: 2
+		},
+		{
+			city: 'Pattukkottai',
+			countryid: 2
+		},
+		{
+			city: 'Pattambi',
+			countryid: 2
+		},
+		{
+			city: 'Payyanur',
+			countryid: 2
+		},
+		{
+			city: 'Arani',
+			countryid: 2
+		},
+		{
+			city: 'Peranampattu',
+			countryid: 2
+		},
+		{
+			city: 'Karamsad',
+			countryid: 2
+		},
+		{
+			city: 'Chalisgaon',
+			countryid: 2
+		},
+		{
+			city: 'Kathua',
+			countryid: 2
+		},
+		{
+			city: 'Bharatpur',
+			countryid: 2
+		},
+		{
+			city: 'Beawar',
+			countryid: 2
+		},
+		{
+			city: 'Chandausi',
+			countryid: 2
+		},
+		{
+			city: 'Kasganj',
+			countryid: 2
+		},
+		{
+			city: 'Jalesar',
+			countryid: 2
+		},
+		{
+			city: 'Arvi',
+			countryid: 2
+		},
+		{
+			city: 'Nilambur',
+			countryid: 2
+		},
+		{
+			city: 'Chittur',
+			countryid: 2
+		},
+		{
+			city: 'Chidambaram',
+			countryid: 2
+		},
+		{
+			city: 'Kanhangad',
+			countryid: 2
+		},
+		{
+			city: 'Ganganagar',
+			countryid: 2
+		},
+		{
+			city: 'Sangamner',
+			countryid: 2
+		},
+		{
+			city: 'Igatpuri',
+			countryid: 2
+		},
+		{
+			city: 'Changanacheri',
+			countryid: 2
+		},
+		{
+			city: 'Saligao',
+			countryid: 2
+		},
+		{
+			city: 'Chicalim',
+			countryid: 2
+		},
+		{
+			city: 'Dicholi',
+			countryid: 2
+		},
+		{
+			city: 'Parra',
+			countryid: 2
+		},
+		{
+			city: 'Sehore',
+			countryid: 2
+		},
+		{
+			city: 'Irinjalakuda',
+			countryid: 2
+		},
+		{
+			city: 'Kishangarh',
+			countryid: 2
+		},
+		{
+			city: 'Khanna',
+			countryid: 2
+		},
+		{
+			city: 'Tarn Taran',
+			countryid: 2
+		},
+		{
+			city: 'Kaimganj',
+			countryid: 2
+		},
+		{
+			city: 'Pudukkottai',
+			countryid: 2
+		},
+		{
+			city: 'Dindigul',
+			countryid: 2
+		},
+		{
+			city: 'Khergam',
+			countryid: 2
+		},
+		{
+			city: 'Chamba',
+			countryid: 2
+		},
+		{
+			city: 'Nurpur',
+			countryid: 2
+		},
+		{
+			city: 'Fatehabad',
+			countryid: 2
+		},
+		{
+			city: 'Sirsa',
+			countryid: 2
+		},
+		{
+			city: 'Gohana',
+			countryid: 2
+		},
+		{
+			city: 'Suratgarh',
+			countryid: 2
+		},
+		{
+			city: 'Srivilliputhur',
+			countryid: 2
+		},
+		{
+			city: 'Sivaganga',
+			countryid: 2
+		},
+		{
+			city: 'Rajapalaiyam',
+			countryid: 2
+		},
+		{
+			city: 'Ramanathapuram',
+			countryid: 2
+		},
+			
+		{
+			city: 'Kanniyakumari',
+			countryid: 2
+		},
+		{
+			city: 'Nagercoil',
+			countryid: 2
+		},
+		{
+			city: 'Eral',
+			countryid: 2
+		},
+		{
+			city: 'Kumbakonam',
+			countryid: 2
+		},
+		{
+			city: 'Mannargudi',
+			countryid: 2
+		},
+				{
+			city: 'Purnea',
+			countryid: 2
+		},
+		{
+			city: 'Munger',
+			countryid: 2
+		},
+		{
+			city: 'Motihari',
+			countryid: 2
+		},
+		{
+			city: 'Raxaul',
+			countryid: 2
+		},
+		
+		{
+			city: 'Churachandpur',
+			countryid: 2
+		},
+		{
+			city: 'Dimapur',
+			countryid: 2
+		},
+		{
+			city: 'Ajabpur',
+			countryid: 2
+		},
+		{
+			city: 'Karari',
+			countryid: 2
+		},
+		{
+			city: 'Naini',
+			countryid: 2
+		},
+		
+		{
+			city: 'Bagh',
+			countryid: 2
+		},
+		{
+			city: 'Fatehgarh',
+			countryid: 2
+		},
+		{
+			city: 'Hamirpur',
+			countryid: 2
+		},
+		{
+			city: 'Alipur',
+			countryid: 2
+		},
+		{
+			city: 'Mahulia',
+			countryid: 2
+		},
+		{
+			city: 'Nadia',
+			countryid: 2
+		},
+			{
+			city: 'Dang',
+			countryid: 2
+		},
+		{
+			city: 'Haripur',
+			countryid: 2
+		},
+		{
+			city: 'Kolayat',
+			countryid: 2
+		},
+			{
+			city: 'Nilokheri',
+			countryid: 2
+		},
+		{
+			city: 'Bali',
+			countryid: 2
+		},
+		{
+			city: 'Mithapur',
+			countryid: 2
+		},
+		{
+			city: 'Dasnaa',
+			countryid: 2
+		},
+		{
+			city: 'Dwarahat',
+			countryid: 2
+		},
+		{
+			city: 'Dimapur',
+			countryid: 2
+		},
+		{
+			city: 'Pantnagar',
+			countryid: 2
+		},
+		
+		{
+			city: 'Iglas',
+			countryid: 2
+		},
+		{
+			city: 'Balaghat',
+			countryid: 2
+		},
+		{
+			city: 'Curchorem',
+			countryid: 2
+		},
+		{
+			city: 'Vainguinim',
+			countryid: 2
+		},
+		{
+			city: 'Navelimma',
+			countryid: 2
+		},
+		{
+			city: 'Dona Paula',
+			countryid: 2
+		},
+		{
+			city: 'Guna',
+			countryid: 2
+		},
+		{
+			city: 'Sukma',
+			countryid: 2
+		},
+		
+		{
+			city: 'Matar',
+			countryid: 2
+		},
+		{
+			city: 'Chhota Udepur',
+			countryid: 2
+		},
+			{
+			city: 'Balanagar',
+			countryid: 2
+		},
+		{
+			city: 'Udaigiri',
+			countryid: 2
+		},
+			{
+			city: 'Sinnar',
+			countryid: 2
+		},
+		{
+			city: 'Bhagwan',
+			countryid: 2
+		},
+		{
+			city: 'Yanam',
+			countryid: 2
+		},
+		{
+			city: 'Bobbili',
+			countryid: 2
+		},
+		{
+			city: 'Vijapur',
+			countryid: 2
+		},
+		{
+			city: 'Hadadi',
+			countryid: 2
+		},
+		{
+			city: 'Mangaon',
+			countryid: 2
+		},
+		{
+			city: 'Shadnagar',
+			countryid: 2
+		},
+		{
+			city: 'Tiruchchendur',
+			countryid: 2
+		},
+		{
+			city: 'Turaiyur',
+			countryid: 2
+		},
+			{
+			city: 'Puliyur',
+			countryid: 2
+		},
+		{
+			city: 'Dimapur',
+			countryid: 2
+		},
+		{
+			city: 'Proddatur',
+			countryid: 2
+		},
+		{
+			city: 'Panruti',
+			countryid: 2
+		},
+			{
+			city: 'Muddanuru',
+			countryid: 2
+		},
+			{
+			city: 'Kanigiri',
+			countryid: 2
+		},
+			{
+			city: 'Vandalur',
+			countryid: 2
+		},
+		{
+			city: 'Kaniyambadi',
+			countryid: 2
+		},
+		{
+			city: 'Rayagada',
+			countryid: 2
+		},
+		{
+			city: 'Sultan',
+			countryid: 2
+		},
+		{
+			city: 'Markal',
+			countryid: 2
+		},
+		{
+			city: 'Sangam',
+			countryid: 2
+		},
+		{
+			city: 'Katoya',
+			countryid: 2
+		},
+			{
+			city: 'Farakka',
+			countryid: 2
+		},
+		{
+			city: 'Baramati',
+			countryid: 2
+		},
+		{
+			city: 'Tohana',
+			countryid: 2
+		},
+		{
+			city: 'Panchal',
+			countryid: 2
+		},
+		{
+			city: 'Mathan',
+			countryid: 2
+		},
+		{
+			city: 'Nandigama',
+			countryid: 2
+		},
+		{
+			city: 'Darsi',
+			countryid: 2
+		},
+		{
+			city: 'Nandi',
+			countryid: 2
+		},
+		{
+			city: 'Hari',
+			countryid: 2
+		},
+		{
+			city: 'Tohana',
+			countryid: 2
+		},
+		{
+			city: 'Binavas',
+			countryid: 2
+		},
+		{
+			city: 'Bhandari',
+			countryid: 2
+		},
+		{
+			city: 'Roshan',
+			countryid: 2
+		},
+		{
+			city: 'Abdul',
+			countryid: 2
+		},
+		{
+			city: 'Kheda',
+			countryid: 2
+		},
+		{
+			city: 'Medchal',
+			countryid: 2
+		},
+		{
+			city: 'Kosamba',
+			countryid: 2
+		},
+		{
+			city: 'Basu',
+			countryid: 2
+		},
+		{
+			city: 'Bawan',
+			countryid: 2
+		},
+		{
+			city: 'Thiruthani',
+			countryid: 2
+		},
+		{
+			city: 'Dangi',
+			countryid: 2
+		},
+		{
+			city: 'Khalapur',
+			countryid: 2
+		},
+		{
+			city: 'Sakri',
+			countryid: 2
+		},
+		{
+			city: 'Suman',
+			countryid: 2
+		},
+		{
+			city: 'Rajapur',
+			countryid: 2
+		},
+		{
+			city: 'Kumhari',
+			countryid: 2
+		},
+		{
+			city: 'Dhamtari',
+			countryid: 2
+		},
+		{
+			city: 'Pachmarhi',
+			countryid: 2
+		},
+		{
+			city: 'Kalan',
+			countryid: 2
+		},
+		{
+			city: 'Mandla',
+			countryid: 2
+		},
+				{
+			city: 'Khargone',
+			countryid: 2
+		},
+		{
+			city: 'Arpora',
+			countryid: 2
+		},
+		{
+			city: 'Calangute',
+			countryid: 2
+		},
+		{
+			city: 'Trimbak',
+			countryid: 2
+		},
+		{
+			city: 'Anchal',
+			countryid: 2
+		},
+		{
+			city: 'Ramapuram',
+			countryid: 2
+		},
+		{
+			city: 'Kandi',
+			countryid: 2
+		},
+		{
+			city: 'Shamsabad',
+			countryid: 2
+		},
+		{
+			city: 'Bapatla',
+			countryid: 2
+		},
+		{
+			city: 'Sandur',
+			countryid: 2
+		},
+		{
+			city: 'Tohana',
+			countryid: 2
+		},
+		{
+			city: 'Karsiyang',
+			countryid: 2
+		},
+		{
+			city: 'Haldia',
+			countryid: 2
+		},
+		{
+			city: 'Talcher',
+			countryid: 2
+		},
+		{
+			city: 'Rudrapur',
+			countryid: 2
+		},
+		{
+			city: 'Dharapuram',
+			countryid: 2
+		},
+		{
+			city: 'Devipattinam',
+			countryid: 2
+		},
+		{
+			city: 'Kodaikanal',
+			countryid: 2
+		},
+		{
+			city: 'Thirumangalam',
+			countryid: 2
+		},
+		{
+			city: 'Faizabad',
+			countryid: 2
+		},
+		{
+			city: 'Kuzhithurai',
+			countryid: 2
+		},
+		{
+			city: 'Omalur',
+			countryid: 2
+		},
+		{
+			city: 'Karamadai',
+			countryid: 2
+		},
+		{
+			city: 'Palayam',
+			countryid: 2
+		},
+		{
+			city: 'Tambaram',
+			countryid: 2
+		},
+		{
+			city: 'Chintamani',
+			countryid: 2
+		},
+		{
+			city: 'Amer',
+			countryid: 2
+		},
+		{
+			city: 'Chikodi',
+			countryid: 2
+		},
+		{
+			city: 'Chikmagalūr',
+			countryid: 2
+		},
+		{
+			city: 'Gadag',
+			countryid: 2
+		},
+		{
+			city: 'Peddapuram',
+			countryid: 2
+		},
+		{
+			city: 'Singarayakonda',
+			countryid: 2
+		},
+		{
+			city: 'Dindori',
+			countryid: 2
+		},
+		{
+			city: 'Gangapur',
+			countryid: 2
+		},
+		{
+			city: 'Betalbatim',
+			countryid: 2
+		},
+		{
+			city: 'Osmanabad',
+			countryid: 2
+		},
+		{
+			city: 'Nathdwara',
+			countryid: 2
+		},
+		{
+			city: 'Jhalawar',
+			countryid: 2
+		},
+		{
+			city: 'Nongpoh',
+			countryid: 2
+		},
+		{
+			city: 'Haveri',
+			countryid: 2
+		},
+		{
+			city: 'Talwandi',
+			countryid: 2
+		},
+		{
+			city: 'Mundgod',
+			countryid: 2
+		},
+		{
+			city: 'Mandvi',
+			countryid: 2
+		},
+		{
+			city: 'Behala',
+			countryid: 2
+		},
+		{
+			city: 'Yeola',
+			countryid: 2
+		},
+		{
+			city: 'Patancheru',
+			countryid: 2
+		},
+		{
+			city: 'Patelguda',
+			countryid: 2
+		},
+		{
+			city: 'Umred',
+			countryid: 2
+		},
+		{
+			city: 'ToNerihana',
+			countryid: 2
+		},
+		{
+			city: 'Pandharpur',
+			countryid: 2
+		},
+		{
+			city: 'TohaJaisalmerna',
+			countryid: 2
+		},
+		{
+			city: 'Ambad',
+			countryid: 2
+		},
+		{
+			city: 'Ambejogai',
+			countryid: 2
+		},
+		{
+			city: 'Ambah',
+			countryid: 2
+		},
+		{
+			city: 'Baroda',
+			countryid: 2
+		},
+		{
+			city: 'Sirohi',
+			countryid: 2
+		},
+		{
+			city: 'Pushkar',
+			countryid: 2
+		},
+		{
+			city: 'Phaphamau',
+			countryid: 2
+		},
+		{
+			city: 'Azamgarh',
+			countryid: 2
+		},
+		{
+			city: 'Fort',
+			countryid: 2
+		},
+		{
+			city: 'Bela',
+			countryid: 2
+		},
+		{
+			city: 'Pauri',
+			countryid: 2
+		},
+		{
+			city: 'Almora',
+			countryid: 2
+		},
+		{
+			city: 'Bichpuri',
+			countryid: 2
+		},
+		{
+			city: 'Firozabad',
+			countryid: 2
+		},
+		{
+			city: 'Mawana',
+			countryid: 2
+		},
+		{
+			city: 'Odhan',
+			countryid: 2
+		},
+		{
+			city: 'Balana',
+			countryid: 2
+		},
+		{
+			city: 'Ambarnath',
+			countryid: 2
+		},
+		{
+			city: 'Damoh',
+			countryid: 2
+		},
+		{
+			city: 'Durg',
+			countryid: 2
+		},
+		{
+			city: 'Sabo',
+			countryid: 2
+		},
+		{
+			city: 'Chiplun',
+			countryid: 2
+		},
+		{
+			city: 'Malpur',
+			countryid: 2
+		},
+		{
+			city: 'Palus',
+			countryid: 2
+		},
+		{
+			city: 'Alangulam',
+			countryid: 2
+		},
+		{
+			city: 'Ottappalam',
+			countryid: 2
+		},
+		{
+			city: 'Yercaud',
+			countryid: 2
+		},
+		{
+			city: 'Pileru',
+			countryid: 2
+		},
+		{
+			city: 'Dhar',
+			countryid: 2
+		},
+		{
+			city: 'Medarametla',
+			countryid: 2
+		},
+		{
+			city: 'Machhiwara',
+			countryid: 2
+		},
+		{
+			city: 'Khinwara',
+			countryid: 2
+		},
+		{
+			city: 'Kurali',
+			countryid: 2
+		},
+		{
+			city: 'Sirhind',
+			countryid: 2
+		},
+		{
+			city: 'Jhunjhunun',
+			countryid: 2
+		},
+		{
+			city: 'Kagal',
+			countryid: 2
+		},
+		{
+			city: 'Alanallur',
+			countryid: 2
+		},
+		{
+			city: 'Sojat',
+			countryid: 2
+		},
+		{
+			city: 'Koothanallur',
+			countryid: 2
+		},
+		{
+			city: 'Charu',
+			countryid: 2
+		},
+		{
+			city: 'Kalra',
+			countryid: 2
+		},
+		{
+			city: 'Tikamgarh',
+			countryid: 2
+		},
+		{
+			city: 'Chandan',
+			countryid: 2
+		},
+		{
+			city: 'Mill',
+			countryid: 2
+		},
+		{
+			city: 'Chetan',
+			countryid: 2
+		},
+		{
+			city: 'Nanda',
+			countryid: 2
+		},
+		{
+			city: 'Rana',
+			countryid: 2
+		},
+		{
+			city: 'Kasal',
+			countryid: 2
+		},
+		{
+			city: 'Chopra',
+			countryid: 2
+		},
+		{
+			city: 'Maru',
+			countryid: 2
+		},
+	{
+		city: 'Balu',
+		countryid: 2
+	},
+	{
+		city: 'Rawal',
+		countryid: 2
+	},
+	{
+		city: 'Soni',
+		countryid: 2
+	},
+	{
+		city: 'Sarwar',
+		countryid: 2
+	},
+	{
+		city: 'Bishnupur',
+		countryid: 2
+	},
+	{
+		city: 'Manu',
+		countryid: 2
+	},
+	{
+		city: 'Amreli',
+		countryid: 2
+	},
+	{
+		city: 'Adwani',
+		countryid: 2
+	},
+	{
+			city: 'Ellora Caves',
+			countryid: 2
+		},
+		{
+			city: 'Karimganj',
+			countryid: 2
+		},
+		{
+			city: 'Jha Jha',
+			countryid: 2
+		},
+		{
+			city: 'Hira',
+			countryid: 2
+		},
+		{
+			city: 'Amal',
+			countryid: 2
+		},
+		{
+			city: 'Manna',
+			countryid: 2
+		},
+		{
+			city: 'Jatani',
+			countryid: 2
+		},
+		
+		{
+			city: 'Hoshangabad',
+			countryid: 2
+		},
+		
+		{
+			city: 'Pahalgam',
+			countryid: 2
+		},
+		
+		{
+			city: 'Nalagarh',
+			countryid: 2
+		},
+		
+		{
+			city: 'Shanti Grama',
+			countryid: 2
+		},
+		
+		{
+			city: 'Vadner',
+			countryid: 2
+		},
+		
+		{
+			city: 'Mount Abu',
+			countryid: 2
+		},
+		
+		{
+			city: 'Ponneri',
+			countryid: 2
+		},
+		
+		{
+			city: 'Lalgudi',
+			countryid: 2
+		},
+		
+		{
+			city: 'Perundurai',
+			countryid: 2
+		},
+		
+		{
+			city: 'Pochampalli',
+			countryid: 2
+		},
+		
+		{
+			city: 'Manna',
+			countryid: 2
+		},
+		
+		{
+			city: 'Vadamadurai',
+			countryid: 2
+		},
+		
+		{
+			city: 'Mussoorie',
+			countryid: 2
+		},
+		
+		{
+			city: 'Nagwa',
+			countryid: 2
+		},
+		
+		{
+			city: 'Sanand',
+			countryid: 2
+		},
+		
+		{
+			city: 'Sidhpur',
+			countryid: 2
+		},
+		
+		{
+			city: 'Botad',
+			countryid: 2
+		},
+		
+		{
+			city: 'Tuljapur',
+			countryid: 2
+		},
+		
+		{
+			city: 'Raju',
+			countryid: 2
+		},
+		
+		{
+			city: 'Hong',
+			countryid: 2
+		},
+		
+		{
+			city: 'Sirwani',
+			countryid: 2
+		},
+		
+		{
+			city: 'Nagal',
+			countryid: 2
+		},
+		
+		v
+		{
+			city: 'Manna',
+			countryid: 2
+		},
+		
+		{
+			city: 'Manna',
+			countryid: 2
+		},
+		
+		{
+			city: 'Chand',
+			countryid: 2
+		},
+		
+		{
+			city: 'Sodhi',
+			countryid: 2
+		},
+		
+		{
+			city: 'Mahajan',
+			countryid: 2
+		},
+		
+		{
+			city: 'Kanakpura',
+			countryid: 2
+		},
+		
+		{
+			city: 'Mahesh',
+			countryid: 2
+		},
+		
+		{
+			city: 'Suriapet',
+			countryid: 2
+		},
+		
+		{
+			city: 'Kottagudem',
+			countryid: 2
+		},
+		{
+			city: 'Palwal',
+			countryid: 2
+		},
+		
+		{
+			city: 'Golaghat',
+			countryid: 2
+		},
+		
+		{
+			city: 'Banka',
+			countryid: 2
+		},
+		
+		
+		{
+			city: 'Shahapur',
+			countryid: 2
+		},
+		
+		{
+			city: 'Begusarai',
+			countryid: 2
+		},
+		
+		
+		{
+			city: 'Ballabgarh',
+			countryid: 2
+		},
+		
+		{
+			city: 'Khambhat',
+			countryid: 2
+		},
+		
+		{
+			city: 'Jaynagar',
+			countryid: 2
+		},
+		
+		{
+			city: 'Parel',
+			countryid: 2
+		},
+		
+		{
+			city: 'Arora',
+			countryid: 2
+		},
+		
+		{
+			city: 'Chhabra',
+			countryid: 2
+		},
+		{
+			city: 'Attur',
+			countryid: 2
+		},
+		{
+			city: 'Mirza Murad',
+			countryid: 2
+		},
+		{
+			city: 'Tirumala',
+			countryid: 2
+		},
+		{
+			city: 'Sangola',
+			countryid: 2
+		},
+		{
+			city: 'Betul',
+			countryid: 2
+		},
+		{
+			city: 'Khajuraho Group of Monuments',
+			countryid: 2
+		},
+		{
+			city: 'Barmer',
+			countryid: 2
+		},
+		{
+			city: 'Dinanagar',
+			countryid: 2
+		},
+		{
+			city: 'Sholavandan',
+			countryid: 2
+		},
+		{
+			city: 'Aundh',
+			countryid: 2
+		},
+		{
+			city: 'Tala',
+			countryid: 2
+		},
+		{
+			city: 'Ganga',
+			countryid: 2
+		},
+		{
+			city: 'Pilkhuwa',
+			countryid: 2
+		},
+		{
+			city: 'Kalkaji Devi',
+			countryid: 2
+		},
+		{
+			city: 'Andra',
+			countryid: 2
+		},
+		{
+			city: 'Morinda',
+			countryid: 2
+		},
+		{
+			city: 'Mandapeta',
+			countryid: 2
+		},
+		{
+			city: 'Nagaur',
+			countryid: 2
+		},
+		{
+			city: 'Hazaribagh',
+			countryid: 2
+		},
+		{
+			city: 'Shrigonda',
+			countryid: 2
+		},
+		{
+			city: 'Rajpur',
+			countryid: 2
+		},
+		{
+			city: 'Koni',
+			countryid: 2
+		},
+		{
+			city: 'Tonk',
+			countryid: 2
+		},
+		{
+			city: 'Pala',
+			countryid: 2
+		},
+		{
+			city: 'Budha',
+			countryid: 2
+		},
+		{
+			city: 'Ghatal',
+			countryid: 2
+		},
+		{
+			city: 'Bangaon',
+			countryid: 2
+		},
+		{
+			city: 'Samastipur',
+			countryid: 2
+		},
+		{
+			city: 'Chhachhrauli',
+			countryid: 2
+		},
+		{
+			city: 'Mehra',
+			countryid: 2
+		},
+		{
+			city: 'Mundra',
+			countryid: 2
+		},
+		{
+			city: 'Ranaghat',
+			countryid: 2
+		},
+		{
+			city: 'Kamalpur',
+			countryid: 2
+		},
+		{
+			city: 'Madurantakam',
+			countryid: 2
+		},
+		{
+			city: 'Channapatna',
+			countryid: 2
+		},
+		{
+			city: 'Jagraon',
+			countryid: 2
+		},
+		{
+			city: 'Shahkot',
+			countryid: 2
+		},
+		{
+			city: 'Bargarh',
+			countryid: 2
+		},
+		{
+			city: 'Nazira',
+			countryid: 2
+		},
+		{
+			city: 'Nandurbar',
+			countryid: 2
+		},
+		
+		{
+			city: 'Nabadwip',
+			countryid: 2
+		},
+		{
+			city: 'Dhaka',
+			countryid: 2
+		},
+		{
+			city: 'Bawana',
+			countryid: 2
+		},
+		{
+			city: 'Chirala',
+			countryid: 2
+		},
+		{
+			city: 'Rama',
+			countryid: 2
+		},
+		{
+			city: 'Mashobra',
+			countryid: 2
+		},
+		{
+			city: 'Belgharia',
+			countryid: 2
+		},
+		{
+			city: 'Jayanti',
+			countryid: 2
+		},
+		{
+			city: 'Sachin',
+			countryid: 2
+		},
+		{
+			city: 'Dewas',
+			countryid: 2
+		},
+		{
+			city: 'Mandsaur',
+			countryid: 2
+		},
+		{
+			city: 'Chitradurga',
+			countryid: 2
+		},
+		{
+			city: 'kamat',
+			countryid: 2
+		},
+		{
+			city: 'Dhariwal',
+			countryid: 2
+		},
 
+	
+
+		
 	]
 
 	array.forEach((doc) => {
