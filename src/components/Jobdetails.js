@@ -5,6 +5,7 @@ import axios from '../axios-immediatejoiner';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
+import { auth } from '../firebase/index';
 
 export class Jobdetails extends Component {
 
@@ -94,8 +95,15 @@ export class Jobdetails extends Component {
                                     <li><Link to="/" className="nav-link">Home</Link></li>
                                     <li><Link to="/About">About</Link></li>
                                     <li><Link to="/Contactus">Contact</Link></li>
+                                    <li className="d-lg-none"><button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block js-menu-toggle">Log Out</button></li>
                                 </ul>
                             </nav>
+                            <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
+                                <div className="ml-auto">
+                                    <button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
+                                </div>
+                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
+                            </div>
                         </div>
                     </div>
                 </header>

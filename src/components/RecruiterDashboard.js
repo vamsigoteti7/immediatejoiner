@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import axios from '../axios-immediatejoiner';
+import { auth } from '../firebase/index';
 
 export class RecruiterDashboard extends Component {
     constructor(props) {
@@ -119,12 +120,14 @@ export class RecruiterDashboard extends Component {
                                     <li><Link to="/" className="nav-link">Home</Link></li>
                                     <li><Link to="/About">About</Link></li>
                                     <li><Link to="/Contactus">Contact</Link></li>
+                                    <li class="d-lg-none"><Link to="/Postjob"><span class="mr-2">+</span> Post a Job</Link></li>
+                                    <li className="d-lg-none"><button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block js-menu-toggle">Log Out</button></li>
                                 </ul>
                             </nav>
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                 <div className="ml-auto">
                                     <Link to="/Postjob" className="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-add"></span>Post a Job</Link>
-                                    <Link to="/" className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</Link>
+                                    <Link onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</Link>
                                 </div>
                                 <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
                             </div>
@@ -155,7 +158,7 @@ export class RecruiterDashboard extends Component {
                                     if (tier.email !== '') {
                                         return (
                                             <li key={i} className="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-                                                <Link to={{ pathname: '/JobApplicationDetails', query: tier.jobpostid  }}></Link>
+                                                <Link to={{ pathname: '/JobApplicationDetails', query: tier.jobpostid }}></Link>
                                                 <div className="job-listing-logo">
                                                     <img src={tier.companylogourl} alt="Free Website Template by Free-Template.co" className="img-fluid" />
                                                 </div>
@@ -175,9 +178,8 @@ export class RecruiterDashboard extends Component {
                                             </li>
                                         )
                                     }
-                                    else
-                                    {
-                                        return(<div><h1>No Job Posts Yet</h1></div>)
+                                    else {
+                                        return (<div><h1>No Job Posts Yet</h1></div>)
                                     }
                                 })}
                             </ul>

@@ -162,7 +162,7 @@ class MembershipPlans extends React.Component {
                                         <li><Link className="nav-link active js-menu-toggle" to="/">Home</Link></li>
                                         <li><Link className="js-menu-toggle" to="/About">About</Link></li>
                                         <li><Link className="js-menu-toggle" to="/Contactus">Contact</Link></li>
-                                        <li className="d-lg-none"><button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block js-menu-toggle">Log Out</button></li>
+                                        <li className="d-lg-none"><Link onClick={() => { auth.signOut() }} className="js-menu-toggle" >Log Out</Link></li>
                                     </ul>
                                 </nav>
 

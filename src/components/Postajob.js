@@ -8,6 +8,7 @@ import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
 import { storage } from '../firebase';
 import { NoImage } from '../images/No-image-available.png';
+import { auth } from '../firebase/index';
 
 export class Postajob extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ export class Postajob extends Component {
             selectedcity: '',
             selectedindustry: '',
             selectedjobtype: '',
-            skills:'',
+            skills: '',
             jobdescription: '',
             companyname: '',
             tagline: '',
@@ -89,9 +90,9 @@ export class Postajob extends Component {
         const userData = {
             userid: this.props.userid.user.uid
         };
-        axios.post('/getuserjobs',userData)
+        axios.post('/getuserjobs', userData)
             .then(response => {
-                
+
             })
             .catch(error => {
                 console.log(error);
@@ -100,13 +101,13 @@ export class Postajob extends Component {
 
     jobdescriptionChange = (content, delta, source, editor) => {
         this.setState({
-            jobdescription:editor.getHTML()
+            jobdescription: editor.getHTML()
         });
     }
 
     companydescriptionChange = (content, delta, source, editor) => {
         this.setState({
-            companydescription:editor.getHTML()
+            companydescription: editor.getHTML()
         });
     }
 
@@ -184,14 +185,14 @@ export class Postajob extends Component {
             city: this.state.selectedcity.value,
             industry: this.state.selectedindustry.value,
             jobtype: this.state.selectedjobtype.value,
-            skills:this.state.skills,
+            skills: this.state.skills,
             jobdescription: this.state.jobdescription,
             companyname: this.state.companyname,
             companydescription: this.state.companydescription,
             companywebsite: this.state.companywebsite,
             experiencerequired: this.state.selectedexperience.value,
             recruiterimageurl: this.state.recruiterimageurl,
-            companylogourl:this.state.companylogourl
+            companylogourl: this.state.companylogourl
         };
         axios.post('/impostjob', registerData)
             .then(response => {
@@ -291,13 +292,21 @@ export class Postajob extends Component {
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="site-logo col-6"><Link to="/">Immediate Joiner</Link></div>
+
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                                     <li><Link to="/" className="nav-link">Home</Link></li>
                                     <li><Link to="/About">About</Link></li>
                                     <li><Link to="/Contactus">Contact</Link></li>
+                                    <li className="d-lg-none"><button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block js-menu-toggle">Log Out</button></li>
                                 </ul>
                             </nav>
+                            <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
+                                <div className="ml-auto">
+                                    <button onClick={() => { auth.signOut() }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
+                                </div>
+                                <Link to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span className="icon-menu h3 m-0 p-0 mt-2"></span></Link>
+                            </div>
                         </div>
                     </div>
                 </header>
@@ -459,7 +468,7 @@ export class Postajob extends Component {
                                             ))}
                                         </Select>
                                     </div>
-                                    
+
                                     <div className="form-group">
                                         <label htmlFor="skills">Skills</label>
                                         <input type="text" onChange={this.handleChange} value={this.state.skills} className="form-control" name="skills" placeholder="Enter Skills" />
