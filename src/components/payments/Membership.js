@@ -95,20 +95,16 @@ class MembershipCheckout extends React.Component {
                     console.log("[error]", payload.error);
                 } else {
                     firebase.firestore()
-                    .collection('IMUserPayments').add({
-                        userid: this.props.userid.user.uid,
-                        payment: payload.paymentIntent,
-                        createdDate: firebase.firestore.Timestamp.fromDate(new Date())
-                    });
-                    
+                        .collection('IMUserPayments').add({
+                            userid: this.props.userid.user.uid,
+                            payment: payload.paymentIntent,
+                            createdDate: firebase.firestore.Timestamp.fromDate(new Date())
+                        });
+
                     this.props.history.push('/RecruiterDashboard');
                     console.log("[PaymentIntent]", payload.paymentIntent);
                 }
             } catch (error) {
-
-                
-
-
                 console.log(error);
             }
         }
@@ -119,6 +115,25 @@ class MembershipCheckout extends React.Component {
     }
 
     render() {
+
+        const options = {
+            style: {
+                base: {
+                    color: "#32325d",
+                    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                    fontSmoothing: "antialiased",
+                    fontSize: "16px",
+                    "::placeholder": {
+                        color: "#aab7c4",
+                    },
+                },
+                invalid: {
+                    color: "#fa755a",
+                    iconColor: "#fa755a",
+                },
+            },
+        };
+
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -182,7 +197,8 @@ class MembershipCheckout extends React.Component {
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
                                             <input autoComplete="on" value={this.state.cardholdername} type="text" name="cardholdername" onChange={this.handleChange} className="form-control" placeholder="Enter The Name On The Card" required />
-                                            <CardElement />
+                                            <CardElement className="sr-input sr-card-element"
+                                                options={options} />
                                         </div>
                                     </div>
                                     <div className="row form-group">
@@ -270,7 +286,7 @@ class Membership extends React.Component {
     render() {
         const stripePromise = loadStripe('pk_live_51HL4l2FTZGo3gXDdd6Cqg134r9FVGbhI0hOTQlbSfcs1b6LBOEw2tORB7PTXLgvmTvx0IE6LwRXzaTXCrowTaUF900H6UqqfZ0');
         const userid = this.props.userid
-        var plan = this.props.location.query;
+        var plan = this.props.history.location.query;
         return (
             <Elements stripe={stripePromise}>
                 <ElementsConsumer>
