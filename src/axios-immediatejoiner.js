@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL :'https://us-central1-immediatejoiner.cloudfunctions.net/app/'
+    baseURL :'https://asia-south1-immediatejoiner.cloudfunctions.net/app'
 });
 
 export default instance;

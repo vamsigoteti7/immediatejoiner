@@ -1,0 +1,7 @@
+gcloud config set project immediatejoiner
+
+gcloud firestore export gs://[SOURCE_BUCKET] --async
+
+gcloud firestore export gs://immediatejoiner.appspot.com --collection-ids=IMCities --async
+
+gs://immediatejoiner.appspot.com/2020-09-22T18:46:22_98169
