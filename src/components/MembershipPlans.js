@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 import hero_1 from '../images/hero_1.jpg';
 import axios from '../axios-immediatejoiner';
 import { auth } from '../firebase/index';
-import $ from 'jquery';
 
 const useStyles = theme => ({
     '@global': {

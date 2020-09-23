@@ -2,7 +2,6 @@ import React from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 import axios from '../axios-immediatejoiner';
-import $ from 'jquery';
 
 class Contactus extends React.Component {
     constructor(props) {

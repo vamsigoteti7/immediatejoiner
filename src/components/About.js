@@ -1,7 +1,6 @@
 import React from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
 
 class About extends React.Component {
     render() {

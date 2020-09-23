@@ -117,7 +117,7 @@ export class RecruiterDashboard extends Component {
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><Link className="js-menu-toggle" to="/" className="nav-link">Home</Link></li>
+                                    <li><Link className="nav-link js-menu-toggle" to="/">Home</Link></li>
                                     <li><Link className="js-menu-toggle" to="/About">About</Link></li>
                                     <li><Link className="js-menu-toggle" to="/RecruiterDashboard">Dashboard</Link></li>
                                     <li><Link className="js-menu-toggle" to="/Contactus">Contact</Link></li>
