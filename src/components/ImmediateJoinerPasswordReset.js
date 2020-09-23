@@ -181,13 +181,13 @@ export class ImmediateJoinerPasswordReset extends Component {
 
                                             <div className="row form-group">
                                                 <div className="col-md-12">
-                                                    <button value="Send Me A Reset Link"
+                                                    <button 
                                                         onChange={this.handleChange}
                                                         name="IsLogIn"
                                                         onClick={event => {
                                                             this.sendResetEmail(event);
                                                         }}
-                                                        className="btn px-4 btn-primary text-white" />
+                                                        className="btn px-4 btn-primary text-white">Send Me A Reset Link</button>
                                                 </div>
                                             </div>
 
