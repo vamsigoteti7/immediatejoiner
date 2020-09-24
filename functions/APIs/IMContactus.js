@@ -1,4 +1,4 @@
-const { db } = require('../util/admin');
+const { db } = require('../index');
 
 exports.getAllcontacts = (request, response) => {
 	db
