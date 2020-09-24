@@ -1,8 +1,8 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.postCities = (request, response) => {
 
-	var batch = db.batch();
+	var batch = admin.firestore().batch();
 
 	const array = [
 
@@ -3936,7 +3936,7 @@ exports.postCities = (request, response) => {
 };
 
 exports.getcitiesbycountryid = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMCities')
 		.where('countryid', '==', request.body.countryid)
 		.get()

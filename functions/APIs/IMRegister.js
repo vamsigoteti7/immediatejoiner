@@ -1,7 +1,7 @@
-const { db, admin } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAllImmediateJoiners = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMRegister')
 		.where('username', '==', request.body.username)
 		.where('password', '==', request.body.password)
@@ -26,7 +26,7 @@ exports.getAllImmediateJoiners = (request, response) => {
 };
 
 exports.getAllImmediateJoiner = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMRegister')
 		.get()
 		.then((data) => {
@@ -107,7 +107,7 @@ exports.postRegister = (request, response) => {
 
 	}
 
-	db
+	admin.firestore()
 		.collection('IMRegister')
 		.add(newRegisterUsItem)
 		.then((doc) => {
@@ -123,7 +123,7 @@ exports.postRegister = (request, response) => {
 
 exports.getregisterdetailsById = (request, response) => {
 
-	var docRef = db.collection("IMRegister").doc(request.body.docid);
+	var docRef = admin.firestore().collection("IMRegister").doc(request.body.docid);
 
 	docRef.get().then(function (doc) {
 		if (doc.exists) {
