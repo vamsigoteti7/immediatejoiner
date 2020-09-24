@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getuserpaymentbyid = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMUserPayments')
         .where('userid', '==', request.body.userid)
         .orderBy('createdDate','desc')
