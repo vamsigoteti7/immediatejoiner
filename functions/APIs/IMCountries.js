@@ -1,4 +1,4 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.postCountries = (request, response) => {
 
@@ -7,7 +7,7 @@ exports.postCountries = (request, response) => {
 		name: request.body.name
 	}
 	
-	db
+	admin.firestore()
 		.collection('IMCountries')
 		.add(newCountryItem)
 		.then((doc) => {
@@ -22,7 +22,7 @@ exports.postCountries = (request, response) => {
 };
 
 exports.getallcountries = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMCountries')
 		.get()
 		.then((data) => {

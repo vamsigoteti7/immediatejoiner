@@ -1,7 +1,7 @@
-const { db, admin } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getMembershipPlansByType = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMMembershipPlans')
 		.where('MemberType', '==', request.body.membertype)
 		.get()

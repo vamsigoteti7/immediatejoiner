@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getallgender = (request, response) => {
-	db
+	admin.firestore()
         .collection('IMGender')
         .orderBy('Id', 'asc')
 		.get()

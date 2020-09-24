@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAllIndustries = (request, response) => {
-    db
+    admin.firestore()
         .collection('IMIndustries')
         .orderBy('industryid', 'desc')
         .get()
@@ -30,7 +30,7 @@ exports.postindustries = (request, response) => {
         industryname: request.body.industryname
     }
 
-    db
+    admin.firestore()
         .collection('IMIndustries')
         .add(newindustryItem)
         .then((doc) => {

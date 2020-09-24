@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAllcontacts = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMcontactus')
 		.get()
 		.then((data) => {
@@ -35,7 +35,7 @@ exports.postContactus = (request, response) => {
 		createddate: new Date().toISOString()
 	}
 	
-	db
+	admin.firestore()
 		.collection('IMcontactus')
 		.add(newContactUsItem)
 		.then((doc) => {
@@ -50,7 +50,7 @@ exports.postContactus = (request, response) => {
 };
 exports.getcontactusById = (request, response) => {
 
-	var docRef = db.collection("IMcontactus").doc(request.body.docid);
+	var docRef = admin.firestore().collection("IMcontactus").doc(request.body.docid);
 
 	docRef.get().then(function (doc) {
 		 if (doc.exists) {

@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAlljobapplications = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMuserjobapplications')
 		.get()
 		.then((data) => {
@@ -22,7 +22,7 @@ exports.getAlljobapplications = (request, response) => {
 };
 
 exports.getjobapplicationsByJobId = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMuserjobapplications')
 		.where('jobid', '==', request.body.jobid)
 		.get()
@@ -34,7 +34,7 @@ exports.getjobapplicationsByJobId = (request, response) => {
 				);
 			});
 			if (jobap.length > 0) {
-				db
+				admin.firestore()
 					.collection('IMuserdetails')
 					.where('email', 'in', jobap)
 					.get()
@@ -71,7 +71,7 @@ exports.postJobapplications = (request, response) => {
 		jobid: request.body.jobid
 	}
 
-	db
+	admin.firestore()
 		.collection('IMuserjobapplications')
 		.add(newJobappItem)
 		.then((doc) => {
@@ -89,7 +89,7 @@ exports.postJobapplications = (request, response) => {
 
 exports.getjobapplicationsById = (request, response) => {
 
-	var docRef = db.collection("IMuserjobapplications").doc(request.body.docid);
+	var docRef = admin.firestore().collection("IMuserjobapplications").doc(request.body.docid);
 
 	docRef.get().then(function (doc) {
 		if (doc.exists) {

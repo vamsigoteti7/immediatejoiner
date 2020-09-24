@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAllQualification = (request, response) => {
-    db
+    admin.firestore()
         .collection('IMQualification')
         .orderBy('Qualificationid', 'desc')
         .get()
@@ -30,7 +30,7 @@ exports.postQualification = (request, response) => {
         Qualificationname: request.body.Qualificationname
     }
 
-    db
+    admin.firestore()
         .collection('IMQualification')
         .add(newQuaItem)
         .then((doc) => {

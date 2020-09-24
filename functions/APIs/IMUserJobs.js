@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getuserjobs = (request, response) => {
-	db
+	admin.firestore()
         .collection('IMUserJobs')
         .doc(request.body.userid)
 		.get()

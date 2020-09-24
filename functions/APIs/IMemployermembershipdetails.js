@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAllemployermembershipdetails = (request, response) => {
-    db
+    admin.firestore()
         .collection('IMemployermembershipdetails')
         .get()
         .then((data) => {
@@ -35,7 +35,7 @@ exports.postemployermembershipdetails = (request, response) => {
         createddate: new Date().toISOString()
     }
 
-    db
+    admin.firestore()
         .collection('IMemployermembershipdetails')
         .add(newemployermemItem)
         .then((doc) => {
@@ -50,7 +50,7 @@ exports.postemployermembershipdetails = (request, response) => {
 };
 exports.getemployermemdetailsById = (request, response) => {
 
-	var docRef = db.collection("IMemployermembershipdetails").doc(request.body.docid);
+	var docRef = admin.firestore().collection("IMemployermembershipdetails").doc(request.body.docid);
 
 	docRef.get().then(function (doc) {
 		if (doc.exists) {

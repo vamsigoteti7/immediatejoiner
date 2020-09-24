@@ -1,7 +1,7 @@
-const { db } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getallexperience = (request, response) => {
-	db
+	admin.firestore()
 		.collection('IMExperience')
 		.get()
 		.then((data) => {
@@ -26,7 +26,7 @@ exports.postExperience = (request, response) => {
 		expname: request.body.expname
 	}
 	
-	db
+	admin.firestore()
 		.collection('IMExperience')
 		.add(newExperienceItem)
 		.then((doc) => {

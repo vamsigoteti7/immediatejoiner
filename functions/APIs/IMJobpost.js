@@ -1,7 +1,7 @@
-const { db,admin } = require('../index');
+const admin = require('firebase-admin');
 
 exports.getAlljobposts = (request, response) => {
-     db
+     admin.firestore()
           .collection('IMjobpost')
           .get()
           .then((data) => {
@@ -56,7 +56,7 @@ exports.postJob = (request, response) => {
           createddate: admin.firestore.Timestamp.fromDate(new Date())
      }
 
-     db
+     admin.firestore()
           .collection('IMjobpost')
           .add(newJobpostItem)
           .then((doc) => {
@@ -71,7 +71,7 @@ exports.postJob = (request, response) => {
 };
 
 exports.getjobpostsByRecruiterId = (request, response) => {
-     db
+     admin.firestore()
           .collection('IMjobpost')
           .orderBy("createddate", "desc")
           .where('email', '==', request.body.email)
@@ -111,7 +111,7 @@ exports.getjobpostsByRecruiterId = (request, response) => {
 };
 
 exports.getjobpostsByDocid = (request, response) => {
-     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('email', '==', request.body.email);
+     var ref = admin.firestore().collection("IMjobpost").orderBy('createddate', 'desc').where('email', '==', request.body.email);
      ref.get().then(function (snapshot) {
           let jp = [];
           ref.limit(2).get().then(function (snapshot) {
@@ -132,12 +132,12 @@ exports.getjobpostsByDocid = (request, response) => {
 };
 
 exports.getjobpostsByStartAfter = (request, response) => {
-     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('email', '==', request.body.email);
+     var ref = admin.firestore().collection("IMjobpost").orderBy('createddate', 'desc').where('email', '==', request.body.email);
 
      ref.get().then(function (snapshot) {
           let jp = [];
 
-          var docRef = db.collection("IMjobpost").doc(request.body.docid);
+          var docRef = admin.firestore().collection("IMjobpost").doc(request.body.docid);
 
           docRef.get().then(function (doc) {
                if (doc.exists) {
@@ -166,12 +166,12 @@ exports.getjobpostsByStartAfter = (request, response) => {
 };
 
 exports.getjobsearchStartAfter = (request, response) => {
-     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
+     var ref = admin.firestore().collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
 
      ref.get().then(function (snapshot) {
           let jp = [];
 
-          var docRef = db.collection("IMjobpost").doc(request.body.docid);
+          var docRef = admin.firestore().collection("IMjobpost").doc(request.body.docid);
 
           docRef.get().then(function (doc) {
                if (doc.exists) {
@@ -201,7 +201,7 @@ exports.getjobsearchStartAfter = (request, response) => {
 
 
 exports.getjobsearch = (request, response) => {
-     var ref = db.collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
+     var ref = admin.firestore().collection("IMjobpost").orderBy('createddate', 'desc').where('industry', '==', request.body.industry).where('city', '==', request.body.city);
      ref.get().then(function (snapshot) {
           let jp = [];
           ref.limit(2).get().then(function (snapshot) {
@@ -224,7 +224,7 @@ exports.getjobsearch = (request, response) => {
 
 exports.getJobPostById = (request, response) => {
 
-     var docRef = db.collection("IMjobpost").doc(request.body.docid);
+     var docRef = admin.firestore().collection("IMjobpost").doc(request.body.docid);
 
      docRef.get().then(function (doc) {
           if (doc.exists) {
