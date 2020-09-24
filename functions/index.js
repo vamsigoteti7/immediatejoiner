@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const cookieParser = require('cookie-parser')(); 
-var serviceAccount = require("../immediatejoiner-firebase-adminsdk-g66wx-610caa53bf.json");
+var serviceAccount = require("./immediatejoiner-firebase-adminsdk-g66wx-610caa53bf.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -84,7 +84,7 @@ app.use(cookieParser);
 app.use(validateFirebaseIdToken);
 
 
-module.exports = { admin, db };
+//module.exports = { admin, db };
 
 // app.use((req, res, next) => {
 //   if (req.originalUrl === '/webhook') {
