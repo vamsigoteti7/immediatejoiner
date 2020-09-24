@@ -1,4 +1,4 @@
-const { db, admin } = require('../util/admin');
+const { db,admin } = require('../index');
 
 exports.getAlljobposts = (request, response) => {
      db

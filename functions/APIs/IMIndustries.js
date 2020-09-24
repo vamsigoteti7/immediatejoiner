@@ -1,4 +1,5 @@
-const { db } = require('../util/admin');
+const { db } = require('../index');
+
 exports.getAllIndustries = (request, response) => {
     db
         .collection('IMIndustries')
