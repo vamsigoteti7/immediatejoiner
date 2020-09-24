@@ -1,6 +1,7 @@
 import React, { Component, createContext } from "react";
 import { auth,  generateUserDocument } from '../../firebase/index';
 import firebase from "firebase/app";
+import axios from '../../axios-immediatejoiner';
 export const UserContext = createContext({ user: null });
 
 class UserProvider extends Component {
@@ -15,7 +16,14 @@ class UserProvider extends Component {
   componentDidMount = async () => {
     auth.onAuthStateChanged(async firebaseUser => {
       const userVal = await generateUserDocument(firebaseUser);
-      const token = await firebase.auth().currentUser.getIdToken(true);
+      try {
+        const token = await firebase.auth().currentUser.getIdToken(true);  
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        console.log(token);
+      } catch (error) {
+        console.log(error);
+      }
+      
       this.setState({
         allContextValue: {
           ...this.state.allContextValue,
