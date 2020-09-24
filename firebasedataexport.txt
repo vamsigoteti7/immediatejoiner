@@ -1,7 +1,30 @@
-gcloud config set project immediatejoiner
 
-gcloud firestore export gs://[SOURCE_BUCKET] --async
+
+gcloud firestore export gs://immediatejoiner.appspot.com --async
 
 gcloud firestore export gs://immediatejoiner.appspot.com --collection-ids=IMCities --async
 
 gs://immediatejoiner.appspot.com/2020-09-22T18:46:22_98169
+
+gs://immediatejoiner.appspot.com/2020-09-22T18:49:16_5369
+
+gcloud firestore operations list
+
+
+https://asia-south1-immediatejoiner.cloudfunctions.net/app
+
+gcloud firestore import gs://immediatejoiner.appspot.com/2020-09-22T18:49:16_5369 --async
+
+
+gcloud config set project immediateindia
+
+gsutil iam ch serviceAccount:immediateindia@appspot.gserviceaccount.com:admin \
+gs://immediateindia.appspot.com
+
+gcloud config set project immediatejoiner
+
+gsutil iam ch serviceAccount:immediatejoiner@appspot.gserviceaccount.com:admin \
+gs://immediatejoiner.appspot.com
+
+gsutil iam ch serviceAccount:immediateindia@appspot.gserviceaccount.com:admin \
+gs://immediatejoiner.appspot.com

@@ -294,7 +294,7 @@ class Membership extends React.Component {
     }
 
     render() {
-        const stripePromise = loadStripe('pk_live_51HL4l2FTZGo3gXDdd6Cqg134r9FVGbhI0hOTQlbSfcs1b6LBOEw2tORB7PTXLgvmTvx0IE6LwRXzaTXCrowTaUF900H6UqqfZ0');
+        const stripePromise = loadStripe('pk_test_51HL4l2FTZGo3gXDdM3fMEyMnJVuAP3ASpTzBR4EEFo9ZjLScOt5ObuWOdadfwJwUd6GXmqh0N4OYWCVFHMyYcMCv00z57Vbv5V');
         const userid = this.props.userid
         var plan = this.props.history.location.query;
         return (
