@@ -2,9 +2,11 @@
 'use strict';
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+admin.initializeApp();
 const env = require("dotenv").config({ path: "./.env" });
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')(); 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const cors = require("cors");
 const app = express();
@@ -22,6 +24,9 @@ app.use(cors({ origin: true }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser);
+app.use(validateFirebaseIdToken);
 
 // app.use((req, res, next) => {
 //   if (req.originalUrl === '/webhook') {
@@ -208,7 +213,7 @@ app.post('/uploadprofilephoto', uploadProfilePhoto);
 
 
 
-exports.app = functions.region('us-central1','asia-south1').https.onRequest(app);
+exports.app = functions.region('us-central1', 'asia-south1').https.onRequest(app);
 
 /**
  * Copyright 2020 Google Inc. All Rights Reserved.
@@ -232,22 +237,63 @@ exports.app = functions.region('us-central1','asia-south1').https.onRequest(app)
  *
  * @see https://stripe.com/docs/payments/save-and-reuse#web-create-customer
  */
-exports.createStripeCustomer = functions.region('us-central1','asia-south1').auth.user().onCreate(async (user) => {
+exports.createStripeCustomer = functions.region('us-central1', 'asia-south1').auth.user().onCreate(async (user) => {
   const customer = await stripe.customers.create({ email: user.email });
 
   await admin.firestore().collection('stripe_customers').doc(user.uid).collection('stripe_transactions').doc(customer.id).set({
     customer_id: customer.id,
     createdDate: admin.firestore.Timestamp.fromDate(new Date())
   });
-  
+
   return;
 });
+
+const validateFirebaseIdToken = async (req, res, next) => {
+  console.log('Check if request is authorized with Firebase ID token');
+
+  if ((!req.headers.authorization || !req.headers.authorization.startsWith('Bearer ')) &&
+    !(req.cookies && req.cookies.__session)) {
+    console.error('No Firebase ID token was passed as a Bearer token in the Authorization header.',
+      'Make sure you authorize your request by providing the following HTTP header:',
+      'Authorization: Bearer <Firebase ID Token>',
+      'or by passing a "__session" cookie.');
+    res.status(403).send('Unauthorized');
+    return;
+  }
+
+  let idToken;
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer ')) {
+    console.log('Found "Authorization" header');
+    // Read the ID Token from the Authorization header.
+    idToken = req.headers.authorization.split('Bearer ')[1];
+  } else if (req.cookies) {
+    console.log('Found "__session" cookie');
+    // Read the ID Token from cookie.
+    idToken = req.cookies.__session;
+  } else {
+    // No cookie
+    res.status(403).send('Unauthorized');
+    return;
+  }
+
+  try {
+    const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+    console.log('ID Token correctly decoded', decodedIdToken);
+    req.user = decodedIdToken;
+    next();
+    return;
+  } catch (error) {
+    console.error('Error while verifying Firebase ID token:', error);
+    res.status(403).send('Unauthorized');
+    return;
+  }
+};
 
 /**
  * When adding the payment method ID on the client,
  * this function is triggered to retrieve the payment method details.
  */
-exports.addPaymentMethodDetails = functions.region('us-central1','asia-south1').firestore
+exports.addPaymentMethodDetails = functions.region('us-central1', 'asia-south1').firestore
   .document('/stripe_customers/{userId}/stripe_transactions/{customerid}/payment_amount/{pushId}')
   .onCreate(async (snap, context) => {
     try {
@@ -270,7 +316,7 @@ exports.addPaymentMethodDetails = functions.region('us-central1','asia-south1').
     }
   });
 
-exports.addUserPayment = functions.region('us-central1','asia-south1').firestore
+exports.addUserPayment = functions.region('us-central1', 'asia-south1').firestore
   .document('/IMUserPayment/{userId}')
   .onCreate(async (snap, context) => {
     try {
@@ -281,7 +327,7 @@ exports.addUserPayment = functions.region('us-central1','asia-south1').firestore
 
       await admin.firestore().collection('IMUserJobs').doc(user.uid).add({
         userid: userid,
-        jobcount : amount === 1000 ? 15 : 1
+        jobcount: amount === 1000 ? 15 : 1
       });
       return;
     } catch (error) {

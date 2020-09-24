@@ -1,5 +1,6 @@
 import React, { Component, createContext } from "react";
-import { auth, generateUserDocument } from '../../firebase/index';
+import { auth,  generateUserDocument } from '../../firebase/index';
+import firebase from "firebase/app";
 export const UserContext = createContext({ user: null });
 
 class UserProvider extends Component {
@@ -14,7 +15,7 @@ class UserProvider extends Component {
   componentDidMount = async () => {
     auth.onAuthStateChanged(async firebaseUser => {
       const userVal = await generateUserDocument(firebaseUser);
-
+      const token = await firebase.auth().currentUser.getIdToken(true);
       this.setState({
         allContextValue: {
           ...this.state.allContextValue,
