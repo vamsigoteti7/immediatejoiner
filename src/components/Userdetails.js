@@ -90,7 +90,7 @@ export class Userdetails extends Component {
                                     <li><Link className="nav-link active js-menu-toggle" to="/">Home</Link></li>
                                     <li><Link className="js-menu-toggle" to="/About">About</Link></li>
                                     <li><Link className="js-menu-toggle" to="/Contactus">Contact</Link></li>
-                                    <li className="d-lg-none"><Link onClick={() => { auth.signOut() }} className="js-menu-toggle" >Log Out</Link></li>
+                                    <li className="d-lg-none"><Link onClick={() => { auth.signOut(); this.props.history.push('/'); }} className="js-menu-toggle" >Log Out</Link></li>
                                 </ul>
                             </nav>
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
