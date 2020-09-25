@@ -91,7 +91,7 @@ class MembershipPlans extends React.Component {
                     const data1 = response.data[0];
                     if (this.state.membershiptype === "Candiate") {
                         const dbdate = new Date(data1.createdDate._seconds * 1000 + data1.createdDate._nanoseconds / 1000000)
-                        if (data1.payment.amount === 100) {
+                        if (data1.payment.amount === 10000) {
                             var date = new Date();
                             date.setDate(date.getDate() - 30);
                             if (date < dbdate) {
@@ -101,7 +101,7 @@ class MembershipPlans extends React.Component {
                                 this.getMembershipPlans();
                             }
                         }
-                        else if (data1.payment.amount === 300) {
+                        else if (data1.payment.amount === 30000) {
                             var dateent = new Date();
                             dateent.setDate(date.getDate() - 90);
                             if (dateent < dbdate) {

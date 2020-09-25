@@ -295,7 +295,7 @@ exports.app = functions.region('us-central1', 'asia-south1').https.onRequest(app
  *
  * @see https://stripe.com/docs/payments/save-and-reuse#web-create-customer
  */
-exports.createStripeCustomer = functions.region('us-central1', 'asia-south1').auth.user().onCreate(async (user) => {
+exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
   const customer = await stripe.customers.create({ email: user.email });
 
   await admin.firestore().collection('stripe_customers').doc(user.uid).collection('stripe_transactions').doc(customer.id).set({
@@ -310,7 +310,7 @@ exports.createStripeCustomer = functions.region('us-central1', 'asia-south1').au
  * When adding the payment method ID on the client,
  * this function is triggered to retrieve the payment method details.
  */
-exports.addPaymentMethodDetails = functions.region('us-central1', 'asia-south1').firestore
+exports.addPaymentMethodDetails = functions.firestore
   .document('/stripe_customers/{userId}/stripe_transactions/{customerid}/payment_amount/{pushId}')
   .onCreate(async (snap, context) => {
     try {
@@ -333,7 +333,7 @@ exports.addPaymentMethodDetails = functions.region('us-central1', 'asia-south1')
     }
   });
 
-exports.addUserPayment = functions.region('us-central1', 'asia-south1').firestore
+exports.addUserPayment = functions.firestore
   .document('/IMUserPayment/{userId}')
   .onCreate(async (snap, context) => {
     try {
