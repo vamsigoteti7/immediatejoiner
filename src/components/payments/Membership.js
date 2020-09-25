@@ -5,12 +5,13 @@ import { CardElement, Elements, ElementsConsumer } from '@stripe/react-stripe-js
 import { Link } from 'react-router-dom';
 import hero_1 from '../../images/hero_1.jpg';
 import { auth } from '../../firebase/index';
+import { toast } from "react-toastify";
 
 class MembershipCheckout extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             cardholdername: '',
             error: '',
@@ -94,7 +95,6 @@ class MembershipCheckout extends React.Component {
 
                 if (payload.error) {
                     this.setState({ error: payload.error });
-                    console.log("[error]", payload.error);
                 } else {
                     firebase.firestore()
                         .collection('IMUserPayments').add({
@@ -102,16 +102,13 @@ class MembershipCheckout extends React.Component {
                             payment: payload.paymentIntent,
                             createdDate: firebase.firestore.Timestamp.fromDate(new Date())
                         });
-
+                    toast.success("Payment Successful");
                     if (this.state.membershiptype === "Candiate") {
                         this.props.history.push('/EmpDetails');
                     }
                     else if (this.state.membershiptype === "Recruiter") {
                         this.props.history.push('/RecruiterDashboard');
                     }
-
-                    this.props.history.push('/RecruiterDashboard');
-                    console.log("[PaymentIntent]", payload.paymentIntent);
                 }
             } catch (error) {
                 console.log(error);
