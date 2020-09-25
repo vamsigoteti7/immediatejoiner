@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { storage } from '../firebase';
 import { auth } from '../firebase/index';
+import { toast } from "react-toastify";
 
 export class EmployeeDetails extends Component {
     constructor(props) {
@@ -173,7 +174,15 @@ export class EmployeeDetails extends Component {
 
     handleResumeChange = (e) => {
         if (e.target.files[0]) {
-            this.setState({ resume: e.target.files[0] }, () => { this.handleResumeUpload(); });
+            let file_size = e.target.files[0].size/1000000;
+            if(file_size < 0.03)
+            {
+                this.setState({ resume: e.target.files[0] }, () => { this.handleResumeUpload(); });
+            }
+            else
+            {
+                toast.success("File Size Cannot be more than 30 KB");
+            }
         }
     };
 
@@ -194,7 +203,7 @@ export class EmployeeDetails extends Component {
             () => {
                 storage
                     .ref("resumes")
-                    .child(this.state.resume.name)
+                    .child(this.props.userid.user.username)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({ resumeurl: url });

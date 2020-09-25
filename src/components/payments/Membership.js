@@ -160,9 +160,6 @@ class MembershipCheckout extends React.Component {
 
                             <nav className="mx-auto site-navigation">
                                 <ul className="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                                    <li><Link className="nav-link active js-menu-toggle" to="/">Home</Link></li>
-                                    <li><Link className="js-menu-toggle" to="/About">About</Link></li>
-                                    <li><Link className="js-menu-toggle" to="/Contactus">Contact</Link></li>
                                     <li className="d-lg-none"><Link onClick={() => { auth.signOut(); this.props.history.push('/'); }} className="js-menu-toggle" >Log Out</Link></li>
                                 </ul>
                             </nav>

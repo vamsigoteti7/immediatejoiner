@@ -218,7 +218,7 @@ export class Postajob extends Component {
     };
 
     handleRecruiterPicUpload = () => {
-        const uploadTask = storage.ref(`recruiterimages/${this.state.recruiterimage.name}`).put(this.state.recruiterimage);
+        const uploadTask = storage.ref(`recruiterimages/${this.props.userid.user.username}`).put(this.state.recruiterimage);
         uploadTask.on(
             "state_changed",
             snapshot => {
@@ -234,7 +234,7 @@ export class Postajob extends Component {
             () => {
                 storage
                     .ref("recruiterimages")
-                    .child(this.state.recruiterimage.name)
+                    .child(this.props.userid.user.username)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({ recruiterimageurl: url });
@@ -244,7 +244,7 @@ export class Postajob extends Component {
     };
 
     handleCompanyPicUpload = () => {
-        const uploadTask = storage.ref(`companylogos/${this.state.companylogo.name}`).put(this.state.companylogo);
+        const uploadTask = storage.ref(`companylogos/${this.props.userid.user.username}`).put(this.state.companylogo);
         uploadTask.on(
             "state_changed",
             snapshot => {
@@ -260,7 +260,7 @@ export class Postajob extends Component {
             () => {
                 storage
                     .ref("companylogos")
-                    .child(this.state.companylogo.name)
+                    .child(this.props.userid.user.username)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({ companylogourl: url });
