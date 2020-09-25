@@ -305,11 +305,12 @@ class Membership extends React.Component {
         const stripePromise = loadStripe('pk_test_51HL4l2FTZGo3gXDdM3fMEyMnJVuAP3ASpTzBR4EEFo9ZjLScOt5ObuWOdadfwJwUd6GXmqh0N4OYWCVFHMyYcMCv00z57Vbv5V');
         const userid = this.props.userid
         var plan = this.props.history.location.query;
+
         return (
             <Elements stripe={stripePromise}>
                 <ElementsConsumer>
                     {({ stripe, elements }) => (
-                        <MembershipCheckout userid={userid} plan={plan} stripe={stripe} elements={elements} />
+                        <MembershipCheckout userid={userid} history={this.props.history} plan={plan} stripe={stripe} elements={elements} />
                     )}
                 </ElementsConsumer>
             </Elements>
