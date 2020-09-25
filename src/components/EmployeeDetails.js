@@ -178,7 +178,7 @@ export class EmployeeDetails extends Component {
     };
 
     handleResumeUpload = () => {
-        const uploadTask = storage.ref(`resumes/${this.state.resume.name}`).put(this.state.resume);
+        const uploadTask = storage.ref(`resumes/${this.props.userid.user.username}`).put(this.state.resume);
         uploadTask.on(
             "state_changed",
             snapshot => {
