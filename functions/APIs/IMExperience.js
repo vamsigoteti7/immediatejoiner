@@ -3,6 +3,7 @@ const admin = require('firebase-admin');
 exports.getallexperience = (request, response) => {
 	admin.firestore()
 		.collection('IMExperience')
+		.orderBy('expname', 'asc')
 		.get()
 		.then((data) => {
 			let experience = [];
