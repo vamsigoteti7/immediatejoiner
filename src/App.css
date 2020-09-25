@@ -7,7 +7,25 @@
   pointer-events: none;
 }
 
-
+.Toastify__toast-container {
+	width: 320px;
+  }
+  .Toastify__toast--default {
+	  background: #fff;
+	  color: #aaa;
+   }
+	.Toastify__toast--info {
+	  background: #3498db;
+   }
+	.Toastify__toast--success {
+	  background: #89ba16;
+   }
+	.Toastify__toast--warning {
+	  background: #f1c40f;
+   }
+	.Toastify__toast--error {
+	  background: #e74c3c;
+   }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
