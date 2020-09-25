@@ -41,9 +41,8 @@ export class RecruiterDashboard extends Component {
     }
 
     getJobpostsByDocId = (docid) => {
-        var logindata = localStorage.getItem('LoginData');
         const recruiterData = {
-            email: logindata,
+            email: this.props.userid.user.username,
             docid: docid
         };
         axios.post('/imjobpostsByStartAfter', recruiterData)
@@ -69,9 +68,8 @@ export class RecruiterDashboard extends Component {
     };
 
     getJobpostsByRecruiterId = () => {
-        var logindata = localStorage.getItem('LoginData');
         const recruiterData = {
-            email: logindata
+            email: this.props.userid.user.username
         };
         axios.post('/imjobpostsByDocid', recruiterData)
             .then(response => {

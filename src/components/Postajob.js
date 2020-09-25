@@ -176,10 +176,8 @@ export class Postajob extends Component {
     };
 
     handlejobpost = () => {
-        var logindata = localStorage.getItem('LoginData');
-
         const registerData = {
-            email: logindata,
+            email: this.props.userid.user.username,
             jobtitle: this.state.jobtitle,
             country: this.state.selectedcountry.value,
             city: this.state.selectedcity.value,
