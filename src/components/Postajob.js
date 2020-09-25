@@ -340,7 +340,7 @@ export class Postajob extends Component {
                             <div className="col-lg-4">
                                 <div className="row">
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
+                                        {/* <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link> */}
                                     </div>
                                     <div className="col-6">
                                         <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
@@ -519,7 +519,7 @@ export class Postajob extends Component {
                             <div className="col-lg-4 ml-auto">
                                 <div className="row">
                                     <div className="col-6">
-                                        <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link>
+                                        {/* <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link> */}
                                     </div>
                                     <div className="col-6">
                                         <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
