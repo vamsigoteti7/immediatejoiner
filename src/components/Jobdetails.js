@@ -27,9 +27,8 @@ export class Jobdetails extends Component {
     }
 
     jobapply = () => {
-        var logindata = localStorage.getItem('LoginData');
         const jobData = {
-            username: logindata,
+            username: this.props.userid.user.username,
             jobid: this.state.docid
         };
         axios.post('/imuserjobapplications', jobData)

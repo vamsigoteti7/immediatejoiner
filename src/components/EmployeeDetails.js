@@ -54,13 +54,7 @@ export class EmployeeDetails extends Component {
                     return { value: data.Qualificationname, id: data.Qualificationid, label: data.Qualificationname };
                 });
                 this.setState({
-                    qualifications: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(qualificationApi)
+                    qualifications: qualificationApi
                 });
             })
             .catch(error => {
@@ -75,13 +69,7 @@ export class EmployeeDetails extends Component {
                     return { value: data.industryname, id: data.industryid, label: data.industryname };
                 });
                 this.setState({
-                    industries: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(industriesApi)
+                    industries: industriesApi
                 });
             })
             .catch(error => {
@@ -96,13 +84,7 @@ export class EmployeeDetails extends Component {
                     return { value: data.name, id: data.countryid, label: data.name };
                 });
                 this.setState({
-                    countries: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(countriesApi)
+                    countries: countriesApi
                 });
             })
             .catch(error => {
@@ -117,13 +99,7 @@ export class EmployeeDetails extends Component {
                     return { value: data.name, id: data.experiencedocid, label: data.name };
                 });
                 this.setState({
-                    experience: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(experiencesApi)
+                    experience: experiencesApi
                 });
             })
             .catch(error => {
@@ -138,13 +114,7 @@ export class EmployeeDetails extends Component {
                     return { value: data.genderName, label: data.genderName };
                 });
                 this.setState({
-                    gender: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(genderApi)
+                    gender: genderApi
                 });
             })
             .catch(error => {
@@ -163,13 +133,7 @@ export class EmployeeDetails extends Component {
                 });
                 this.setState({ selectedcity: '' });
                 this.setState({
-                    cities: [
-                        {
-                            value: "",
-                            label: "",
-                            id: 0,
-                        }
-                    ].concat(cityApi)
+                    cities: cityApi
                 });
             })
             .catch(error => {
@@ -178,10 +142,9 @@ export class EmployeeDetails extends Component {
     };
 
     handleemployeedetails = () => {
-        var logindata = localStorage.getItem('LoginData');
 
         const employeeData = {
-            email: logindata,
+            email: this.props.userid.user.username,
             phonenumber: this.state.phonenumber,
             age: this.state.age,
             gender: this.state.selectedgender.value,
