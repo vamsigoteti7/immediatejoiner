@@ -174,20 +174,23 @@ export class EmployeeDetails extends Component {
 
     handleResumeChange = (e) => {
         if (e.target.files[0]) {
-            let file_size = e.target.files[0].size/1000000;
-            if(file_size < 0.03)
-            {
+            let file_size = e.target.files[0].size / 1000000;
+            if (file_size < 0.03) {
                 this.setState({ resume: e.target.files[0] }, () => { this.handleResumeUpload(); });
             }
-            else
-            {
+            else {
                 toast.success("File Size Cannot be more than 30 KB");
             }
         }
     };
 
     handleResumeUpload = () => {
-        const uploadTask = storage.ref(`resumes/${this.props.userid.user.username}`).put(this.state.resume);
+        const fileextension = this.state.resume.name.split('.');
+        var extension = null;
+        if (fileextension.length > 0) {
+            extension = fileextension[fileextension.length - 1];
+        }
+        const uploadTask = storage.ref(`resumes/${this.props.userid.user.username + '.' + extension}`).put(this.state.resume);
         uploadTask.on(
             "state_changed",
             snapshot => {
