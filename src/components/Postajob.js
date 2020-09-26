@@ -73,8 +73,6 @@ export class Postajob extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.companydescriptionChange = this.companydescriptionChange.bind(this);
         this.jobdescriptionChange = this.jobdescriptionChange.bind(this);
-        this.handleImageChange = this.handleImageChange.bind(this);
-        this.handleRecruiterPicUpload = this.handleRecruiterPicUpload.bind(this);
         this.handleCompanyPicUpload = this.handleCompanyPicUpload.bind(this);
         this.handlejobpost = this.handlejobpost.bind(this);
     }
