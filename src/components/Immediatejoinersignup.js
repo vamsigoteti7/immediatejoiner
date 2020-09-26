@@ -67,6 +67,7 @@ export class Immediatejoinersignup extends Component {
             const { user } = await auth.createUserWithEmailAndPassword(this.state.email, this.state.password);
             const displayName = this.state.displayName;
             generateUserDocument(user, { displayName });
+            
         }
         catch (error) {
             this.setState({ error: error.message });
