@@ -31,6 +31,10 @@ function Application() {
               <MembershipPlans history={history} userid={user} />
             )}
             />
+            <Route exact path='/Signup' render={({ history }) => (
+              <MembershipPlans history={history} userid={user} />
+            )}
+            />
             <Route exact path='/' render={({ history }) => (
               <MembershipPlans history={history} userid={user} />
             )}

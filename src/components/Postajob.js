@@ -205,42 +205,10 @@ export class Postajob extends Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleImageChange = (e) => {
-        if (e.target.files[0]) {
-            this.setState({ recruiterimage: e.target.files[0] }, () => { this.handleRecruiterPicUpload(); });
-        }
-    };
-
     handleCompanyChange = (e) => {
         if (e.target.files[0]) {
             this.setState({ companylogo: e.target.files[0] }, () => { this.handleCompanyPicUpload(); });
         }
-    };
-
-    handleRecruiterPicUpload = () => {
-        const uploadTask = storage.ref(`recruiterimages/${this.props.userid.user.username}`).put(this.state.recruiterimage);
-        uploadTask.on(
-            "state_changed",
-            snapshot => {
-                this.setState({
-                    progress: Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    )
-                });
-            },
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("recruiterimages")
-                    .child(this.props.userid.user.username)
-                    .getDownloadURL()
-                    .then(url => {
-                        this.setState({ recruiterimageurl: url });
-                    });
-            }
-        );
     };
 
     handleCompanyPicUpload = () => {
@@ -350,16 +318,6 @@ export class Postajob extends Component {
                             <div className="col-lg-12">
                                 <form className="p-4 p-md-5 border rounded" method="post">
                                     <h3 className="text-black mb-5 border-bottom pb-2">Job Details</h3>
-
-                                    <div className="form-group">
-                                        <label htmlFor="company-website-tw d-block">Upload Featured Image</label> <br />
-                                        <label className="btn btn-primary btn-md btn-file">
-                                            Browse File<input type="file" onChange={this.handleImageChange} hidden />
-                                        </label>
-                                        <br />
-
-                                        <img src={photoimg} height="100" width="100" alt="personalpic" />
-                                    </div>
 
                                     <div className="form-group">
                                         <label htmlFor="jobtitle">Job Title</label>
