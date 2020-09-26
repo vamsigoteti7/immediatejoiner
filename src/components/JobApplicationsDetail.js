@@ -63,9 +63,8 @@ export class JobApplicationsDetail extends Component {
     }
 
     downloadresume = (resumeurl) => {
-
-        var starsRef = storageRef.child(`resumes/Vamsi (1).docx`);
-
+        var resumeurlpath = `resumes/` + resumeurl
+        var starsRef = storageRef.child(resumeurlpath);
 
         starsRef.getDownloadURL().then(function (url) {
             console.log(url);

@@ -206,7 +206,7 @@ export class EmployeeDetails extends Component {
                     .child(this.props.userid.user.username)
                     .getDownloadURL()
                     .then(url => {
-                        this.setState({ resumeurl: url });
+                        this.setState({ resumeurl: this.props.userid.user.username });
                     });
             }
         );
