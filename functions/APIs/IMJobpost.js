@@ -24,7 +24,6 @@ exports.getAlljobposts = (request, response) => {
                          companywebsite: doc.data().companywebsite,
                          linkedinusername: doc.data().linkedinusername,
                          experiencerequired: doc.data().experiencerequired,
-                         recruiterimageurl: doc.data().recruiterimageurl,
                          companylogourl: doc.data().companylogourl
                     });
                });
@@ -51,7 +50,6 @@ exports.postJob = (request, response) => {
           companydescription: request.body.companydescription,
           companywebsite: request.body.companywebsite,
           experiencerequired: request.body.experiencerequired,
-          recruiterimageurl: request.body.recruiterimageurl,
           companylogourl: request.body.companylogourl,
           createddate: admin.firestore.Timestamp.fromDate(new Date())
      }
@@ -97,7 +95,6 @@ exports.getjobpostsByRecruiterId = (request, response) => {
                          companywebsite: doc.data().companywebsite,
                          linkedinusername: doc.data().linkedinusername,
                          experiencerequired: doc.data().experiencerequired,
-                         recruiterimageurl: doc.data().recruiterimageurl,
                          companylogourl: doc.data().companylogourl,
                          createddate: doc.data().createddate
                     });
@@ -242,7 +239,6 @@ exports.getJobPostById = (request, response) => {
                     companydescription: doc.data().companydescription,
                     companywebsite: doc.data().companywebsite,
                     experiencerequired: doc.data().experiencerequired,
-                    recruiterimageurl: doc.data().recruiterimageurl,
                     companylogourl: doc.data().companylogourl,
                     createddate: doc.data().createddate
                });

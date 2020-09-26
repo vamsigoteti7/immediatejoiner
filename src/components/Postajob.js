@@ -187,7 +187,6 @@ export class Postajob extends Component {
             companydescription: this.state.companydescription,
             companywebsite: this.state.companywebsite,
             experiencerequired: this.state.selectedexperience.value,
-            recruiterimageurl: this.state.recruiterimageurl,
             companylogourl: this.state.companylogourl
         };
         axios.post('/impostjob', registerData)
