@@ -133,7 +133,8 @@ const {
 const {
   getAllIMUserdetails,
   postuserdetails,
-  getuserdetailsById
+  getuserdetailsById,
+  getIMUserdetailsById
 } = require('./APIs/IMUserdetails')
 
 
@@ -198,6 +199,9 @@ const {
 const {
   getuserpaymentbyid
 } = require('./APIs/IMUserPayment')
+
+app.post('/imgetuserdetails', getIMUserdetailsById);
+
 
 app.post('/getuserjobs', getuserjobs);
 app.post('/getuserpaymentbyid', getuserpaymentbyid);
