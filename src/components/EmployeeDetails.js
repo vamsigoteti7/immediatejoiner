@@ -6,6 +6,8 @@ import Select from 'react-select';
 import { storage } from '../firebase';
 import { auth } from '../firebase/index';
 import { toast } from "react-toastify";
+import citydata from '../immediatedata/indiacitydata.json';
+
 
 export class EmployeeDetails extends Component {
     constructor(props) {
@@ -124,22 +126,23 @@ export class EmployeeDetails extends Component {
     };
 
     getCityByCountryId = () => {
-        const countryData = {
-            countryid: this.state.selectedcountry.id
-        };
-        axios.post('/imgetcitybyid', countryData)
-            .then(response => {
-                let cityApi = response.data.map(data => {
-                    return { value: data.city, id: data.countryid, label: data.city };
-                });
-                this.setState({ selectedcity: '' });
-                this.setState({
-                    cities: cityApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        this.setState({ selectedcity: '' });
+        this.setState({
+            cities: citydata
+        });
+        // const countryData = {
+        //     countryid: this.state.selectedcountry.id
+        // };
+        // axios.post('/imgetcitybyid', countryData)
+        //     .then(response => {
+        //         let cityApi = response.data.map(data => {
+        //             return { value: data.city, id: data.countryid, label: data.city };
+        //         });
+
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
     };
 
     handleemployeedetails = () => {
