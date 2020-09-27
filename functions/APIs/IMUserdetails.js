@@ -31,6 +31,40 @@ exports.getAllIMUserdetails = (request, response) => {
 			return response.status(500).json({ error: err.code });
 		});
 };
+
+exports.getIMUserdetailsById = (request, response) => {
+	admin.firestore()
+		.collection('IMuserdetails')
+		.where('email', '==', request.body.username)
+		.get()
+		.then((data) => {
+			let ud = [];
+			data.forEach((doc) => {
+				ud.push({
+					userdetailId: doc.id,
+					email: doc.data().email,
+					phonenumber: doc.data().phonenumber,
+					age: doc.data().age,
+					gender: doc.data().gender,
+					country: doc.data().country,
+					city: doc.data().city,
+					industry: doc.data().industry,
+					highestqualification: doc.data().highestqualification,
+					percentage: doc.data().percentage,
+					totalexperience: doc.data().totalexperience,
+					skills: doc.data().skills,
+					resumeurl: doc.data().resumeurl,
+					currentsalary: doc.data().currentsalary
+				});
+			});
+			return response.json(ud);
+		})
+		.catch((err) => {
+			console.error(err);
+			return response.status(500).json({ error: err.code });
+		});
+};
+
 exports.postuserdetails = (request, response) => {
 
 	const newuserdetailsItem = {

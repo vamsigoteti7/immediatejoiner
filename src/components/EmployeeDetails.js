@@ -46,11 +46,25 @@ export class EmployeeDetails extends Component {
     }
 
     componentDidMount() {
+        this.getemployeedetails();
         this.getAllCountrys();
         this.getAllIndustries();
         this.getAllExperiences();
         this.getAllQualifications();
         this.getAllGenders();
+    }
+
+    getemployeedetails = () => {
+        const employeeData = {
+            email: this.props.userid.user.username,
+        };
+        axios.post('/imgetuserdetails', employeeData)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     getAllQualifications = () => {
