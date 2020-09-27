@@ -9,6 +9,9 @@ import Select from 'react-select';
 import { storage } from '../firebase';
 import { NoImage } from '../images/No-image-available.png';
 import { auth } from '../firebase/index';
+import citydata from '../immediatedata/indiacitydata.json';
+import experiencedata from '../immediatedata/experience.json';
+import industrydata from '../immediatedata/industries.json';
 
 export class Postajob extends Component {
     constructor(props) {
@@ -110,67 +113,37 @@ export class Postajob extends Component {
     }
 
     getAllIndustries = () => {
-        axios.get('/imgetindustries')
-            .then(response => {
-                let industriesApi = response.data.map(data => {
-                    return { value: data.industryname, id: data.industryid, label: data.industryname };
-                });
-                this.setState({
-                    industries: industriesApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let industriesApi = industrydata.map(data => {
+            return { value: data.industryname, id: data.industryid, label: data.industryname };
+        });
+        this.setState({
+            industries: industriesApi
+        });
     };
 
     getAllCountrys = () => {
-        axios.get('/imgetcountrys')
-            .then(response => {
-                let countriesApi = response.data.map(data => {
-                    return { value: data.name, id: data.countryid, label: data.name };
-                });
-                this.setState({
-                    countries: countriesApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        this.setState({
+            countries: [{ value: "India", id: 2, label: "India" }]
+        });
     };
 
     getAllExperiences = () => {
-        axios.get('/imgetexperience')
-            .then(response => {
-                let experiencesApi = response.data.map(data => {
-                    return { value: data.name, id: data.experiencedocid, label: data.name };
-                });
-                this.setState({
-                    experience: experiencesApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let experiencesApi = experiencedata.map(data => {
+            return { value: data.name, id: data.experiencedocid, label: data.name };
+        });
+        this.setState({
+            experience: experiencesApi
+        });
     };
 
     getCityByCountryId = () => {
-        const countryData = {
-            countryid: this.state.selectedcountry.id
-        };
-        axios.post('/imgetcitybyid', countryData)
-            .then(response => {
-                let cityApi = response.data.map(data => {
-                    return { value: data.city, id: data.countryid, label: data.city };
-                });
-                this.setState({ selectedcity: '' });
-                this.setState({
-                    cities: cityApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let cityApi = citydata.map(data => {
+            return { value: data.city, id: data.countryid, label: data.city };
+        });
+        this.setState({ selectedcity: '' });
+        this.setState({
+            cities: cityApi
+        });
     };
 
     handlejobpost = () => {
