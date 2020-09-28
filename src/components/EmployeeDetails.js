@@ -15,6 +15,27 @@ import qualificationdata from '../immediatedata/qualification.json';
 export class EmployeeDetails extends Component {
     constructor(props) {
         super(props);
+        let genderApi = genderdata.map(data => {
+            return { value: data.genderName, label: data.genderName };
+        });
+
+        let qualificationApi = qualificationdata.map(data => {
+            return { value: data.Qualificationname, id: data.Qualificationid, label: data.Qualificationname };
+        });
+
+        let industriesApi = industrydata.map(data => {
+            return { value: data.industryname, id: data.industryid, label: data.industryname };
+        });
+
+        let experiencesApi = experiencedata.map(data => {
+            return { value: data.name, id: data.experiencedocid, label: data.name };
+        });
+
+        let countryApi = [{ value: "India", id: 2, label: "India" }];
+
+        let cityApi = citydata.map(data => {
+            return { value: data.city, id: data.countryid, label: data.city };
+        });
 
         this.state = {
             phonenumber: '',
@@ -23,22 +44,13 @@ export class EmployeeDetails extends Component {
             resumeurl: '',
             currentsalary: '',
             age: '',
-            selectedcountry: '',
-            selectedcity: '',
-            selectedindustry: '',
-            selectedjobtype: '',
             skills: '',
-            selectedexperience: '',
-            countries: [
-            ],
-            selecteddepartment: '',
-            industries: [
-            ],
-            cities: [
-            ],
-            experience: [],
-            qualifications: [],
-            gender: [],
+            countries: { value: countryApi[0], countryApi },
+            industries: { value: industriesApi[0], industriesApi },
+            cities: { value: cityApi[0], cityApi },
+            experience: { value: experiencesApi[0], experiencesApi },
+            qualifications: { value: qualificationApi[0], qualificationApi },
+            gender: { value: genderApi[0], genderApi },
             docid: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -47,13 +59,54 @@ export class EmployeeDetails extends Component {
     }
 
     componentDidMount() {
-        this.getAllCountrys();
-        this.getAllIndustries();
-        this.getAllExperiences();
-        this.getAllQualifications();
-        this.getAllGenders();
         this.getemployeedetails();
     }
+
+    setGenderValue = value => {
+        this.setState(prevState => ({
+            gender: {
+                ...prevState.gender,
+                value
+            }
+        }));
+    };
+
+    setQualificationValue = newvalue => {
+        this.setState(prevState => ({
+            qualifications: {
+                ...prevState.qualifications,
+                value: newvalue
+            }
+        }));
+    };
+
+    setIndustryValue = value => {
+        this.setState(prevState => ({
+            industries: {
+                ...prevState.industries,
+                value
+            }
+        }));
+    };
+
+    setCityValue = value => {
+        this.setState(prevState => ({
+            cities: {
+                ...prevState.cities,
+                value
+            }
+        }));
+    };
+
+    setExperienceValue = value => {
+        this.setState(prevState => ({
+            experience: {
+                ...prevState.experience,
+                value
+            }
+        }));
+    };
+
 
     getemployeedetails = () => {
         const employeeData = {
@@ -62,96 +115,57 @@ export class EmployeeDetails extends Component {
         axios.post('/imgetuserdetails', employeeData)
             .then(response => {
                 if (response.data.length > 0) {
+                    this.setState({ docid: response.data[0].userdetailId });
                     this.setState({ phonenumber: response.data[0].phonenumber });
-                    this.setState({ age : response.data[0].age });
-                    this.setState({ selectedgender : response.data[0].gender });
-                    this.setState({ selectedcountry : response.data[0].country });
-                    this.setState({ selectedcity : response.data[0].city });
-                    this.setState({ selectedindustry : response.data[0].industry });
-                    this.setState({ selectedqualification : response.data[0].highestqualification });
-                    this.setState({ percentage : response.data[0].percentage });
-                    this.setState({ totalexperience : response.data[0].totalexperience });
-                    this.setState({ skills : response.data[0].skills });
-                    this.setState({ currentsalary : response.data[0].currentsalary });
-                }            
+                    this.setState({ age: response.data[0].age });
+
+                    const dbgender = this.state.gender.genderApi.filter(p => p.value.includes(response.data[0].gender))
+                    this.setGenderValue(dbgender);
+
+                    const dbcity = this.state.cities.cityApi.filter(p => p.value.includes(response.data[0].city))
+                    this.setCityValue(dbcity);
+
+                    const dbindustry = this.state.industries.industriesApi.filter(p => p.value.includes(response.data[0].industry))
+                    this.setIndustryValue(dbindustry);
+
+                    const dbqualification = this.state.qualifications.qualificationApi.filter(p => p.value.includes(response.data[0].highestqualification))
+                    this.setQualificationValue(dbqualification);
+
+                    const dbexperience = this.state.experience.experiencesApi.filter(p => p.value === response.data[0].totalexperience)
+                    this.setExperienceValue(dbexperience);
+
+                    this.setState({ percentage: response.data[0].percentage });
+                    this.setState({ resumeurl: response.data[0].resumeurl });
+                    this.setState({ skills: response.data[0].skills });
+                    this.setState({ currentsalary: response.data[0].currentsalary });
+                }
             })
             .catch(error => {
                 console.log(error);
             });
     }
 
-    getAllQualifications = () => {
-        let qualificationApi = qualificationdata.map(data => {
-            return { value: data.Qualificationname, id: data.Qualificationid, label: data.Qualificationname };
-        });
-        this.setState({
-            qualifications: qualificationApi
-        });
-    };
-
-    getAllIndustries = () => {
-        let industriesApi = industrydata.map(data => {
-            return { value: data.industryname, id: data.industryid, label: data.industryname };
-        });
-        this.setState({
-            industries: industriesApi
-        });
-    };
-
-    getAllCountrys = () => {
-        this.setState({
-            countries: [{ value: "India", id: 2, label: "India" }]
-        });
-    };
-
-    getAllExperiences = () => {
-        let experiencesApi = experiencedata.map(data => {
-            return { value: data.name, id: data.experiencedocid, label: data.name };
-        });
-        this.setState({
-            experience: experiencesApi
-        });
-    };
-
-    getAllGenders = () => {
-        let genderApi = genderdata.map(data => {
-            return { value: data.genderName, label: data.genderName };
-        });
-        this.setState({
-            gender: genderApi
-        });
-    };
-
-    getCityByCountryId = () => {
-        let cityApi = citydata.map(data => {
-            return { value: data.city, id: data.countryid, label: data.city };
-        });
-        this.setState({ selectedcity: '' });
-        this.setState({
-            cities: cityApi
-        });
-    };
-
     handleemployeedetails = () => {
 
         const employeeData = {
+            docid: this.state.docid,
             email: this.props.userid.user.username,
             phonenumber: this.state.phonenumber,
             age: this.state.age,
-            gender: this.state.selectedgender.value,
-            country: this.state.selectedcountry.value,
-            city: this.state.selectedcity.value,
-            industry: this.state.selectedindustry.value,
-            highestqualification: this.state.selectedqualification.value,
+            gender: this.state.gender.value.value,
+            country: this.state.countries.value.value,
+            city: this.state.cities.value.value,
+            industry: this.state.industries.value.value,
+            highestqualification: this.state.qualifications.value.value,
             percentage: this.state.percentage,
-            totalexperience: this.state.selectedexperience.value,
+            totalexperience: this.state.experience.value.value,
             skills: this.state.skills,
             resumeurl: this.state.resumeurl,
             currentsalary: this.state.currentsalary,
         };
         axios.post('/impostuserdetails', employeeData)
             .then(response => {
-                console.log(response.data);
+                toast.success("Profile Updated Sucessfully");
             })
             .catch(error => {
                 console.log(error);
@@ -302,64 +316,26 @@ export class EmployeeDetails extends Component {
                                     <div className="form-group">
                                         <label htmlFor="job-country">Country</label>
                                         <Select className="selectpicker border rounded" id="job-country" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Country"
-                                            onChange={e => {
-                                                this.setState({
-                                                    selectedcountry: e
-                                                }, () => { this.getCityByCountryId(); })
-                                            }
-                                            }
-                                            options={this.state.countries}
-                                            value={this.state.selectedcountry}>
-                                            {this.state.countries.map(country => (
-                                                <option
-                                                    key={country.value}
-                                                    value={country.value}
-                                                >
-                                                    {country.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.countries.countryApi}
+                                            value={this.state.countries.value}>
                                         </Select>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="job-city">City</label>
                                         <Select className="selectpicker border rounded" id="job-city" data-style="btn-black" data-width="100%" data-live-search="true" title="Select City"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedcity: e
-                                                })
-                                            }
-                                            options={this.state.cities}
-                                            value={this.state.selectedcity}>
-                                            {this.state.cities.map(city => (
-                                                <option
-                                                    key={city.value}
-                                                    value={city.value}
-                                                >
-                                                    {city.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.cities.cityApi}
+                                            onChange={this.setCityValue}
+                                            value={this.state.cities.value}>
                                         </Select>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="qualification">Qualification</label>
                                         <Select className="selectpicker border rounded" id="qualification" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedqualification: e
-                                                })
-                                            }
-                                            options={this.state.qualifications}
-                                            value={this.state.selectedqualification}>
-                                            {this.state.qualifications.map(qual => (
-                                                <option
-                                                    key={qual.value}
-                                                    value={qual.value}
-                                                >
-                                                    {qual.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.qualifications.qualificationApi}
+                                            onChange={this.setQualificationValue}
+                                            value={this.state.qualifications.value}>
                                         </Select>
                                     </div>
 
@@ -371,21 +347,9 @@ export class EmployeeDetails extends Component {
                                     <div className="form-group">
                                         <label htmlFor="industries">Industries</label>
                                         <Select className="selectpicker border rounded" id="industries" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Department"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedindustry: e
-                                                })
-                                            }
-                                            options={this.state.industries}
-                                            value={this.state.selectedindustry}>
-                                            {this.state.industries.map(industry => (
-                                                <option
-                                                    key={industry.value}
-                                                    value={industry.value}
-                                                >
-                                                    {industry.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.industries.industriesApi}
+                                            onChange={this.setIndustryValue}
+                                            value={this.state.industries.value}>
                                         </Select>
                                     </div>
 
@@ -397,21 +361,9 @@ export class EmployeeDetails extends Component {
                                     <div className="form-group">
                                         <label htmlFor="gender">Gender</label>
                                         <Select className="selectpicker border rounded" name="gender" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Gender"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedgender: e
-                                                })
-                                            }
-                                            options={this.state.gender}
-                                            value={this.state.selectedgender}>
-                                            {this.state.gender.map(gen => (
-                                                <option
-                                                    key={gen.value}
-                                                    value={gen.value}
-                                                >
-                                                    {gen.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.gender.genderApi}
+                                            onChange={this.setGenderValue}
+                                            value={this.state.gender.value}>
                                         </Select>
                                     </div>
 
@@ -423,21 +375,9 @@ export class EmployeeDetails extends Component {
                                     <div className="form-group">
                                         <label htmlFor="experience">Experience</label>
                                         <Select className="selectpicker border rounded" id="experience" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Experience"
-                                            onChange={e =>
-                                                this.setState({
-                                                    selectedexperience: e
-                                                })
-                                            }
-                                            options={this.state.experience}
-                                            value={this.state.selectedexperience}>
-                                            {this.state.experience.map(exp => (
-                                                <option
-                                                    key={exp.value}
-                                                    value={exp.value}
-                                                >
-                                                    {exp.value}
-                                                </option>
-                                            ))}
+                                            options={this.state.experience.experiencesApi}
+                                            onChange={this.setExperienceValue}
+                                            value={this.state.experience.value}>
                                         </Select>
                                     </div>
 
