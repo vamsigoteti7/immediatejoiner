@@ -1,4 +1,3 @@
-
 'use strict';
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
@@ -9,7 +8,6 @@ const bodyParser = require('body-parser');
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const cors = require("cors");
 const app = express();
-const { resolve } = require("path");
 
 const { Logging } = require('@google-cloud/logging');
 const logging = new Logging({
@@ -83,28 +81,12 @@ const validateFirebaseIdToken = async (req, res, next) => {
 app.use(cookieParser);
 app.use(validateFirebaseIdToken);
 
-
-//module.exports = { admin, db };
-
-// app.use((req, res, next) => {
-//   if (req.originalUrl === '/webhook') {
-//     next();
-//   } else {
-//     bodyParser.json()(req, res, next);
-//   }
-// });
-
 const {
   getAllImmediateJoiners,
   getAllImmediateJoiner,
   postRegister,
-  getregisterdetailsById,
-  uploadProfilePhoto
+  getregisterdetailsById
 } = require('./APIs/IMRegister')
-
-const {
-  getallgender
-} = require('./APIs/IMGender')
 
 const {
   getAllcontacts,
@@ -137,57 +119,6 @@ const {
   getIMUserdetailsById
 } = require('./APIs/IMUserdetails')
 
-
-const {
-  getAllemployemembershipdetail,
-  postemployemembershipdetail,
-  getemployememdetailsById
-} = require('./APIs/IMemployemembershipdetail')
-
-const {
-  getAllemployermembershipdetails,
-  postemployermembershipdetails,
-  getemployermemdetailsById
-} = require('./APIs/IMemployermembershipdetails')
-
-const {
-  getAllemployemembershipprice,
-  postemployemembershipprice,
-  getemployemempriceById
-} = require('./APIs/IMEmployemembershipprice')
-
-const {
-  getAllemployermembershipprice,
-  postemployermembershipprice,
-  getemployermempriceById
-} = require('./APIs/IMEmployermembershipprice')
-
-const {
-  getAllIndustries,
-  postindustries
-} = require('./APIs/IMIndustries')
-
-
-const {
-  getAllQualification,
-  postQualification
-} = require('./APIs/IMQualification')
-
-const {
-  postCountries,
-  getallcountries
-} = require('./APIs/IMCountries')
-
-const {
-  postCities,
-  getcitiesbycountryid
-} = require('./APIs/IMCities')
-
-const {
-  getallexperience,
-  postExperience
-} = require('./APIs/IMExperience')
-
 const {
   getMembershipPlansByType
 } = require('./APIs/IMMembership')
@@ -207,19 +138,6 @@ app.post('/getuserjobs', getuserjobs);
 app.post('/getuserpaymentbyid', getuserpaymentbyid);
 
 app.post('/getmembershipplans', getMembershipPlansByType);
-// app.get('/public-key', MembershipPublickey);
-// app.get('/product-details', MembershipProductDetails);
-// app.post('/create-payment-intent', CreatePaymentIntent);
-// app.post('/webhook', bodyParser.raw({ type: 'application/json' }), Membershipwebhook);
-
-app.get('/imgetexperience', getallexperience);
-app.get('/imgetgender', getallgender);
-app.post('/impostexperience', postExperience);
-app.post('/impostcountry', postCountries);
-app.get('/imgetcountrys', getallcountries);
-
-app.post('/impostcity', postCities);
-app.post('/imgetcitybyid', getcitiesbycountryid);
 
 app.post('/imjoiners', getAllImmediateJoiners);
 app.post('/imjoiner', getAllImmediateJoiner);
@@ -249,50 +167,8 @@ app.get('/imuserdetails', getAllIMUserdetails);
 app.post('/impostuserdetails', postuserdetails);
 app.post('/impostuserdetailsbyid', getuserdetailsById);
 
-app.get('/immempmemdetail', getAllemployemembershipdetail);
-app.post('/impostempmemdetail', postemployemembershipdetail);
-app.post('/impostempmemdetailbyid', getemployememdetailsById);
-
-app.get('/imemployerdetails', getAllemployermembershipdetails);
-app.post('/impostemployermemdetail', postemployermembershipdetails);
-app.post('/impostemployermemdetailbyid', getemployermemdetailsById);
-
-app.get('/imemployemembershipprice', getAllemployemembershipprice);
-app.post('/impostemployememprice', postemployemembershipprice);
-app.post('/impostemployemempricebyid', getemployemempriceById);
-
-app.get('/imemployermembershipprice', getAllemployermembershipprice);
-app.post('/impostemployermemprice', postemployermembershipprice);
-app.post('/impostemployermempricebyid', getemployermempriceById);
-
-app.get('/imgetindustries', getAllIndustries);
-app.post('/impostindustiries', postindustries);
-
-app.get('/imgetqualification', getAllQualification);
-app.post('/impostqualification', postQualification);
-
-app.post('/uploadprofilephoto', uploadProfilePhoto);
-
-
 
 exports.app = functions.region('us-central1', 'asia-south1').https.onRequest(app);
-
-/**
- * Copyright 2020 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 
 /**
  * When a user is created, create a Stripe customer object for them.
