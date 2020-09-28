@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { auth } from '../firebase/index';
 import citydata from '../immediatedata/indiacitydata.json';
 import industrydata from '../immediatedata/industries.json';
+import { toast } from "react-toastify";
 
 export class EmployeeDashboard extends Component {
     constructor(props) {
@@ -131,20 +132,26 @@ export class EmployeeDashboard extends Component {
         };
         axios.post('/imjobsearch', recruiterData)
             .then(response => {
-                let jobpostsApi = response.data.jp.map(data => {
-                    return {
-                        email: data.email,
-                        companyname: data.companyname,
-                        companylogourl: data.companylogourl,
-                        city: data.city,
-                        jobtitle: data.jobtitle,
-                        jobtype: data.jobtype,
-                        jobpostid: data.jobpostid
-                    }
-                });
-                this.setState({
-                    jobposts: jobpostsApi
-                });
+                if (response.data.jp.length > 0) {
+                    let jobpostsApi = response.data.jp.map(data => {
+                        return {
+                            email: data.email,
+                            companyname: data.companyname,
+                            companylogourl: data.companylogourl,
+                            city: data.city,
+                            jobtitle: data.jobtitle,
+                            jobtype: data.jobtype,
+                            jobpostid: data.jobpostid
+                        }
+                    });
+                    this.setState({
+                        jobposts: jobpostsApi
+                    });
+                }
+                else {
+                    toast.info("No Jobs Posted Yet");
+                }
+
             })
             .catch(error => {
                 console.log(error);
@@ -176,13 +183,13 @@ export class EmployeeDashboard extends Component {
                                     <li><Link className="nav-link active js-menu-toggle" to="/">Home</Link></li>
                                     <li><Link className="js-menu-toggle" to="/Empdashboard">Dashboard</Link></li>
                                     <li><Link className="js-menu-toggle" to="/EmpDetails">MyProfile</Link></li>
-                                    <li className="d-lg-none"><Link onClick={() => { this.props.history.push('/'); auth.signOut();  }} className="js-menu-toggle" >Log Out</Link></li>
+                                    <li className="d-lg-none"><Link onClick={() => { this.props.history.push('/'); auth.signOut(); }} className="js-menu-toggle" >Log Out</Link></li>
                                 </ul>
                             </nav>
 
                             <div className="right-cta-menu text-right d-flex aligin-items-center col-6">
                                 <div className="ml-auto">
-                                    <button onClick={() => {this.props.history.push('/'); auth.signOut(); }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
+                                    <button onClick={() => { this.props.history.push('/'); auth.signOut(); }} className="btn btn-primary border-width-2 d-none d-lg-inline-block"><span className="mr-2 icon-lock_outline"></span>Log Out</button>
                                 </div>
                                 <div to="/" className="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3">
                                     <span className="icon-menu h3 m-0 p-0 mt-2"></span>
