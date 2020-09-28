@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from '../axios-immediatejoiner';
 import Select from 'react-select';
 import { auth } from '../firebase/index';
+import citydata from '../immediatedata/indiacitydata.json';
+import industrydata from '../immediatedata/industries.json';
 
 export class EmployeeDashboard extends Component {
     constructor(props) {
@@ -26,37 +28,22 @@ export class EmployeeDashboard extends Component {
     }
 
     getAllIndustries = () => {
-        axios.get('/imgetindustries')
-            .then(response => {
-                let industriesApi = response.data.map(data => {
-                    return { value: data.industryname, id: data.industryid, label: data.industryname };
-                });
-                this.setState({
-                    industries: industriesApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let industriesApi = industrydata.map(data => {
+            return { value: data.industryname, id: data.industryid, label: data.industryname };
+        });
+        this.setState({
+            industries: industriesApi
+        });
     };
 
     getCityByCountryId = () => {
-        const countryData = {
-            countryid: 2
-        };
-        axios.post('/imgetcitybyid', countryData)
-            .then(response => {
-                let cityApi = response.data.map(data => {
-                    return { value: data.city, id: data.countryid, label: data.city };
-                });
-                this.setState({ selectedcity: '' });
-                this.setState({
-                    cities: cityApi
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        let cityApi = citydata.map(data => {
+            return { value: data.city, id: data.countryid, label: data.city };
+        });
+        this.setState({ selectedcity: '' });
+        this.setState({
+            cities: cityApi
+        });
     };
 
     componentDidMount() {
