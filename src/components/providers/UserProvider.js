@@ -20,7 +20,7 @@ class UserProvider extends Component {
       try {
         const token = await firebase.auth().currentUser.getIdToken(true);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-        toast.success("Welcome" + userVal.displayName);
+        toast.success("Welcome" + "  " + userVal.displayName);
 
       } catch (error) {
         console.log(error);
