@@ -15,6 +15,10 @@ class Contactus extends React.Component {
         }
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }

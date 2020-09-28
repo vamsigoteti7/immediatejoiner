@@ -61,6 +61,7 @@ export class EmployeeDashboard extends Component {
 
     componentDidMount() {
         //this.getJobpostsByRecruiterId();
+        window.scrollTo(0, 0)
         this.getCityByCountryId();
         this.getAllIndustries();
     }

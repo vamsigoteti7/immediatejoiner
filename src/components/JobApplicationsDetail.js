@@ -24,6 +24,7 @@ export class JobApplicationsDetail extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         const userData = {
             jobid: this.state.jobid
         };

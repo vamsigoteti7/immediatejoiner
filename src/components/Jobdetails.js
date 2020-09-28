@@ -23,6 +23,7 @@ export class Jobdetails extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.getjobdetailbyjobid();
     }
 

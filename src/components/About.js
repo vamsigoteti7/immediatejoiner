@@ -3,6 +3,11 @@ import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
 
 class About extends React.Component {
+
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     render() {
         return (
             <div className="site-wrap">
