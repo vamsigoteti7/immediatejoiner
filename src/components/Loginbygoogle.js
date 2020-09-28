@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-// import { SmartToaster, toast } from 'react-smart-toaster';
 import { auth, getUserDocument, signInWithGoogle } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from '@material-ui/core/styles';
@@ -11,6 +10,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import { toast } from "react-toastify";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -80,6 +80,7 @@ export class Logintbygoogle extends Component {
         event.preventDefault();
         const login = await auth.signInWithEmailAndPassword(this.state.loginemail, this.state.loginpassword).catch(error => {
             this.setState({ error: error.message });
+            toast.error(error.message);                    
         });
         if (login !== undefined) {
             if (login.user !== undefined) {
@@ -127,27 +128,10 @@ export class Logintbygoogle extends Component {
                                     <span className="icon-menu h3 m-0 p-0 mt-2"></span>
                                 </div>
                             </div>
-
-                            {/* <SmartToaster
-                                store={toast}
-                                lightBackground={true}
-                                position={"top_right"}
-                            /> */}
                         </div>
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    {/* <div className="container">
-                        <div className="row">
-                            <div className="col-md-7">
-                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                                <div className="custom-breadcrumbs">
-                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
-                                    <span className="text-white"><strong>Log In</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
@@ -174,8 +158,6 @@ export class Logintbygoogle extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         <h2 className="section-title mb-2">LogIn To Immediate Joiner</h2>
-                                        {this.state.error &&
-                                            <div className="py-4 bg-red-600 w-full text-white text-center mb-3"> {this.state.error} </div>}
                                         <form action="#" className="p-4 border rounded">
                                             <div className="row form-group">
                                                 <div className="col-md-12 mb-3 mb-md-0">
@@ -227,10 +209,7 @@ export class Logintbygoogle extends Component {
                                 <div className="row mb-5 justify-content-center">
                                     <div className="col-lg-6 text-center">
                                         <h2 className="section-title mb-2">LogIn To Immediate Joiner</h2>
-                                        {this.state.error &&
-                                            <div className="py-4 bg-red-600 w-full text-white text-center mb-3"> {this.state.error} </div>}
                                         <form action="#" className="p-4 border rounded">
-
                                             <div className="row form-group">
                                                 <div className="col-md-12 mb-3 mb-md-0">
                                                     <label htmlFor="loginemail">Email</label>

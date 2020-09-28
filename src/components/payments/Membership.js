@@ -95,7 +95,8 @@ class MembershipCheckout extends React.Component {
                 });
 
                 if (payload.error) {
-                    this.setState({ error: payload.error });
+                    this.setState({ error: payload.error.message });
+                    toast.error(payload.error.message);                    
                 } else {
                     firebase.firestore()
                         .collection('IMUserPayments').add({
@@ -178,11 +179,6 @@ class MembershipCheckout extends React.Component {
                                     <span className="icon-menu h3 m-0 p-0 mt-2"></span>
                                 </div>
                             </div>
-                            {/* <SmartToaster
-                                store={toast}
-                                lightBackground={true}
-                                position={"top_right"}
-                            /> */}
                         </div>
                     </div>
                 </header>
@@ -205,7 +201,6 @@ class MembershipCheckout extends React.Component {
                         <div className="row mb-5 justify-content-center">
                             <div className="col-lg-6 text-center">
                                 <h2 className="section-title mb-2">{this.state.plan.paymentdescription}</h2>
-                                {this.state.error !== '' && <div className="py-4 bg-red-600 w-full text-white text-center mb-3">{this.state.error}</div>}
                                 <form action="#" className="p-4 border rounded">
                                     <div className="row form-group">
                                         <div className="col-md-12 mb-3 mb-md-0">
