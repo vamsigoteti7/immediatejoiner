@@ -38,7 +38,8 @@ export class EmployeeDetails extends Component {
             ],
             experience: [],
             qualifications: [],
-            gender: []
+            gender: [],
+            docid: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleResumeChange = this.handleResumeChange.bind(this);
@@ -46,21 +47,33 @@ export class EmployeeDetails extends Component {
     }
 
     componentDidMount() {
-        this.getemployeedetails();
         this.getAllCountrys();
         this.getAllIndustries();
         this.getAllExperiences();
         this.getAllQualifications();
         this.getAllGenders();
+        this.getemployeedetails();
     }
 
     getemployeedetails = () => {
         const employeeData = {
-            email: this.props.userid.user.username,
+            username: this.props.userid.user.username,
         };
         axios.post('/imgetuserdetails', employeeData)
             .then(response => {
-                console.log(response.data);
+                if (response.data.length > 0) {
+                    this.setState({ phonenumber: response.data[0].phonenumber });
+                    this.setState({ age : response.data[0].age });
+                    this.setState({ selectedgender : response.data[0].gender });
+                    this.setState({ selectedcountry : response.data[0].country });
+                    this.setState({ selectedcity : response.data[0].city });
+                    this.setState({ selectedindustry : response.data[0].industry });
+                    this.setState({ selectedqualification : response.data[0].highestqualification });
+                    this.setState({ percentage : response.data[0].percentage });
+                    this.setState({ totalexperience : response.data[0].totalexperience });
+                    this.setState({ skills : response.data[0].skills });
+                    this.setState({ currentsalary : response.data[0].currentsalary });
+                }            
             })
             .catch(error => {
                 console.log(error);
