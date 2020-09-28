@@ -6,6 +6,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import { auth } from '../firebase/index';
+import { toast } from "react-toastify";
 
 export class Jobdetails extends Component {
 
@@ -35,6 +36,7 @@ export class Jobdetails extends Component {
         axios.post('/imuserjobapplications', jobData)
             .then(response => {
                 this.props.history.push('/Empdashboard');
+                toast.success("Job Applied Successfully");
             })
             .catch(error => {
                 console.log(error);
