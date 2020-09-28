@@ -14,8 +14,6 @@ class Immediatejoinerhome extends React.Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         this.setState({ isLoading: false })
-        // $(".loader").delay(1000).fadeOut("slow");
-        // $("#overlayer").delay(1000).fadeOut("slow");
         if (window.innerWidth < 768) {
             var siteMenuClone = function () {
                 setTimeout(function () {

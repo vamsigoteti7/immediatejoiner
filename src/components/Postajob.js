@@ -166,7 +166,13 @@ export class Postajob extends Component {
 
     handleCompanyChange = (e) => {
         if (e.target.files[0]) {
-            this.setState({ companylogo: e.target.files[0] }, () => { this.handleCompanyPicUpload(); });
+            let file_size = e.target.files[0].size / 1000000;
+            if (file_size < 0.03) {
+                this.setState({ companylogo: e.target.files[0] }, () => { this.handleCompanyPicUpload(); });
+            }
+            else {
+                toast.success("File Size Cannot be more than 30 KB");
+            }
         }
     };
 
@@ -244,17 +250,6 @@ export class Postajob extends Component {
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    {/* <div className="container">
-                        <div className="row">
-                            <div className="col-md-7">
-                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                                <div className="custom-breadcrumbs">
-                                    <Link to="/">Home</Link> <span className="mx-2 slash">/</span>
-                                    <span className="text-white"><strong>Log In</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
@@ -269,7 +264,6 @@ export class Postajob extends Component {
                             <div className="col-lg-4">
                                 <div className="row">
                                     <div className="col-6">
-                                        {/* <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link> */}
                                     </div>
                                     <div className="col-6">
                                         <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>
@@ -438,7 +432,6 @@ export class Postajob extends Component {
                             <div className="col-lg-4 ml-auto">
                                 <div className="row">
                                     <div className="col-6">
-                                        {/* <Link to="/" className="btn btn-block btn-light btn-md"><span className="icon-open_in_new mr-2"></span>Preview</Link> */}
                                     </div>
                                     <div className="col-6">
                                         <Link to="/" onClick={this.handlejobpost} className="btn btn-block btn-primary btn-md">Save Job</Link>

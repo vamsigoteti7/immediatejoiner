@@ -99,7 +99,6 @@ export class JobApplicationsDetail extends Component {
                 minWidth: 650,
             },
         });
-        // const classes = useStyles();
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
@@ -135,17 +134,6 @@ export class JobApplicationsDetail extends Component {
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    {/* <div className="container">
-                        <div className="row">
-                            <div className="col-md-7">
-                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                                <div className="custom-breadcrumbs">
-                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
-                                    <span className="text-white"><strong>Log In</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">

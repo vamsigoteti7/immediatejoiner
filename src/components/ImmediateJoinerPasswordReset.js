@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-// import { SmartToaster, toast } from 'react-smart-toaster';
 import { auth } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from '@material-ui/core/styles';
@@ -81,7 +80,6 @@ export class ImmediateJoinerPasswordReset extends Component {
 
 
     handletabChange = (event, newValue) => {
-        // setValue(newValue);
         if (newValue !== undefined) {
             localStorage.setItem('tabindex', newValue);
             this.setState({ value: newValue });
@@ -90,7 +88,6 @@ export class ImmediateJoinerPasswordReset extends Component {
 
     handleChangeIndex = (index) => {
         this.setState({ value: index });
-        // setValue(index);
     };
 
 
@@ -126,26 +123,10 @@ export class ImmediateJoinerPasswordReset extends Component {
                                     <span className="icon-menu h3 m-0 p-0 mt-2"></span>
                                 </div>
                             </div>
-                            {/* <SmartToaster
-                                store={toast}
-                                lightBackground={true}
-                                position={"top_right"}
-                            /> */}
                         </div>
                     </div>
                 </header>
                 <section className="section-hero overlay inner-page bg-image" style={{ backgroundImage: `url(${hero_1})` }} id="home-section">
-                    {/* <div className="container">
-                        <div className="row">
-                            <div className="col-md-7">
-                                <h1 className="text-white font-weight-bold">Sign Up/Login</h1>
-                                <div className="custom-breadcrumbs">
-                                    <a href="#">Home</a> <span className="mx-2 slash">/</span>
-                                    <span className="text-white"><strong>Log In</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                 </section>
                 <section className="site-section">
                     <div className="container">
