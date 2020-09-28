@@ -83,18 +83,33 @@ exports.postuserdetails = (request, response) => {
 		currentsalary: request.body.currentsalary
 	}
 
-	admin.firestore()
-		.collection('IMuserdetails')
-		.add(newuserdetailsItem)
-		.then((doc) => {
-			const responseuserdetailsItem = newuserdetailsItem;
-			responseuserdetailsItem.id = doc.id;
-			return response.json(responseuserdetailsItem);
-		})
-		.catch((error) => {
-			console.error(error);
-			response.status(500).json({ error: 'Something went wrong' });
-		});
+	var docRef = admin.firestore().collection("IMuserdetails").doc(request.body.docid);
+
+	docRef.get().then(function (doc) {
+		if (doc.exists) {
+			docRef.update(newuserdetailsItem);
+			return response.json(docRef);
+		} else {
+			// doc.data() will be undefined in this case
+			admin.firestore()
+			.collection('IMuserdetails')
+			.add(newuserdetailsItem)
+			.then((doc) => {
+				const responseuserdetailsItem = newuserdetailsItem;
+				responseuserdetailsItem.id = doc.id;
+				return response.json(responseuserdetailsItem);
+			})
+			.catch((error) => {
+				console.error(error);
+				response.status(500).json({ error: 'Something went wrong' });
+			});
+		}
+	}).catch(function (error) {
+		console.log("Error getting document:", error);
+	});
+
+
+
 };
 exports.getuserdetailsById = (request, response) => {
 
