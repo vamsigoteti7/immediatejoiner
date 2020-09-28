@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import { auth,  generateUserDocument } from '../../firebase/index';
+import { auth, generateUserDocument } from '../../firebase/index';
 import firebase from "firebase/app";
 import axios from '../../axios-immediatejoiner';
 import { toast } from "react-toastify";
@@ -18,21 +18,21 @@ class UserProvider extends Component {
     auth.onAuthStateChanged(async firebaseUser => {
       const userVal = await generateUserDocument(firebaseUser);
       try {
-        const token = await firebase.auth().currentUser.getIdToken(true);  
+        const token = await firebase.auth().currentUser.getIdToken(true);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-        toast.success("Logged In Sucessfully");
-             
+        toast.success("Welcome" + userVal.displayName);
+
       } catch (error) {
         console.log(error);
       }
-      
+
       this.setState({
         allContextValue: {
           ...this.state.allContextValue,
           user: userVal,
         },
       });
-      
+
     });
   };
 

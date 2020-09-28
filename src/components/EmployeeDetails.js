@@ -59,6 +59,7 @@ export class EmployeeDetails extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.getemployeedetails();
     }
 
@@ -120,19 +121,31 @@ export class EmployeeDetails extends Component {
                     this.setState({ age: response.data[0].age });
 
                     const dbgender = this.state.gender.genderApi.filter(p => p.value.includes(response.data[0].gender))
-                    this.setGenderValue(dbgender);
+                    if (dbgender.length > 0) {
+                        this.setGenderValue(dbgender[0]);
+                    }
 
                     const dbcity = this.state.cities.cityApi.filter(p => p.value.includes(response.data[0].city))
-                    this.setCityValue(dbcity);
+                    if (dbcity.length > 0) {
+                        this.setCityValue(dbcity[0]);
+                    }
 
                     const dbindustry = this.state.industries.industriesApi.filter(p => p.value.includes(response.data[0].industry))
-                    this.setIndustryValue(dbindustry);
+                    if (dbindustry.length > 0) {
+                        this.setIndustryValue(dbindustry[0]);
+                    }
 
                     const dbqualification = this.state.qualifications.qualificationApi.filter(p => p.value.includes(response.data[0].highestqualification))
-                    this.setQualificationValue(dbqualification);
+                    if (dbqualification.length > 0) {
+                        this.setQualificationValue(dbqualification[0]);
+                    }
 
                     const dbexperience = this.state.experience.experiencesApi.filter(p => p.value === response.data[0].totalexperience)
-                    this.setExperienceValue(dbexperience);
+
+                    if (dbexperience.length > 0) {
+                        this.setExperienceValue(dbexperience[0]);
+                    }
+
 
                     this.setState({ percentage: response.data[0].percentage });
                     this.setState({ resumeurl: response.data[0].resumeurl });
@@ -165,6 +178,7 @@ export class EmployeeDetails extends Component {
         };
         axios.post('/impostuserdetails', employeeData)
             .then(response => {
+                window.scrollTo(0, 0);
                 toast.success("Profile Updated Sucessfully");
             })
             .catch(error => {
@@ -210,7 +224,7 @@ export class EmployeeDetails extends Component {
             () => {
                 storage
                     .ref("resumes")
-                    .child(this.props.userid.user.username)
+                    .child(this.props.userid.user.username + '.' + extension)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({ resumeurl: url });

@@ -52,6 +52,10 @@ export class Logintbygoogle extends Component {
         this.handletabChange = this.handletabChange.bind(this);
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     handletabChange = (event, newValue) => {
         if (newValue !== undefined) {
             localStorage.setItem('tabindex', newValue);

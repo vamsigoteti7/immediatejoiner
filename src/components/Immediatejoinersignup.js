@@ -53,6 +53,10 @@ export class Immediatejoinersignup extends Component {
         this.handletabChange = this.handletabChange.bind(this);
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
     }

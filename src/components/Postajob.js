@@ -7,8 +7,8 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import Select from 'react-select';
 import { storage } from '../firebase';
-import { NoImage } from '../images/No-image-available.png';
 import { auth } from '../firebase/index';
+import { toast } from "react-toastify";
 import citydata from '../immediatedata/indiacitydata.json';
 import experiencedata from '../immediatedata/experience.json';
 import industrydata from '../immediatedata/industries.json';
@@ -81,24 +81,12 @@ export class Postajob extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.getAllCountrys();
         this.getAllIndustries();
         this.getAllExperiences();
-
     }
 
-    getuserjobs = () => {
-        const userData = {
-            userid: this.props.userid.user.uid
-        };
-        axios.post('/getuserjobs', userData)
-            .then(response => {
-
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
 
     jobdescriptionChange = (content, delta, source, editor) => {
         this.setState({
@@ -164,6 +152,7 @@ export class Postajob extends Component {
         };
         axios.post('/impostjob', registerData)
             .then(response => {
+                toast.success("Job Posted Successfully");
                 this.props.history.push('/RecruiterDashboard');
             })
             .catch(error => {
@@ -182,7 +171,12 @@ export class Postajob extends Component {
     };
 
     handleCompanyPicUpload = () => {
-        const uploadTask = storage.ref(`companylogos/${this.props.userid.user.username}`).put(this.state.companylogo);
+        const fileextension = this.state.companylogo.name.split('.');
+        var extension = null;
+        if (fileextension.length > 0) {
+            extension = fileextension[fileextension.length - 1];
+        }
+        const uploadTask = storage.ref(`companylogos/${this.props.userid.user.username + '.' + extension}`).put(this.state.companylogo);
         uploadTask.on(
             "state_changed",
             snapshot => {
@@ -198,7 +192,7 @@ export class Postajob extends Component {
             () => {
                 storage
                     .ref("companylogos")
-                    .child(this.props.userid.user.username)
+                    .child(this.props.userid.user.username + '.' + extension)
                     .getDownloadURL()
                     .then(url => {
                         this.setState({ companylogourl: url });
@@ -213,7 +207,6 @@ export class Postajob extends Component {
     }
 
     render() {
-        const photoimg = this.state.imageurl === '' ? NoImage : this.state.imageurl;
         return (
             <div className="site-wrap">
                 <div className="site-mobile-menu site-navbar-target">
