@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import hero_1 from '../images/hero_1.jpg';
 import { Link } from 'react-router-dom';
-// import { SmartToaster, toast } from 'react-smart-toaster';
 import { auth, getUserDocument, signInWithGoogle } from '../firebase/index';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from '@material-ui/core/styles';
@@ -11,6 +10,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
+import { toast } from "react-toastify";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
