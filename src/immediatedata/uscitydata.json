@@ -1,6 +1,4 @@
-[
-    {
-        "city": "New York"
+[{"city": "New York"
     },
     {
         "city": "Los Angeles"
@@ -221,7 +219,7 @@
     {
         "city": "Lubbock"
     },
-   {
+    {
         "city": "Scottsdale"
     },
     {
@@ -398,10 +396,9 @@
     {
         "city": "Waco"
     },
-
     {
         "city": "Roseville"
-    }, 
+    },
     {
         "city": "Torrance"
     },
@@ -596,4 +593,5 @@
     },
     {
         "city": "Richmond"
-    }]
+    }
+]
