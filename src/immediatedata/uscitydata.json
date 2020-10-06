@@ -189,6 +189,411 @@
         "city": "Cincinnati"
     },
     {
-        "city": "Chicago"
-    }
-]
+        "city": "Hialeah"
+    },
+    {
+        "city": "Irving"
+    },
+    {
+        "city": "Garland"
+    },
+    {
+        "city": "Chesapeake"
+    },
+    {
+        "city": "Winston-Salem"
+    },
+    {
+        "city": "North Las Vegas"
+    },
+    {
+        "city": "Glendale"
+    },
+    {
+        "city": "Buffalo"
+    },
+    {
+        "city": "Gilbert"
+    },
+    {
+        "city": "Reno"
+    },
+    {
+        "city": "Lubbock"
+    },
+   {
+        "city": "Scottsdale"
+    },
+    {
+        "city": "Madison"
+    },
+    {
+        "city": "Laredo"
+    },
+    {
+        "city": "Chandler"
+    },
+    {
+        "city": "Toledo"
+    },
+    {
+        "city": "Fort Wayne"
+    },
+    {
+        "city": "Jersey City"
+    },
+    {
+        "city": "St. Petersburg"
+    },
+    {
+        "city": "Chula Vista"
+    },
+    {
+        "city": "Durham"
+    },
+    {
+        "city": "Newark"
+    },
+    {
+        "city": "Anchorage"
+    },
+    {
+        "city": "Plano"
+    },
+    {
+        "city": "Orlando"
+    },
+    {
+        "city": "St. Louis"
+    },
+    {
+        "city": "Lincoln"
+    },
+    {
+        "city": "Pittsburgh"
+    },
+    {
+        "city": "Greensboro"
+    },
+    {
+        "city": "Irvine"
+    },
+    {
+        "city": "Eugene"
+    },
+    {
+        "city": "Elk Grove"
+    },
+    {
+        "city": "Santa Rosa"
+    },
+    {
+        "city": "Newport News"
+    },
+    {
+        "city": "Pembroke Pines"
+    },
+    {
+        "city": "Oceanside"
+    },
+    {
+        "city": "Cary"
+    },
+    {
+        "city": "Fort Collins"
+    },
+    {
+        "city": "Corona"
+    },
+    {
+        "city": "Garden Grove"
+    },
+    {
+        "city": "Springfield"
+    },
+    {
+        "city": "Alexandria"
+    },
+    {
+        "city": "Bayamon"
+    },
+    {
+        "city": "Clarksville"
+    },
+    {
+        "city": "Enterprise"
+    },
+    {
+        "city": "Hayward"
+    },
+    {
+        "city": "Jackson"
+    },
+    {
+        "city": "Lakewood"
+    },
+    {
+        "city": "Lancaster"
+    },
+    {
+        "city": "Hollywood"
+    },
+    {
+        "city": "Palmdale"
+    },
+    {
+        "city": "Salinas"
+    },
+    {
+        "city": "Springfield"
+    },
+    {
+        "city": "Bellevue"
+    },
+    {
+        "city": "Killeen"
+    },
+    {
+        "city": "Kansas City"
+    },
+    {
+        "city": "Macon County"
+    },
+    {
+        "city": "Sunnyvale"
+    },
+    {
+        "city": "Pomona"
+    },
+    {
+        "city": "Escondido"
+    },
+    {
+        "city": "Pasadena"
+    },
+    {
+        "city": "Murfreesboro"
+    },
+    {
+        "city": "Naperville"
+    },
+    {
+        "city": "Joliet"
+    },
+    {
+        "city": "Paterson"
+    },
+    {
+        "city": "Savannah"
+    },
+    {
+        "city": "Rockford"
+    },
+    {
+        "city": "Midland"
+    },
+    {
+        "city": "McAllen"
+    },
+    {
+        "city": "Waco"
+    },
+
+    {
+        "city": "Roseville"
+    }, 
+    {
+        "city": "Torrance"
+    },
+    {
+        "city": "Thornton"
+    },
+    {
+        "city": "Metairie"
+    },
+    {
+        "city": "Miramar"
+    },
+    {
+        "city": "Bridgeport"
+    },
+    {
+        "city": "Olathe"
+    },
+    {
+        "city": "Denton"
+    },
+    {
+        "city": "Surprise"
+    },
+    {
+        "city": "Glendale"
+    },
+    {
+        "city": "Rochester"
+    },
+    {
+        "city": "Huntsville"
+    },
+    {
+        "city": "Amarillo"
+    },
+    {
+        "city": "Huntington Beach"
+    },
+    {
+        "city": "Spring Valley"
+    },
+    {
+        "city": "Cape Coral"
+    },
+    {
+        "city": "Tallahassee"
+    },
+    {
+        "city": "Yonkers"
+    },
+    {
+        "city": "Aurora"
+    },
+    {
+        "city": "Grand Prairie"
+    },
+    {
+        "city": "Akron"
+    },
+    {
+        "city": "Little Rock"
+    },
+    {
+        "city": "Montgomery"
+    },
+    {
+        "city": "Overland Park"
+    },
+    {
+        "city": "Augusta"
+    },
+    {
+        "city": "Tempe"
+    },
+    {
+        "city": "Sunrise Manor"
+    },
+    {
+        "city": "Knoxville"
+    },
+    {
+        "city": "Sioux Falls"
+    },
+    {
+        "city": "Columbus"
+    },
+    {
+        "city": "Mobile"
+    },
+    {
+        "city": "Ontario"
+    },
+    {
+        "city": "Vancouver"
+    },
+    {
+        "city": "Worcester"
+    },
+    {
+        "city": "Fort Lauderdale"
+    },
+    {
+        "city": "Chattanooga"
+    },
+    {
+        "city": "Shreveport"
+    },
+    {
+        "city": "Brownsville"
+    },
+    {
+        "city": "Peoria"
+    },
+    {
+        "city": "Rancho Cucamonga"
+    },
+    {
+        "city": "Salem"
+    },
+    {
+        "city": "Providence"
+    },
+    {
+        "city": "Arlington"
+    },
+    {
+        "city": "Spokane"
+    },
+    {
+        "city": "Tacoma"
+    },
+    {
+        "city": "Modesto"
+    },
+    {
+        "city": "Fontana"
+    },
+    {
+        "city": "Des Moines"
+    },
+    {
+        "city": "San Bernardino"
+    },
+    {
+        "city": "Baton Rouge"
+    },
+    {
+        "city": "Frisco"
+    },
+    {
+        "city": "Salt Lake City"
+    },
+    {
+        "city": "Moreno Valley"
+    },
+    {
+        "city": "Oxnard"
+    },
+    {
+        "city": "Santa Clarita"
+    },
+    {
+        "city": "Birmingham"
+    },
+    {
+        "city": "McKinney"
+    },
+    {
+        "city": "Port St. Lucie"
+    },
+    {
+        "city": "Grand Rapids"
+    },
+    {
+        "city": "Fayetteville"
+    },
+    {
+        "city": "Grand Rapids"
+    },
+    {
+        "city": "Norfolk"
+    },
+    {
+        "city": "Fremont"
+    },
+    {
+        "city": "Boise"
+    },
+    {
+        "city": "Paradise"
+    },
+    {
+        "city": "Richmond"
+    },
