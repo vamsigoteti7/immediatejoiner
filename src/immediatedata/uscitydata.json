@@ -1,0 +1,333 @@
+[
+    {
+        "city": "New York"
+    },
+    {
+        "city": "Los Angeles"
+    },
+    {
+        "city": "Chicago"
+    },
+    {
+        "city": "Houston"
+    },
+    {
+        "city": "Phoenix"
+    },
+    {
+        "city": "Philadelphia"
+    },
+    {
+        "city": "San Antonio"
+    },
+    {
+        "city": "Dallas"
+    },
+    {
+        "city": "Austin"
+    },
+    {
+        "city": "Fort Worth"
+    },
+    {
+        "city": "Jacksonville"
+    },
+    {
+        "city": "Columbus"
+    },
+    {
+        "city": "Charlotte"
+    },
+    {
+        "city": "San Francisco"
+    },
+    {
+        "city": "Indianapolis"
+    },
+    {
+        "city": "Seattle"
+    },
+    {
+        "city": "Denver"
+    },
+    {
+        "city": "Washington"
+    },
+    {
+        "city": "Boston"
+    },
+    {
+        "city": "El Paso"
+    },
+    {
+        "city": "Nashville"
+    },
+    {
+        "city": "Detroit"
+    },
+    {
+        "city": "Portland"
+    },
+    {
+        "city": "Las Vegas"
+    },
+    {
+        "city": "Oklahoma City"
+    },
+    {
+        "city": "Memphis"
+    },
+    {
+        "city": "Louisville"
+    },
+    {
+        "city": "Baltimore"
+    },
+    {
+        "city": "Milwaukee"
+    },
+    {
+        "city": "Albuquerque"
+    },
+    {
+        "city": "Tucson"
+    },
+    {
+        "city": "Fresno"
+    },
+    {
+        "city": "Mesa"
+    },
+    {
+        "city": "Atlanta"
+    },
+    {
+        "city": "Sacramento"
+    },
+    {
+        "city": "Kansas City"
+    },
+    {
+        "city": "Miami"
+    },
+    {
+        "city": "Colorado Springs"
+    },
+    {
+        "city": "Raleigh"
+    },
+    {
+        "city": "Omaha"
+    },
+    {
+        "city": "Long Beach"
+    },
+    {
+        "city": "Virginia Beach"
+    },
+    {
+        "city": "Minneapolis"
+    },
+    {
+        "city": "Oakland"
+    },
+    {
+        "city": "Tampa"
+    },
+    {
+        "city": "Arlington"
+    },
+    {
+        "city": "Tulsa"
+    },
+    {
+        "city": "Bakersfield"
+    },
+    {
+        "city": "New Orleans"
+    },
+    {
+        "city": "Wichita"
+    },
+    {
+        "city": "Aurora"
+    },
+    {
+        "city": "Cleveland"
+    },
+    {
+        "city": "Anaheim"
+    },
+    {
+        "city": "Honolulu"
+    },
+    {
+        "city": "Riverside"
+    },
+    {
+        "city": "San Juan"
+    },
+    {
+        "city": "Santa Ana"
+    },
+    {
+        "city": "Henderson"
+    },
+    {
+        "city": "Lexington"
+    },
+    {
+        "city": "Corpus Christi"
+    },
+    {
+        "city": "Stockton"
+    },
+    {
+        "city": "St. Paul"
+    },
+    {
+        "city": "Cincinnati"
+    },
+    {
+        "city": "Chicago"
+    },
+
+
+
+	2,317	135
+65		Ohio	306,487	296,837	3.25%	1,520	202
+66	Irvine	California	303,956	213,392	42.44%	1,788	170
+67	Greensboro	North Carolina	299,946	269,587	11.26%	897	334
+68	Pittsburgh	Pennsylvania	294,860	305,410	-3.45%	2,056	143
+69	Lincoln	Nebraska	293,905	259,261	13.36%	1,179	249
+70	St. Louis	Missouri	293,792	319,318	-7.99%	1,837	160
+71	Orlando	Florida	291,739	239,308	21.91%	1,019	286
+72	Plano	Texas	288,539	261,222	10.46%	1,554	186
+73	Anchorage	Alaska	285,634	293,310	-2.62%	65	4,421
+74	Newark	New Jersey	282,862	277,158	2.06%	4,524	63
+75	Durham	North Carolina	282,737	230,710	22.55%	973	291
+76	Chula Vista	California	277,289	244,656	13.34%	2,157	129
+77	St. Petersburg	Florida	271,842	245,226	10.85%	1,697	160
+78	Jersey City	New Jersey	271,099	248,363	9.15%	7,100	38
+79	Fort Wayne	Indiana	270,989	254,162	6.62%	946	287
+80	Toledo	Ohio	270,651	287,030	-5.71%	1,298	208
+81	Chandler	Arizona	268,675	236,479	13.61%	1,593	169
+82	Laredo	Texas	264,703	236,859	11.76%	967	274
+83	Madison	Wisconsin	264,030	233,716	12.97%	1,285	205
+84	Scottsdale	Arizona	262,222	217,615	20.50%	550	477
+85	Lubbock	Texas	260,823	230,796	13.01%	747	349
+86	Reno	Nevada	260,258	225,750	15.29%	924	282
+87	Gilbert	Arizona	258,935	209,435	23.64%	1,460	177
+88	Buffalo	New York	255,244	261,301	-2.32%	2,441	105
+89	Glendale	Arizona	254,500	226,168	12.53%	1,595	160
+90	North Las Vegas	Nevada	253,923	216,843	17.10%	1,000	254
+91	Winston-Salem	North Carolina	251,762	230,033	9.45%	733	343
+92	Chesapeake	Virginia	248,106	223,550	10.98%	283	877
+93	Garland	Texas	246,627	227,355	8.48%	1,669	148
+94	Irving	Texas	243,738	216,867	12.39%	1,403	174
+95	Hialeah	Florida	243,208	225,460	7.87%	4,351	56
+96	Norfolk	Virginia	242,234	242,998	-0.31%	1,756	138
+97	Fremont	California	239,525	214,561	11.63%	1,194	201
+98	Boise	Idaho	234,576	209,578	11.93%	1,082	217
+99	Paradise	Nevada	233,689	223,167	4.71%	1,931	121
+100	Richmond	Virginia	232,055	204,256	13.61%	1,495	155
+101	Arlington	Virginia	231,803	207,627	11.64%	3,443	67
+102	Spokane	Washington	223,266	209,523	6.56%	1,254	178
+103	Tacoma	Washington	222,603	198,227	12.30%	1,727	129
+104	Modesto	California	218,758	203,314	7.60%	1,965	111
+105	Fontana	California	218,573	197,342	10.76%	1,959	112
+106	Des Moines	Iowa	217,891	205,004	6.29%	954	228
+107	San Bernardino	California	217,671	209,853	3.73%	1,353	161
+108	Baton Rouge	Louisiana	216,701	229,369	-5.52%	968	224
+109	Frisco	Texas	215,060	118,192	81.96%	1,219	176
+110	Salt Lake City	Utah	213,367	186,571	14.36%	744	287
+111	Moreno Valley	California	212,992	194,241	9.65%	1,604	133
+112	Oxnard	California	212,715	198,465	7.18%	3,096	69
+113	Santa Clarita	California	210,543	204,213	3.10%	1,149	183
+114	Birmingham	Alabama	208,940	211,743	-1.32%	552	378
+115	McKinney	Texas	208,487	132,943	56.82%	1,203	173
+116	Port St. Lucie	Florida	206,410	164,843	25.22%	669	309
+117	Fayetteville	North Carolina	205,646	208,335	-1.29%	537	383
+118	Grand Rapids	Michigan	205,289	188,003	9.19%	1,771	116
+119	Glendale	California	204,765	191,726	6.80%	2,595	79
+120	Rochester	New York	203,792	210,452	-3.16%	2,200	93
+121	Huntsville	Alabama	202,910	180,960	12.13%	365	555
+122	Amarillo	Texas	202,028	191,255	5.63%	767	264
+123	Huntington Beach	California	201,941	191,303	5.56%	2,887	70
+124	Spring Valley	Nevada	199,722	178,395	11.95%	2,319	86
+125	Cape Coral	Florida	199,503	154,735	28.93%	727	274
+126	Tallahassee	Florida	199,205	181,596	9.70%	766	260
+127	Yonkers	New York	199,021	196,405	1.33%	4,266	47
+128	Aurora	Illinois	198,870	198,157	0.36%	1,706	117
+129	Grand Prairie	Texas	198,442	175,979	12.76%	1,060	187
+130	Akron	Ohio	198,148	199,003	-0.43%	1,235	160
+131	Little Rock	Arkansas	197,371	193,928	1.78%	635	311
+132	Montgomery	Alabama	197,282	205,593	-4.04%	476	414
+133	Overland Park	Kansas	196,636	174,041	12.98%	1,010	195
+134	Augusta	Georgia	196,303	196,192	0.06%	251	783
+135	Tempe	Arizona	194,218	162,326	19.65%	1,876	104
+136	Sunrise Manor	Nevada	192,934	189,372	1.88%	2,232	86
+137	Knoxville	Tennessee	191,060	178,432	7.08%	747	256
+138	Sioux Falls	South Dakota	190,519	154,526	23.29%	940	203
+139	Columbus	Georgia	189,296	191,105	-0.95%	338	561
+140	Mobile	Alabama	186,804	194,577	-3.99%	517	361
+141	Ontario	California	186,653	164,369	13.56%	1,442	129
+142	Vancouver	Washington	186,516	167,622	11.27%	1,477	126
+143	Worcester	Massachusetts	186,433	181,878	2.50%	1,927	97
+144	Fort Lauderdale	Florida	184,599	166,138	11.11%	2,061	90
+145	Chattanooga	Tennessee	184,143	170,559	7.96%	497	370
+146	Shreveport	Louisiana	183,819	200,869	-8.49%	661	278
+147	Brownsville	Texas	183,748	175,400	4.76%	536	343
+148	Peoria	Arizona	180,219	154,891	16.35%	395	456
+149	Rancho Cucamonga	California	180,031	166,232	8.30%	1,733	104
+150	Salem	Oregon	179,944	155,229	15.92%	1,427	126
+151	Providence	Rhode Island	178,901	178,100	0.45%	3,753	48
+152	Eugene	Oregon	178,329	156,527	13.93%	1,560	114
+153	Elk Grove	California	177,406	153,394	15.65%	1,630	109
+154	Santa Rosa	California	177,132	175,304	1.04%	1,608	110
+155	Newport News	Virginia	177,064	180,925	-2.13%	991	179
+156	Pembroke Pines	Florida	177,058	155,268	14.03%	2,092	85
+157	Oceanside	California	176,950	167,919	5.38%	1,656	107
+158	Cary	North Carolina	175,102	137,021	27.79%	1,151	152
+159	Fort Collins	Colorado	172,862	145,267	19.00%	1,167	148
+160	Corona	California	171,213	153,249	11.72%	1,653	104
+161	Garden Grove	California	170,328	171,186	-0.50%	3,662	47
+162	Springfield	Missouri	169,552	159,484	6.31%	795	213
+163	Alexandria	Virginia	165,748	140,740	17.77%	4,285	39
+164	Bayamon	Puerto Rico	165,383	185,996	-11.08%	2,367	70
+165	Clarksville	Tennessee	164,496	133,480	23.24%	643	256
+166	Enterprise	Nevada	164,314	108,481	51.47%	1,241	132
+167	Hayward	California	161,314	144,746	11.45%	1,368	118
+168	Jackson	Mississippi	160,080	173,738	-7.86%	556	288
+169	Lakewood	Colorado	158,660	142,786	11.12%	1,423	111
+170	Lancaster	California	158,627	156,822	1.15%	650	244
+171	Hollywood	Florida	158,239	141,018	12.21%	2,240	71
+172	Palmdale	California	156,299	152,962	2.18%	569	275
+173	Salinas	California	155,619	150,904	3.12%	2,565	61
+174	Springfield	Massachusetts	155,472	153,613	1.21%	1,884	83
+175	Bellevue	Washington	154,647	128,358	20.48%	1,784	87
+176	Killeen	Texas	153,973	128,980	19.38%	1,090	141
+177	Kansas City	Kansas	153,600	145,883	5.29%	475	323
+178	Macon County	Georgia	152,519	155,810	-2.11%	236	646
+179	Sunnyvale	California	152,427	140,465	8.52%	2,671	57
+180	Pomona	California	152,405	149,083	2.23%	2,560	60
+181	Escondido	California	152,245	144,437	5.41%	1,575	97
+182	Pasadena	Texas	151,891	149,529	1.58%	1,346	113
+183	Murfreesboro	Tennessee	151,066	109,524	37.93%	945	160
+184	Naperville	Illinois	149,196	142,388	4.78%	1,484	101
+185	Joliet	Illinois	148,227	147,654	0.39%	892	166
+186	Paterson	New Jersey	145,871	146,397	-0.36%	6,694	22
+187	Savannah	Georgia	145,754	137,492	6.01%	542	269
+188	Rockford	Illinois	145,020	153,148	-5.31%	870	167
+189	Midland	Texas	145,012	111,284	30.31%	753	193
+190	McAllen	Texas	144,279	132,123	9.20%	848	170
+191	Waco	Texas	144,015	125,409	14.84%	626	230
+192	Roseville	California	143,921	119,795	20.14%	1,261	114
+193	Torrance	California	143,912	145,183	-0.88%	2,708	53
+194	Thornton	Colorado	143,890	119,391	20.52%	1,548	93
+195	Metairie	Louisiana	143,481	138,481	3.61%	2,382	60
+196	Miramar	Florida	143,219	122,299	17.11%	1,917	75
+197	Bridgeport	Connecticut	143,010	144,858	-1.28%	3,437	42
+198	Olathe	Kansas	142,841	126,249	13.14%	895	160
+199	Denton	Texas	142,173	117,058	21.46%	570	249
+200	Surprise	Arizona	142,049	117,674	20.71%	508	280
