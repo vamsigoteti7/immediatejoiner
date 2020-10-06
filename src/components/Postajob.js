@@ -9,7 +9,7 @@ import Select from 'react-select';
 import { storage } from '../firebase';
 import { auth } from '../firebase/index';
 import { toast } from "react-toastify";
-import citydata from '../immediatedata/indiacitydata.json';
+import citydata from '../immediatedata/uscitydata.json';
 import experiencedata from '../immediatedata/experience.json';
 import industrydata from '../immediatedata/industries.json';
 

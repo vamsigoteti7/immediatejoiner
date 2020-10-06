@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from '../axios-immediatejoiner';
 import Select from 'react-select';
 import { auth } from '../firebase/index';
-import citydata from '../immediatedata/indiacitydata.json';
+import citydata from '../immediatedata/uscitydata.json';
 import industrydata from '../immediatedata/industries.json';
 import { toast } from "react-toastify";
 

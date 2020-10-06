@@ -168,7 +168,7 @@ app.post('/impostuserdetails', postuserdetails);
 app.post('/impostuserdetailsbyid', getuserdetailsById);
 
 
-exports.app = functions.region('us-central1', 'asia-south1').https.onRequest(app);
+exports.app = functions.region('us-central1').https.onRequest(app);
 
 /**
  * When a user is created, create a Stripe customer object for them.

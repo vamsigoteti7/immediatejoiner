@@ -205,7 +205,7 @@ class MembershipPlans extends React.Component {
                                                 <CardContent>
                                                     <div className={classes.cardPricing}>
                                                         <Typography component="h2" variant="h3" color="textPrimary">
-                                                            Rs{(tier.price / 100).toFixed(2)}
+                                                            USD{(tier.price / 100).toFixed(2)}
                                                         </Typography>
                                                     </div>
                                                     <ul>
