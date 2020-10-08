@@ -173,7 +173,7 @@ class Immediatejoinerhome extends React.Component {
                                             <div className="col-md-12">
                                                 <div className="mb-5 text-center">
                                                     <h1 className="text-white font-weight-bold">America's First Low Priced Job Portal</h1>
-                                                    <p>Spend 100 Rs To Post A Job</p>
+                                                    <p>Spend 5 $ To Post A Job</p>
                                                 </div>
                                             </div>
                                         </div>

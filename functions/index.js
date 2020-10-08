@@ -22,7 +22,7 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const cookieParser = require('cookie-parser')(); 
+const cookieParser = require('cookie-parser')();
 var serviceAccount = require("./immediatejoiner-firebase-adminsdk-g66wx-610caa53bf.json");
 
 admin.initializeApp({
@@ -176,10 +176,17 @@ exports.app = functions.region('us-central1').https.onRequest(app);
  * @see https://stripe.com/docs/payments/save-and-reuse#web-create-customer
  */
 exports.createStripeCustomer = functions.auth.user().onCreate(async (user) => {
-  const customer = await stripe.customers.create({ email: user.email });
+  const customer = await stripe.customers.create({ email: user.email, name: user.email, description: 'immediate joiner payment gateway', address: {
+    line1: '510 Townsend St',
+    postal_code: '98140',
+    city: 'San Francisco',
+    state: 'CA',
+    country: 'US',
+  } });
 
   await admin.firestore().collection('stripe_customers').doc(user.uid).collection('stripe_transactions').doc(customer.id).set({
     customer_id: customer.id,
+    customer: customer,
     createdDate: admin.firestore.Timestamp.fromDate(new Date())
   });
 
@@ -197,12 +204,13 @@ exports.addPaymentMethodDetails = functions.firestore
       const amount = snap.data().amount;
       const currency = snap.data().currency;
       const description = snap.data().description;
-
+      const customerid = snap.data().customerid
       const paymentIntent = await stripe.paymentIntents.create(
         {
           amount: amount,
           currency: currency,
           description: description,
+          customer: customerid
         }
       );
       await snap.ref.set({ payment: paymentIntent }, { merge: true });

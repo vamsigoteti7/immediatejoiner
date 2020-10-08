@@ -52,6 +52,7 @@ class MembershipCheckout extends React.Component {
                             amount: this.state.plan.price,
                             currency: this.state.plan.currency,
                             description: 'Software Services',
+                            customerid : document.id,
                             createdDate: firebase.firestore.Timestamp.fromDate(new Date())
                         });
                 });
@@ -96,6 +97,7 @@ class MembershipCheckout extends React.Component {
 
                 if (payload.error) {
                     this.setState({ error: payload.error.message });
+                    console.log(payload.error.message);
                     toast.error(payload.error.message);                    
                 } else {
                     firebase.firestore()
