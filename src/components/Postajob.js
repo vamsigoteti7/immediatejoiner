@@ -111,7 +111,7 @@ export class Postajob extends Component {
 
     getAllCountrys = () => {
         this.setState({
-            countries: [{ value: "India", id: 2, label: "India" }]
+            countries: [{ value: "USA", id: 2, label: "USA" }]
         });
     };
 

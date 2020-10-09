@@ -31,7 +31,7 @@ export class EmployeeDetails extends Component {
             return { value: data.name, id: data.experiencedocid, label: data.name };
         });
 
-        let countryApi = [{ value: "India", id: 2, label: "India" }];
+        let countryApi = [{ value: "USA", id: 2, label: "USA" }];
 
         let cityApi = citydata.map(data => {
             return { value: data.city, id: data.countryid, label: data.city };
@@ -342,7 +342,7 @@ export class EmployeeDetails extends Component {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="percentage">Percentage</label>
+                                        <label htmlFor="percentage">Percentage/Grade</label>
                                         <input type="text" onChange={this.handleChange} value={this.state.percentage} className="form-control" name="percentage" placeholder="Enter Percentage" />
                                     </div>
 

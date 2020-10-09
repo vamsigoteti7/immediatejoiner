@@ -172,7 +172,7 @@ class Immediatejoinerhome extends React.Component {
                                         <div className="row align-items-center justify-content-center">
                                             <div className="col-md-12">
                                                 <div className="mb-5 text-center">
-                                                    <h1 className="text-white font-weight-bold">America's First Low Priced Job Portal</h1>
+                                                    <h1 className="text-white font-weight-bold">America's First Trusted Economical Freelancing Portal</h1>
                                                     <p>Spend 5 $ To Post A Job</p>
                                                 </div>
                                             </div>
@@ -195,7 +195,7 @@ class Immediatejoinerhome extends React.Component {
                             <div className="row align-items-center">
                                 <div className="col-md-8">
                                     <h2 className="text-white">Looking For A Job?</h2>
-                                    <p className="mb-0 text-white lead">India's First Low Priced Job Portal</p>
+                                    <p className="mb-0 text-white lead">America's First Low Priced Job Portal</p>
                                 </div>
                                 <div className="col-md-3 ml-auto">
                                     <Link to="/Signup" className="btn btn-warning btn-block btn-lg">Sign Up</Link>
